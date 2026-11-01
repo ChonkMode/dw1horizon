@@ -29,12 +29,20 @@ class ModelProvider(unittest.TestCase):
         self.assertEqual(len(records), 175)
         selected = {t: model.OVERLAYS[e['field_overlay']]
                     for t, e in records.items() if e.get('field_overlay')}
-        self.assertEqual(len(selected), 88)
+        self.assertEqual(len(selected), 91)
         self.assertEqual({e['field_overlay'] for e in records.values() if e.get('field_overlay')},
                          set(model.OVERLAYS))
         for species, (bound_species, _, _) in selected.items():
             self.assertEqual(species, bound_species)
         assignments = {t: entry[1:] for t, entry in selected.items()}
+        # The chibi proportions wrap the recipe that came before them; species without one have no other generator.
+        chibi = json.load(open('content/models/imports/chibi.json'))
+        for sid, row in chibi.items():
+            self.assertEqual(assignments[sid][0], 'tools.models.field_animations.chibi')
+            if row['base_generator']:
+                assignments[sid] = (row['base_generator'], assignments[sid][1])
+            else:
+                del assignments[sid]
         # The field pace pass wraps the recipe that came before it; species without one have no other generator.
         paced = json.load(open('content/models/imports/pace.json'))
         for sid, row in paced.items():

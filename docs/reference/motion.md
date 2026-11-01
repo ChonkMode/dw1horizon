@@ -502,18 +502,24 @@ of the species. The pass bakes each bone's scale into its vertices and into its
 children's offsets in every animation, then rescales uniformly to that height.
 
 Every clip is then replayed through the interpreter and the carrier's height is
-rewritten against the lowest vertex of each tick: on the floor when the source is on
-or near it, at the source's clearance when it leaves the ground. Root travel shrinks
-with the legs on the walk, condition walk and run, down to the speed floors of the pace
-pass. The bone-tied fields of the species record (`effect_origins`,
-`effect_origin_fallback`, `condition_bubble`) go through the same bake and reach the
-record through the proof's `species_patch`.
+rewritten tick by tick. On a tick where the source stands on its legs, the legs land:
+on the floor, or at the source's clearance if it really hovers or jumps. The lowest
+vertex of the mesh is not the measure there, because a grown sleeve, a gun or a crest
+would hold the body up with the feet in the air. On a tick where the source rests on
+something else, such as lying down, the lowest vertex lands instead, and the two blend
+over a few ticks. A row's `fit` shortens the limbs that would otherwise cross the floor
+with the feet down. Root travel shrinks with the legs on the walk, condition walk and
+run, down to the speed floors of the pace pass. The bone-tied fields of the species
+record (`effect_origins`, `effect_origin_fallback`, `condition_bubble`) go through the
+same bake and reach the record through the proof's `species_patch`.
 
-The build refuses a row whose clip stays more than 4 units off its floor, leaves a loop
-open, changes anything but the carrier's height while grounding, falls under a speed
-floor, misses the height by 1 % or leaves the storage budget. To enable a species:
-add its row, bind an overlay to this module in `content/models/imports/species.py`
-and `models.json`, and repin the species.
+The proof's `floors` gives, per slot, the feet of the ticks on the feet (source and
+result) and the worst miss each way. The build refuses a row whose legs or resting
+clip stay more than 4 units off their floor, whose part goes 8 units further under the
+floor than the source's own clip, that leaves a loop open, changes anything but the
+carrier's height while grounding, falls under a speed floor, misses the height by 1 %
+or leaves the storage budget. To enable a species: add its row, bind an overlay to
+this module in `content/models/imports/species.py` and `models.json`, and repin it.
 
 ### Field pace pass
 

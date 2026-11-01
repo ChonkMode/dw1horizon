@@ -8,8 +8,11 @@ bone and the factors. An empty manifest changes nothing.
 
 The floor is the one thing a bake cannot keep: a shorter leg leaves a walk floating and a sitting clip sinking, by
 different amounts on different ticks. So each clip is replayed with the engine's interpreter and the carrier's height
-is rewritten, with as few keys as a tolerance allows, against the lowest vertex of each tick: on the ground when the source is on
-or near it, at the source's clearance less CLEARANCE when it really leaves the ground. No key instruction is added.
+is rewritten, with as few keys as a tolerance allows. On a tick where the source stands on its feet the feet are what
+lands: on the floor, or at the source's clearance if it really hovers or jumps. A part that hangs lower than the feet
+(a sleeve, a gun, a crest) must not hold the body up. On a tick where the source rests on something else (lying, a
+fall) the lowest vertex of the mesh lands instead, and the two blend over a few ticks. A row's `fit` shortens the
+limbs that would otherwise cross the floor with the feet down.
 
 Stride and travel shrink together with the legs, down to the floor of the native speeds (pace.py's). Nothing else of
 the root's motion changes. A species failing a check raises Refused, naming the check.
@@ -35,6 +38,8 @@ CLEARANCE = 12            # a source this close over the floor counts as standin
 KEY_TOLERANCE = 1.5       # a height key is dropped when the line through its neighbours stays this close
 MAX_SINK = 4              # units a tick may stay under its target: 0.2 px at field size
 MAX_FLOAT = 4             # units a tick may stay over it
+MAX_PART_SINK = 8         # units a part may go under the floor beyond what the source's own clip does
+BLEND_TICKS = 2           # on each side of a change between feet and mesh
 MIN_FINAL_SCALE = 0.70    # the uniform rescale must not undo the reshaping
 GROUND_PASSES = 3
 
@@ -102,12 +107,12 @@ class Rig:
         pose[0] = [4096, 4096, 4096, 0, 0, 0, 0, 0, 0]
         return pose, mmd.bone_matrices(self.m, pose)
 
-    def bounds(self):
-        """(top, ground): the highest and the lowest y of the rest pose; y grows downwards."""
+    def bounds(self, feet):
+        """(top, ground): the highest y of the rest pose and the lowest of its feet; y grows downwards."""
         _, mats = self.rest()
-        ys = [mats[b][1][0] * x + mats[b][1][1] * y + mats[b][1][2] * z + mats[b][1][3]
-              for b, vs in self.verts.items() for x, y, z in vs]
-        return -min(ys), max(ys)
+        ys = {b: [mats[b][1][0] * x + mats[b][1][1] * y + mats[b][1][2] * z + mats[b][1][3] for x, y, z in vs]
+              for b, vs in self.verts.items()}
+        return -min(min(v) for v in ys.values()), max(max(ys[b]) for b in feet if b in ys)
 
 
 # ------------------------------------------------------------------ the bake
@@ -135,8 +140,12 @@ def _sole(rig, mats, b):
     return [0.0, float(lowest[1]), 0.0]
 
 
-def bone_scales(rig, groups, factors):
-    """bone -> (local scale matrix, anchor in the bone's frame)."""
+def _times(A, B):
+    return [[sum(A[i][k] * B[k][j] for k in range(3)) for j in range(3)] for i in range(3)]
+
+
+def bone_scales(rig, groups, factors, fit=None):
+    """bone -> (local scale matrix, anchor in the bone's frame). fit: bone -> length factor along the bone's axis."""
     rest, mats = rig.rest()
     F = lambda name: factors.get(name, 1.0)
     out = {}
@@ -160,6 +169,9 @@ def bone_scales(rig, groups, factors):
             M = _diagonal(F('torso'))
         elif g == 'cloth' and F('leg_axial') != 1:
             M = _scale_matrix(_axis(rig, rest, b, groups), F('leg_axial'), 1.0)
+        if fit and str(b) in fit:
+            shorter = _scale_matrix(_axis(rig, rest, b, groups), fit[str(b)], 1.0)
+            M = _times(shorter, M) if M is not None else shorter
         if M is not None:
             out[b] = (M, anchor)
     return out
@@ -265,27 +277,30 @@ def replay(model, nb, index, slot, carrier):
     return frames, poses, heights, player.events
 
 
-def lowest(model, points, pose):
-    """The lowest y of the mesh in a pose."""
+def bone_lows(model, verts, pose):
+    """{bone: the lowest y of its piece} in a pose."""
     mats = mmd.bone_matrices(model, pose)
-    worst = -1e9
-    for b, vs in points.items():
-        M = mats[b][1]
-        a, b_, c, d = M[0], M[1], M[2], M[3]
-        for x, y, z in vs:
-            value = a * x + b_ * y + c * z + d
-            if value > worst:
-                worst = value
-    return worst
-
-
-def lows(model, rig):
-    """{animation index: the lowest y of each tick}."""
     out = {}
-    for index, slot in clips(model).items():
-        poses = replay(model, rig.nb, index, slot, rig.carrier)[1]
-        out[index] = [lowest(model, rig.verts, p) for p in poses]
+    for b, vs in verts.items():
+        M = mats[b][1]
+        p, q, r, d = M[0], M[1], M[2], M[3]
+        out[b] = max(p * x + q * y + r * z + d for x, y, z in vs)
     return out
+
+
+def clip_lows(model, rig, index, slot, feet):
+    """Per tick of a clip: (lowest foot, lowest of the mesh, the bone that is lowest)."""
+    out = []
+    for pose in replay(model, rig.nb, index, slot, rig.carrier)[1]:
+        lows_ = bone_lows(model, rig.verts, pose)
+        bone = max(lows_, key=lows_.get)
+        out.append((max(lows_[b] for b in feet if b in lows_), lows_[bone], bone))
+    return out
+
+
+def lows(model, rig, feet):
+    """{animation index: clip_lows}."""
+    return {index: clip_lows(model, rig, index, slot, feet) for index, slot in clips(model).items()}
 
 
 def target(low):
@@ -385,21 +400,42 @@ def _rewrite_heights(animation, carrier, height, tolerance):
             block['vals']['ty'] = delta
 
 
-def ground(model, rig, source_lows, tolerance=KEY_TOLERANCE):
-    """Rewrite the carrier's height of every clip so each tick's lowest vertex lands on its target. -> report per
-    slot: source, before and after, as (min, max) of the lowest vertex, and the worst miss."""
+def _spread(raw, cyclic):
+    """Each value averaged with BLEND_TICKS on each side."""
+    n = len(raw)
+    at = (lambda i: raw[i % n]) if cyclic else (lambda i: raw[max(0, min(n - 1, i))])
+    return [sum(at(i + d) for d in range(-BLEND_TICKS, BLEND_TICKS + 1)) / (2 * BLEND_TICKS + 1) for i in range(n)]
+
+
+def on_feet(source, loop=None):
+    """Per tick of a source clip, how much it stands on its feet (1) or rests on something else (0); the changes
+    between the two spread over a few ticks, so the body does not jump. loop: the tick its loop starts at, whose body
+    repeats (its last tick is its first) and must not blend with what came before."""
+    raw = [1.0 if foot >= low - CLEARANCE else 0.0 for foot, low, _ in source]
+    if loop is None or loop >= len(raw) - 1:
+        return _spread(raw, False)
+    body = _spread(raw[loop:-1], True)
+    return (_spread(raw[:loop], False) if loop else []) + body + body[:1]
+
+
+def ground(model, rig, source_lows, feet, tolerance=KEY_TOLERANCE):
+    """Rewrite the carrier's height of every clip (the module's header says how). -> report per slot, all in y (down):
+    feet: the lowest foot of the ticks on the feet, source and result, with the worst miss each way; mesh: the lowest
+    vertex over the clip, source and result; part_sink: how far a part goes under the floor beyond the source's own,
+    and which bone."""
     carrier, nb = rig.carrier, rig.nb
     report = {}
     for index, slot in clips(model).items():
         animation = model.anims.anims[index]
         frames, poses, _, events = replay(model, nb, index, slot, carrier)
         reference = [[v for j, v in enumerate(bone) if (b, j) != (carrier, 7)] for p in poses for b, bone in enumerate(p)]
-        goal = [target(low) for low in source_lows[index]]
-        before = [lowest(model, rig.verts, p) for p in poses]
+        source = source_lows[index]
+        weight = on_feet(source, animsheet.slot_frames(model, nb, slot)[1])
         constant = _chains(animation) is None or any(i['op'] == 'tex' for i in animation.instrs)
         for _ in range(GROUND_PASSES):
             frames, poses, heights, _ = replay(model, nb, index, slot, carrier)
-            miss = [lowest(model, rig.verts, p) - g for p, g in zip(poses, goal)]
+            now = clip_lows(model, rig, index, slot, feet)
+            miss = [w * (n[0] - target(s[0])) + (1 - w) * (n[1] - target(s[1])) for w, n, s in zip(weight, now, source)]
             if constant:
                 ti = _translation(animation)
                 animation.pose[carrier - 1][ti[1]] = _clamp16(animation.pose[carrier - 1][ti[1]] - max(miss))
@@ -409,13 +445,22 @@ def ground(model, rig, source_lows, tolerance=KEY_TOLERANCE):
                 height[f] = min(height.get(f, 1e9), h - m)
             _rewrite_heights(animation, carrier, height, tolerance)
         frames, poses, _, after_events = replay(model, nb, index, slot, carrier)
-        after = [lowest(model, rig.verts, p) for p in poses]
         same = [[v for j, v in enumerate(bone) if (b, j) != (carrier, 7)] for p in poses for b, bone in enumerate(p)]
         if same != reference or after_events != events:
             raise Refused(f'slot {slot:#x}: the height rewrite changed something else')
-        miss = [a - g for a, g in zip(after, goal)]
-        report[slot] = dict(ticks=len(after), source=_span(source_lows[index]), before=_span(before), after=_span(after),
-                            sink=round(max(miss), 1), float=round(-min(miss), 1), constant=constant)
+        after = clip_lows(model, rig, index, slot, feet)
+        standing = [t for t, w in enumerate(weight) if w == 1]
+        foot_miss = [after[t][0] - target(source[t][0]) for t in standing]
+        resting = [after[t][1] - target(source[t][1]) for t, w in enumerate(weight) if w == 0]
+        parts = [(after[t][1] - max(source[t][1], 0.0), after[t][2]) for t in standing] or [(0.0, None)]
+        part = max(parts, key=lambda row: row[0])
+        report[slot] = dict(ticks=len(after), standing=len(standing),
+                            source_feet=_span([source[t][0] for t in standing] or [0.0]),
+                            feet=_span([after[t][0] for t in standing] or [0.0]),
+                            feet_under=round(max(foot_miss, default=0.0), 1), feet_over=round(-min(foot_miss, default=0.0), 1),
+                            resting_under=round(max(resting, default=0.0), 1), resting_over=round(-min(resting, default=0.0), 1),
+                            mesh=_span([s[1] for s in source]), mesh_after=_span([a[1] for a in after]),
+                            part_sink=round(part[0], 1), part=part[1], constant=constant)
     return report
 
 
@@ -504,10 +549,13 @@ def reshape(data, skeleton, sid, row):
     groups = {int(b): g for b, g in row['groups'].items()}
     groups = [groups.get(b, 'other') for b in range(rig.nb)]
     factors = row['factors']
-    source_lows = lows(model, rig)
+    feet = [b for b in range(rig.nb) if groups[b] in ('foot', 'footpart', 'shin', 'thigh', 'hipjoint')]   # or a kneeling leg
+    if not feet:
+        raise Refused('no feet in the bone table')
+    source_lows = lows(model, rig, feet)
     speeds = {slot: _speed(model, rig.nb, slot) for slot in SPEED_FLOOR}
-    standing = rig.bounds()[1]            # a hovering species keeps its clearance
-    scales = bone_scales(rig, groups, factors)
+    standing = rig.bounds(feet)[1]            # a hovering species keeps its clearance
+    scales = bone_scales(rig, groups, factors, row.get('fit'))
     _bake(rig, scales)
     kl = factors.get('leg_axial', 1.0)
     carrier = rig.carrier
@@ -521,7 +569,7 @@ def reshape(data, skeleton, sid, row):
                 for i, b0 in zip(_translation(a), base):
                     v[i] = _clamp16(b0 + kl * (v[i] - b0))
         _scale_keys(model.anims.anims, carrier, kl)
-    top, floor = rig.bounds()
+    top, floor = rig.bounds(feet)
     for a in model.anims.anims:
         ti = _translation(a)
         a.pose[carrier - 1][ti[1]] = _clamp16(a.pose[carrier - 1][ti[1]] + standing - floor)
@@ -538,13 +586,16 @@ def reshape(data, skeleton, sid, row):
     left = _close_loops(model, rig.nb, carrier)
     if left:
         raise Refused(f'loops left open: {left}')
-    floors = ground(model, rig, source_lows, row.get('key_tolerance', KEY_TOLERANCE))
+    floors = ground(model, rig, source_lows, feet, row.get('key_tolerance', KEY_TOLERANCE))
     left = _close_loops(model, rig.nb, carrier)
     if left:
         raise Refused(f'loops left open after grounding: {left}')
-    for slot, row_ in floors.items():
-        if row_['sink'] > MAX_SINK or row_['float'] > MAX_FLOAT:
-            raise Refused(f'slot {slot:#x}: {row_["sink"]} under, {row_["float"]} over its floor')
+    for slot, r in floors.items():
+        if max(r['feet_under'], r['resting_under']) > MAX_SINK or max(r['feet_over'], r['resting_over']) > MAX_FLOAT:
+            raise Refused(f'slot {slot:#x}: feet {r["feet_under"]} under, {r["feet_over"]} over their floor; '
+                          f'resting {r["resting_under"]} under, {r["resting_over"]} over')
+        if r['part_sink'] > MAX_PART_SINK:
+            raise Refused(f'slot {slot:#x}: bone {r["part"]} goes {r["part_sink"]} under the floor beyond the source')
     after = {slot: _speed(model, rig.nb, slot) for slot in SPEED_FLOOR}
     for slot, speed in after.items():
         if speed is not None and speed < SPEED_FLOOR[slot] and speed < speeds[slot]:
@@ -557,7 +608,7 @@ def reshape(data, skeleton, sid, row):
         raise Refused(str(error))
     rig.m = mmd.MMD.parse(result, len(skeleton))
     rig.m.type = sid
-    height = rig.bounds()[0]
+    height = rig.bounds(feet)[0]
     if abs(height - row['height']) > 0.01 * row['height']:
         raise Refused(f'height {height:.0f} against {row["height"]}')
     report = dict(species=sid, factors=factors, final_scale=round(k, 4), height=round(height), bytes=[len(data), len(result)],

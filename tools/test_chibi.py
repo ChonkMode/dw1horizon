@@ -43,6 +43,21 @@ class Floor(unittest.TestCase):
         for low in range(-40, 1):
             self.assertLessEqual(abs(chibi.target(low) - chibi.target(low - 1)), 2)   # no step at the margin
 
+    def test_feet_carry_the_body_unless_the_source_rests_on_something_else(self):
+        standing = (0.0, 0.0, 5)
+        lying = (-90.0, 0.0, 9)
+        self.assertEqual(chibi.on_feet([standing] * 7), [1.0] * 7)
+        self.assertEqual(chibi.on_feet([lying] * 7), [0.0] * 7)
+        blend = chibi.on_feet([standing] * 6 + [lying] * 6)
+        self.assertEqual(blend[:4], [1.0] * 4)
+        self.assertEqual(blend[-4:], [0.0] * 4)
+        self.assertTrue(all(a >= b for a, b in zip(blend, blend[1:])))
+        self.assertEqual(chibi.on_feet([(-3.0, 0.0, 5)] * 3), [1.0] * 3)     # a foot just over the lowest part still counts
+
+    def test_a_loop_does_not_blend_with_what_came_before_it(self):
+        standing, lying = (0.0, 0.0, 5), (-90.0, 0.0, 9)
+        self.assertEqual(chibi.on_feet([standing] * 2 + [lying] * 5, 2)[2:], [0.0] * 5)
+
     def test_simplify_keeps_the_corners_only(self):
         line = [(x, min(x, 10 - x)) for x in range(11)]
         self.assertEqual(chibi._simplify(line, 0.5), [0, 5, 10])
