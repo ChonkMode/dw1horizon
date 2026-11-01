@@ -492,6 +492,29 @@ floor even when all original tick poses were supported, and re-encoding may
 exceed a model's storage budget. Source pins and speed thresholds alone do not
 prove a successful gait repair.
 
+### Chibi proportions
+
+`tools/models/field_animations/chibi.py`, with the manifest
+`content/models/imports/chibi.json`, reshapes a reviewed imported partner to the
+game's anatomy over whatever recipe it already has. A row holds the pins, the group of
+every bone (head, hand, foot, thigh, shin, arm, wing, ...), the factors and the height
+of the species. The pass bakes each bone's scale into its vertices and into its
+children's offsets in every animation, then rescales uniformly to that height.
+
+Every clip is then replayed through the interpreter and the carrier's height is
+rewritten against the lowest vertex of each tick: on the floor when the source is on
+or near it, at the source's clearance when it leaves the ground. Root travel shrinks
+with the legs on the walk, condition walk and run, down to the speed floors of the pace
+pass. The bone-tied fields of the species record (`effect_origins`,
+`effect_origin_fallback`, `condition_bubble`) go through the same bake and reach the
+record through the proof's `species_patch`.
+
+The build refuses a row whose clip stays more than 4 units off its floor, leaves a loop
+open, changes anything but the carrier's height while grounding, falls under a speed
+floor, misses the height by 1 % or leaves the storage budget. To enable a species:
+add its row, bind an overlay to this module in `content/models/imports/species.py`
+and `models.json`, and repin the species.
+
 ### Field pace pass
 
 `tools/models/field_animations/pace.py`, with the manifest

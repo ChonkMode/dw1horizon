@@ -187,6 +187,7 @@ def species_file(out, t, recs=None, names=None, generate=False):
                 proof = json.load(f)
         if 'generated_skeleton' in proof:
             s['model']['skeleton'] = proof['generated_skeleton']
+        s.update(proof.get('species_patch', {}))
         s['model']['file'] = model_path
         s['model'].pop('slot_aliases', None)
         s.pop('_path', None)
