@@ -367,6 +367,9 @@ def _rewrite_heights(animation, carrier, height, tolerance):
     """The carrier's height follows height[frame] (rounded) with as few keys as the tolerance allows; the old height
     keys go. A key lands on an existing key instruction when one sits on that frame, else on a new one."""
     animation.instrs = [i for i in animation.instrs if not i.get('added')]
+    height = dict(height)
+    for f in range(min(height) + 1, animation.frame_count + 2):   # frames after a loop that never ends are not played
+        height.setdefault(f, height[f - 1])
     for instruction in animation.instrs:
         if instruction['op'] == 'key':
             for block in instruction['bones']:
@@ -418,8 +421,9 @@ def on_feet(source, loop=None):
     return (_spread(raw[:loop], False) if loop else []) + body + body[:1]
 
 
-def ground(model, rig, source_lows, feet, tolerance=KEY_TOLERANCE):
-    """Rewrite the carrier's height of every clip (the module's header says how). -> report per slot, all in y (down):
+def ground(model, rig, source_lows, feet, tolerance=KEY_TOLERANCE, rest_slots=()):
+    """Rewrite the carrier's height of every clip (the module's header says how). rest_slots: clips that land on the
+    lowest vertex throughout, because shorter legs bring a kneeling body to the floor. -> report per slot, all in y (down):
     feet: the lowest foot of the ticks on the feet, source and result, with the worst miss each way; mesh: the lowest
     vertex over the clip, source and result; part_sink: how far a part goes under the floor beyond the source's own,
     and which bone."""
@@ -431,7 +435,9 @@ def ground(model, rig, source_lows, feet, tolerance=KEY_TOLERANCE):
         reference = [[v for j, v in enumerate(bone) if (b, j) != (carrier, 7)] for p in poses for b, bone in enumerate(p)]
         source = source_lows[index]
         weight = on_feet(source, animsheet.slot_frames(model, nb, slot)[1])
-        constant = _chains(animation) is None or any(i['op'] == 'tex' for i in animation.instrs)
+        if slot in rest_slots:
+            weight = [0.0] * len(weight)
+        constant = _chains(animation) is None
         for _ in range(GROUND_PASSES):
             frames, poses, heights, _ = replay(model, nb, index, slot, carrier)
             now = clip_lows(model, rig, index, slot, feet)
@@ -492,11 +498,17 @@ def _close_loops(model, nb, carrier):
                 elif instruction['op'] == 'key' and inside:
                     body.append(instruction)
             for ch, d in drift.items():
-                for instruction in reversed(body):
+                j = {'tx': 6, 'ty': 7, 'tz': 8}[ch]
+                for instruction in reversed(body):      # a key's momentum can outlast its tick: keep the one that helps
                     block = next((g for g in instruction['bones'] if g['bone'] == carrier and ch in g['vals']), None)
-                    if block is not None:
-                        block['vals'][ch] = _clamp16(block['vals'][ch] - d)
+                    if block is None:
+                        continue
+                    old = block['vals'][ch]
+                    block['vals'][ch] = _clamp16(old - d)
+                    frames = animsheet.slot_frames(model, nb, slot)[0]
+                    if abs(frames[-1][carrier][j] - frames[start][carrier][j]) < abs(d):
                         break
+                    block['vals'][ch] = old
     return left
 
 
@@ -573,7 +585,7 @@ def reshape(data, skeleton, sid, row):
     for a in model.anims.anims:
         ti = _translation(a)
         a.pose[carrier - 1][ti[1]] = _clamp16(a.pose[carrier - 1][ti[1]] + standing - floor)
-    k = (row['height'] + standing) / (top + floor)
+    k = row.get('trim', 1.0) * (row['height'] + standing) / (top + floor)       # trim: the idle's lift after grounding
     if k < MIN_FINAL_SCALE:
         raise Refused(f'final scale {k:.3f}: the height rule shrinks the body too much')
     _rescale(model, k)
@@ -583,10 +595,10 @@ def reshape(data, skeleton, sid, row):
             wanted = min(speed, max(speed * kl, SPEED_FLOOR[slot] * SPEED_MARGIN))
             now = _speed(model, rig.nb, slot)
             _scale_keys([model.anims.anims[model.anims.table[slot]]], 0, wanted / now)
-    left = _close_loops(model, rig.nb, carrier)
-    if left:
+    left = {slot: drift for slot, drift in _close_loops(model, rig.nb, carrier).items() if set(drift) != {'ty'}}
+    if left:                # the height is rewritten next, and closed there
         raise Refused(f'loops left open: {left}')
-    floors = ground(model, rig, source_lows, feet, row.get('key_tolerance', KEY_TOLERANCE))
+    floors = ground(model, rig, source_lows, feet, row.get('key_tolerance', KEY_TOLERANCE), row.get('rest_slots', ()))
     left = _close_loops(model, rig.nb, carrier)
     if left:
         raise Refused(f'loops left open after grounding: {left}')

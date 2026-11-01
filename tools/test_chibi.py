@@ -76,6 +76,14 @@ class Floor(unittest.TestCase):
         rotated = [g for i in a.instrs if i['op'] == 'key' for g in i['bones'] if 'rx' in g['vals']]
         self.assertEqual([(g['div'], g['vals']['rx']) for g in rotated], [(2, 4)])
 
+    def test_frames_a_clip_never_plays_take_the_last_height(self):
+        a = looping_clip()
+        a.frame_count = 14
+        a.instrs.insert(-1, dict(op='key', frame=10, bones=[dict(bone=1, div=1, vals={'tx': 1})]))
+        wanted = {1: -80, 2: -80, 3: -70, 4: -60, 5: -60, 6: -60, 7: -75, 8: -90, 9: -85, 10: -80}
+        chibi._rewrite_heights(a, 1, wanted, 0.5)
+        self.assertEqual(heights(a, 30)[0], wanted)
+
     def test_a_clip_with_a_loop_that_skips_its_first_frame_is_left_to_a_constant_lift(self):
         a = looping_clip()
         a.instrs[-2]['jump'] = 3
