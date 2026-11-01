@@ -562,7 +562,8 @@ def reshape(data, skeleton, sid, row):
         raise Refused(f'height {height:.0f} against {row["height"]}')
     report = dict(species=sid, factors=factors, final_scale=round(k, 4), height=round(height), bytes=[len(data), len(result)],
                   speeds={str(s): [speeds[s] and round(speeds[s], 1), after[s] and round(after[s], 1)] for s in speeds},
-                  floors={f'{s:#x}': v for s, v in floors.items()}, storage=storage['fits'])
+                  floors={f'{s:#x}': v for s, v in floors.items()},
+                  resident_bytes=[storage['resident_bytes'], storage['resident_limit']])
     return result, report, scales, k
 
 
