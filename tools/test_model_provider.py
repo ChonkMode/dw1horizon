@@ -29,7 +29,7 @@ class ModelProvider(unittest.TestCase):
         self.assertEqual(len(records), 175)
         selected = {t: model.OVERLAYS[e['field_overlay']]
                     for t, e in records.items() if e.get('field_overlay')}
-        self.assertEqual(len(selected), 91)
+        self.assertEqual(len(selected), 118)
         self.assertEqual({e['field_overlay'] for e in records.values() if e.get('field_overlay')},
                          set(model.OVERLAYS))
         for species, (bound_species, _, _) in selected.items():

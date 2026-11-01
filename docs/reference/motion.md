@@ -521,6 +521,17 @@ carrier's height while grounding, falls under a speed floor, misses the height b
 or leaves the storage budget. To enable a species: add its row, bind an overlay to
 this module in `content/models/imports/species.py` and `models.json`, and repin it.
 
+Two optional row fields cover what the bake cannot know. `trim` corrects the uniform
+rescale for the lift grounding gives the idle, for a source whose idle stands under or
+over the floor (Creepymon's sinks 48 units): the height of the record stays. `rest_slots`
+names clips that land on the lowest vertex throughout, because the shorter legs bring a
+kneeling body, or a staff held to the ground, to the floor with the feet still on it.
+
+48 of the 175 imported partners carry a row. The rest stay as they were: quadrupeds, whose
+heads are already large and whose four legs the single rule does not cover; forms with no
+humanoid legs (fish, serpents, blobs, plants, machines, insects); and bipeds already at
+the game's proportions, or that would gain too little to be worth a resident byte.
+
 ### Field pace pass
 
 `tools/models/field_animations/pace.py`, with the manifest
