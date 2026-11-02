@@ -43,6 +43,18 @@ that publication boundary before uploading playable artifacts. Filename and
 checksum validation cannot establish copyright provenance. An authored-source
 page can be tested now; a copyright-free playable release is not proven here.
 
+## Engine source
+
+After the tag is public, publish the engine as readers see it, with the tag's name:
+
+```sh
+tools/engine_tree.sh build
+DW1H_PUBLISH=1 tools/engine_tree.sh push vX.Y.Z FORK_URL
+```
+
+The branch is generated: each build dates every commit now and replaces the published branch. Add the release's row to
+[compatibility.md](../mods/compatibility.md).
+
 ## Changelog
 
 Before tagging, commit the release's entry in `web/content/changelog.json` as the

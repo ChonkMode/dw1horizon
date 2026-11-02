@@ -23,6 +23,7 @@
 |---|---|
 | [mods/story-language.md](mods/story-language.md) | the story language (Python): screens, characters, dialogue, battles, choices |
 | [mods/dws.md](mods/dws.md) | DWS intermediate syntax, text keys and compiler integration |
+| [mods/compatibility.md](mods/compatibility.md) | what works with what: releases, compiler targets, what a mod can rely on, reading the final engine |
 | [mods/city-rules.md](mods/city-rules.md) | File City's rules: residents, prosperity, what recruits do |
 | [mods/species.md](mods/species.md) | species as data (`content/species`, DIGI.DAT) |
 | [mods/data-sources.md](mods/data-sources.md) | which JSON in `content/` is the source of which game table |
