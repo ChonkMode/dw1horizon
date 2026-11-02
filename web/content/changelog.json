@@ -2,6 +2,242 @@
  "_doc": "Releases, newest first. Each version has a date and text in every page language: new, changed and fixed bullet lists, plus an optional upgrade line in all languages. Empty groups are hidden.",
  "versions": [
   {
+   "version": "0.0.4",
+   "date": "2026-11-02",
+   "en": {
+    "new": [
+     "48 imported Digimon now have DW1's own chunkier proportions, so they sit better next to the original cast.",
+     "222 Digimon get hand-drawn icons, and the icons in the evolution chart and the City tab now move.",
+     "A small meat bubble over the farmer shows when a harvest is waiting.",
+     "The Press Start screen tells you which emulator settings would make the game run better. With 8 MB of RAM, rare animations no longer pause the game for a moment."
+    ],
+    "changed": [
+     "A large balance pass changes lifetimes, training gains, the element chart, meals and restaurant prices, hunts and several evolution rules.",
+     "Every win now gives at least a small stat gain, based on the strongest enemy.",
+     "Every gym session now costs the same tiredness.",
+     "The Mansion and the Ice Sanctuary open to any partner once Myotismon and Angemon have joined, and a Numemon can always use the costume.",
+     "In the extended story, Sukamon clears the island's poop for 1000 bits, and Andromon can also remodel a Mamemon.",
+     "Trading cards with ShogunGekomon and buying merit items now take any amount at once.",
+     "39 slow imported partners now walk and run at normal speed, and Silphymon and Snimon move better.",
+     "X next to a machine or someone to talk to now opens your partner's care menu when it is showing.",
+     "The web builder works with every supported disc and on computers with less memory."
+    ],
+    "fixed": [
+     "Partners with very long HP or MP bars no longer start a fight with an empty bar after sleeping.",
+     "The second BlueMeramon now fights instead of repeating one line.",
+     "The camera stays on the Tamer after scenes that walk it back.",
+     "The City tab no longer keeps reading the disc while it is open.",
+     "Menus show the right button icons again, and the digit 2 looks right in every language.",
+     "Play time always shows two digits for the minutes, and the version text stays on screen.",
+     "Buying a merit item with a full stack no longer takes your merit for nothing."
+    ],
+    "upgrade": "Saves from earlier versions keep working. The discs you need have not changed."
+   },
+   "es": {
+    "new": [
+     "48 Digimon importados tienen ahora las proporciones más rechonchas de DW1, y encajan mejor junto al reparto original.",
+     "222 Digimon estrenan iconos dibujados a mano, y los iconos de la tabla de evolución y de la pestaña Ciudad ahora se mueven.",
+     "Una pequeña burbuja de carne sobre el granjero avisa de que hay una cosecha esperando.",
+     "La pantalla de Press Start te dice qué ajustes del emulador harían que el juego fuera mejor. Con 8 MB de RAM, las animaciones poco frecuentes ya no paran el juego un instante."
+    ],
+    "changed": [
+     "Un gran ajuste de equilibrio cambia la duración de la vida, lo que se gana entrenando, la tabla de elementos, las comidas y los precios del restaurante, las cacerías y varias reglas de evolución.",
+     "Cada victoria da ahora al menos una pequeña subida de estadísticas, según el enemigo más fuerte.",
+     "Todas las sesiones del gimnasio cuestan ahora el mismo cansancio.",
+     "La Mansión y el Santuario de Hielo se abren a cualquier compañero cuando Myotismon y Angemon se han unido, y un Numemon siempre puede usar el disfraz.",
+     "En la historia ampliada, Sukamon limpia las cacas de la isla por 1000 bits, y Andromon también puede remodelar a un Mamemon.",
+     "Cambiar cartas con ShogunGekomon y comprar objetos de mérito admiten ahora cualquier cantidad de una vez.",
+     "39 compañeros importados que iban lentos caminan y corren ya a velocidad normal, y Silphymon y Snimon se mueven mejor.",
+     "Con X junto a una máquina o alguien con quien hablar se abre ahora el menú de cuidados de tu compañero cuando aparece.",
+     "El creador web funciona con todos los discos compatibles y en ordenadores con menos memoria."
+    ],
+    "fixed": [
+     "Los compañeros con barras de PV o PM muy largas ya no empiezan un combate con la barra vacía después de dormir.",
+     "El segundo BlueMeramon ahora lucha en vez de repetir una frase.",
+     "La cámara sigue al Tamer después de las escenas que lo hacen volver andando.",
+     "La pestaña Ciudad ya no se queda leyendo el disco mientras está abierta.",
+     "Los menús vuelven a mostrar los iconos de botón correctos, y el número 2 se ve bien en todos los idiomas.",
+     "El tiempo de juego siempre muestra dos cifras en los minutos, y el texto de la versión se queda dentro de la pantalla.",
+     "Comprar un objeto de mérito con la pila llena ya no te quita los méritos a cambio de nada."
+    ],
+    "upgrade": "Las partidas de versiones anteriores siguen funcionando. Los discos necesarios no han cambiado."
+   },
+   "pt-br": {
+    "new": [
+     "48 Digimon importados agora têm as proporções mais atarracadas de DW1 e combinam melhor com o elenco original.",
+     "222 Digimon ganham ícones desenhados à mão, e os ícones da tabela de evolução e da aba Cidade agora se mexem.",
+     "Uma pequena bolha de carne sobre o fazendeiro avisa quando há uma colheita esperando.",
+     "A tela de Press Start mostra quais ajustes do emulador fariam o jogo rodar melhor. Com 8 MB de RAM, animações raras não param mais o jogo por um instante."
+    ],
+    "changed": [
+     "Um grande ajuste de equilíbrio muda a duração da vida, os ganhos de treino, a tabela de elementos, as refeições e os preços do restaurante, as caçadas e várias regras de evolução.",
+     "Cada vitória agora dá pelo menos um pequeno ganho de atributos, com base no inimigo mais forte.",
+     "Todas as sessões da academia agora custam o mesmo cansaço.",
+     "A Mansão e o Santuário de Gelo abrem para qualquer parceiro depois que Myotismon e Angemon se juntarem, e um Numemon sempre pode usar a fantasia.",
+     "Na história estendida, Sukamon limpa o cocô da ilha por 1000 bits, e Andromon também pode remodelar um Mamemon.",
+     "Trocar cartas com ShogunGekomon e comprar itens de mérito agora aceitam qualquer quantidade de uma vez.",
+     "39 parceiros importados que eram lentos agora andam e correm em velocidade normal, e Silphymon e Snimon se movem melhor.",
+     "X ao lado de uma máquina ou de alguém para conversar agora abre o menu de cuidados do parceiro quando ele aparece.",
+     "O criador web funciona com todos os discos compatíveis e em computadores com menos memória."
+    ],
+    "fixed": [
+     "Parceiros com barras de HP ou MP muito longas não começam mais uma batalha com a barra vazia depois de dormir.",
+     "O segundo BlueMeramon agora luta em vez de repetir uma frase.",
+     "A câmera continua no Tamer depois das cenas que o fazem voltar andando.",
+     "A aba Cidade não fica mais lendo o disco enquanto está aberta.",
+     "Os menus voltam a mostrar os ícones de botão certos, e o número 2 aparece bem em todos os idiomas.",
+     "O tempo de jogo sempre mostra dois dígitos nos minutos, e o texto da versão fica dentro da tela.",
+     "Comprar um item de mérito com a pilha cheia não tira mais o mérito em troca de nada."
+    ],
+    "upgrade": "Os saves de versões anteriores continuam funcionando. Os discos necessários não mudaram."
+   },
+   "fr": {
+    "new": [
+     "48 Digimon importés ont maintenant les proportions plus trapues de DW1 et s'accordent mieux avec la distribution d'origine.",
+     "222 Digimon reçoivent des icônes dessinées à la main, et les icônes du tableau d'évolution et de l'onglet Ville bougent désormais.",
+     "Une petite bulle de viande au-dessus du fermier indique qu'une récolte attend.",
+     "L'écran Press Start indique quels réglages de l'émulateur amélioreraient le jeu. Avec 8 Mo de RAM, les animations rares ne figent plus le jeu un instant."
+    ],
+    "changed": [
+     "Un grand rééquilibrage modifie la durée de vie, les gains d'entraînement, la table des éléments, les repas et les prix du restaurant, les chasses et plusieurs règles d'évolution.",
+     "Chaque victoire donne maintenant au moins un petit gain de statistiques, selon l'ennemi le plus fort.",
+     "Toutes les séances de gym coûtent désormais la même fatigue.",
+     "Le Manoir et le Sanctuaire de glace s'ouvrent à tout partenaire une fois Myotismon et Angemon ralliés, et un Numemon peut toujours utiliser le costume.",
+     "Dans l'histoire étendue, Sukamon nettoie les crottes de l'île pour 1000 bits, et Andromon peut aussi remodeler un Mamemon.",
+     "Échanger des cartes avec ShogunGekomon et acheter des objets de mérite acceptent maintenant n'importe quelle quantité d'un coup.",
+     "39 partenaires importés trop lents marchent et courent maintenant à vitesse normale, et Silphymon et Snimon bougent mieux.",
+     "X à côté d'une machine ou de quelqu'un à qui parler ouvre maintenant le menu de soins du partenaire quand il s'affiche.",
+     "Le créateur web fonctionne avec tous les disques pris en charge et sur les ordinateurs avec moins de mémoire."
+    ],
+    "fixed": [
+     "Les partenaires aux barres de PV ou PM très longues ne commencent plus un combat avec une barre vide après avoir dormi.",
+     "Le second BlueMeramon se bat maintenant au lieu de répéter une phrase.",
+     "La caméra reste sur le Tamer après les scènes qui le font revenir à pied.",
+     "L'onglet Ville ne lit plus le disque en continu tant qu'il est ouvert.",
+     "Les menus affichent à nouveau les bonnes icônes de boutons, et le chiffre 2 s'affiche bien dans toutes les langues.",
+     "Le temps de jeu affiche toujours deux chiffres pour les minutes, et le texte de version reste à l'écran.",
+     "Acheter un objet de mérite avec une pile pleine ne prend plus votre mérite pour rien."
+    ],
+    "upgrade": "Les sauvegardes des versions précédentes fonctionnent toujours. Les disques nécessaires n'ont pas changé."
+   },
+   "de": {
+    "new": [
+     "48 importierte Digimon haben jetzt die gedrungeneren Proportionen von DW1 und passen besser zur ursprünglichen Besetzung.",
+     "222 Digimon bekommen handgezeichnete Symbole, und die Symbole in der Evolutionstabelle und im Stadt-Tab bewegen sich jetzt.",
+     "Eine kleine Fleischblase über dem Bauern zeigt, wenn eine Ernte wartet.",
+     "Der Press-Start-Bildschirm zeigt, welche Emulator-Einstellungen das Spiel verbessern würden. Mit 8 MB RAM halten seltene Animationen das Spiel nicht mehr kurz an."
+    ],
+    "changed": [
+     "Eine große Balance-Runde ändert Lebensdauer, Trainingsgewinne, die Elementtabelle, Mahlzeiten und Restaurantpreise, Jagden und mehrere Evolutionsregeln.",
+     "Jeder Sieg bringt jetzt mindestens einen kleinen Wertezuwachs, abhängig vom stärksten Gegner.",
+     "Jede Fitnesseinheit kostet jetzt gleich viel Müdigkeit.",
+     "Die Villa und das Eisheiligtum stehen jedem Partner offen, sobald Myotismon und Angemon beigetreten sind, und ein Numemon kann das Kostüm immer benutzen.",
+     "In der erweiterten Geschichte räumt Sukamon für 1000 Bits die Haufen der Insel weg, und Andromon kann auch ein Mamemon umbauen.",
+     "Kartentausch mit ShogunGekomon und der Kauf von Verdienst-Gegenständen gehen jetzt in beliebiger Menge auf einmal.",
+     "39 langsame importierte Partner gehen und rennen jetzt normal schnell, und Silphymon und Snimon bewegen sich besser.",
+     "X neben einer Maschine oder jemandem zum Reden öffnet jetzt das Pflegemenü des Partners, wenn es angezeigt wird.",
+     "Der Web-Builder funktioniert mit allen unterstützten Discs und auf Computern mit weniger Speicher."
+    ],
+    "fixed": [
+     "Partner mit sehr langen KP- oder MP-Leisten beginnen nach dem Schlafen keinen Kampf mehr mit leerer Leiste.",
+     "Das zweite BlueMeramon kämpft jetzt, statt einen Satz zu wiederholen.",
+     "Die Kamera bleibt nach Szenen, in denen der Tamer zurückgeht, auf ihm.",
+     "Der Stadt-Tab liest nicht mehr dauernd von der Disc, solange er offen ist.",
+     "Menüs zeigen wieder die richtigen Tastensymbole, und die Ziffer 2 sieht in allen Sprachen richtig aus.",
+     "Die Spielzeit zeigt die Minuten immer zweistellig, und der Versionstext bleibt im Bild.",
+     "Der Kauf eines Verdienst-Gegenstands bei vollem Stapel kostet keinen Verdienst mehr für nichts."
+    ],
+    "upgrade": "Spielstände früherer Versionen funktionieren weiter. Die benötigten Discs haben sich nicht geändert."
+   },
+   "it": {
+    "new": [
+     "48 Digimon importati hanno ora le proporzioni più tozze di DW1 e stanno meglio accanto al cast originale.",
+     "222 Digimon ricevono icone disegnate a mano, e le icone della tabella delle evoluzioni e della scheda Città ora si muovono.",
+     "Una piccola nuvoletta con la carne sopra il contadino segnala che un raccolto è in attesa.",
+     "La schermata Press Start indica quali impostazioni dell'emulatore migliorerebbero il gioco. Con 8 MB di RAM, le animazioni rare non fermano più il gioco per un istante."
+    ],
+    "changed": [
+     "Un grande bilanciamento cambia durata della vita, guadagni dell'allenamento, tabella degli elementi, pasti e prezzi del ristorante, cacce e diverse regole di evoluzione.",
+     "Ogni vittoria dà ora almeno un piccolo aumento delle statistiche, in base al nemico più forte.",
+     "Ogni sessione in palestra costa ora la stessa stanchezza.",
+     "La Villa e il Santuario di Ghiaccio si aprono a qualsiasi partner quando Myotismon e Angemon si sono uniti, e un Numemon può sempre usare il costume.",
+     "Nella storia estesa, Sukamon ripulisce la cacca dell'isola per 1000 bit, e Andromon può rimodellare anche un Mamemon.",
+     "Scambiare carte con ShogunGekomon e comprare oggetti con il merito accettano ora qualsiasi quantità in una volta.",
+     "39 partner importati lenti ora camminano e corrono a velocità normale, e Silphymon e Snimon si muovono meglio.",
+     "X accanto a una macchina o a qualcuno con cui parlare apre ora il menu di cura del partner quando compare.",
+     "Il creatore web funziona con tutti i dischi supportati e sui computer con meno memoria."
+    ],
+    "fixed": [
+     "I partner con barre HP o MP molto lunghe non iniziano più una battaglia con la barra vuota dopo aver dormito.",
+     "Il secondo BlueMeramon ora combatte invece di ripetere una frase.",
+     "La telecamera resta sul Tamer dopo le scene che lo fanno tornare indietro a piedi.",
+     "La scheda Città non continua più a leggere il disco mentre è aperta.",
+     "I menu mostrano di nuovo le icone dei pulsanti giuste, e la cifra 2 appare bene in tutte le lingue.",
+     "Il tempo di gioco mostra sempre due cifre per i minuti, e il testo della versione resta sullo schermo.",
+     "Comprare un oggetto col merito con la pila piena non toglie più il merito per niente."
+    ],
+    "upgrade": "I salvataggi delle versioni precedenti continuano a funzionare. I dischi necessari non sono cambiati."
+   },
+   "ja": {
+    "new": [
+     "移植デジモン48体が、DW1らしいずんぐりした体型になり、オリジナルのデジモンと並んでも自然になりました。",
+     "222体のデジモンに手描きのアイコンを追加し、進化チャートとシティタブのアイコンが動くようになりました。",
+     "収穫できるとき、農夫の上に小さな肉のふきだしが出ます。",
+     "Press Start画面に、ゲームを快適にするエミュレーター設定が表示されます。RAMが8 MBあれば、まれなアニメーションでゲームが一瞬止まらなくなります。"
+    ],
+    "changed": [
+     "大規模なバランス調整で、寿命、トレーニングの上昇値、属性相性表、食事とレストランの価格、狩り、いくつかの進化ルールが変わりました。",
+     "勝利するたびに、最も強い敵に応じて能力が少なくとも少し上がるようになりました。",
+     "ジムのトレーニングは、どれも同じ疲労になりました。",
+     "マイトモンとエンジェモンが仲間になると、館と氷の聖域にどのパートナーでも入れます。ヌメモンはいつでも着ぐるみを使えます。",
+     "拡張ストーリーでは、スカモンが1000ビットで島のうんちを片付け、アンドロモンはマメモンも改造できます。",
+     "ショーグンゲコモンとのカード交換とメリットアイテムの購入が、好きな数をまとめて行えるようになりました。",
+     "遅かった移植パートナー39体が通常の速さで歩いて走れるようになり、シルフィーモンとスナイモンの動きも良くなりました。",
+     "機械や話し相手のそばでも、表示中はXでパートナーのお世話メニューが開きます。",
+     "Webビルダーが対応するすべてのディスクと、メモリの少ないパソコンで動くようになりました。"
+    ],
+    "fixed": [
+     "HPやMPのバーが非常に長いパートナーが、睡眠後にバーが空のままバトルを始めることがなくなりました。",
+     "2体目のブルーメラモンが、同じセリフを繰り返さず戦うようになりました。",
+     "テイマーが歩いて戻るシーンのあとも、カメラがテイマーを追うようになりました。",
+     "シティタブを開いている間、ディスクを読み続けなくなりました。",
+     "メニューのボタンアイコンが正しく表示され、数字の2もすべての言語で正しく表示されます。",
+     "プレイ時間の分は常に2桁で表示され、バージョン表記が画面内に収まります。",
+     "スタックが満杯のときにメリットアイテムを買っても、メリットだけ失うことがなくなりました。"
+    ],
+    "upgrade": "以前のバージョンのセーブデータはそのまま使えます。必要なディスクは変わっていません。"
+   },
+   "ca": {
+    "new": [
+     "48 Digimon importats tenen ara les proporcions més rodanxones de DW1 i encaixen millor al costat del repartiment original.",
+     "222 Digimon estrenen icones dibuixades a mà, i les icones de la taula d'evolució i de la pestanya Ciutat ara es mouen.",
+     "Una petita bombolla de carn sobre el granger avisa que hi ha una collita esperant.",
+     "La pantalla de Press Start et diu quins ajustos de l'emulador farien anar millor el joc. Amb 8 MB de RAM, les animacions poc freqüents ja no aturen el joc un instant."
+    ],
+    "changed": [
+     "Un gran ajust d'equilibri canvia la durada de la vida, els guanys d'entrenament, la taula d'elements, els àpats i els preus del restaurant, les caceres i diverses regles d'evolució.",
+     "Cada victòria dona ara almenys un petit augment d'estadístiques, segons l'enemic més fort.",
+     "Totes les sessions del gimnàs costen ara el mateix cansament.",
+     "La Mansió i el Santuari de Gel s'obren a qualsevol company quan Myotismon i Angemon s'hi han unit, i un Numemon sempre pot fer servir la disfressa.",
+     "A la història ampliada, Sukamon neteja les caques de l'illa per 1000 bits, i Andromon també pot remodelar un Mamemon.",
+     "Canviar cartes amb ShogunGekomon i comprar objectes de mèrit admeten ara qualsevol quantitat de cop.",
+     "39 companys importats que anaven lents caminen i corren ja a velocitat normal, i Silphymon i Snimon es mouen millor.",
+     "X al costat d'una màquina o d'algú amb qui parlar obre ara el menú de cures del company quan apareix.",
+     "El creador web funciona amb tots els discos compatibles i en ordinadors amb menys memòria."
+    ],
+    "fixed": [
+     "Els companys amb barres de PV o PM molt llargues ja no comencen un combat amb la barra buida després de dormir.",
+     "El segon BlueMeramon ara lluita en lloc de repetir una frase.",
+     "La càmera segueix el Tamer després de les escenes que el fan tornar caminant.",
+     "La pestanya Ciutat ja no es queda llegint el disc mentre és oberta.",
+     "Els menús tornen a mostrar les icones de botó correctes, i el número 2 es veu bé en tots els idiomes.",
+     "El temps de joc sempre mostra dues xifres als minuts, i el text de la versió es queda dins de la pantalla.",
+     "Comprar un objecte de mèrit amb la pila plena ja no et treu el mèrit a canvi de res."
+    ],
+    "upgrade": "Les partides de versions anteriors continuen funcionant. Els discos necessaris no han canviat."
+   }
+  },
+  {
    "version": "0.0.3",
    "date": "2026-11-01",
    "en": {
