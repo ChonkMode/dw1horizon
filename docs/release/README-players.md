@@ -128,6 +128,12 @@ written once every file has been checked.
 
 To check your disc without patching: `py dwpatch.py check "Digimon World (USA).cue"`.
 
+## Frame rate
+
+Up to 60 frames per second. A steady 60 needs an emulator with a faster CPU setting; the title screen tells you which
+one. At normal speed busy places run closer to 25-40, and a real PlayStation about 30. Controls are still read 20
+times per second, and the smoothing shows the picture up to 50 ms later. FRAME RATE in OPTIONS goes back to 20.
+
 ## Saves
 
 Use the emulator's memory cards as usual. Published Horizon saves are checked for compatibility during release packaging.

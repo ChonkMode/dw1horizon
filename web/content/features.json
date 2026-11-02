@@ -191,35 +191,35 @@
    ],
    "en": {
     "title": "60 frames per second",
-    "body": "The world, the battles and the tournaments are drawn at up to 60 frames per second (the original draws 20) while the game keeps its original timing underneath: your partner ages, trains and gets hungry exactly as before. Left, the original; right, Horizon."
+    "body": "The world, the battles and the tournaments are drawn at up to 60 frames per second (the original draws 20) while the game keeps its original timing underneath: your partner ages, trains and gets hungry exactly as before. Left, the original; right, Horizon. A steady 60 needs an emulator with a faster CPU setting (the title screen tells you which). At normal speed busy places run closer to 25-40, and on a real PlayStation about 30. Controls are still read 20 times per second, and the smoothing shows the picture up to 50 ms later."
    },
    "es": {
     "title": "60 imágenes por segundo",
-    "body": "El mundo, los combates y los torneos se dibujan hasta a 60 imágenes por segundo (el original dibuja 20), y por debajo el juego mantiene su ritmo original: tu compañero crece, entrena y tiene hambre exactamente igual que antes. A la izquierda, el original; a la derecha, Horizon."
+    "body": "El mundo, los combates y los torneos se dibujan hasta a 60 imágenes por segundo (el original dibuja 20), y por debajo el juego mantiene su ritmo original: tu compañero crece, entrena y tiene hambre exactamente igual que antes. A la izquierda, el original; a la derecha, Horizon. Para mantener 60 estables hace falta un emulador con la CPU acelerada (la pantalla de título te dice qué activar). A velocidad normal, las zonas con más carga rondan 25-40, y en una PlayStation real, unas 30. Los botones se siguen leyendo 20 veces por segundo, y el suavizado muestra la imagen hasta 50 ms después."
    },
    "pt-br": {
     "title": "60 quadros por segundo",
-    "body": "O mundo, as batalhas e os torneios são desenhados a até 60 quadros por segundo (o original desenha 20), enquanto o jogo mantém o ritmo original por baixo: seu parceiro envelhece, treina e sente fome exatamente como antes. À esquerda, o original; à direita, Horizon."
+    "body": "O mundo, as batalhas e os torneios são desenhados a até 60 quadros por segundo (o original desenha 20), enquanto o jogo mantém o ritmo original por baixo: seu parceiro envelhece, treina e sente fome exatamente como antes. À esquerda, o original; à direita, Horizon. Manter 60 estáveis exige um emulador com a CPU acelerada (a tela de título diz o que ativar). Em velocidade normal, as áreas mais pesadas ficam perto de 25-40, e em um PlayStation real, cerca de 30. Os botões continuam sendo lidos 20 vezes por segundo, e a suavização mostra a imagem até 50 ms depois."
    },
    "fr": {
     "title": "60 images par seconde",
-    "body": "Le monde, les combats et les tournois s'affichent jusqu'à 60 images par seconde (l'original en affiche 20), tandis que le jeu garde son rythme d'origine en dessous : ton partenaire vieillit, s'entraîne et a faim exactement comme avant. À gauche, l'original ; à droite, Horizon."
+    "body": "Le monde, les combats et les tournois s'affichent jusqu'à 60 images par seconde (l'original en affiche 20), tandis que le jeu garde son rythme d'origine en dessous : ton partenaire vieillit, s'entraîne et a faim exactement comme avant. À gauche, l'original ; à droite, Horizon. Pour tenir 60 de façon stable, il faut un émulateur avec le CPU accéléré (l'écran titre indique quoi activer). À vitesse normale, les zones chargées tournent plutôt à 25-40, et sur une vraie PlayStation à environ 30. Les boutons sont toujours lus 20 fois par seconde, et le lissage affiche l'image jusqu'à 50 ms plus tard."
    },
    "de": {
     "title": "60 Bilder pro Sekunde",
-    "body": "Die Welt, die Kämpfe und die Turniere laufen mit bis zu 60 Bildern pro Sekunde (das Original zeigt 20), während das Spiel darunter sein ursprüngliches Timing behält: Dein Partner altert, trainiert und bekommt Hunger genau wie vorher. Links das Original, rechts Horizon."
+    "body": "Die Welt, die Kämpfe und die Turniere laufen mit bis zu 60 Bildern pro Sekunde (das Original zeigt 20), während das Spiel darunter sein ursprüngliches Timing behält: Dein Partner altert, trainiert und bekommt Hunger genau wie vorher. Links das Original, rechts Horizon. Für stabile 60 braucht es einen Emulator mit erhöhter CPU-Geschwindigkeit (der Titelbildschirm zeigt, was du aktivieren musst). Bei normaler Geschwindigkeit laufen aufwendige Stellen eher mit 25-40, auf einer echten PlayStation mit etwa 30. Die Tasten werden weiterhin 20-mal pro Sekunde gelesen, und die Glättung zeigt das Bild bis zu 50 ms später."
    },
    "it": {
     "title": "60 fotogrammi al secondo",
-    "body": "Il mondo, le battaglie e i tornei sono disegnati fino a 60 fotogrammi al secondo (l'originale ne disegna 20), mentre sotto il gioco mantiene i suoi tempi originali: il tuo partner invecchia, si allena e ha fame esattamente come prima. A sinistra l'originale; a destra Horizon."
+    "body": "Il mondo, le battaglie e i tornei sono disegnati fino a 60 fotogrammi al secondo (l'originale ne disegna 20), mentre sotto il gioco mantiene i suoi tempi originali: il tuo partner invecchia, si allena e ha fame esattamente come prima. A sinistra l'originale; a destra Horizon. Per 60 stabili serve un emulatore con la CPU accelerata (la schermata del titolo indica cosa attivare). A velocità normale le zone più pesanti stanno intorno a 25-40, e su una vera PlayStation a circa 30. I pulsanti sono ancora letti 20 volte al secondo, e l'interpolazione mostra l'immagine fino a 50 ms dopo."
    },
    "ja": {
     "title": "毎秒60フレーム",
-    "body": "フィールド、バトル、大会を最大60fpsで描画します（オリジナルは20fps）。ゲーム内部のタイミングは元のままなので、パートナーの成長、トレーニング、空腹は以前とまったく同じです。左がオリジナル、右がHorizonです。"
+    "body": "フィールド、バトル、大会を最大60fpsで描画します（オリジナルは20fps）。ゲーム内部のタイミングは元のままなので、パートナーの成長、トレーニング、空腹は以前とまったく同じです。左がオリジナル、右がHorizonです。安定した60fpsには、エミュレーターのCPU速度を上げる必要があります（設定はタイトル画面に表示されます）。通常速度では負荷の高い場所は25〜40fps程度、実機のPlayStationでは約30fpsです。ボタン入力は今も毎秒20回の読み取りで、補間により映像は最大50ミリ秒遅れて表示されます。"
    },
    "ca": {
     "title": "60 imatges per segon",
-    "body": "El món, els combats i els tornejos es dibuixen fins a 60 imatges per segon (l'original en dibuixa 20) mentre el joc conserva per sota el ritme original: el teu company envelleix, entrena i té gana exactament com abans. A l'esquerra, l'original; a la dreta, Horizon."
+    "body": "El món, els combats i els tornejos es dibuixen fins a 60 imatges per segon (l'original en dibuixa 20) mentre el joc conserva per sota el ritme original: el teu company envelleix, entrena i té gana exactament com abans. A l'esquerra, l'original; a la dreta, Horizon. Per mantenir 60 estables cal un emulador amb la CPU accelerada (la pantalla de títol t'indica què activar). A velocitat normal, les zones amb més càrrega es mouen al voltant de 25-40, i en una PlayStation real, unes 30. Els botons es continuen llegint 20 vegades per segon, i el suavitzat mostra la imatge fins a 50 ms després."
    }
   },
   {
