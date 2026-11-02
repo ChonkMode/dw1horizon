@@ -96,6 +96,8 @@
  "build.idle": "warte",
  "build.stop": "Stopp",
  "build.details": "Details",
+ "build.copyReport": "Fehlerbericht kopieren",
+ "build.copied": "Kopiert",
  "build.downloadBin": "Meine Disc herunterladen ({mb} MB)",
  "build.downloadParts": "Lieber einzeln?",
  "build.partBin": ".bin herunterladen",

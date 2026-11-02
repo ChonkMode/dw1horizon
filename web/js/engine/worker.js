@@ -161,6 +161,17 @@ function watch() {
 }
 
 // ---------------------------------------------------------------- start
+// The page compiles Pyodide's WebAssembly module once and gives it to every worker (Build.compileEngine): compiled code
+// is the largest part of a worker's start, and a browser with little room for code runs out of it otherwise (Firefox's
+// 32-bit Windows build, at the third worker). Pyodide fetches and compiles the module itself: here it gets that one.
+function useModule(module) {
+  const instantiate = WebAssembly.instantiate.bind(WebAssembly);
+  WebAssembly.instantiateStreaming = async (response, imports) => {
+    try { (await response).body?.cancel(); } catch { /* it was not needed */ }
+    return { instance: await instantiate(module, imports), module };
+  };
+}
+
 async function init(m) {
   if (typeof FileSystemFileHandle === 'undefined' || !('createSyncAccessHandle' in FileSystemFileHandle.prototype)) {
     post({ kind: 'error', key: 'engine.noOpfs', msg: 'no FileSystemSyncAccessHandle in workers' });
@@ -168,6 +179,7 @@ async function init(m) {
   }
   base = m.base; plan = m.plan;
   if (m.filesBudget != null) BUDGET = m.filesBudget;
+  if (m.wasm) useModule(m.wasm);
   files = new Map(plan.files.map((e) => [e[0], e]));
   const t0 = performance.now();
   const { loadPyodide } = await import(`${base}pyodide/pyodide.esm.js`);
@@ -185,6 +197,13 @@ async function init(m) {
       : new Uint8Array(await new Response(part.stream().pipeThrough(new DecompressionStream('deflate-raw'))).arrayBuffer());
     put(path, b, 'b', false);
   }
+  // v0.0.3's engine was recorded with the USA Card Battle and World 2 discs only: these checks of the other releases are
+  // not in it, and no job lists what the other releases read. Nothing is lost: extraction checks the discs' files by
+  // SHA-1 and the page every built file.
+  for (const tool of ['dcbrelease', 'dw2release']) {
+    if (!files.has(`tools/${tool}.py`)) put(`tools/${tool}.py`, new TextEncoder().encode('def check_model(*args):\n    pass\n'), 'b', false);
+  }
+  for (const p of files.keys()) if (p.startsWith('content/imports/releases/')) put(p, await bundleFile(p), 'b', false);
   for (const d of plan.dirs) FS.mkdirTree(abs(d));
   FS.symlink(ROOT, `${REL}/bundle`);          // (the release's bundle/ is this tree: jp1's localize tool runs from it)
   for (const d of new Set(plan.extract.map((q) => `extracted/${split(q)[0]}`))) FS.mkdirTree(abs(d));
@@ -266,7 +285,7 @@ json.dumps([str(code), buf.getvalue()[-6000:]])
   const tr = performance.now();
   const [code, out] = r;
   if (code !== 'None' && code !== '0') {
-    post({ kind: 'done', ok: false, code, out, secs: (tr - t0) / 1000 });
+    post({ kind: 'done', ok: false, code, out: [out, code].filter(Boolean).join('\n'), secs: (tr - t0) / 1000 });
     return;
   }
   // what the job changed in the tree, to OPFS
@@ -443,8 +462,25 @@ async function writeDisc(m) {
   try {
     const r = py.runPython(`
 import glue, json, hashlib
-glue.dwpatch(REL_DIR)
+P = glue.dwpatch(REL_DIR)
 import isowriter as iw
+
+# A base that is not the USA disc gets the USA license sectors. v0.0.3's mappings copy their differing bytes from the
+# Card Battle disc, which only holds them when it is the USA one: they are here, as in mods/base-discs/*.json.
+USA_LICENSE = [(9492, bytes.fromhex('416d65722020696361')), (11481, bytes.fromhex(
+    'e90544000000000000fb000000fb00cbcbcbcbcbcbcbcbcbcb834e4246bfa946b3cbcbb7a5cbcbcbcbcbcbcbcbcbcb624abfa5cb894abdabad58465c'
+    'cb8dbf58465c58b54ebfbd46bf58cb7ebd465ccbcb4e42b5cb12260fcc000000000000f3000000f300ebebebebebebebebebebcf272123d1da23d7'
+    'ebebd5dcebebebebebebebebebeb3125d1dcebca25d0dbd82c232eebc8d12c232e2cd427d1d023d12ceb3fd0232eebeb2721d4eb1ccf0a8870970135'
+    'ee84b50b22bf38387070ef2cfeb7cb93f50f9c1c2c970aba7059bb2ea4e953bfae1ed1620271ed73c08b8f808d95bb2deebb3a377d51219c51f03838'
+    '7070ea6883fced0a932abaeb57a502706a63d50e8fd0bbf3afee07bbc652cd9bd3f4b443783b5e2d'))]
+disc_copy = P.BaseDisc.read_copy
+def read_copy(self, path, offset, length):
+    if path == '@disc:dcb:@raw':
+        for at, known in USA_LICENSE:
+            if at <= offset and offset + length <= at + len(known):
+                return known[offset - at:offset - at + length]
+    return disc_copy(self, path, offset, length)
+P.BaseDisc.read_copy = read_copy
 
 class Hole(iw.Source):
     """A hole's file in OPFS, read when it is used."""

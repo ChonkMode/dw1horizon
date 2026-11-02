@@ -50,9 +50,19 @@ const SUPPORT_DETAILS = {
   'engine.noOpfs': 'OPFS / synchronous private file storage is unavailable.',
   'engine.noStreams': 'DecompressionStream (deflate-raw) is unavailable.',
 };
-function errorDetails(node, detail) {
-  node.append(el('details', {}, el('summary', { textContent: i18n.t('slot.details') }),
-                 el('pre', { textContent: detail })));
+function errorDetails(node, detail, open = false) {
+  // (translate="no": the error text is what a report needs, as it was)
+  node.append(el('details', { open }, el('summary', { textContent: i18n.t('slot.details') }),
+                 el('pre', { textContent: detail, translate: false })));
+}
+// What a player pastes when a build fails: the message, the error's own text and the build's log.
+function copyReport(st) {
+  const button = el('button', { type: 'button', className: 'build-copy', textContent: i18n.t('build.copyReport') });
+  button.addEventListener('click', async () => {
+    const text = [i18n.t(st.error.key, st.error.vars), st.error.detail, st.log.join('\n')].filter(Boolean).join('\n\n');
+    try { await navigator.clipboard.writeText(text); button.textContent = i18n.t('build.copied'); } catch { /* the log stays on the page */ }
+  });
+  return button;
 }
 function supportHelp(node, key) {
   if (!SUPPORT_DETAILS[key]) return;
@@ -614,7 +624,8 @@ function renderBuild() {
   if (st.error) {
     err.textContent = t(st.error.key, st.error.vars);
     supportHelp(err, st.error.key);
-    if (st.error.detail) errorDetails(err, st.error.detail);
+    if (st.error.detail) errorDetails(err, st.error.detail, true);
+    if (st.error.key !== 'build.cancelled') err.append(copyReport(st));
   }
   $('#build-log').textContent = st.log.join('\n');
   const done = $('#build-done');

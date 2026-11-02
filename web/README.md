@@ -111,11 +111,16 @@ page-load tidy skips while another tab builds). Nothing of this is shown to the 
 
 `workerCount()` in `js/engine/engine.js`: `min(cores - 1, 6)`; with `navigator.deviceMemory` (Chromium only: GB,
 rounded down, at most 8) one worker per 0.5 GB above 2 GB (2 with 4 GB or less); without it (Firefox, Safari) at most
-4; phones and tablets 2. Past 6 workers the build gains little for a lot of memory (the curve below); 4 workers fit
-any computer a build makes sense on (8 GB), which is why an unknown memory gets 4 rather than the cores. If a worker
-still runs out of memory (Python's MemoryError, a WebAssembly memory that cannot grow, a worker that dies), its job is
-given again to the others and the build goes on with one worker fewer (with none left, one fresh worker; a job that
-fails so three times stops the build). Every worker shares the tab's process, so a real out-of-memory of the whole tab
+4; phones and tablets 2, or 1 under 8 GB. Past 6 workers the build gains little for a lot of memory (the curve below); 4 workers fit
+any computer a build makes sense on (8 GB), which is why an unknown memory gets 4 rather than the cores. The page
+compiles Pyodide's WebAssembly module once and gives it to every worker (Firefox's 32-bit Windows build runs out of
+memory at the third worker when each compiles its own, and at the fourth sharing it). The disc reader starts alone, and
+the build workers after it, one after another; a worker that does not start, or does not answer in 120 s, is left out
+and the build goes on with the ones that did (with none, it is tried again after 2 s). If a job fails on a worker (Python's
+MemoryError, a WebAssembly memory that cannot grow, a worker that dies, a browser file read that gives up, anything
+else), it is given again to the others and the build goes on with one worker fewer (with none left, one fresh worker;
+a job that fails three times stops the build). When a build stops, the error's text is shown open with a button that
+copies it and the log: that is what a report needs. Every worker shares the tab's process, so a real out-of-memory of the whole tab
 cannot be caught: the conservative counts are what keeps it away; the retry covers a heap that cannot grow. `?test=1&
 oom=JOB` makes that job's first run fail as out of memory (the retry path, tested).
 
