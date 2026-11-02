@@ -96,6 +96,8 @@
  "build.idle": "待機中",
  "build.stop": "中止",
  "build.details": "詳細",
+ "build.copyReport": "エラー報告をコピー",
+ "build.copied": "コピーしました",
  "build.downloadBin": "ディスクをダウンロード（{mb} MB）",
  "build.downloadParts": "別々にダウンロードする場合：",
  "build.partBin": ".binをダウンロード",

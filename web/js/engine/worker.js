@@ -161,6 +161,17 @@ function watch() {
 }
 
 // ---------------------------------------------------------------- start
+// The page compiles Pyodide's WebAssembly module once and gives it to every worker (Build.compileEngine): compiled code
+// is the largest part of a worker's start, and a browser with little room for code runs out of it otherwise (Firefox's
+// 32-bit Windows build, at the third worker). Pyodide fetches and compiles the module itself: here it gets that one.
+function useModule(module) {
+  const instantiate = WebAssembly.instantiate.bind(WebAssembly);
+  WebAssembly.instantiateStreaming = async (response, imports) => {
+    try { (await response).body?.cancel(); } catch { /* it was not needed */ }
+    return { instance: await instantiate(module, imports), module };
+  };
+}
+
 async function init(m) {
   if (typeof FileSystemFileHandle === 'undefined' || !('createSyncAccessHandle' in FileSystemFileHandle.prototype)) {
     post({ kind: 'error', key: 'engine.noOpfs', msg: 'no FileSystemSyncAccessHandle in workers' });
@@ -168,6 +179,7 @@ async function init(m) {
   }
   base = m.base; plan = m.plan;
   if (m.filesBudget != null) BUDGET = m.filesBudget;
+  if (m.wasm) useModule(m.wasm);
   files = new Map(plan.files.map((e) => [e[0], e]));
   const t0 = performance.now();
   const { loadPyodide } = await import(`${base}pyodide/pyodide.esm.js`);
@@ -185,6 +197,13 @@ async function init(m) {
       : new Uint8Array(await new Response(part.stream().pipeThrough(new DecompressionStream('deflate-raw'))).arrayBuffer());
     put(path, b, 'b', false);
   }
+  // v0.0.3's engine was recorded with the USA Card Battle and World 2 discs only: these checks of the other releases are
+  // not in it, and no job lists what the other releases read. Nothing is lost: extraction checks the discs' files by
+  // SHA-1 and the page every built file.
+  for (const tool of ['dcbrelease', 'dw2release']) {
+    if (!files.has(`tools/${tool}.py`)) put(`tools/${tool}.py`, new TextEncoder().encode('def check_model(*args):\n    pass\n'), 'b', false);
+  }
+  for (const p of files.keys()) if (p.startsWith('content/imports/releases/')) put(p, await bundleFile(p), 'b', false);
   for (const d of plan.dirs) FS.mkdirTree(abs(d));
   FS.symlink(ROOT, `${REL}/bundle`);          // (the release's bundle/ is this tree: jp1's localize tool runs from it)
   for (const d of new Set(plan.extract.map((q) => `extracted/${split(q)[0]}`))) FS.mkdirTree(abs(d));
@@ -266,7 +285,7 @@ json.dumps([str(code), buf.getvalue()[-6000:]])
   const tr = performance.now();
   const [code, out] = r;
   if (code !== 'None' && code !== '0') {
-    post({ kind: 'done', ok: false, code, out, secs: (tr - t0) / 1000 });
+    post({ kind: 'done', ok: false, code, out: [out, code].filter(Boolean).join('\n'), secs: (tr - t0) / 1000 });
     return;
   }
   // what the job changed in the tree, to OPFS

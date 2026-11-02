@@ -27,6 +27,8 @@ export const OUTPUT_NAME = 'Digimon World Horizon';
 // FILES_MB of bundle and tree files between jobs.
 const RECYCLE_MB = 110;
 const FILES_MB = 24;
+// A worker that has not started after this long never will: an out-of-memory in a worker's start may report nothing.
+const START_SECS = 120;
 // The estimates the overall bar starts from (seconds; measured, web/README.md), before the build measures its own
 const EST = { download_rate: 4 * 2 ** 20, extract: 8, source: 4, start: 3, check: 6 };
 
@@ -50,9 +52,9 @@ export function missingSupport() {
 //  - memory known (navigator.deviceMemory, Chromium: GB, rounded down, at most 8): 2 GB for the system and the page,
 //    then one worker per 0.5 GB of the rest; 2 with 4 GB or less.
 //  - memory unknown (Firefox, Safari): 4, a size that fits any computer a build makes sense on (8 GB).
-//  - phones and tablets: 2.
-// If a worker still runs out of memory, its job is given again to the others and the build goes on with one worker
-// fewer (Build.memoryFailure).
+//  - phones and tablets: 2, or 1 under 8 GB (a tab killed for memory cannot be caught, so a phone stays well away).
+// If a worker does not start, the build goes on with the ones that did. If a job fails on a worker (out of memory or
+// anything else), it is given again to the others and the build goes on with one worker fewer (jobFailure in _run).
 export const MAX_WORKERS = 6;
 export function workerCount() {
   const hc = navigator.hardwareConcurrency || 4;
@@ -60,7 +62,7 @@ export function workerCount() {
   const mem = navigator.deviceMemory;
   if (mem) n = Math.min(n, mem <= 4 ? 2 : Math.floor((mem - 2) / 0.5));
   else n = Math.min(n, 4);
-  if (/Android|iPhone|iPad|Mobile/i.test(navigator.userAgent)) n = Math.min(n, 2);
+  if (/Android|iPhone|iPad|Mobile/i.test(navigator.userAgent)) n = Math.min(n, mem >= 8 ? 2 : 1);
   return Math.max(1, n);
 }
 
@@ -177,10 +179,14 @@ async function opfsPut(path, data) {
 // outputs under @<token>/
 const locOf = (path, token) => (token === 'x' ? path : `@${token}/${path}`);
 
+const sleep = (ms) => new Promise((res) => setTimeout(res, ms));
+// What a terminated worker held is given back a moment later: a start that failed gets one more try after this.
+const SETTLE_MS = 2000;
+
 const norm = (p) => { const o = []; for (const s of p.split('/')) { if (s === '..') o.pop(); else if (s && s !== '.') o.push(s); } return o.join('/'); };
 
 // A worker's message is about memory: Python's MemoryError, a WebAssembly memory that could not grow, an abort.
-const MEMORY = /MemoryError|out of memory|Memory\.grow|Cannot enlarge memory|Aborted\(|could not allocate|RangeError: Array buffer allocation/i;
+const MEMORY = /MemoryError|out of memory|Memory\.grow|Cannot enlarge memory|Aborted\(|could not allocate|RangeError: Array buffer allocation|memory access out of bounds/i;
 
 // ---------------------------------------------------------------- the build
 
@@ -301,28 +307,45 @@ export class Build {
     const w = new Worker(new URL(`./worker.js?v=${this.version}`, import.meta.url), { type: 'module' });
     const slot = { id, w, busy: true, job: null, ready: null, load: null, dead: false };
     slot.ready = new Promise((res, rej) => {
+      const late = setTimeout(() => rej(new EngineError('engine.workerFailed', {}, `no answer in ${START_SECS} s`)), START_SECS * 1000);
+      slot.started = () => clearTimeout(late);
       w.onmessage = ({ data }) => {
         if (slot.dead) return;
-        if (data.kind === 'ready') { slot.busy = false; slot.load = data; res(slot); return; }
+        if (data.kind === 'ready') { slot.started(); slot.busy = false; slot.load = data; res(slot); return; }
         if (data.kind === 'error' && !slot.load) { rej(new EngineError(data.key || 'engine.workerFailed', {}, data.msg)); return; }
         onMsg(slot, data);
       };
       w.onerror = (e) => {
         if (slot.dead) return;
         // (before it is ready: it could not start; after: it died in a job, out of memory most likely)
-        if (!slot.load) rej(new EngineError('engine.workerFailed', {}, e.message || 'worker'));
+        const where = e.filename ? ` (${e.filename}:${e.lineno})` : '';
+        if (!slot.load) rej(new EngineError('engine.workerFailed', {}, `${e.message || 'the worker did not load'}${where}`));
         else onMsg(slot, { kind: 'error', died: true, msg: e.message || 'the worker stopped' });
       };
     });
     const p = this.plan;
-    w.postMessage({ kind: 'init', base: this.base, filesBudget: FILES_MB * 2 ** 20,
+    w.postMessage({ kind: 'init', base: this.base, filesBudget: FILES_MB * 2 ** 20, wasm: this.wasm,
                     plan: { packs: p.packs, files: p.files, dirs: p.dirs, extract: p.extract, extract_inputs: p.extract_inputs,
                             source_discs: p.source_discs, out: p.out } });
     return slot;
   }
 
+  // Pyodide's WebAssembly module compiled once, for every worker: compiled code is the largest part of a worker's
+  // start (Firefox's 32-bit Windows build starts 2 workers with one compilation each, 3 sharing it). If it cannot be
+  // compiled here, each worker compiles its own.
+  async compileEngine() {
+    try {
+      const r = await cacheFirst(`${this.base}pyodide/pyodide.asm.wasm`);
+      this.wasm = await WebAssembly.compile(await r.arrayBuffer());
+    } catch (e) { this.log(`Pyodide not compiled ahead (${e && e.message || e})`); this.wasm = undefined; }
+  }
+
+  // Stop a worker that did not start.
+  drop(slot) { slot.dead = true; slot.started(); slot.w.terminate(); }
+
   async _run() {
     const st = this.state;
+    this.log(`browser: ${navigator.userAgent}; ${navigator.hardwareConcurrency || '?'} cores, ${navigator.deviceMemory || '?'} GB, ${this.n} workers`);
     const why = missingSupport();
     if (why) throw new EngineError(why);
     const { base, plan, version } = await loadPlan();
@@ -359,7 +382,11 @@ export class Build {
     st.times.download = (performance.now() - this.td0) / 1000;
     this.log(`engine ${version}: ${(st.download.total / 2 ** 20).toFixed(1)} MB, ${(st.download.fresh / 2 ** 20).toFixed(1)} MB downloaded, ${st.times.download.toFixed(1)} s`);
 
-    // 2. the workers start; one more reads the disc, the page the other games' files
+    await this.compileEngine();
+    this.checkStopped();
+
+    // 2. one worker reads the disc and the other games' files, alone: the build workers start after it (on a phone
+    // this takes minutes, and every idle Pyodide is memory the tab may not have)
     st.phase = 'extract';
     const jobs = plan.jobs;
     if (this.shuffle) {
@@ -372,16 +399,28 @@ export class Build {
     this.registry = new Map();
     const onJob = new Map();
     const route = (slot, m) => { const f = onJob.get(slot); if (f) f(m); };
-    this.slots = Array.from({ length: this.n }, (_, i) => this.spawn(i, route));
     let extracted = null;
-    this.extractor = this.spawn(-1, (slot, m) => {
+    const reader = () => this.spawn(-1, (slot, m) => {
       if (m.kind === 'progress') { st.extract.done = m.done; st.extract.total = m.total; this.emit(); }
       else if (m.kind === 'done' || m.kind === 'error') this._extractDone(m);
     });
-    st.workers = this.slots.map((s) => ({ id: s.id, job: null, state: 'loading' }));
+    this.extractor = reader();
+    st.workers = Array.from({ length: this.n }, (_, i) => ({ id: i, job: null, state: 'loading' }));
     this.emit();
     const tx = performance.now();
-    const ex = await this.waitWorker(this.extractor.ready);
+    let ex;
+    try {
+      ex = await this.waitWorker(this.extractor.ready);
+    } catch (e) {
+      // (a worker that could not start is given a second chance, once)
+      if (this.stopped || e.key === 'build.cancelled' || e.key === 'engine.noOpfs') throw e;
+      this.log(`the disc reader did not start (${e.detail}); trying again`);
+      this.drop(this.extractor);
+      await sleep(SETTLE_MS);
+      this.checkStopped();
+      this.extractor = reader();
+      ex = await this.waitWorker(this.extractor.ready);
+    }
     extracted = await this.waitWorker(new Promise((res) => { this._extractDone = res; ex.w.postMessage({ kind: 'extract', file: this.file, sources: this.sources }); }));
     ex.dead = true; ex.w.terminate(); this.extractor = null;
     if (!extracted.ok && extracted.game) {
@@ -438,7 +477,29 @@ export class Build {
       this.log(`worker ${s.id}: Pyodide ${s.load.load.toFixed(1)} s, code ${s.load.code.toFixed(1)} s, heap ${s.load.heap.toFixed(0)} MB`);
       this.emit();
     };
-    await this.waitWorker(Promise.all(this.slots.map((s) => s.ready.then(ready))));
+    // One after another, so that their start does not add up; the build goes on with the ones that started.
+    for (let i = 0, tries = 1; i < this.n; i++) {
+      const slot = this.spawn(i, route);
+      this.slots.push(slot);
+      try {
+        ready(await this.waitWorker(slot.ready));
+      } catch (e) {
+        if (this.stopped || e.key === 'build.cancelled') throw e;
+        this.slots.pop();
+        this.drop(slot);
+        if (this.slots.length) {
+          this.log(`worker ${i} did not start (${e.detail}); ${this.slots.length} workers go on`);
+          break;
+        }
+        if (tries-- <= 0) throw e;
+        this.log(`worker ${i} did not start (${e.detail}); trying again`);
+        await sleep(SETTLE_MS);
+        this.checkStopped();
+        i--;
+      }
+    }
+    st.workers = st.workers.slice(0, this.slots.length);
+    st.workerCount = this.slots.length;
     const readyJobs = () => jobs.filter((j) => !done.has(j.id) && !running.has(j.id) && j.deps.every((d) => done.has(d))
                                          && !(j.part === 'finish' && finishing)).sort((a, b) => b.prio - a.prio);
     st.times.peakHeap = {};
@@ -463,24 +524,41 @@ export class Build {
         }
         nowSteps();
         const starting = this.slots.some((s) => !s.load);
-        if (!running.size && !starting && done.size < jobs.length && !readyJobs().length) fail(new EngineError('engine.failed', {}, 'no job can start'));
+        if (this.slots.length && !running.size && !starting && done.size < jobs.length && !readyJobs().length) fail(new EngineError('engine.failed', {}, 'no job can start'));
       };
       const showSlots = () => {
         st.workers = this.slots.map((s) => ({ id: s.id, job: s.job ? s.job.name : null, state: s.job ? 'busy' : s.load ? 'idle' : 'loading' }));
         st.workerCount = this.slots.length;
       };
+      // A fresh worker; if it does not start, the others go on, and with none left it is tried again a few times.
+      const startFresh = (id, tries = 3) => {
+        const fresh = this.spawn(id, route);
+        this.slots.push(fresh);
+        showSlots();
+        fresh.ready.then(() => { if (!this.stopped) { showSlots(); this.emit(); pump(); } }, (e) => {
+          if (this.stopped) return;
+          this.drop(fresh);
+          this.slots.splice(this.slots.indexOf(fresh), 1);
+          this.log(`a replacement worker did not start (${e.detail}); ${this.slots.length} workers go on`);
+          if (!this.slots.length) {
+            if (tries <= 1) { fail(e); return; }
+            setTimeout(() => { if (!this.stopped) startFresh(id, tries - 1); }, SETTLE_MS);
+            return;
+          }
+          showSlots(); this.emit(); pump();
+        });
+      };
       // A fresh worker in the place of `slot` (its heap grew too much), ready for the next job.
       const recycle = (slot) => {
         slot.dead = true; slot.w.terminate();
-        const fresh = this.spawn(slot.id, route);
-        this.slots[this.slots.indexOf(slot)] = fresh;
+        this.slots.splice(this.slots.indexOf(slot), 1);
         recycled++;
-        showSlots();
-        fresh.ready.then(() => { if (!this.stopped) { showSlots(); this.emit(); pump(); } }, fail);
+        startFresh(slot.id);
       };
-      // A worker ran out of memory in job j: the job goes back to the others, the build goes on with one worker fewer
-      // (with none left, one fresh worker); a job that fails so three times stops the build.
-      const memoryFailure = (slot, j, msg) => {
+      // A job failed on a worker (out of memory, a browser's file read that gave up, anything): the job goes back to
+      // the others, the build goes on with one worker fewer (with none left, one fresh worker); a job that fails three
+      // times stops the build. The job's own files were not written: they go to OPFS only when it succeeds.
+      const jobFailure = (slot, j, msg, memory) => {
         onJob.delete(slot);
         running.delete(j.id);
         hold(slot.inputs, -1);
@@ -489,13 +567,9 @@ export class Build {
         this.slots.splice(this.slots.indexOf(slot), 1);
         j.memoryFailures = (j.memoryFailures || 0) + 1;
         const why = String(msg).split('\n').filter((l) => MEMORY.test(l)).pop() || String(msg).split('\n').filter(Boolean).pop();
-        this.log(`w${slot.id} ${j.name}: out of memory (${why.trim()}); ${this.slots.length} workers go on`);
-        if (j.memoryFailures >= 3) { fail(new EngineError('engine.outOfMemory', { job: j.name }, msg)); return; }
-        if (!this.slots.length) {
-          const fresh = this.spawn(slot.id, route);
-          this.slots.push(fresh);
-          fresh.ready.then(() => { if (!this.stopped) { showSlots(); this.emit(); pump(); } }, fail);
-        }
+        this.log(`w${slot.id} ${j.name}: ${memory ? 'out of memory' : 'failed'} (${(why || '').trim()}); ${this.slots.length} workers go on`);
+        if (j.memoryFailures >= 3) { fail(new EngineError(memory ? 'engine.outOfMemory' : 'engine.jobFailed', { job: j.name }, msg)); return; }
+        if (!this.slots.length) setTimeout(() => { if (!this.stopped) startFresh(slot.id); }, SETTLE_MS);
         st.memoryRetries = (st.memoryRetries || 0) + 1;
         showSlots();
         this.emit();
@@ -524,17 +598,15 @@ export class Build {
         onJob.set(slot, (m) => {
           if (m.kind === 'progress') return;
           if (m.kind === 'error') {
-            if (m.died || MEMORY.test(m.msg || '')) { memoryFailure(slot, j, m.msg); return; }
-            fail(new EngineError('engine.jobFailed', { job: j.name }, m.msg));
+            jobFailure(slot, j, m.msg, m.died || MEMORY.test(m.msg || ''));
             return;
           }
           if (m.kind !== 'done') return;
-          if (!m.ok && MEMORY.test(m.out || '')) { memoryFailure(slot, j, m.out); return; }
+          if (!m.ok) { jobFailure(slot, j, m.out, MEMORY.test(m.out || '')); return; }
           onJob.delete(slot);
           running.delete(j.id);
           hold(slot.inputs, -1);
           if (j.part === 'finish') finishing = false;
-          if (!m.ok) { fail(new EngineError('engine.jobFailed', { job: j.name }, m.out)); return; }
           // A path several units of a step write (the story passes edit the new screens' .MAP in place: not the
           // same bytes from each) ends as the last of them in the recorded order wrote it, as natively, not as the
           // last to finish here: a unit's write or removal does not replace a later unit's of its step. (The jobs'
@@ -581,7 +653,9 @@ export class Build {
     st.phase = 'check';
     for (const s of this.slots) { s.dead = true; s.w.terminate(); }
     this.slots = [];
-    const writer = this.spawn(0, route);
+    await sleep(SETTLE_MS);
+    this.checkStopped();
+    let writer = this.spawn(0, route);
     this.slots = [writer];
     st.workers = [{ id: 0, job: 'disc', state: 'busy' }];
     const where = (p) => { const t = this.registry.get(p); if (!t) throw new EngineError('engine.failed', {}, `${p}: not built`); return locOf(p, t); };
@@ -593,7 +667,18 @@ export class Build {
     st.check.total = holes.length;
     st.write.total = out.size || 0;
     this.emit();
-    await this.waitWorker(writer.ready);
+    try {
+      await this.waitWorker(writer.ready);
+    } catch (e) {
+      if (this.stopped || e.key === 'build.cancelled') throw e;
+      this.log(`the disc writer did not start (${e.detail}); trying again`);
+      this.drop(writer);
+      await sleep(SETTLE_MS);
+      this.checkStopped();
+      writer = this.spawn(0, route);
+      this.slots = [writer];
+      await this.waitWorker(writer.ready);
+    }
     const tw = performance.now();
     const w = await this.waitWorker(new Promise((res) => {
       onJob.set(writer, (m) => {
@@ -610,6 +695,7 @@ export class Build {
     }));
     for (const s of this.slots) { s.dead = true; s.w.terminate(); }
     this.slots = [];
+    this.wasm = undefined;
     st.times.write = (performance.now() - tw) / 1000;
     if (w.bad && w.bad.length) {
       this.log(`built files that differ from the release: ${w.bad.join(' ')}`);

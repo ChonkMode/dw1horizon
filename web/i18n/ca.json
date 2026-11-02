@@ -96,6 +96,8 @@
  "build.idle": "esperant",
  "build.stop": "Atura",
  "build.details": "Detalls",
+ "build.copyReport": "Copia l'informe de l'error",
+ "build.copied": "Copiat",
  "build.downloadBin": "Baixa el meu disc ({mb} MB)",
  "build.downloadParts": "Els prefereixes per separat?",
  "build.partBin": "Baixa el .bin",

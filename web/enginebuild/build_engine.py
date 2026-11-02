@@ -121,6 +121,14 @@ def record(tree, out_json):
 
 
 # ------------------------------------------------------------------ the plan
+# What a job reads with a source disc of another release than the recorded ones (the record only sees the discs it ran
+# on): the tool on the left brings these files along.
+OTHER_RELEASES = {'tools/dcb2mmd.py': ['tools/dcbrelease.py', 'content/imports/releases/dcb-eu.json',
+                                       'content/imports/releases/dcb-jp.json'],
+                  'tools/dw2mmd.py': ['tools/dw2release.py', 'content/imports/releases/dw2-jp.json'],
+                  'tools/dw3mmd.py': ['tools/dw3release.py', 'content/imports/releases/dw3-jp.json']}
+
+
 def plan_jobs(recs, bundle_files):
     """The jobs of the records (one per --disc; the same jobs) with their inputs and the jobs they wait for."""
     ref = recs[0]
@@ -138,6 +146,9 @@ def plan_jobs(recs, bundle_files):
     for i, j in enumerate(ref['jobs']):
         js = [r['jobs'][i] for r in recs]
         existed = set().union(*(set(x['existed']) for x in js))
+        for tool, more in OTHER_RELEASES.items():
+            if tool in existed:
+                existed.update(more)
         lists = {}
         for x in js:
             for d, names_ in x['lists'].items():
