@@ -2,21 +2,20 @@
 """Plays species of a disc in the emulator, one after the other, unattended: the proof of a species change
 (docs/developing.md).
 
-  EMU_PORT=38330 tools/dev/playtest/species_proof.py DISC.cue DIGI.DAT OUTDIR ID [ID ...] [--save ID] [--card CARD.mcd]
+  EMU_PORT=38330 DW_SYMS=EXE tools/dev/playtest/species_proof.py DISC.cue DIGI.DAT OUTDIR ID [ID ...] [--save ID] [--card CARD.mcd]
 
-For each ID, from a fresh boot of CARD (default build/states/file-city.mcd: Agumon in Jijimon's house):
-  1. the lab menu (pause, SELECT) on the "To <name>" entry of the species: screenshot lab-ID.png; evolve
+For each ID, from a fresh boot of CARD (default build/states/file-city.mcd; DW_SYMS is the disc's executable, next to its .elf.map):
+  1. the Cheats menu (pause, SELECT), Evolve, the species: screenshot lab-ID.png; evolve
      (the full evolution scene): screenshot evolved-ID.png; the partner's type must be ID;
-  2. with --save ID (that species only): talk to Jijimon (the dev-save script opens the save machine), the battle
-     registration screen (registration-ID.png), No, Yes (save); the card is copied to OUTDIR/save-ID.mcd;
-  3. a wild battle in Native Forest (screen 0, NPC slot 0) with the partner's battle moves set to its first three
+  2. a wild battle in Native Forest (screen 0, NPC slot 0) with the partner's battle moves set to its first three
      techniques and its finisher (the finisher charged), the enemy finished, the results: battle-ID.png, after-ID.png;
      checks from RAM: in battle, the partner played technique slots (>= 0x2E), frames advance, back in the world;
-     finisher_damage: the enemy's HP lost while the finisher played (its effect hit);
-  4. with --feed: its favourite food (species file) put in the bag and given through the item menu (TRIANGLE, Item, the
+     finisher_damage: the first HP an enemy loses after the finisher's clip began; both must pass when the species has a finisher;
+  3. with --feed: its favourite food (species file) put in the bag and given through the item menu (TRIANGLE, Item, the
      food, Use): fed-ID.png; checks from RAM: happiness and energy before and after, whether the joy clip (slot 0x0B,
      what the game plays after a favourite food) played;
-  5. the status screen (status-ID.png) and its technique page (tech-ID.png).
+  4. the status screen (status-ID.png) and its technique page (tech-ID.png);
+  5. with --save ID (that species only): Save Game in the Cheats menu; the card is copied to OUTDIR/save-ID.mcd.
 Then, with --save: a fresh boot of OUTDIR/save-ID.mcd, continue: the partner's type must be ID (reload-ID.png).
 Prints one JSON line per species and writes OUTDIR/result.json; exit 1 when a check failed.
 """
@@ -40,8 +39,11 @@ PY = sys.executable
 E = [PY, os.path.join(ROOT, 'tools/dev/emulator.py')]
 M = [PY, os.path.join(ROOT, 'tools/dev/memory_inspector.py')]
 G = [PY, os.path.join(ROOT, 'tools/dev/game_state.py')]
-FIXED = 11                                   # MOD_LAB_EVO_FIXED in mod_lab.c (the NPC partners before DIGI.DAT's list)
-NPC_PARTNERS = [124, 121, 120, 94, 113, 70, 66, 119, 115, 117, 116]   # MOD_LAB_EVO_TARGETS, in the menu's order
+NPC_SLOTS = 8                                # NPC_ENTITIES: any of them can be the fight's enemy
+ENEMY_HP = [f'NPC_ENTITIES[{k}].digimonEntity.stats.current.currentHP' for k in range(NPC_SLOTS)]
+ENEMY_MAX = [f'NPC_ENTITIES[{k}].digimonEntity.stats.base.hp' for k in range(NPC_SLOTS)]
+SAVE_MENU = 43                               # the card menu of Save Game; 23-25 would be Load Game
+EMU = None                                   # set by boot()
 ANIM = 'PARTNER_ENTITY.digimonEntity.entity.anim.animId'
 FRAME = 'PARTNER_ENTITY.digimonEntity.entity.anim.animFrame'
 
@@ -52,6 +54,10 @@ def run(cmd, timeout=600):
 
 
 def seq(s):
+    """CONFIRM and CANCEL follow the save's JAPANESE CONTROLS option, like the game (dw/input.h)."""
+    japanese = EMU and EMU.has('MOD_OPT_BUTTONS') and EMU.peek('MOD_OPT_BUTTONS', 'i') != 0
+    for word_, button in (('CONFIRM', 'CIRCLE' if japanese else 'CROSS'), ('CANCEL', 'CROSS' if japanese else 'TRIANGLE')):
+        s = s.replace(word_, button)
     return run(E + ['seq', s])
 
 
@@ -84,18 +90,24 @@ def in_world():
     return a is not None and a == b
 
 
+def emulator(cue):
+    """The save tools' driver on this port and card home; it knows the real menus and the confirm button of the save."""
+    from tools.dev.saves.releases import Emu
+    exe = os.environ.get('DW_SYMS') or os.path.join(ROOT, 'build/decomp-int/build/us/psx/gcc/SLUS_010.32')
+    emu = Emu(cue, exe, int(os.environ['EMU_PORT']), os.path.join(ROOT, 'build/species-proof'))
+    emu.home = os.environ.get('EMU_HOME') or os.path.join(ROOT, '.tools/emu/home-' + os.environ['EMU_PORT'])
+    emu.env['EMU_HOME'] = emu.home
+    return emu
+
+
 def boot(cue, card):
-    """A fresh boot with the card, CONTINUE: in the world (Jijimon's house for the default card)."""
+    """A fresh boot with the card, CONTINUE, until the Tamer has control. True only when the game really is in the world."""
+    global EMU
     for _ in range(3):
-        run(E + ['stop'])
-        run(E + ['start', cue, '--card', card])
-        seq('wait 45, START 20, wait 6, START 20, wait 6')
-        seq('DOWN 8, wait 1, CROSS 10, wait 5, CROSS 10, wait 5, CROSS 10, wait 4, CROSS 10, wait 14')
-        for _ in range(4):                  # a dropped press leaves the continue menu open: confirm again
-            if in_world():
-                seq('wait 12')                 # the map fades in and the Tamer gets control
-                return True
-            seq('CROSS 10, wait 12')
+        EMU = emulator(cue)
+        EMU.start(card)
+        if EMU.continue_game() == 0:
+            return True
     return False
 
 
@@ -103,42 +115,114 @@ def sample(secs, every=0.4):
     out, t0 = [], time.time()
     while time.time() - t0 < secs:
         out.append(mem(ANIM, FRAME, 'GAME_STATE'))
+        out[-1]['GAME_STATE'] = game_state(out[-1])
         time.sleep(every)
     return out
 
 
-def lab_evolve(t, partners, out):
-    """The lab menu (pause, SELECT) on its evolve entry (MOD_LAB_CURSOR 3) with the choice one before the species', then
-    RIGHT: the entry redraws "To <name>" of the species; checked in RAM, pressed again when the emulator dropped it."""
-    choice = NPC_PARTNERS.index(t) if t in NPC_PARTNERS else FIXED + partners.index(t)
-    seq('START 30, wait 3, SELECT 30, wait 3')
-    for _ in range(5):
-        run(E + ['poke', 'MOD_LAB_CURSOR', (3).to_bytes(4, 'little').hex()])
-        first = choice == 0                  # the first entry: from the second, LEFT
-        run(E + ['poke', 'MOD_LAB_EVO_CHOICE', (choice + 1 if first else choice - 1).to_bytes(4, 'little').hex()])
-        seq('LEFT 6, wait 2' if first else 'RIGHT 6, wait 2')
-        if mem('MOD_LAB_EVO_CHOICE').get('MOD_LAB_EVO_CHOICE') == choice: break
-    seq(f'shot {out}/lab-{t}.png')
-    confirmations = []
-    for _ in range(3):
-        seq('CROSS 60, wait 2')
-        confirmation = mem('EVOLUTION_TARGET', 'PARTNER_STATE', 'TAMER_STATE')
-        confirmations.append(confirmation)
-        if confirmation.get('EVOLUTION_TARGET') == t or partner_type() == t:
-            break
+def game_state(values=None):
+    """GAME_STATE is one byte; without the build's types the inspector reads a word with the fields beside it."""
+    value = (values or mem('GAME_STATE')).get('GAME_STATE')
+    return value & 0xFF if isinstance(value, int) else None
+
+
+def lab_list():
+    """The species of the open evolve list, read from the menu's own array (its order changes with the roster)."""
+    ram = EMU.ram()
+    count = word(ram, static_symbol('labCount'))
+    choices = word(ram, static_symbol('labChoices'))
+    return [int.from_bytes(ram[(choices & 0x1FFFFF) + 2 * k:(choices & 0x1FFFFF) + 2 * k + 2], 'little') for k in range(count)]
+
+
+def word(ram, address):
+    return int.from_bytes(ram[(address & 0x1FFFFF):(address & 0x1FFFFF) + 4], 'little')
+
+
+def static_symbol(name):
+    """A file-local variable: the linker map names it only on its section line, with the address on the next one."""
+    with open(EMU.exe + '.elf.map') as stream:
+        lines = stream.read().splitlines()
+    for k, line in enumerate(lines):
+        if line.strip() == f'.sbss.{name}':
+            return int(lines[k + 1].split()[0], 16)
+    raise KeyError(name)
+
+
+def press(*buttons):
+    """One by one: the paused menu drops the chained presses of `seq`."""
+    for button in buttons:
+        EMU.press(button, 8); EMU.wait(0.6)
+
+
+def open_cheats(row):
+    """Pause, SELECT, the cursor on a row of the Cheats menu. Just after a load the world ignores START for a few seconds."""
+    EMU.poke('MOD_OPT_CHEATS', (1).to_bytes(4, 'little'))
+    for _ in range(10):
+        if mem('MOD_LAB_ACTIVE').get('MOD_LAB_ACTIVE'): break
+        if not mem('PAUSE_STATE').get('PAUSE_STATE'): press('START'); EMU.wait(1)
+        if mem('PAUSE_STATE').get('PAUSE_STATE'): press('SELECT'); EMU.wait(1.5)
+        else: EMU.wait(2)
+    EMU.poke('MOD_LAB_CURSOR', row.to_bytes(4, 'little'))
+    press('DOWN', 'UP')                  # draws the row; a dropped press would leave the cursor on its neighbour
+    EMU.poke('MOD_LAB_CURSOR', row.to_bytes(4, 'little'))
+
+
+def lab_evolve(t, out):
+    """The Cheats menu (pause, SELECT), Evolve, the species, confirm: the same evolution a player gets from it, scene
+    included. The list reads the disc while it fills (about 13 s). Writes evolution-confirmation-ID.json."""
+    if partner_type() == t: return       # the card's partner already is the species
+    open_cheats(3)
+    press('CONFIRM')
+    choices, previous = [], -1
+    for _ in range(40):
+        EMU.wait(1)
+        choices = lab_list() if mem('MOD_LAB_VIEW').get('MOD_LAB_VIEW') == 3 else []
+        if choices and len(choices) == previous: break
+        previous = len(choices)
+    if t not in choices:
+        press('CANCEL', 'CANCEL', 'START')
+        return
+    EMU.poke('MOD_LAB_CURSOR', choices.index(t).to_bytes(4, 'little'))
+    press('DOWN', 'UP')                  # draws the row; the last row does not move DOWN, so the cursor is put back
+    EMU.poke('MOD_LAB_CURSOR', choices.index(t).to_bytes(4, 'little'))
+    run(E + ['shot', f'{out}/lab-{t}.png'])
+    press('CONFIRM')
+    EMU.wait(1)
+    confirmation = mem('EVOLUTION_TARGET')
     with open(os.path.join(out, f'evolution-confirmation-{t}.json'), 'w') as stream:
-        json.dump(confirmations, stream, indent=2)
-    seq('TRIANGLE 30, wait 3, START 30, wait 3')
-    seq(f'wait 38, CROSS 4, wait 3, CROSS 4, wait 3, shot {out}/evolved-{t}.png')
+        json.dump(confirmation, stream, indent=2)
+    for _ in range(40):                     # START skips the scene; only while it runs, or it would pause the game
+        ram = EMU.ram()
+        tamer = EMU.peek('TAMER_STATE', 'b', ram)
+        if tamer == 0 and EMU.peek('IS_SCRIPT_PAUSED', 'i', ram) == 1 and partner_type() == t: break
+        if tamer == 6: EMU.press('START', 6)
+        EMU.wait(3)
+    seq(f'wait 4, shot {out}/evolved-{t}.png')
 
 
 def save_game(t, out):
-    """Jijimon (NPC slot 0 of his house) opens the save machine (tools/dws/examples/dev-save.dws)."""
-    run(G + ['approach', '0'])
-    seq(f'wait 1, CROSS 6, wait 4, shot {out}/registration-{t}.png')
-    seq('DOWN 4, wait 1, CROSS 6, wait 4, CROSS 6, wait 14')
-    home = os.environ.get('EMU_HOME') or os.path.join(ROOT, '.tools/emu/home-' + os.environ['EMU_PORT'])
-    shutil.copy(os.path.join(home, 'memcard1.mcd'), os.path.join(out, f'save-{t}.mcd'))
+    """Save Game in the Cheats menu: the card screens of the game, on any disc. The card is copied to OUTDIR."""
+    seen = []
+    for _ in range(3):                   # the world can ignore the pause, and the menu can answer "not now"
+        open_cheats(7)
+        press('CONFIRM', 'CONFIRM')
+        seen = []
+        for _ in range(20):
+            EMU.wait(1.5)
+            menu = EMU.peek('CURRENT_MENU', 'i')
+            if menu not in seen[-1:]: seen.append(menu)
+            active = mem('MOD_LAB_ACTIVE').get('MOD_LAB_ACTIVE')
+            if menu == -1 and len(seen) > 1 and not active: break
+            if menu != -1 or active: EMU.press('CONFIRM', 8)
+        if SAVE_MENU in seen and seen[-1] == -1 and not active: break
+        press('CANCEL', 'CANCEL', 'START')
+    else:
+        raise RuntimeError(f'the save never finished: {seen}')
+    EMU.wait(3)
+    run(E + ['shot', f'{out}/saved-{t}.png'])
+    EMU.stop()                           # the emulator writes the card file when it stops
+    shutil.copy(EMU.card_out(), os.path.join(out, f'save-{t}.mcd'))
+    return seen
 
 
 def status_drawn(png):
@@ -148,20 +232,57 @@ def status_drawn(png):
     return ImageStat.Stat(im).mean[0] > 100
 
 
-def status(t, out):
-    """Open the status screen and shoot it; a menu press dropped or a menu still opening (seen once after a
-    battle) leaves the overworld with empty boxes: close it, wait longer and try again (up to 3 times)."""
+def field_menu():
+    """Opens the triangle menu, whatever a dropped press did; True once it is open."""
+    for _ in range(5):
+        if EMU.peek('IS_IN_MENU', 'i'): return True
+        press('TRIANGLE'); EMU.wait(1.5)
+    return bool(EMU.peek('IS_IN_MENU', 'i'))
+
+
+def close_menus():
+    """Back to the world, from any depth of the triangle menu."""
+    for _ in range(8):
+        if not EMU.peek('IS_IN_MENU', 'i'): return True
+        press('CANCEL'); EMU.wait(1)
+    return not EMU.peek('IS_IN_MENU', 'i')
+
+
+def status(t, out, r):
+    """The status screen and its technique page. r['status_drawn'] says the status screen really showed."""
     png = f'{out}/status-{t}.png'
+    r['status_drawn'] = False
     for attempt in range(3):
-        seq(f'wait {2 + 3 * attempt}, TRIANGLE 8, wait {4 + 2 * attempt}, RIGHT 4, wait 3, CROSS 8, wait {6 + 4 * attempt}')
-        seq(f'shot {png}')
-        if status_drawn(png): break
-        seq('CIRCLE 8, wait 4, CIRCLE 8, wait 4')
-    seq(f'RIGHT 4, wait 3, shot {out}/tech-{t}.png')
+        if field_menu():
+            press('RIGHT', 'CONFIRM'); EMU.wait(2 + 2 * attempt)
+            run(E + ['shot', png])
+            if status_drawn(png):
+                r['status_drawn'] = True
+                break
+        close_menus()
+    press('RIGHT'); EMU.wait(1)
+    run(E + ['shot', f'{out}/tech-{t}.png'])
+    close_menus()
+
+
+def finisher_watch(slot, secs):
+    """Samples the fight for at most `secs`, or 10 s when the clip never starts; returns the samples and the finisher's damage: the first HP an enemy loses
+    after the clip began. Everyone else stands still during a finisher, and its hit lands seconds after the clip ends."""
+    out, start, damage, t0 = [], None, None, time.time()
+    while time.time() - t0 < (secs if start else 10) and not damage:
+        values = mem(ANIM, FRAME, 'GAME_STATE', *ENEMY_HP)
+        values['GAME_STATE'] = game_state(values)
+        out.append(values)
+        hp = [values.get(key) for key in ENEMY_HP]
+        if start is None and values.get(ANIM) == slot: start = hp
+        elif start is not None:
+            damage = max([a - b for a, b in zip(start, hp) if isinstance(a, int) and isinstance(b, int)], default=None)
+    return out, damage
 
 
 def battle(t, moves, out, r):
     fin = next((0x2E + j for j, x in enumerate(moves) if x != 255 and 58 <= x <= 112), None)
+    r['finisher_expected'] = bool(fin)
     techs = [0x2E + j for j, x in enumerate(moves) if x != 255 and not 58 <= x <= 112][:3]
     techs = (techs + [255, 255, 255])[:3]
     words = [0, 0, 0, 0]
@@ -177,36 +298,45 @@ def battle(t, moves, out, r):
          'PARTNER_ENTITY.digimonEntity.stats.current.currentHP=4000', 'PARTNER_ENTITY.digimonEntity.stats.base.mp=4000',
          'PARTNER_ENTITY.digimonEntity.stats.current.currentMP=4000', 'PARTNER_PARA.condition=0', 'PARTNER_PARA.tiredness=0')
     run(G + ['warp', '1', '0']); seq('wait 6'); run(G + ['warp', '0', '0']); seq('wait 8')
-    run(G + ['approach', '0']); seq('wait 1, CROSS 4, wait 4')
-    mset('NPC_ENTITIES[0].digimonEntity.stats.base.hp=2500', 'NPC_ENTITIES[0].digimonEntity.stats.current.currentHP=2500')
-    seq('CROSS 4, wait 1')
+    run(G + ['approach', '0']); seq('wait 1, CONFIRM 4, wait 4')
+    mset(*[f'{key}=2500' for key in ENEMY_MAX + ENEMY_HP])
+    seq('CONFIRM 4, wait 1')
     smp = sample(16)
     seq(f'shot {out}/battle-{t}.png')
     if fin:
-        HPK = 'NPC_ENTITIES[0].digimonEntity.stats.current.currentHP'
-        mset(f'{HPK}=2500')
-        hp0 = mem(HPK).get(HPK)
-        g = mem('COMBAT_DATA.fighter[0].finisherGoal').get('COMBAT_DATA.fighter[0].finisherGoal', 0)
-        mset(f'COMBAT_DATA.fighter[0].finisherProgress={g}')
-        seq('wait 1, SQUARE 4, wait 1, L1 2, R1 2, L1 2, R1 2, L1 2, R1 2')
-        mset('COMBAT_DATA.player.finisherChargeup[0]=80')
-        smp += sample(10)
+        for _ in range(3):               # a dropped SQUARE leaves the gauge full and the prompt on screen
+            mset(*[f'{key}=2500' for key in ENEMY_HP])
+            g = mem('COMBAT_DATA.fighter[0].finisherGoal').get('COMBAT_DATA.fighter[0].finisherGoal', 0)
+            mset(f'COMBAT_DATA.fighter[0].finisherProgress={g}')
+            seq('wait 1'); EMU.press('SQUARE', 8); seq('wait 1, L1 2, R1 2, L1 2, R1 2, L1 2, R1 2')
+            mset('COMBAT_DATA.player.finisherChargeup[0]=80')
+            watched, r['finisher_damage'] = finisher_watch(fin, 30)
+            smp += watched
+            if any(s.get(ANIM) == fin for s in watched): break
         seq(f'shot {out}/finisher-{t}.png')
-        hp1 = mem(HPK).get(HPK)
-        r['finisher_damage'] = (hp0 - hp1) if isinstance(hp0, int) and isinstance(hp1, int) else None
     ids = sorted({s.get(ANIM) for s in smp if isinstance(s.get(ANIM), int)})
     r['techniques_played'] = [hex(x) for x in ids if x >= 0x2E]
     r['finisher_played'] = bool(fin) and fin in ids
     r['in_battle'] = any(s.get('GAME_STATE') == 1 for s in smp)
     r['frames_advance'] = len({s.get(FRAME) for s in smp}) > 3
     for _ in range(40):
-        mset('NPC_ENTITIES[0].digimonEntity.stats.current.currentHP=0')
-        seq('wait 6, CROSS 4, wait 3, CROSS 4, wait 3, CROSS 4, wait 3')
-        if mem('GAME_STATE').get('GAME_STATE') == 0:
+        mset(*[f'{key}=0' for key in ENEMY_HP])
+        seq('wait 6, CONFIRM 4, wait 3, CONFIRM 4, wait 3, CONFIRM 4, wait 3')
+        if game_state() == 0:
             break
     after = sample(2)
     r['game_state_after'] = after[-1].get('GAME_STATE')
     seq(f'shot {out}/after-{t}.png')
+
+
+def battle_failures(r):
+    """What a species must show in its fight; a check that does not apply (no finisher) is not asked of it."""
+    failed = [k for k in ('evolved', 'in_battle', 'frames_advance', 'techniques_played') if not r.get(k)]
+    if r.get('game_state_after') != 0: failed.append('back_in_world')
+    if r.get('finisher_expected'):
+        if not r.get('finisher_played'): failed.append('finisher_played')
+        if not (r.get('finisher_damage') or 0) > 0: failed.append('finisher_damage')
+    return failed
 
 
 def feed(t, out, r):
@@ -215,19 +345,24 @@ def feed(t, out, r):
     name = s['partner']['favorite_food']; item = species.id_of('items', name, 'favorite_food')
     run(G + ['set', 'inventory.types=[%d%s]' % (item, ',-1' * 29), 'inventory.amounts=[2%s]' % (',0' * 29)])
     k = ['PARTNER_PARA.happiness', 'PARTNER_PARA.energyLevel']
+    mset(f'{k[1]}=10')                   # a full partner refuses food, and then there is nothing to measure
     b = mem(*k); smp = []
     for attempt in range(3):           # a dropped press leaves a menu open: close it and try again
-        seq(f'wait {2 + 2 * attempt}, TRIANGLE 8, wait {5 + attempt}, CROSS 8, wait {5 + attempt}, CROSS 8, wait {5 + attempt}, '
-            'wait 2, CROSS 4, wait 3')
+        if field_menu():
+            press('CONFIRM'); EMU.wait(1 + attempt)
+            press('CONFIRM'); EMU.wait(1 + attempt)
+            press('CONFIRM')
         smp += sample(4, 0.25)
-        if mem(k[1]).get(k[1]) != b.get(k[1]): break
-        seq('CIRCLE 8, wait 4, CIRCLE 8, wait 4, CIRCLE 8, wait 4')
+        now = mem(k[1]).get(k[1])
+        if isinstance(now, int) and isinstance(b.get(k[1]), int) and now > b[k[1]]: break   # hunger only lowers it
+        close_menus()
     seq(f'shot {out}/fed-{t}.png')
     smp += sample(10, 0.3)             # eating, then the joy clip (0x0B) after a favourite food
     a = mem(*k)
     r['feed'] = dict(food=name, happiness=[b.get(k[0]), a.get(k[0])], energy=[b.get(k[1]), a.get(k[1])],
                      joy_clip=any(x.get(ANIM) == 0x0B for x in smp), anims=sorted({x.get(ANIM) for x in smp if isinstance(x.get(ANIM), int)}))
     r['fed'] = isinstance(a.get(k[1]), int) and isinstance(b.get(k[1]), int) and a[k[1]] > b[k[1]]
+    close_menus()
 
 
 def main():
@@ -237,51 +372,57 @@ def main():
     ap.add_argument('--save', type=int)
     ap.add_argument('--card', default='build/states/file-city.mcd')
     ap.add_argument('--no-battle', action='store_true')
-    ap.add_argument('--feed', action='store_true', help='also give its favourite food (step 4)')
+    ap.add_argument('--feed', action='store_true', help='also give its favourite food (step 3)')
     a = ap.parse_args()
     assert os.environ.get('EMU_PORT'), 'set EMU_PORT (38330..38339)'
     out = os.path.abspath(a.out); os.makedirs(out, exist_ok=True)
-    d, _, recs = species.read_archive(a.digi)
-    partners, _, _ = species.read_index(d)
+    _, _, recs = species.read_archive(a.digi)
     results, ok = {}, True
     try:
         for t in a.ids:
             r = dict(id=t, name=recs[t]['para']['name'])
-            if t not in partners and t not in NPC_PARTNERS:
-                r['error'] = 'not a partner species of this DIGI.DAT'; ok = False; print(json.dumps(r)); continue
             for attempt in range(2):         # a menu press the emulator drops under load: boot and try once more
                 r['booted'] = boot(a.cue, a.card)
-                lab_evolve(t, partners, out)
+                if not r['booted']: continue
+                lab_evolve(t, out)
                 r['type_after_evolution'] = partner_type()
                 if r['type_after_evolution'] == t: break
-            r['evolved'] = r['type_after_evolution'] == t
+            r['evolved'] = r.get('type_after_evolution') == t
             if not r['evolved']:
-                r.update(ok=False, error='evolution failed; battle, feeding and status checks skipped')
+                r.update(ok=False, error='never reached the world' if not r['booted'] else
+                         'evolution failed; battle, feeding and status checks skipped')
                 results[t] = r
                 ok = False
                 print(json.dumps(r), flush=True)
                 continue
-            if a.save == t:
-                save_game(t, out)
             if not a.no_battle:
                 battle(t, recs[t]['para']['moves'], out, r)
-                r['ok'] = bool(r['evolved'] and r['in_battle'] and r['frames_advance'] and r['techniques_played']
-                               and r['game_state_after'] == 0)
+                r['failed'] = battle_failures(r)
+                r['ok'] = not r['failed']
             else:
                 r['ok'] = r['evolved']
             if a.feed:
                 feed(t, out, r)
                 r['ok'] = r['ok'] and r['fed']
-            status(t, out)                       # last: a menu left open does not disturb the next step
+            results[t] = r
+            status(t, out, r)
+            r['ok'] = r['ok'] and r['status_drawn']
+            if a.save == t:
+                try:
+                    r['save_menus'] = save_game(t, out)
+                    r['saved'] = True
+                except RuntimeError as error:
+                    r.update(saved=False, ok=False, error=str(error))
             ok &= r['ok']
             results[t] = r
             print(json.dumps(r), flush=True)
-        if a.save and results.get(a.save, {}).get('evolved'):
+        if a.save and results.get(a.save, {}).get('saved'):
             r = results.setdefault(a.save, {})
-            boot(a.cue, os.path.join(out, f'save-{a.save}.mcd'))
+            r['reload_booted'] = boot(a.cue, os.path.join(out, f'save-{a.save}.mcd'))
             seq(f'wait 2, shot {out}/reload-{a.save}.png')
             r['type_after_reload'] = partner_type()
-            r['reloaded'] = r['type_after_reload'] == a.save
+            r['reloaded'] = bool(r['reload_booted']) and r['type_after_reload'] == a.save
+            r['ok'] = r.get('ok', False) and r['reloaded']
             ok &= r['reloaded']
             print(json.dumps({'reload': a.save, 'type_after_reload': r['type_after_reload'], 'ok': r['reloaded']}), flush=True)
     finally:

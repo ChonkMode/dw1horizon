@@ -44,16 +44,16 @@ def start_battle(moves):
            'PARTNER_ENTITY.digimonEntity.stats.current.currentHP=4000', 'PARTNER_ENTITY.digimonEntity.stats.base.mp=4000',
            'PARTNER_ENTITY.digimonEntity.stats.current.currentMP=4000', 'PARTNER_PARA.condition=0', 'PARTNER_PARA.tiredness=0')
     P.run(P.G + ['warp', '1', '0']); P.seq('wait 6'); P.run(P.G + ['warp', '0', '0']); P.seq('wait 8')
-    P.run(P.G + ['approach', '0']); P.seq('wait 1, CROSS 4, wait 4')
+    P.run(P.G + ['approach', '0']); P.seq('wait 1, CONFIRM 4, wait 4')
     P.mset(f'NPC_ENTITIES[0].digimonEntity.stats.base.hp=9999', f'{HPK}=9999')
-    P.seq('CROSS 4, wait 1')
+    P.seq('CONFIRM 4, wait 1')
     for _ in range(20):                      # a press dropped leaves the battle intro (3) or the world (0): press on
-        g = P.mem('GAME_STATE').get('GAME_STATE')
+        g = P.game_state()
         if g == 1: return True
         if g == 0:
-            P.run(P.G + ['approach', '0']); P.seq('wait 1, CROSS 4, wait 4')
+            P.run(P.G + ['approach', '0']); P.seq('wait 1, CONFIRM 4, wait 4')
             P.mset(f'NPC_ENTITIES[0].digimonEntity.stats.base.hp=9999', f'{HPK}=9999')
-        P.seq('CROSS 4, wait 2')
+        P.seq('CONFIRM 4, wait 2')
     return False
 
 
@@ -61,8 +61,8 @@ def end_battle():
     """The enemy finished and the results closed (species_proof.py's way): back in the world."""
     for _ in range(40):
         P.mset(f'{HPK}=0')
-        P.seq('wait 6, CROSS 4, wait 3, CROSS 4, wait 3, CROSS 4, wait 3')
-        if P.mem('GAME_STATE').get('GAME_STATE') == 0: return True
+        P.seq('wait 6, CONFIRM 4, wait 3, CONFIRM 4, wait 3, CONFIRM 4, wait 3')
+        if P.game_state() == 0: return True
     return False
 
 
@@ -128,7 +128,6 @@ def main():
     assert os.environ.get('EMU_PORT'), 'set EMU_PORT'
     out = os.path.abspath(a.out); os.makedirs(out, exist_ok=True)
     d, _, recs = species.read_archive(a.digi)
-    partners, _, _ = species.read_index(d)
     names = species.names('techs'); results = {}; ok = True
     try:
         for t in a.ids:
@@ -136,7 +135,7 @@ def main():
             r = dict(id=t, name=recs[t]['para']['name'], techniques={})
             for attempt in range(2):
                 r['booted'] = P.boot(a.cue, a.card)
-                P.lab_evolve(t, partners, out)
+                P.lab_evolve(t, out)
                 if P.partner_type() == t: break
             r['evolved'] = P.partner_type() == t
             if not r['evolved']:

@@ -188,9 +188,10 @@ function on the host and compare them over every input.
 
 Helpers: `callfn.py` calls any game function at a frame boundary and prints its return value; `talk.py` walks into the
 NPC in front and taps X until its script runs; `shopnav.py` drives a shop by the game's own RAM state;
-`labevolve.py` evolves the partner through the development menu; `raise.py` marks types as raised; `calltourn.py`
-starts a tournament from the lobby; `technique_proof.py` and `species_proof.py` play every technique and species of a
-disc unattended; `fonttour.py` screenshots every screen that draws text; `battle_stream.py` runs battles in a row on
+`raise.py` marks types as raised; `call_tournament.py` starts a tournament from the lobby; `technique_proof.py` and
+`species_proof.py` play every technique and species of a disc unattended (set `DW_SYMS` to the disc's executable and keep
+that build's objects under `build/`: the field names come from them; a species fails unless each check that applies to
+it passes, its finisher's hit included); `fonttour.py` screenshots every screen that draws text; `battle_stream.py` runs battles in a row on
 one screen (the background stream and the battle camera).
 
 `python3 tools/dev/playtest/timed_battle_host.py build/decomp-int` runs the actual field battle loop with deterministic events: expiry during
