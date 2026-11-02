@@ -14,4 +14,4 @@ def up_to_trash_mountain():
 @rubbish_m.on_step(0, when=not native_forest_rockslide_cleared and not invisible_bridge_crossed)
 def closed_hatch():
     tamer.say("The hatch won't budge. Maybe the road above has to open first.")
-    tamer.walk(748, -1582)
+    tamer.walk(748, -1582, camera=True)

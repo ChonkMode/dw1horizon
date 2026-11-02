@@ -18,4 +18,4 @@ def down_to_the_savanna():
 @hills1.on_step(0, when=not native_forest_rockslide_cleared and not invisible_bridge_crossed)
 def the_old_road_first():
     tamer.say("The trail's blocked. We should open the road to the savanna first.")
-    tamer.walk(119, -1750)
+    tamer.walk(119, -1750, camera=True)

@@ -12,4 +12,4 @@ def to_the_works():
 @city_180.on_step(7, when=not recruited(Species.Digmon) and not trigger(308))
 def still_building():
     tamer.say("Hm? Somebody used to dig behind the hedge... There's only rubble now.", "The gate's shut. Maybe a real builder could open it.")
-    tamer.walk(-850, -2550)
+    tamer.walk(-850, -2550, camera=True)

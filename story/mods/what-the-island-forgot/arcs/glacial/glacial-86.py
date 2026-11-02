@@ -10,4 +10,4 @@ def back_to_the_field():
 @region.on_step(0, when=not bone_field_visited)
 def narrow_crack():
     tamer.say("The crack is too narrow... I can't get through.")
-    tamer.walk(150, 1050)
+    tamer.walk(150, 1050, camera=True)

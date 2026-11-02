@@ -20,4 +20,4 @@ def down_to_overdell():
 @descent6.on_step(0, when=native_forest_rockslide_cleared and not invisible_bridge_crossed and not eastern_bridge_seen and not coela_point_crossing_done and not (engine.game_beaten and back_dimension_portal == 2))
 def the_jungle_road_first():
     tamer.say("The lower trail is blocked. We need to open the way through the jungle first.")
-    tamer.walk(112, -2150)
+    tamer.walk(112, -2150, camera=True)
