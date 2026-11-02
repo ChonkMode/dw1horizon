@@ -113,6 +113,12 @@ class Manifest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'pinned'):
             chibi.build(b'not a reviewed model', [])
 
+    def test_rows_stay_within_the_reviewed_limits(self):
+        for sid, row in json.loads(chibi.MANIFEST.read_text()).items():
+            self.assertLessEqual(row['factors']['head'], 1.9, sid)
+            self.assertLess(abs(row.get('trim', 1.0) - 1.0), 0.08, sid)       # Creepymon's sunken idle is the widest
+            self.assertTrue(all(isinstance(slot, int) for slot in row.get('rest_slots', ())), sid)
+
     def test_imports_without_site_packages(self):
         script = 'import sys; sys.path[:0] = [sys.argv[1], sys.argv[1] + "/tools"]\n' \
                  'import tools.models.field_animations.chibi\n' \
