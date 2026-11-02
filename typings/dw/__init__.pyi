@@ -1680,6 +1680,7 @@ class DigimonRoutine(IntEnum):
     machinedramon_appears = 8
     battle_death = 9
     forced_evolution = 10
+    clear_poop = 11
 
 class anim:
     """Animation slots the engine gives a meaning to (story/core/scene.dws); other slots are numbers: `play(29)`."""

@@ -112,7 +112,7 @@ script 212 {
         } else if (partner_type != 31 && partner_type != 32 && partner_type != 45 && partner_type != 46) {
             if (partner_type in [12, 54]) {
                 store_random(random_roll, 99);
-                unless (random_roll <= 9) return;
+                unless (random_roll <= 29) return;
                 engine.arg = 26;
                 call_digimon_routine(routine("forced_evolution"));
                 wait(550);
@@ -121,7 +121,7 @@ script 212 {
             }
             if (partner_type == 50) {
                 store_random(random_roll, 99);
-                unless (random_roll <= 9) return;
+                unless (random_roll <= 29) return;
                 engine.arg = 59;
                 call_digimon_routine(routine("forced_evolution"));
                 wait(550);
@@ -138,7 +138,7 @@ script 212 {
             return;
         }
         store_random(random_roll, 99);
-        unless (random_roll <= 9) return;
+        unless (random_roll <= 29) return;
         engine.arg = 37;
         call_digimon_routine(routine("forced_evolution"));
         wait(550);

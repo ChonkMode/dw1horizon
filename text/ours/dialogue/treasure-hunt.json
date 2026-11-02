@@ -14,16 +14,16 @@
  "s169.sec81.m1.o0": "Hunt for treasure",
  "s169.sec81.m1.o1": "Explain again",
  "s169.sec81.m1.o2": "No, that's all",
- "s169.sec81.m2.o0": "Normal plan: 1000 Bits",
+ "s169.sec81.m2.o0": "Normal plan: 2000 Bits",
  "s169.sec81.m2.o1": "Special plan: 5000 Bits",
  "s169.sec81.m2.o2": "Cancel",
  "s169.sec81.u0": "Yo, welcome, {color 6}{player}{color 1}! This here's the treasure hunt shop. Yours truly puts his digging skills to work and brings back treasure from underground. That's the business! This island's got all kinds of treasure buried all over. Just leave it to yours truly!",
  "s169.sec81.u1": "Yo, want a treasure hunt? Want to hear how it works first?",
- "s169.sec81.u2": "You pay the money up front, and yours truly finds you treasure. There's two plans, with different times and prices. The Normal plan is three days for 1000 Bits. The Special plan is ten days for 5000 Bits. Course, with the Special plan you've got a better shot at good treasure! That's about it. So, what'll it be?",
+ "s169.sec81.u2": "You pay the money up front, and yours truly finds you treasure. There's two plans, with different times and prices. The Normal plan is one day for 2000 Bits. The Special plan is three days for 5000 Bits. Course, with the Special plan you've got a better shot at good treasure! That's about it. So, what'll it be?",
  "s169.sec81.u3": "Alright, pick a plan!",
  "s169.sec81.u4": "Okay. See ya.",
- "s169.sec81.u5": "Alright, results in three days. I'll do my best!",
- "s169.sec81.u6": "Alright, results in ten days. I'll do my best!",
+ "s169.sec81.u5": "Alright, results in one day. I'll do my best!",
+ "s169.sec81.u6": "Alright, results in three days. I'll do my best!",
  "s169.sec81.u7": [
   [
    "You're short on Bits."

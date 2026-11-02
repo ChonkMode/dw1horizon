@@ -472,7 +472,11 @@
   "what-the-island-forgot.65ced7d6": "the-courtyard.py:15 talk: clockmon (Clockmon) says, page 1 of 2",
   "what-the-island-forgot.ac9f3a13": "the-courtyard.py:15 talk: clockmon (Clockmon) says, page 2 of 2",
   "what-the-island-forgot.98e85238": "the-courtyard.py:20 talk: armadillomon (Armadillomon) says, page 1 of 2",
-  "what-the-island-forgot.2af647ac": "the-courtyard.py:20 talk: armadillomon (Armadillomon) says, page 2 of 2"
+  "what-the-island-forgot.2af647ac": "the-courtyard.py:20 talk: armadillomon (Armadillomon) says, page 2 of 2",
+  "what-the-island-forgot.993f4f99": "file-city-services.py",
+  "what-the-island-forgot.fecb2590": "file-city-services.py",
+  "what-the-island-forgot.6d745b30": "file-city-services.py",
+  "what-the-island-forgot.fa44ad80": "file-city-services.py"
  },
  "city.join": "{species} joined the city!",
  "what-the-island-forgot.bbe10652": "{color 7}Jijimon {color 1}",
@@ -946,5 +950,9 @@
  "what-the-island-forgot.65ced7d6": "Tick. Tock. It stopped being twelve, and I am so glad.",
  "what-the-island-forgot.ac9f3a13": "A city needs a real clock.",
  "what-the-island-forgot.98e85238": "Treasure! I swear there's treasure somewhere under this city!",
- "what-the-island-forgot.2af647ac": "This old well goes down a long way. I'm only checking."
+ "what-the-island-forgot.2af647ac": "This old well goes down a long way. I'm only checking.",
+ "what-the-island-forgot.993f4f99": "Poop, poop, everywhere! For 1000 Bits I'll clean up the whole island.",
+ "what-the-island-forgot.fecb2590": "Clean it up",
+ "what-the-island-forgot.6d745b30": "No thanks",
+ "what-the-island-forgot.fa44ad80": "All gone! Not a single pile left on the island."
 }

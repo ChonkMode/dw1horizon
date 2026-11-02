@@ -102,7 +102,7 @@ def L5():    # shared code (the disc's label L5)
     elif partner_type != 31 and partner_type != 32 and partner_type != 45 and partner_type != 46:
         if partner_type in (12, 54):
             roll = random.roll(99)
-            if roll > 9:
+            if roll > 29:
                 return
             engine.arg.set(26)
             raw.call_digimon_routine(DigimonRoutine.forced_evolution)
@@ -111,7 +111,7 @@ def L5():    # shared code (the disc's label L5)
             return
         if partner_type == 50:
             roll = random.roll(99)
-            if roll > 9:
+            if roll > 29:
                 return
             engine.arg.set(59)
             raw.call_digimon_routine(DigimonRoutine.forced_evolution)
@@ -129,7 +129,7 @@ def L5():    # shared code (the disc's label L5)
         narrator.say(t73.u6)
         return
     roll = random.roll(99)
-    if roll > 9:
+    if roll > 29:
         return
     engine.arg.set(37)
     raw.call_digimon_routine(DigimonRoutine.forced_evolution)

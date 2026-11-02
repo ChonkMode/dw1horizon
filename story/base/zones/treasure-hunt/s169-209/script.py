@@ -13,10 +13,10 @@ t81 = text.s169.sec81
 
 @hunt.on_enter
 def enter():    # section 254
-    if drimogemon_job_days < 3 and treasure_hunt.cheap_ordered:
+    if drimogemon_job_days < 1 and treasure_hunt.cheap_ordered:
         raw.entity_move_to(drimogemon, 169, 2232, 5, 0)
         drimogemon.arrived()
-    if drimogemon_job_days < 10 and treasure_hunt.pricey_ordered:
+    if drimogemon_job_days < 3 and treasure_hunt.pricey_ordered:
         raw.entity_move_to(drimogemon, 169, 2232, 5, 0)
         drimogemon.arrived()
         return
@@ -32,301 +32,173 @@ def use1():    # section 81
         treasure_hunt_intro_seen.set()
         drimogemon.say(t81.u0)
         return
-    if treasure_hunt.cheap_ordered or treasure_hunt.pricey_ordered:
-        if drimogemon_job_days < 3 and treasure_hunt.cheap_ordered:
-            pass
-        elif drimogemon_job_days >= 10 or not treasure_hunt.pricey_ordered:
-            drimogemon.say(t81.u9)
-            if treasure_hunt.cheap_ordered:
-                pass
-            elif treasure_hunt.pricey_ordered:
-                treasure_hunt.pricey_ordered.clear()
-                if not recruited(Species.Gabumon):
-                    if treasure_hunt.pricey_roll <= 0:
-                        give(Item.OffChip)
-                        random_roll.set(23)
-                    elif treasure_hunt.pricey_roll <= 1:
-                        give(Item.HPChip)
-                        random_roll.set(27)
-                    elif treasure_hunt.pricey_roll <= 2:
-                        give(Item.BrainChip)
-                        random_roll.set(25)
-                    elif treasure_hunt.pricey_roll <= 3:
-                        give(Item.DefChip)
-                        random_roll.set(24)
-                    elif treasure_hunt.pricey_roll <= 4:
-                        give(Item.MPChip)
-                        random_roll.set(28)
-                    elif treasure_hunt.pricey_roll <= 5:
-                        give(Item.QuickChip)
-                        random_roll.set(26)
-                    elif treasure_hunt.pricey_roll <= 6:
-                        give(Item.KogaLaws)
-                        random_roll.set(90)
-                    elif treasure_hunt.pricey_roll <= 7:
-                        give(Item.Flamingwing)
-                        random_roll.set(73)
-                    elif treasure_hunt.pricey_roll <= 8:
-                        give(Item.TornTatter)
-                        random_roll.set(82)
-                    elif treasure_hunt.pricey_roll <= 20:
-                        give(Item.SupRecovery)
-                        random_roll.set(3)
-                    elif treasure_hunt.pricey_roll <= 29:
-                        give(Item.Restore)
-                        random_roll.set(11)
-                    elif treasure_hunt.pricey_roll <= 49:
-                        give(Item.Omnipotent)
-                        random_roll.set(9)
-                    elif treasure_hunt.pricey_roll <= 1:
-                        give(Item.OffChip)
-                        random_roll.set(23)
-                    elif treasure_hunt.pricey_roll <= 3:
-                        give(Item.HPChip)
-                        random_roll.set(27)
-                    elif treasure_hunt.pricey_roll <= 5:
-                        give(Item.BrainChip)
-                        random_roll.set(25)
-                    elif treasure_hunt.pricey_roll <= 7:
-                        give(Item.DefChip)
-                        random_roll.set(24)
-                    elif treasure_hunt.pricey_roll <= 9:
-                        give(Item.MPChip)
-                        random_roll.set(28)
-                    elif treasure_hunt.pricey_roll <= 11:
-                        give(Item.QuickChip)
-                        random_roll.set(26)
-                    elif treasure_hunt.pricey_roll <= 13:
-                        give(Item.KogaLaws)
-                        random_roll.set(90)
-                    elif treasure_hunt.pricey_roll <= 15:
-                        give(Item.Flamingwing)
-                        random_roll.set(73)
-                    elif treasure_hunt.pricey_roll <= 17:
-                        give(Item.TornTatter)
-                        random_roll.set(82)
-                    elif treasure_hunt.pricey_roll <= 21:
-                        give(Item.SupRestore)
-                        random_roll.set(12)
-                    elif treasure_hunt.pricey_roll <= 33:
-                        give(Item.Restore)
-                        random_roll.set(11)
-                    else:
-                        if treasure_hunt.pricey_roll <= 49:
-                            give(Item.Omnipotent)
-                            random_roll.set(9)
-                            if engine.item_did_not_fit:
-                                drimogemon.say(t81.u10)
-                                camera.on(tamer, speed=10)
-                                camera.arrived()
-                                return
-                            narrator.say(t81.u11)
-                            treasure_hunt.cheap_ordered.clear()
-                            treasure_hunt.pricey_ordered.clear()
-                        drimogemon.say(t81.u12)
-                        camera.on(tamer, speed=10)
-                        camera.arrived()
-                        return
-                    if engine.item_did_not_fit:
-                        drimogemon.say(t81.u10)
-                        camera.on(tamer, speed=10)
-                        camera.arrived()
-                        return
-                    narrator.say(t81.u11)
-                    treasure_hunt.cheap_ordered.clear()
-                    treasure_hunt.pricey_ordered.clear()
-                    drimogemon.say(t81.u12)
-                    camera.on(tamer, speed=10)
-                    camera.arrived()
-                    return
-                if treasure_hunt.pricey_roll <= 1:
-                    give(Item.OffChip)
-                    random_roll.set(23)
-                elif treasure_hunt.pricey_roll <= 3:
-                    give(Item.HPChip)
-                    random_roll.set(27)
-                elif treasure_hunt.pricey_roll <= 5:
-                    give(Item.BrainChip)
-                    random_roll.set(25)
-                elif treasure_hunt.pricey_roll <= 7:
-                    give(Item.DefChip)
-                    random_roll.set(24)
-                elif treasure_hunt.pricey_roll <= 9:
-                    give(Item.MPChip)
-                    random_roll.set(28)
-                elif treasure_hunt.pricey_roll <= 11:
-                    give(Item.QuickChip)
-                    random_roll.set(26)
-                elif treasure_hunt.pricey_roll <= 13:
-                    give(Item.KogaLaws)
-                    random_roll.set(90)
-                elif treasure_hunt.pricey_roll <= 15:
-                    give(Item.Flamingwing)
-                    random_roll.set(73)
-                elif treasure_hunt.pricey_roll <= 17:
-                    give(Item.TornTatter)
-                    random_roll.set(82)
-                elif treasure_hunt.pricey_roll <= 21:
-                    give(Item.SupRestore)
-                    random_roll.set(12)
-                elif treasure_hunt.pricey_roll <= 33:
-                    give(Item.Restore)
-                    random_roll.set(11)
-                else:
-                    if treasure_hunt.pricey_roll <= 49:
-                        give(Item.Omnipotent)
-                        random_roll.set(9)
-                        if engine.item_did_not_fit:
-                            drimogemon.say(t81.u10)
-                            camera.on(tamer, speed=10)
-                            camera.arrived()
-                            return
-                        narrator.say(t81.u11)
-                        treasure_hunt.cheap_ordered.clear()
-                        treasure_hunt.pricey_ordered.clear()
-                    drimogemon.say(t81.u12)
-                    camera.on(tamer, speed=10)
-                    camera.arrived()
-                    return
-                if engine.item_did_not_fit:
-                    drimogemon.say(t81.u10)
-                    camera.on(tamer, speed=10)
-                    camera.arrived()
-                    return
-                narrator.say(t81.u11)
-                treasure_hunt.cheap_ordered.clear()
-                treasure_hunt.pricey_ordered.clear()
-                drimogemon.say(t81.u12)
-                camera.on(tamer, speed=10)
-                camera.arrived()
-                return
-            if recruited(Species.Gabumon):
-                if treasure_hunt.cheap_roll <= 0:
-                    give(Item.KogaLaws)
-                    random_roll.set(90)
-                elif treasure_hunt.cheap_roll <= 2:
-                    give(Item.Flamingwing)
-                    random_roll.set(73)
-                elif treasure_hunt.cheap_roll <= 4:
-                    give(Item.TornTatter)
-                    random_roll.set(82)
-                elif treasure_hunt.cheap_roll <= 12:
-                    give(Item.SupRecovery)
-                    random_roll.set(3)
-                elif treasure_hunt.cheap_roll <= 15:
-                    give(Item.Restore)
-                    random_roll.set(11)
-                elif treasure_hunt.cheap_roll <= 19:
-                    give(Item.Omnipotent)
-                    random_roll.set(9)
-                elif treasure_hunt.cheap_roll <= 23:
-                    give(Item.Protection)
-                    random_roll.set(10)
-                elif treasure_hunt.cheap_roll <= 33:
-                    give(Item.LargeMP)
-                    random_roll.set(6)
-                elif treasure_hunt.cheap_roll <= 37:
-                    give(Item.SOffDisk)
-                    random_roll.set(19)
-                elif treasure_hunt.cheap_roll <= 41:
-                    give(Item.SDefDisk)
-                    random_roll.set(20)
-                elif treasure_hunt.cheap_roll <= 45:
-                    give(Item.SSpeedDisk)
-                    random_roll.set(21)
-                elif treasure_hunt.cheap_roll <= 49:
-                    give(Item.OmniDisk)
-                    random_roll.set(18)
-            elif treasure_hunt.cheap_roll <= 0:
-                give(Item.KogaLaws)
-                random_roll.set(90)
-            elif treasure_hunt.cheap_roll <= 1:
-                give(Item.Flamingwing)
-                random_roll.set(73)
-            elif treasure_hunt.cheap_roll <= 2:
-                give(Item.TornTatter)
-                random_roll.set(82)
-            elif treasure_hunt.cheap_roll <= 12:
-                give(Item.SupRecovery)
-                random_roll.set(3)
-            elif treasure_hunt.cheap_roll <= 15:
-                give(Item.Restore)
-                random_roll.set(11)
-            elif treasure_hunt.cheap_roll <= 19:
-                give(Item.Omnipotent)
-                random_roll.set(9)
-            elif treasure_hunt.cheap_roll <= 23:
-                give(Item.Protection)
-                random_roll.set(10)
-            elif treasure_hunt.cheap_roll <= 33:
-                give(Item.LargeMP)
-                random_roll.set(6)
-            elif treasure_hunt.cheap_roll <= 37:
-                give(Item.SOffDisk)
-                random_roll.set(19)
-            elif treasure_hunt.cheap_roll <= 41:
-                give(Item.SDefDisk)
-                random_roll.set(20)
-            elif treasure_hunt.cheap_roll <= 45:
-                give(Item.SSpeedDisk)
-                random_roll.set(21)
-            elif treasure_hunt.cheap_roll <= 49:
-                give(Item.OmniDisk)
-                random_roll.set(18)
-            elif treasure_hunt.cheap_roll <= 0:
-                give(Item.KogaLaws)
-                random_roll.set(90)
-            elif treasure_hunt.cheap_roll <= 2:
-                give(Item.Flamingwing)
-                random_roll.set(73)
-            elif treasure_hunt.cheap_roll <= 4:
-                give(Item.TornTatter)
-                random_roll.set(82)
-            elif treasure_hunt.cheap_roll <= 12:
-                give(Item.SupRecovery)
-                random_roll.set(3)
-            elif treasure_hunt.cheap_roll <= 15:
-                give(Item.Restore)
-                random_roll.set(11)
-            elif treasure_hunt.cheap_roll <= 19:
-                give(Item.Omnipotent)
-                random_roll.set(9)
-            elif treasure_hunt.cheap_roll <= 23:
-                give(Item.Protection)
-                random_roll.set(10)
-            elif treasure_hunt.cheap_roll <= 33:
-                give(Item.LargeMP)
-                random_roll.set(6)
-            elif treasure_hunt.cheap_roll <= 37:
-                give(Item.SOffDisk)
-                random_roll.set(19)
-            elif treasure_hunt.cheap_roll <= 41:
-                give(Item.SDefDisk)
-                random_roll.set(20)
-            elif treasure_hunt.cheap_roll <= 45:
-                give(Item.SSpeedDisk)
-                random_roll.set(21)
-            elif treasure_hunt.cheap_roll <= 49:
-                give(Item.OmniDisk)
-                random_roll.set(18)
-            if engine.item_did_not_fit:
-                drimogemon.say(t81.u10)
-                camera.on(tamer, speed=10)
-                camera.arrived()
-                return
-            narrator.say(t81.u11)
-            treasure_hunt.cheap_ordered.clear()
-            treasure_hunt.pricey_ordered.clear()
-            drimogemon.say(t81.u12)
-            camera.on(tamer, speed=10)
-            camera.arrived()
-            return
-        drimogemon.run(180, 840)
-        drimogemon.say(t81.u8)
-        drimogemon.run(169, 2232)
-        camera.on(tamer, speed=10)
-        camera.arrived()
-        return
+    dws(r"""
+        if (treasure_hunt.cheap_ordered || treasure_hunt.pricey_ordered) {
+            if (drimogemon_job_days >= 1 && treasure_hunt.cheap_ordered) goto l61;
+            if (drimogemon_job_days >= 3 && treasure_hunt.pricey_ordered) goto l61;
+            run(drimogemon, 180, 840);
+            await drimogemon;
+            say(drimogemon, text("s169.sec81.u8"));
+            run(drimogemon, 169, 2232);
+            await drimogemon;
+            camera_on(tamer, speed: 10);
+            await camera;
+            return;
+            l61:
+            say(drimogemon, text("s169.sec81.u9"));
+            l60:
+            if (treasure_hunt.pricey_ordered) {
+                if (is_recruited(species("Gabumon"))) {
+                    if (treasure_hunt.pricey_roll <= 9) {
+                        give_item(item("Restore"), 1);
+                        random_roll = 11;
+                    } else if (treasure_hunt.pricey_roll <= 19) {
+                        give_item(item("Flamingwing"), 1);
+                        random_roll = 73;
+                    } else if (treasure_hunt.pricey_roll <= 29) {
+                        give_item(item("Torn tatter"), 1);
+                        random_roll = 82;
+                    } else if (treasure_hunt.pricey_roll <= 39) {
+                        give_item(item("Koga laws"), 1);
+                        random_roll = 90;
+                    } else if (treasure_hunt.pricey_roll <= 49) {
+                        give_item(item("HP Chip"), 1);
+                        random_roll = 27;
+                    } else if (treasure_hunt.pricey_roll <= 59) {
+                        give_item(item("MP Chip"), 1);
+                        random_roll = 28;
+                    } else if (treasure_hunt.pricey_roll <= 69) {
+                        give_item(item("Off. Chip"), 1);
+                        random_roll = 23;
+                    } else if (treasure_hunt.pricey_roll <= 79) {
+                        give_item(item("Def. Chip"), 1);
+                        random_roll = 24;
+                    } else if (treasure_hunt.pricey_roll <= 89) {
+                        give_item(item("Quick Chip"), 1);
+                        random_roll = 26;
+                    } else if (treasure_hunt.pricey_roll <= 99) {
+                        give_item(item("Brain Chip"), 1);
+                        random_roll = 25;
+                    }
+                } else {
+                    if (treasure_hunt.pricey_roll <= 9) {
+                        give_item(item("Restore"), 1);
+                        random_roll = 11;
+                    } else if (treasure_hunt.pricey_roll <= 29) {
+                        give_item(item("Flamingwing"), 1);
+                        random_roll = 73;
+                    } else if (treasure_hunt.pricey_roll <= 49) {
+                        give_item(item("Torn tatter"), 1);
+                        random_roll = 82;
+                    } else if (treasure_hunt.pricey_roll <= 69) {
+                        give_item(item("Koga laws"), 1);
+                        random_roll = 90;
+                    } else if (treasure_hunt.pricey_roll <= 74) {
+                        give_item(item("HP Chip"), 1);
+                        random_roll = 27;
+                    } else if (treasure_hunt.pricey_roll <= 79) {
+                        give_item(item("MP Chip"), 1);
+                        random_roll = 28;
+                    } else if (treasure_hunt.pricey_roll <= 84) {
+                        give_item(item("Off. Chip"), 1);
+                        random_roll = 23;
+                    } else if (treasure_hunt.pricey_roll <= 89) {
+                        give_item(item("Def. Chip"), 1);
+                        random_roll = 24;
+                    } else if (treasure_hunt.pricey_roll <= 94) {
+                        give_item(item("Quick Chip"), 1);
+                        random_roll = 26;
+                    } else if (treasure_hunt.pricey_roll <= 99) {
+                        give_item(item("Brain Chip"), 1);
+                        random_roll = 25;
+                    }
+                }
+            } else if (is_recruited(species("Gabumon"))) {
+                if (treasure_hunt.cheap_roll <= 14) {
+                    give_item(item("Omnipotent"), 1);
+                    random_roll = 9;
+                } else if (treasure_hunt.cheap_roll <= 29) {
+                    give_item(item("Omni Disk"), 1);
+                    random_roll = 18;
+                } else if (treasure_hunt.cheap_roll <= 44) {
+                    give_item(item("Protection"), 1);
+                    random_roll = 10;
+                } else if (treasure_hunt.cheap_roll <= 54) {
+                    give_item(item("S.Off.disk"), 1);
+                    random_roll = 19;
+                } else if (treasure_hunt.cheap_roll <= 64) {
+                    give_item(item("S.Def.disk"), 1);
+                    random_roll = 20;
+                } else if (treasure_hunt.cheap_roll <= 74) {
+                    give_item(item("S.speed.disk"), 1);
+                    random_roll = 21;
+                } else if (treasure_hunt.cheap_roll <= 84) {
+                    give_item(item("Restore"), 1);
+                    random_roll = 11;
+                } else if (treasure_hunt.cheap_roll <= 89) {
+                    give_item(item("Flamingwing"), 1);
+                    random_roll = 73;
+                } else if (treasure_hunt.cheap_roll <= 94) {
+                    give_item(item("Torn tatter"), 1);
+                    random_roll = 82;
+                } else if (treasure_hunt.cheap_roll <= 99) {
+                    give_item(item("Koga laws"), 1);
+                    random_roll = 90;
+                }
+            } else {
+                if (treasure_hunt.cheap_roll <= 19) {
+                    give_item(item("Omnipotent"), 1);
+                    random_roll = 9;
+                } else if (treasure_hunt.cheap_roll <= 39) {
+                    give_item(item("Protection"), 1);
+                    random_roll = 10;
+                } else if (treasure_hunt.cheap_roll <= 49) {
+                    give_item(item("Omni Disk"), 1);
+                    random_roll = 18;
+                } else if (treasure_hunt.cheap_roll <= 59) {
+                    give_item(item("S.Off.disk"), 1);
+                    random_roll = 19;
+                } else if (treasure_hunt.cheap_roll <= 69) {
+                    give_item(item("S.Def.disk"), 1);
+                    random_roll = 20;
+                } else if (treasure_hunt.cheap_roll <= 79) {
+                    give_item(item("S.speed.disk"), 1);
+                    random_roll = 21;
+                } else if (treasure_hunt.cheap_roll <= 84) {
+                    give_item(item("Restore"), 1);
+                    random_roll = 11;
+                } else if (treasure_hunt.cheap_roll <= 89) {
+                    give_item(item("Flamingwing"), 1);
+                    random_roll = 73;
+                } else if (treasure_hunt.cheap_roll <= 94) {
+                    give_item(item("Torn tatter"), 1);
+                    random_roll = 82;
+                } else if (treasure_hunt.cheap_roll <= 99) {
+                    give_item(item("Koga laws"), 1);
+                    random_roll = 90;
+                }
+            }
+            if (engine.item_did_not_fit) {
+                say(drimogemon, text("s169.sec81.u10"));
+                camera_on(tamer, speed: 10);
+                await camera;
+                return;
+            }
+            say(narrator, text("s169.sec81.u11"));
+            store_random(random_roll, 99);
+            if (random_roll <= 4 && is_recruited(species("Gabumon"))) {
+                store_random(treasure_hunt.cheap_roll, 99);
+                store_random(treasure_hunt.pricey_roll, 99);
+                goto l60;
+            }
+            treasure_hunt.cheap_ordered = false;
+            treasure_hunt.pricey_ordered = false;
+            say(drimogemon, text("s169.sec81.u12"));
+            camera_on(tamer, speed: 10);
+            await camera;
+            return;
+        }
+    """)
     drimogemon.say(t81.u1)
     match choose(a=t81.m0.o0, b=t81.m0.o1, c=t81.m0.o2):
         case "a":
@@ -348,16 +220,16 @@ def use1():    # section 81
     drimogemon.say(t81.u3)
     match choose(a=t81.m2.o0, b=t81.m2.o1, c=t81.m2.o2):
         case "a":
-            if bits < 1000:
+            if bits < 2000:
                 drimogemon.say(t81.u7)
                 camera.on(tamer, speed=10)
                 camera.arrived()
                 return
-            take(bits=1000)
+            take(bits=2000)
             treasure_hunt.cheap_ordered.set()
             drimogemon_job_days.set(0)
             drimogemon.say(t81.u5)
-            raw.store_random(treasure_hunt.cheap_roll, 49)
+            raw.store_random(treasure_hunt.cheap_roll, 99)
             drimogemon.run(169, 2232)
             camera.on(tamer, speed=10)
             camera.arrived()
@@ -372,7 +244,7 @@ def use1():    # section 81
             treasure_hunt.pricey_ordered.set()
             drimogemon_job_days.set(0)
             drimogemon.say(t81.u6)
-            raw.store_random(treasure_hunt.pricey_roll, 49)
+            raw.store_random(treasure_hunt.pricey_roll, 99)
             drimogemon.run(169, 2232)
             camera.on(tamer, speed=10)
             camera.arrived()

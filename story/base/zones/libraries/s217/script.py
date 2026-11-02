@@ -25,16 +25,16 @@ def step0():    # section 51
                     if not partner_energy_full or partner.hungry:
                         narrator.say(t51.u17)
                         partner.add(offense=0)
-                        partner.add(defense=1)
-                        partner.add(speed=1)
+                        partner.add(defense=0)
+                        partner.add(speed=3)
                         partner.add(brain=0)
-                        partner.add(max_hp=10)
+                        partner.add(max_hp=50)
                         partner.add(max_mp=0)
                         partner.sub(tiredness=5)
                         partner.add(happiness=2)
                         partner.add(discipline=0)
-                        partner.add(energy=18)
-                        partner.add(weight=2)
+                        partner.add(energy=35)
+                        partner.add(weight=3)
                         take(bits=400)
                         narrator.say(t51.u18)
                         partner.play(11, wait=True)
@@ -47,21 +47,21 @@ def step0():    # section 51
                     slot0.say(t51.u16)
                     return
             case "b":
-                if bits >= 1000:
+                if bits >= 800:
                     if not partner_energy_full or partner.hungry:
                         narrator.say(t51.u21)
                         partner.add(offense=0)
-                        partner.add(defense=3)
-                        partner.add(speed=2)
+                        partner.add(defense=0)
+                        partner.add(speed=5)
                         partner.add(brain=0)
-                        partner.add(max_hp=30)
+                        partner.add(max_hp=100)
                         partner.add(max_mp=0)
                         partner.sub(tiredness=5)
                         partner.add(happiness=4)
                         partner.add(discipline=0)
-                        partner.add(energy=28)
-                        partner.add(weight=3)
-                        take(bits=1000)
+                        partner.add(energy=35)
+                        partner.add(weight=4)
+                        take(bits=800)
                         narrator.say(t51.u22)
                         partner.play(11, wait=True)
                     else:
@@ -73,21 +73,21 @@ def step0():    # section 51
                     slot0.say(t51.u20)
                     return
             case "c":
-                if bits >= 2500:
+                if bits >= 1200:
                     if not partner_energy_full or partner.hungry:
                         narrator.say(t51.u25)
                         partner.add(offense=0)
-                        partner.add(defense=5)
-                        partner.add(speed=3)
+                        partner.add(defense=0)
+                        partner.add(speed=7)
                         partner.add(brain=0)
-                        partner.add(max_hp=50)
+                        partner.add(max_hp=150)
                         partner.add(max_mp=0)
                         partner.sub(tiredness=5)
                         partner.add(happiness=8)
                         partner.add(discipline=1)
                         partner.add(energy=35)
-                        partner.add(weight=4)
-                        take(bits=2500)
+                        partner.add(weight=5)
+                        take(bits=1200)
                         narrator.say(t51.u26)
                         partner.play(11, wait=True)
                     else:
@@ -104,21 +104,21 @@ def step0():    # section 51
         slot0.say(t51.u2)
         match narrator.choose(a=t51.m2.o0, b=t51.m2.o1, c=t51.m2.o2):
             case "a":
-                if bits >= 1000:
+                if bits >= 400:
                     if not partner_energy_full or partner.hungry:
                         narrator.say(t51.u30)
                         partner.add(offense=0)
                         partner.add(defense=0)
                         partner.add(speed=0)
-                        partner.add(brain=1)
-                        partner.add(max_hp=10)
-                        partner.add(max_mp=0)
+                        partner.add(brain=3)
+                        partner.add(max_hp=0)
+                        partner.add(max_mp=50)
                         partner.sub(tiredness=5)
                         partner.add(happiness=0)
                         partner.add(discipline=1)
-                        partner.add(energy=30)
+                        partner.add(energy=35)
                         partner.add(weight=3)
-                        take(bits=1000)
+                        take(bits=400)
                         narrator.say(t51.u31)
                         partner.play(11, wait=True)
                     else:
@@ -130,21 +130,21 @@ def step0():    # section 51
                     slot0.say(t51.u29)
                     return
             case "b":
-                if bits >= 2500:
+                if bits >= 800:
                     if not partner_energy_full or partner.hungry:
                         narrator.say(t51.u34)
                         partner.add(offense=0)
                         partner.add(defense=0)
                         partner.add(speed=0)
-                        partner.add(brain=2)
-                        partner.add(max_hp=30)
-                        partner.add(max_mp=0)
+                        partner.add(brain=5)
+                        partner.add(max_hp=0)
+                        partner.add(max_mp=100)
                         partner.sub(tiredness=5)
                         partner.add(happiness=1)
                         partner.add(discipline=2)
-                        partner.add(energy=40)
+                        partner.add(energy=35)
                         partner.add(weight=4)
-                        take(bits=2500)
+                        take(bits=800)
                         narrator.say(t51.u35)
                         partner.play(11, wait=True)
                     else:
@@ -156,21 +156,21 @@ def step0():    # section 51
                     slot0.say(t51.u33)
                     return
             case "c":
-                if bits >= 5000:
+                if bits >= 1200:
                     if not partner_energy_full or partner.hungry:
                         narrator.say(t51.u38)
                         partner.add(offense=0)
                         partner.add(defense=0)
                         partner.add(speed=0)
-                        partner.add(brain=3)
-                        partner.add(max_hp=50)
-                        partner.add(max_mp=0)
+                        partner.add(brain=7)
+                        partner.add(max_hp=0)
+                        partner.add(max_mp=150)
                         partner.sub(tiredness=5)
                         partner.add(happiness=2)
                         partner.add(discipline=3)
-                        partner.add(energy=50)
+                        partner.add(energy=35)
                         partner.add(weight=5)
-                        take(bits=5000)
+                        take(bits=1200)
                         narrator.say(t51.u39)
                         partner.play(11, wait=True)
                     else:
@@ -188,16 +188,16 @@ def step0():    # section 51
             if bits >= 400:
                 if not partner_energy_full or partner.hungry:
                     narrator.say(t51.u4)
-                    partner.add(offense=1)
+                    partner.add(offense=5)
                     partner.add(defense=0)
-                    partner.add(speed=0)
-                    partner.add(brain=1)
+                    partner.add(speed=3)
+                    partner.add(brain=0)
                     partner.add(max_hp=0)
                     partner.add(max_mp=0)
                     partner.sub(tiredness=5)
                     partner.add(happiness=2)
                     partner.add(discipline=0)
-                    partner.add(energy=20)
+                    partner.add(energy=35)
                     partner.add(weight=2)
                     take(bits=400)
                     narrator.say(t51.u5)
@@ -211,21 +211,21 @@ def step0():    # section 51
                 slot0.say(t51.u3)
                 return
         case "b":
-            if bits >= 1200:
+            if bits >= 800:
                 if not partner_energy_full or partner.hungry:
                     narrator.say(t51.u8)
-                    partner.add(offense=3)
+                    partner.add(offense=10)
                     partner.add(defense=0)
-                    partner.add(speed=0)
-                    partner.add(brain=2)
+                    partner.add(speed=5)
+                    partner.add(brain=0)
                     partner.add(max_hp=0)
                     partner.add(max_mp=0)
                     partner.sub(tiredness=5)
                     partner.add(happiness=4)
                     partner.add(discipline=0)
-                    partner.add(energy=26)
+                    partner.add(energy=35)
                     partner.add(weight=3)
-                    take(bits=1200)
+                    take(bits=800)
                     narrator.say(t51.u9)
                     partner.play(11, wait=True)
                 else:
@@ -237,21 +237,21 @@ def step0():    # section 51
                 slot0.say(t51.u7)
                 return
         case "c":
-            if bits >= 3500:
+            if bits >= 1200:
                 if not partner_energy_full or partner.hungry:
                     narrator.say(t51.u12)
-                    partner.add(offense=5)
+                    partner.add(offense=15)
                     partner.add(defense=0)
-                    partner.add(speed=0)
-                    partner.add(brain=3)
+                    partner.add(speed=7)
+                    partner.add(brain=0)
                     partner.add(max_hp=0)
                     partner.add(max_mp=0)
                     partner.sub(tiredness=5)
                     partner.add(happiness=6)
                     partner.add(discipline=1)
-                    partner.add(energy=20)
+                    partner.add(energy=35)
                     partner.add(weight=4)
-                    take(bits=3500)
+                    take(bits=1200)
                     narrator.say(t51.u13)
                     partner.play(11, wait=True)
                 else:

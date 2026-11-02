@@ -120,6 +120,9 @@ Patch 0272 puts the Select + L1/R1/L2/R2 shortcuts behind a row of the Cheats me
 | 0317 | MAPHEAD buffer 26 KB instead of 32: the eight languages take at most 24,554 bytes | 6,144 B of heap; no change at run time |
 | 0318 | In the world a cold clip no longer stops the game with 2 MB: the partner holds its pose while the file queue reads the clip | Eight-language build: heap 184,912 B, screen 207 keeps 192 B; `tools/dev/playtest/cold_cache.py` |
 | 0319 | The title panel is 296 pixels wide and fits each column to its width, so a wider font no longer runs the setting into its state | |
+| 0322 | A won battle gives at least a share of the strongest enemy's stat: 1 % against one enemy, its size in the fourth value of `statGainEnemyFactors` | see the build's heap report |
+| 0323 | Evolution items evolve like any other evolution: stat gains, lifetime and tamer level | no more code |
+| 0324 | Script routine 11 (`clear_poop`) empties every poop pile on the island | see the build's heap report |
 
 Patch 0304 lets scripts set, clear and test recruited bits for species 112..1023
 through reserved operands of the existing trigger instructions. Prosperity keeps

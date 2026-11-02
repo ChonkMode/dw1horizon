@@ -2258,7 +2258,7 @@
  "s205.sec6.m6.o0": "Spiega di nuovo",
  "s205.sec6.m6.o1": "Trova il tesoro",
  "s205.sec6.m6.o2": "No, è tutto",
- "s205.sec6.m7.o0": "Piano normale: 1000 Bits",
+ "s205.sec6.m7.o0": "Piano normale: 2000 Bits",
  "s205.sec6.m7.o1": "Piano speciale: 5000 Bits",
  "s205.sec6.m7.o2": "Annulla",
  "s205.sec6.u0": "Quale negozio scegli?",
@@ -2449,22 +2449,7 @@
    "Ti spiego prima come funziona?"
   ]
  ],
- "s205.sec6.u30": [
-  [
-   "Paghi in anticipo e io ti trovo",
-   "un tesoro. Ci sono due piani.",
-   "Normale: tre giorni per 1000"
-  ],
-  [
-   "Bits. Speciale: dieci giorni",
-   "per 5000 Bits. Con lo speciale",
-   "hai più probabilità di trovare"
-  ],
-  [
-   "un bel tesoro! Tutto qui. Quale",
-   "scegli?"
-  ]
- ],
+ "s205.sec6.u30": "Paghi in anticipo e io ti trovo un tesoro. Ci sono due piani. Normale: un giorno per 2000 Bits. Speciale: tre giorni per 5000 Bits. Con lo speciale hai più probabilità di trovare un bel tesoro! Tutto qui. Quale scegli?",
  "s205.sec6.u31": [
   [
    "Allora scegli un piano!"
@@ -2475,19 +2460,8 @@
    "Ok. Ci vediamo più tardi!"
   ]
  ],
- "s205.sec6.u33": [
-  [
-   "Bene! Avrai i risultati tra tre",
-   "giorni. Farò del mio meglio!"
-  ]
- ],
- "s205.sec6.u34": [
-  [
-   "Bene! Avrai i risultati tra",
-   "dieci giorni. Farò del mio",
-   "meglio!"
-  ]
- ],
+ "s205.sec6.u33": "Bene! Avrai i risultati tra un giorno. Farò del mio meglio!",
+ "s205.sec6.u34": "Bene! Avrai i risultati tra tre giorni. Farò del mio meglio!",
  "s205.sec6.u35": [
   [
    "Non hai abbastanza Bits, amico.",
@@ -5709,14 +5683,14 @@
   ]
  ],
  "s217.sec51.m0.o0": "Ramen piccante: 400 Bits",
- "s217.sec51.m0.o1": "Curry ardente: 1200 Bits",
- "s217.sec51.m0.o2": "Stufato di lava: 3500 Bits",
+ "s217.sec51.m0.o1": "Curry ardente: 800 Bits",
+ "s217.sec51.m0.o2": "Stufato di lava: 1200 Bits",
  "s217.sec51.m1.o0": "Pasta del drago: 400 Bits",
- "s217.sec51.m1.o1": "Pizza Zaurus: 1000 Bits",
- "s217.sec51.m1.o2": "Burger giurassico: 2500 Bits",
- "s217.sec51.m2.o0": "Bistecca T-bone: 1000 Bits",
- "s217.sec51.m2.o1": "Bistecca DX-bone: 2500 Bits",
- "s217.sec51.m2.o2": "Bistecca fantasma: 5000 Bits",
+ "s217.sec51.m1.o1": "Pizza Zaurus: 800 Bits",
+ "s217.sec51.m1.o2": "Burger giurassico: 1200 Bits",
+ "s217.sec51.m2.o0": "Bistecca T-bone: 400 Bits",
+ "s217.sec51.m2.o1": "Bistecca DX-bone: 800 Bits",
+ "s217.sec51.m2.o2": "Bistecca fantasma: 1200 Bits",
  "s217.sec51.u0": [
   [
    "Eh... Vuoi ordinare?"
@@ -5951,15 +5925,15 @@
    "Torna a mangiare, eh!"
   ]
  ],
- "s218.sec51.m0.o0": "Frappè di neve: 300 Bits",
- "s218.sec51.m0.o1": "Gelato: 700 Bits",
- "s218.sec51.m0.o2": "Granita: 1600 Bits",
- "s218.sec51.m1.o0": "Insalata spaziale: 1500 Bits",
- "s218.sec51.m1.o1": "Zuppa UFO: 4000 Bits",
- "s218.sec51.m1.o2": "Menù galattico: 9000 Bits",
- "s218.sec51.m2.o0": "Uovo sodo speciale: 1000 Bits",
- "s218.sec51.m2.o1": "Frittata speciale: 2500 Bits",
- "s218.sec51.m2.o2": "Ciotola d'uovo: 6000 Bits",
+ "s218.sec51.m0.o0": "Frappè di neve: 400 Bits",
+ "s218.sec51.m0.o1": "Gelato: 800 Bits",
+ "s218.sec51.m0.o2": "Granita: 1200 Bits",
+ "s218.sec51.m1.o0": "Insalata spaziale: 500 Bits",
+ "s218.sec51.m1.o1": "Zuppa UFO: 750 Bits",
+ "s218.sec51.m1.o2": "Menù galattico: 1500 Bits",
+ "s218.sec51.m2.o0": "Uovo sodo speciale: 500 Bits",
+ "s218.sec51.m2.o1": "Frittata speciale: 750 Bits",
+ "s218.sec51.m2.o2": "Ciotola d'uovo: 1500 Bits",
  "s218.sec51.u0": [
   [
    "Mh? Cosa prendi?"

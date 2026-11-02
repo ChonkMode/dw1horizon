@@ -11,11 +11,11 @@ script 169 {
     sections 254, 81, 6, 51;
 
     on enter replace {    // section 254
-        if (drimogemon_job_days < 3 && treasure_hunt.cheap_ordered) {
+        if (drimogemon_job_days < 1 && treasure_hunt.cheap_ordered) {
             entity_move_to(drimogemon, 169, 2232, 5, 0);
             await drimogemon;
         }
-        if (drimogemon_job_days < 10 && treasure_hunt.pricey_ordered) {
+        if (drimogemon_job_days < 3 && treasure_hunt.pricey_ordered) {
             entity_move_to(drimogemon, 169, 2232, 5, 0);
             await drimogemon;
             return;
@@ -34,311 +34,166 @@ script 169 {
             return;
         }
         if (treasure_hunt.cheap_ordered || treasure_hunt.pricey_ordered) {
-            if (drimogemon_job_days < 3 && treasure_hunt.cheap_ordered) {
-            } else if (drimogemon_job_days >= 10 || !treasure_hunt.pricey_ordered) {
-                say(drimogemon, text("s169.sec81.u9"));
-                if (treasure_hunt.cheap_ordered) {
-                } else if (treasure_hunt.pricey_ordered) {
-                    treasure_hunt.pricey_ordered = false;
-                    if (!is_recruited(species("Gabumon"))) {
-                        if (treasure_hunt.pricey_roll <= 0) {
-                            give_item(item("Off. Chip"), 1);
-                            random_roll = 23;
-                        } else if (treasure_hunt.pricey_roll <= 1) {
-                            give_item(item("HP Chip"), 1);
-                            random_roll = 27;
-                        } else if (treasure_hunt.pricey_roll <= 2) {
-                            give_item(item("Brain Chip"), 1);
-                            random_roll = 25;
-                        } else if (treasure_hunt.pricey_roll <= 3) {
-                            give_item(item("Def. Chip"), 1);
-                            random_roll = 24;
-                        } else if (treasure_hunt.pricey_roll <= 4) {
-                            give_item(item("MP Chip"), 1);
-                            random_roll = 28;
-                        } else if (treasure_hunt.pricey_roll <= 5) {
-                            give_item(item("Quick Chip"), 1);
-                            random_roll = 26;
-                        } else if (treasure_hunt.pricey_roll <= 6) {
-                            give_item(item("Koga laws"), 1);
-                            random_roll = 90;
-                        } else if (treasure_hunt.pricey_roll <= 7) {
-                            give_item(item("Flamingwing"), 1);
-                            random_roll = 73;
-                        } else if (treasure_hunt.pricey_roll <= 8) {
-                            give_item(item("Torn tatter"), 1);
-                            random_roll = 82;
-                        } else if (treasure_hunt.pricey_roll <= 20) {
-                            give_item(item("sup.recovery"), 1);
-                            random_roll = 3;
-                        } else if (treasure_hunt.pricey_roll <= 29) {
-                            give_item(item("Restore"), 1);
-                            random_roll = 11;
-                        } else if (treasure_hunt.pricey_roll <= 49) {
-                            give_item(item("Omnipotent"), 1);
-                            random_roll = 9;
-                        } else if (treasure_hunt.pricey_roll <= 1) {
-                            give_item(item("Off. Chip"), 1);
-                            random_roll = 23;
-                        } else if (treasure_hunt.pricey_roll <= 3) {
-                            give_item(item("HP Chip"), 1);
-                            random_roll = 27;
-                        } else if (treasure_hunt.pricey_roll <= 5) {
-                            give_item(item("Brain Chip"), 1);
-                            random_roll = 25;
-                        } else if (treasure_hunt.pricey_roll <= 7) {
-                            give_item(item("Def. Chip"), 1);
-                            random_roll = 24;
-                        } else if (treasure_hunt.pricey_roll <= 9) {
-                            give_item(item("MP Chip"), 1);
-                            random_roll = 28;
-                        } else if (treasure_hunt.pricey_roll <= 11) {
-                            give_item(item("Quick Chip"), 1);
-                            random_roll = 26;
-                        } else if (treasure_hunt.pricey_roll <= 13) {
-                            give_item(item("Koga laws"), 1);
-                            random_roll = 90;
-                        } else if (treasure_hunt.pricey_roll <= 15) {
-                            give_item(item("Flamingwing"), 1);
-                            random_roll = 73;
-                        } else if (treasure_hunt.pricey_roll <= 17) {
-                            give_item(item("Torn tatter"), 1);
-                            random_roll = 82;
-                        } else if (treasure_hunt.pricey_roll <= 21) {
-                            give_item(item("Sup.restore"), 1);
-                            random_roll = 12;
-                        } else if (treasure_hunt.pricey_roll <= 33) {
-                            give_item(item("Restore"), 1);
-                            random_roll = 11;
-                        } else {
-                            if (treasure_hunt.pricey_roll <= 49) {
-                                give_item(item("Omnipotent"), 1);
-                                random_roll = 9;
-                                if (engine.item_did_not_fit) {
-                                    say(drimogemon, text("s169.sec81.u10"));
-                                    camera_on(tamer, speed: 10);
-                                    await camera;
-                                    return;
-                                }
-                                say(narrator, text("s169.sec81.u11"));
-                                treasure_hunt.cheap_ordered = false;
-                                treasure_hunt.pricey_ordered = false;
-                            }
-                            say(drimogemon, text("s169.sec81.u12"));
-                            camera_on(tamer, speed: 10);
-                            await camera;
-                            return;
-                        }
-                        if (engine.item_did_not_fit) {
-                            say(drimogemon, text("s169.sec81.u10"));
-                            camera_on(tamer, speed: 10);
-                            await camera;
-                            return;
-                        }
-                        say(narrator, text("s169.sec81.u11"));
-                        treasure_hunt.cheap_ordered = false;
-                        treasure_hunt.pricey_ordered = false;
-                        say(drimogemon, text("s169.sec81.u12"));
-                        camera_on(tamer, speed: 10);
-                        await camera;
-                        return;
-                    }
-                    if (treasure_hunt.pricey_roll <= 1) {
-                        give_item(item("Off. Chip"), 1);
-                        random_roll = 23;
-                    } else if (treasure_hunt.pricey_roll <= 3) {
-                        give_item(item("HP Chip"), 1);
-                        random_roll = 27;
-                    } else if (treasure_hunt.pricey_roll <= 5) {
-                        give_item(item("Brain Chip"), 1);
-                        random_roll = 25;
-                    } else if (treasure_hunt.pricey_roll <= 7) {
-                        give_item(item("Def. Chip"), 1);
-                        random_roll = 24;
-                    } else if (treasure_hunt.pricey_roll <= 9) {
-                        give_item(item("MP Chip"), 1);
-                        random_roll = 28;
-                    } else if (treasure_hunt.pricey_roll <= 11) {
-                        give_item(item("Quick Chip"), 1);
-                        random_roll = 26;
-                    } else if (treasure_hunt.pricey_roll <= 13) {
-                        give_item(item("Koga laws"), 1);
-                        random_roll = 90;
-                    } else if (treasure_hunt.pricey_roll <= 15) {
-                        give_item(item("Flamingwing"), 1);
-                        random_roll = 73;
-                    } else if (treasure_hunt.pricey_roll <= 17) {
-                        give_item(item("Torn tatter"), 1);
-                        random_roll = 82;
-                    } else if (treasure_hunt.pricey_roll <= 21) {
-                        give_item(item("Sup.restore"), 1);
-                        random_roll = 12;
-                    } else if (treasure_hunt.pricey_roll <= 33) {
-                        give_item(item("Restore"), 1);
-                        random_roll = 11;
-                    } else {
-                        if (treasure_hunt.pricey_roll <= 49) {
-                            give_item(item("Omnipotent"), 1);
-                            random_roll = 9;
-                            if (engine.item_did_not_fit) {
-                                say(drimogemon, text("s169.sec81.u10"));
-                                camera_on(tamer, speed: 10);
-                                await camera;
-                                return;
-                            }
-                            say(narrator, text("s169.sec81.u11"));
-                            treasure_hunt.cheap_ordered = false;
-                            treasure_hunt.pricey_ordered = false;
-                        }
-                        say(drimogemon, text("s169.sec81.u12"));
-                        camera_on(tamer, speed: 10);
-                        await camera;
-                        return;
-                    }
-                    if (engine.item_did_not_fit) {
-                        say(drimogemon, text("s169.sec81.u10"));
-                        camera_on(tamer, speed: 10);
-                        await camera;
-                        return;
-                    }
-                    say(narrator, text("s169.sec81.u11"));
-                    treasure_hunt.cheap_ordered = false;
-                    treasure_hunt.pricey_ordered = false;
-                    say(drimogemon, text("s169.sec81.u12"));
-                    camera_on(tamer, speed: 10);
-                    await camera;
-                    return;
-                }
-                if (is_recruited(species("Gabumon"))) {
-                    if (treasure_hunt.cheap_roll <= 0) {
-                        give_item(item("Koga laws"), 1);
-                        random_roll = 90;
-                    } else if (treasure_hunt.cheap_roll <= 2) {
-                        give_item(item("Flamingwing"), 1);
-                        random_roll = 73;
-                    } else if (treasure_hunt.cheap_roll <= 4) {
-                        give_item(item("Torn tatter"), 1);
-                        random_roll = 82;
-                    } else if (treasure_hunt.cheap_roll <= 12) {
-                        give_item(item("sup.recovery"), 1);
-                        random_roll = 3;
-                    } else if (treasure_hunt.cheap_roll <= 15) {
-                        give_item(item("Restore"), 1);
-                        random_roll = 11;
-                    } else if (treasure_hunt.cheap_roll <= 19) {
-                        give_item(item("Omnipotent"), 1);
-                        random_roll = 9;
-                    } else if (treasure_hunt.cheap_roll <= 23) {
-                        give_item(item("Protection"), 1);
-                        random_roll = 10;
-                    } else if (treasure_hunt.cheap_roll <= 33) {
-                        give_item(item("Large MP"), 1);
-                        random_roll = 6;
-                    } else if (treasure_hunt.cheap_roll <= 37) {
-                        give_item(item("S.Off.disk"), 1);
-                        random_roll = 19;
-                    } else if (treasure_hunt.cheap_roll <= 41) {
-                        give_item(item("S.Def.disk"), 1);
-                        random_roll = 20;
-                    } else if (treasure_hunt.cheap_roll <= 45) {
-                        give_item(item("S.speed.disk"), 1);
-                        random_roll = 21;
-                    } else if (treasure_hunt.cheap_roll <= 49) {
-                        give_item(item("Omni Disk"), 1);
-                        random_roll = 18;
-                    }
-                } else if (treasure_hunt.cheap_roll <= 0) {
-                    give_item(item("Koga laws"), 1);
-                    random_roll = 90;
-                } else if (treasure_hunt.cheap_roll <= 1) {
-                    give_item(item("Flamingwing"), 1);
-                    random_roll = 73;
-                } else if (treasure_hunt.cheap_roll <= 2) {
-                    give_item(item("Torn tatter"), 1);
-                    random_roll = 82;
-                } else if (treasure_hunt.cheap_roll <= 12) {
-                    give_item(item("sup.recovery"), 1);
-                    random_roll = 3;
-                } else if (treasure_hunt.cheap_roll <= 15) {
-                    give_item(item("Restore"), 1);
-                    random_roll = 11;
-                } else if (treasure_hunt.cheap_roll <= 19) {
-                    give_item(item("Omnipotent"), 1);
-                    random_roll = 9;
-                } else if (treasure_hunt.cheap_roll <= 23) {
-                    give_item(item("Protection"), 1);
-                    random_roll = 10;
-                } else if (treasure_hunt.cheap_roll <= 33) {
-                    give_item(item("Large MP"), 1);
-                    random_roll = 6;
-                } else if (treasure_hunt.cheap_roll <= 37) {
-                    give_item(item("S.Off.disk"), 1);
-                    random_roll = 19;
-                } else if (treasure_hunt.cheap_roll <= 41) {
-                    give_item(item("S.Def.disk"), 1);
-                    random_roll = 20;
-                } else if (treasure_hunt.cheap_roll <= 45) {
-                    give_item(item("S.speed.disk"), 1);
-                    random_roll = 21;
-                } else if (treasure_hunt.cheap_roll <= 49) {
-                    give_item(item("Omni Disk"), 1);
-                    random_roll = 18;
-                } else if (treasure_hunt.cheap_roll <= 0) {
-                    give_item(item("Koga laws"), 1);
-                    random_roll = 90;
-                } else if (treasure_hunt.cheap_roll <= 2) {
-                    give_item(item("Flamingwing"), 1);
-                    random_roll = 73;
-                } else if (treasure_hunt.cheap_roll <= 4) {
-                    give_item(item("Torn tatter"), 1);
-                    random_roll = 82;
-                } else if (treasure_hunt.cheap_roll <= 12) {
-                    give_item(item("sup.recovery"), 1);
-                    random_roll = 3;
-                } else if (treasure_hunt.cheap_roll <= 15) {
-                    give_item(item("Restore"), 1);
-                    random_roll = 11;
-                } else if (treasure_hunt.cheap_roll <= 19) {
-                    give_item(item("Omnipotent"), 1);
-                    random_roll = 9;
-                } else if (treasure_hunt.cheap_roll <= 23) {
-                    give_item(item("Protection"), 1);
-                    random_roll = 10;
-                } else if (treasure_hunt.cheap_roll <= 33) {
-                    give_item(item("Large MP"), 1);
-                    random_roll = 6;
-                } else if (treasure_hunt.cheap_roll <= 37) {
-                    give_item(item("S.Off.disk"), 1);
-                    random_roll = 19;
-                } else if (treasure_hunt.cheap_roll <= 41) {
-                    give_item(item("S.Def.disk"), 1);
-                    random_roll = 20;
-                } else if (treasure_hunt.cheap_roll <= 45) {
-                    give_item(item("S.speed.disk"), 1);
-                    random_roll = 21;
-                } else if (treasure_hunt.cheap_roll <= 49) {
-                    give_item(item("Omni Disk"), 1);
-                    random_roll = 18;
-                }
-                if (engine.item_did_not_fit) {
-                    say(drimogemon, text("s169.sec81.u10"));
-                    camera_on(tamer, speed: 10);
-                    await camera;
-                    return;
-                }
-                say(narrator, text("s169.sec81.u11"));
-                treasure_hunt.cheap_ordered = false;
-                treasure_hunt.pricey_ordered = false;
-                say(drimogemon, text("s169.sec81.u12"));
-                camera_on(tamer, speed: 10);
-                await camera;
-                return;
-            }
+            if (drimogemon_job_days >= 1 && treasure_hunt.cheap_ordered) goto l61;
+            if (drimogemon_job_days >= 3 && treasure_hunt.pricey_ordered) goto l61;
             run(drimogemon, 180, 840);
             await drimogemon;
             say(drimogemon, text("s169.sec81.u8"));
             run(drimogemon, 169, 2232);
             await drimogemon;
+            camera_on(tamer, speed: 10);
+            await camera;
+            return;
+            l61:
+            say(drimogemon, text("s169.sec81.u9"));
+            l60:
+            if (treasure_hunt.pricey_ordered) {
+                if (is_recruited(species("Gabumon"))) {
+                    if (treasure_hunt.pricey_roll <= 9) {
+                        give_item(item("Restore"), 1);
+                        random_roll = 11;
+                    } else if (treasure_hunt.pricey_roll <= 19) {
+                        give_item(item("Flamingwing"), 1);
+                        random_roll = 73;
+                    } else if (treasure_hunt.pricey_roll <= 29) {
+                        give_item(item("Torn tatter"), 1);
+                        random_roll = 82;
+                    } else if (treasure_hunt.pricey_roll <= 39) {
+                        give_item(item("Koga laws"), 1);
+                        random_roll = 90;
+                    } else if (treasure_hunt.pricey_roll <= 49) {
+                        give_item(item("HP Chip"), 1);
+                        random_roll = 27;
+                    } else if (treasure_hunt.pricey_roll <= 59) {
+                        give_item(item("MP Chip"), 1);
+                        random_roll = 28;
+                    } else if (treasure_hunt.pricey_roll <= 69) {
+                        give_item(item("Off. Chip"), 1);
+                        random_roll = 23;
+                    } else if (treasure_hunt.pricey_roll <= 79) {
+                        give_item(item("Def. Chip"), 1);
+                        random_roll = 24;
+                    } else if (treasure_hunt.pricey_roll <= 89) {
+                        give_item(item("Quick Chip"), 1);
+                        random_roll = 26;
+                    } else if (treasure_hunt.pricey_roll <= 99) {
+                        give_item(item("Brain Chip"), 1);
+                        random_roll = 25;
+                    }
+                } else {
+                    if (treasure_hunt.pricey_roll <= 9) {
+                        give_item(item("Restore"), 1);
+                        random_roll = 11;
+                    } else if (treasure_hunt.pricey_roll <= 29) {
+                        give_item(item("Flamingwing"), 1);
+                        random_roll = 73;
+                    } else if (treasure_hunt.pricey_roll <= 49) {
+                        give_item(item("Torn tatter"), 1);
+                        random_roll = 82;
+                    } else if (treasure_hunt.pricey_roll <= 69) {
+                        give_item(item("Koga laws"), 1);
+                        random_roll = 90;
+                    } else if (treasure_hunt.pricey_roll <= 74) {
+                        give_item(item("HP Chip"), 1);
+                        random_roll = 27;
+                    } else if (treasure_hunt.pricey_roll <= 79) {
+                        give_item(item("MP Chip"), 1);
+                        random_roll = 28;
+                    } else if (treasure_hunt.pricey_roll <= 84) {
+                        give_item(item("Off. Chip"), 1);
+                        random_roll = 23;
+                    } else if (treasure_hunt.pricey_roll <= 89) {
+                        give_item(item("Def. Chip"), 1);
+                        random_roll = 24;
+                    } else if (treasure_hunt.pricey_roll <= 94) {
+                        give_item(item("Quick Chip"), 1);
+                        random_roll = 26;
+                    } else if (treasure_hunt.pricey_roll <= 99) {
+                        give_item(item("Brain Chip"), 1);
+                        random_roll = 25;
+                    }
+                }
+            } else if (is_recruited(species("Gabumon"))) {
+                if (treasure_hunt.cheap_roll <= 14) {
+                    give_item(item("Omnipotent"), 1);
+                    random_roll = 9;
+                } else if (treasure_hunt.cheap_roll <= 29) {
+                    give_item(item("Omni Disk"), 1);
+                    random_roll = 18;
+                } else if (treasure_hunt.cheap_roll <= 44) {
+                    give_item(item("Protection"), 1);
+                    random_roll = 10;
+                } else if (treasure_hunt.cheap_roll <= 54) {
+                    give_item(item("S.Off.disk"), 1);
+                    random_roll = 19;
+                } else if (treasure_hunt.cheap_roll <= 64) {
+                    give_item(item("S.Def.disk"), 1);
+                    random_roll = 20;
+                } else if (treasure_hunt.cheap_roll <= 74) {
+                    give_item(item("S.speed.disk"), 1);
+                    random_roll = 21;
+                } else if (treasure_hunt.cheap_roll <= 84) {
+                    give_item(item("Restore"), 1);
+                    random_roll = 11;
+                } else if (treasure_hunt.cheap_roll <= 89) {
+                    give_item(item("Flamingwing"), 1);
+                    random_roll = 73;
+                } else if (treasure_hunt.cheap_roll <= 94) {
+                    give_item(item("Torn tatter"), 1);
+                    random_roll = 82;
+                } else if (treasure_hunt.cheap_roll <= 99) {
+                    give_item(item("Koga laws"), 1);
+                    random_roll = 90;
+                }
+            } else {
+                if (treasure_hunt.cheap_roll <= 19) {
+                    give_item(item("Omnipotent"), 1);
+                    random_roll = 9;
+                } else if (treasure_hunt.cheap_roll <= 39) {
+                    give_item(item("Protection"), 1);
+                    random_roll = 10;
+                } else if (treasure_hunt.cheap_roll <= 49) {
+                    give_item(item("Omni Disk"), 1);
+                    random_roll = 18;
+                } else if (treasure_hunt.cheap_roll <= 59) {
+                    give_item(item("S.Off.disk"), 1);
+                    random_roll = 19;
+                } else if (treasure_hunt.cheap_roll <= 69) {
+                    give_item(item("S.Def.disk"), 1);
+                    random_roll = 20;
+                } else if (treasure_hunt.cheap_roll <= 79) {
+                    give_item(item("S.speed.disk"), 1);
+                    random_roll = 21;
+                } else if (treasure_hunt.cheap_roll <= 84) {
+                    give_item(item("Restore"), 1);
+                    random_roll = 11;
+                } else if (treasure_hunt.cheap_roll <= 89) {
+                    give_item(item("Flamingwing"), 1);
+                    random_roll = 73;
+                } else if (treasure_hunt.cheap_roll <= 94) {
+                    give_item(item("Torn tatter"), 1);
+                    random_roll = 82;
+                } else if (treasure_hunt.cheap_roll <= 99) {
+                    give_item(item("Koga laws"), 1);
+                    random_roll = 90;
+                }
+            }
+            if (engine.item_did_not_fit) {
+                say(drimogemon, text("s169.sec81.u10"));
+                camera_on(tamer, speed: 10);
+                await camera;
+                return;
+            }
+            say(narrator, text("s169.sec81.u11"));
+            store_random(random_roll, 99);
+            if (random_roll <= 4 && is_recruited(species("Gabumon"))) {
+                store_random(treasure_hunt.cheap_roll, 99);
+                store_random(treasure_hunt.pricey_roll, 99);
+                goto l60;
+            }
+            treasure_hunt.cheap_ordered = false;
+            treasure_hunt.pricey_ordered = false;
+            say(drimogemon, text("s169.sec81.u12"));
             camera_on(tamer, speed: 10);
             await camera;
             return;
@@ -373,17 +228,17 @@ script 169 {
         say(drimogemon, text("s169.sec81.u3"));
         choice {
             text("s169.sec81.m2.o0") => {
-                if (bits < 1000) {
+                if (bits < 2000) {
                     say(drimogemon, text("s169.sec81.u7"));
                     camera_on(tamer, speed: 10);
                     await camera;
                     return;
                 }
-                take_bits(1000);
+                take_bits(2000);
                 treasure_hunt.cheap_ordered = true;
                 drimogemon_job_days = 0;
                 say(drimogemon, text("s169.sec81.u5"));
-                store_random(treasure_hunt.cheap_roll, 49);
+                store_random(treasure_hunt.cheap_roll, 99);
                 run(drimogemon, 169, 2232);
                 await drimogemon;
                 camera_on(tamer, speed: 10);
@@ -401,7 +256,7 @@ script 169 {
                 treasure_hunt.pricey_ordered = true;
                 drimogemon_job_days = 0;
                 say(drimogemon, text("s169.sec81.u6"));
-                store_random(treasure_hunt.pricey_roll, 49);
+                store_random(treasure_hunt.pricey_roll, 99);
                 run(drimogemon, 169, 2232);
                 await drimogemon;
                 camera_on(tamer, speed: 10);

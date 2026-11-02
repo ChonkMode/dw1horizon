@@ -4,7 +4,7 @@
     "money": 50000,
     "startHour": 8,
     "startMinute": 0,
-    "firstPartner": {"lifetimeHours": 288, "age": 3, "exit": 9, "species": 114},
+    "firstPartner": {"lifetimeHours": 336, "age": 3, "exit": 9, "species": 114},
     "starters": [
       3,
       17,
@@ -45,7 +45,7 @@
     "startScript": 204,
     "cardShopStart": [58, 59, 60, 61, 62, 63],
     "lives": 3,
-    "partnerBirth": {"lifetimeHours": 360, "discipline": 50, "happiness": 50},
+    "partnerBirth": {"lifetimeHours": 408, "discipline": 50, "happiness": 50},
     "quiz": {
       "weights": [
         [{"bold": 1}, {"calm": 1}, {"cunning": 1}],

@@ -8,7 +8,7 @@
   "droppable": 1,
   "unk": 0,
   "effect": {
-    "lifetime": -24,
+    "lifetime": -6,
     "addOffense": 100,
     "addBrain": 100
   }

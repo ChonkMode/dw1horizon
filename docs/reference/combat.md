@@ -206,13 +206,16 @@ a single specialty receives `(m + 10 + 10)/30`:
 
 | attack ↓ / defender → | Fire | Battle | Air | Nature | Ice | Mech | Filth |
 |---|---|---|---|---|---|---|---|
-| Fire | 1.0 | 1.5 | 0.5 | 2.0 | 2.0 | 1.5 | 2.0 |
-| Battle | 1.0 | 1.0 | 0.2 | 1.5 | 1.0 | 1.0 | 0.5 |
-| Air | 1.5 | 1.5 | 1.5 | 0.5 | 1.5 | 1.5 | 0.5 |
-| Nature | 0.5 | 1.5 | 2.0 | 1.0 | 1.0 | 0.5 | 1.5 |
-| Ice | 2.0 | 1.5 | 0.5 | 1.5 | 1.0 | 1.5 | 2.0 |
-| Mech | 1.0 | 1.0 | 0.5 | 1.0 | 1.0 | 1.0 | 0.5 |
-| Filth | 0.5 | 1.5 | 0.5 | 0.2 | 1.0 | 2.0 | 0.2 |
+| Fire | 1.0 | 1.0 | 0.2 | 2.0 | 0.2 | 2.0 | 2.0 |
+| Battle | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 | 2.0 |
+| Air | 2.0 | 1.0 | 1.0 | 0.2 | 2.0 | 0.2 | 2.0 |
+| Nature | 0.2 | 1.0 | 2.0 | 1.0 | 2.0 | 0.2 | 2.0 |
+| Ice | 2.0 | 1.0 | 0.2 | 0.2 | 1.0 | 2.0 | 2.0 |
+| Mech | 0.2 | 1.0 | 2.0 | 2.0 | 0.2 | 1.0 | 2.0 |
+| Filth | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 | 2.0 | 1.0 |
+
+Only 20, 15, 10, 5 and 2 are valid: `BTL_calculateElementBonus` has no other case, so a factor of 1 would give the AI a
+garbage weight.
 
 The same table, with each one's first specialty, gives the «element
 bonus» the AI uses to weigh its techniques (20→10, 15→7, 10→5, 5→3, 2→1,
@@ -642,6 +645,10 @@ enemies at the start, `P` the partner's, `F = {10, 12, 16}[enemies − 1]`:
 
     if E ≥ P:  gains ⌈E·F / (P·10)⌉        (P = 0 counts as 1)
     if E < P:  gains 1 with probability E·F·100 / (P·10) %
+
+Patch 0322 adds a floor to both: at least `E·F / (L·10)`, with `L` the fourth value of `statGainEnemyFactors`
+(`content/tables/battle-rules.json`, 100; 0 turns it off). That is 1 % of the strongest enemy's stat against one enemy,
+1.2 % against two and 1.6 % against three, rounded down.
 
 Stats left at 0 get a second chance of +1: HP with
 `% of HP lost`, MP and Off with `hitCount·10 %`, Def with `big hits·10

@@ -45,7 +45,7 @@
       "discipline": -1,
       "happiness": 90,
       "battles": -1,
-      "techs": 25,
+      "techs": -1,
       "flags": 0
     },
     "gains": {"hp": 3000, "mp": 3000, "offense": 600, "defense": 500, "speed": 500, "brains": 600}

@@ -2239,7 +2239,7 @@
  "s205.sec6.m6.o0": "Explique encore",
  "s205.sec6.m6.o1": "Trouver un trésor",
  "s205.sec6.m6.o2": "Non, c'est tout",
- "s205.sec6.m7.o0": "Plan normal: 1000 Bits",
+ "s205.sec6.m7.o0": "Plan normal: 2000 Bits",
  "s205.sec6.m7.o1": "Plan spécial: 5000 Bits",
  "s205.sec6.m7.o2": "Annuler",
  "s205.sec6.u0": "Quelle boutique choisir ?",
@@ -2432,23 +2432,7 @@
    "comment ça marche ?"
   ]
  ],
- "s205.sec6.u30": [
-  [
-   "Tu paies d'avance et je te",
-   "trouve un trésor. Il y a deux",
-   "formules. La normale : trois"
-  ],
-  [
-   "jours pour 1000 Bits. La",
-   "spéciale : dix jours pour 5000",
-   "Bits. Avec la spéciale, tu as"
-  ],
-  [
-   "plus de chances de trouver un",
-   "beau trésor ! Voilà. Alors, que",
-   "choisis-tu ?"
-  ]
- ],
+ "s205.sec6.u30": "Tu paies d'avance et je te trouve un trésor. Il y a deux formules. La normale : un jour pour 2000 Bits. La spéciale : trois jours pour 5000 Bits. Avec la spéciale, tu as plus de chances de trouver un beau trésor ! Voilà. Alors, que choisis-tu ?",
  "s205.sec6.u31": [
   [
    "Alors, choisis une formule !"
@@ -2459,20 +2443,8 @@
    "Très bien. A tout à l'heure !"
   ]
  ],
- "s205.sec6.u33": [
-  [
-   "D'accord ! Tu auras le",
-   "résultat dans trois jours. Je",
-   "ferai de mon mieux !"
-  ]
- ],
- "s205.sec6.u34": [
-  [
-   "D'accord ! Tu auras le",
-   "résultat dans dix jours. Je",
-   "ferai de mon mieux !"
-  ]
- ],
+ "s205.sec6.u33": "D'accord ! Tu auras le résultat dans un jour. Je ferai de mon mieux !",
+ "s205.sec6.u34": "D'accord ! Tu auras le résultat dans trois jours. Je ferai de mon mieux !",
  "s205.sec6.u35": [
   [
    "Tu n'as pas assez de Bits, mon",
@@ -5760,14 +5732,14 @@
   ]
  ],
  "s217.sec51.m0.o0": "Ramen épicé : 400 Bits",
- "s217.sec51.m0.o1": "Curry brûlant : 1200 Bits",
- "s217.sec51.m0.o2": "Fondue de lave : 3500 Bits",
+ "s217.sec51.m0.o1": "Curry brûlant : 800 Bits",
+ "s217.sec51.m0.o2": "Fondue de lave : 1200 Bits",
  "s217.sec51.m1.o0": "Nouilles dragon : 400 Bits",
- "s217.sec51.m1.o1": "Pizza Zaurus : 1000 Bits",
- "s217.sec51.m1.o2": "Burger jurassique : 2500 Bits",
- "s217.sec51.m2.o0": "Steak T-bone : 1000 Bits",
- "s217.sec51.m2.o1": "Steak DX-bone : 2500 Bits",
- "s217.sec51.m2.o2": "Steak fantôme : 5000 Bits",
+ "s217.sec51.m1.o1": "Pizza Zaurus : 800 Bits",
+ "s217.sec51.m1.o2": "Burger jurassique : 1200 Bits",
+ "s217.sec51.m2.o0": "Steak T-bone : 400 Bits",
+ "s217.sec51.m2.o1": "Steak DX-bone : 800 Bits",
+ "s217.sec51.m2.o2": "Steak fantôme : 1200 Bits",
  "s217.sec51.u0": [
   [
    "Hé... Tu veux commander ?"
@@ -6005,15 +5977,15 @@
    "Reviens manger, hein !"
   ]
  ],
- "s218.sec51.m0.o0": "Milkshake neige : 300 Bits",
- "s218.sec51.m0.o1": "Glace : 700 Bits",
- "s218.sec51.m0.o2": "Glace pilée : 1600 Bits",
- "s218.sec51.m1.o0": "Salade spatiale : 1500 Bits",
- "s218.sec51.m1.o1": "Soupe OVNI : 4000 Bits",
- "s218.sec51.m1.o2": "Menu galactique : 9000 Bits",
- "s218.sec51.m2.o0": "Oeuf dur miracle : 1000 Bits",
- "s218.sec51.m2.o1": "Omelette miracle : 2500 Bits",
- "s218.sec51.m2.o2": "Bol d'oeuf miracle : 6000 Bits",
+ "s218.sec51.m0.o0": "Milkshake neige : 400 Bits",
+ "s218.sec51.m0.o1": "Glace : 800 Bits",
+ "s218.sec51.m0.o2": "Glace pilée : 1200 Bits",
+ "s218.sec51.m1.o0": "Salade spatiale : 500 Bits",
+ "s218.sec51.m1.o1": "Soupe OVNI : 750 Bits",
+ "s218.sec51.m1.o2": "Menu galactique : 1500 Bits",
+ "s218.sec51.m2.o0": "Oeuf dur miracle : 500 Bits",
+ "s218.sec51.m2.o1": "Omelette miracle : 750 Bits",
+ "s218.sec51.m2.o2": "Bol d'oeuf miracle : 1500 Bits",
  "s218.sec51.u0": [
   [
    "Hm ? Que prends-tu ?"

@@ -137,7 +137,7 @@ def step0():    # section 51
         warp(Screen.back_dimension_226, entry=0, then=60)
     raw.store_digimon_type(partner_type)
     raw.store_digimon_value(partner_type, partner_attribute)
-    if partner_attribute == 3:
+    if partner_attribute == 3 or recruited(Species.Myotismon):
         tamer.walk(0, 5000, wait=False)
         partner.walk(0, 5000, wait=False)
         sound(8, 1)

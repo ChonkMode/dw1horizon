@@ -1,0 +1,27 @@
+From 30fa034a5363f4d155964fb83d92e86ef09ab055 Mon Sep 17 00:00:00 2001
+From: Horizon authors <>
+Date: Mon, 2 Nov 2026 17:29:20 +0000
+Subject: [PATCH] Let evolution items evolve like any other evolution
+
+They are rare and should not punish the player: the target's stat gains, the
+Ultimate and Mega lifetime and the tamer level chance now apply. The flag stays
+for the Cheats menu, which clears it.
+---
+ src/main/item.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/src/main/item.c b/src/main/item.c
+index 80b7110..70bdab7 100644
+--- a/src/main/item.c
++++ b/src/main/item.c
+@@ -2215,7 +2215,6 @@ void handleEvoItems(int16_t item)
+ 		}
+ 		EVOLUTION_TARGET = EVOLUTION_ITEM_TARGET[item - 0x47];
+ 	}
+-	HAS_USED_EVOITEM = 1;
+ 	removeTamerItem();
+ 	closeInventoryBoxes();
+ 	tamerSetState(6);
+-- 
+2.55.0
+
