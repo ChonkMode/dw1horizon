@@ -1753,6 +1753,26 @@ class PythonMods(unittest.TestCase):
         lock = json.load(open(os.path.join(ROOT, 'story/mods/examples/save.lock')))
         self.assertTrue(all(780 <= n <= 799 for n in lock['flags'].values()))
 
+    def test_starter_mod_builds(self):
+        """story/mods/starter: the recipe runs on the player's map, the mod compiles on its output and assembles, and its
+        flags stay out of what the shipped story and the examples hold."""
+        maps = tempfile.mkdtemp(dir=TMP)
+        recipe = os.path.join(ROOT, 'story/mods/starter/maps/mayo02-stone.py')
+        subprocess.run([sys.executable, recipe, maps], check=True, stdout=subprocess.DEVNULL)
+        from dws.py import lower as PL
+        saved = B.BE.MAPS_DIRS
+        B.BE.MAPS_DIRS = [maps]; PL._MAPS.pop(1, None)
+        try:
+            prog = B.compile_sources(glob.glob(os.path.join(ROOT, 'story/mods/starter/src/*.py')))
+            self.assertFalse([w for w in prog.warn.render() if 'deprecated' in w])
+            B.assemble(prog, os.path.join(tempfile.mkdtemp(dir=TMP), 'DG.SCN'))
+        finally:
+            B.BE.MAPS_DIRS = saved; PL._MAPS.pop(1, None)
+        def flags(mod): return set(json.load(open(os.path.join(ROOT, 'story/mods', mod, 'save.lock')))['flags'].values())
+        own = flags('starter')
+        self.assertTrue(own and all(790 <= n <= 799 for n in own))
+        self.assertFalse(own & (flags('what-the-island-forgot') | flags('examples')))
+
     def test_ask_keywords_and_every_error(self):
         """ask's keywords are bound by name (yes is the top option whatever
         the order), `not has(x, n)` is `has(x) < n`, and every error of a file is reported in one run (a case at its line)."""
