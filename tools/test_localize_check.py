@@ -46,10 +46,11 @@ class LocalizationAudit(unittest.TestCase):
     def test_every_shipped_bank_fits_both_fonts_and_preserves_references(self):
         from tools.localize.check import audit, LANGUAGES
         result = audit()
-        # The developer-only examples mod has English only and is deliberately
-        # audited/reported too; it is not part of the everything recipe.
-        self.assertEqual(len(result['notes']), 7)
-        self.assertTrue(all(e['file'].startswith('story/mods/examples/text/') for e in result['notes']))
+        # The developer-only examples and starter mods have English only and are
+        # deliberately audited/reported too; they are not part of the everything recipe.
+        self.assertEqual(len(result['notes']), 14)
+        self.assertTrue(all(e['file'].startswith(('story/mods/examples/text/', 'story/mods/starter/text/'))
+                            for e in result['notes']))
         self.assertEqual(result['errors'], [])
         self.assertEqual(len(result['entries']), len(LANGUAGES) * 2)
 

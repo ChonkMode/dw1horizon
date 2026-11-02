@@ -1,0 +1,11 @@
+name = "starter"
+version = "0.1.0"
+description = "The smallest whole mod: one retouched map, one recruit and one quest in stages, to read and copy"
+authors = ["Digimon World: Horizon authors"]
+requires = ["base >= 1.0"]
+load_after = []
+conflicts = []
+
+[save]
+namespace = "starter"
+flags = "790-799"                          # README.md, "Save numbers", says why this range

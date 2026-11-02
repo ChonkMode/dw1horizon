@@ -1,0 +1,29 @@
+{
+ "_about": "the lines of starter. Named lines (t(\"name\") in src/) are written here and are yours to edit. The others are the lines written in src/*.py, keyed by the hash of their words: `dws text sync` writes them from the sources, and the sources win (an edit here is overwritten). Translations go in <lang>.json by the same keys (docs/mods/translating.md).",
+ "_where": {
+  "starter.dbd06646": "kunemons_bed.py:21 asks: iceleomon (IceLeomon) says, page 1 of 2",
+  "starter.86ff3291": "kunemons_bed.py:22 asks: iceleomon (IceLeomon) says, page 2 of 2",
+  "starter.0b3d7158": "kunemons_bed.py:23 asks: option yes of the tamer's menu",
+  "starter.e4571490": "kunemons_bed.py:23 asks: option no of the tamer's menu",
+  "starter.1666fe2e": "kunemons_bed.py:24 asks: iceleomon (IceLeomon) says",
+  "starter.50aac8a2": "kunemons_bed.py:27 asks: iceleomon (IceLeomon) says",
+  "starter.047b2421": "kunemons_bed.py:31 waits: iceleomon (IceLeomon) says",
+  "starter.de56502c": "kunemons_bed.py:35 finds_the_medal: the narrator says",
+  "starter.5b5de3e9": "kunemons_bed.py:40 joins: iceleomon (IceLeomon) says, page 1 of 2",
+  "starter.5af8aa15": "kunemons_bed.py:40 joins: iceleomon (IceLeomon) says, page 2 of 2",
+  "starter.f7014153": "kunemons_bed.py:42 joins: the narrator says",
+  "starter.bdb93f26": "kunemons_bed.py:45 joins: ? says"
+ },
+ "starter.dbd06646": "I came down from the snow to rest in the warm grass, and now my medal is gone.",
+ "starter.86ff3291": "It rolled west, towards the round stone. Would you look for it?",
+ "starter.0b3d7158": "I'll look",
+ "starter.e4571490": "Not now",
+ "starter.1666fe2e": "Thank you. Step on the stone and you will see it.",
+ "starter.50aac8a2": "Then I will wait here. It is warm, at least.",
+ "starter.047b2421": "The round stone, at the west end of this clearing. Please look there.",
+ "starter.de56502c": "Something shines beside the round stone. It is the white lion's medal!",
+ "starter.5b5de3e9": "My medal! You kept your word, Tamer.",
+ "starter.5af8aa15": "A city that has friends like you must be warm too. I will go and see it.",
+ "starter.f7014153": "Received 500 bits.",
+ "starter.bdb93f26": "The white lion joined the city!"
+}
