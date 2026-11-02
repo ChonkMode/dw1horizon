@@ -186,13 +186,18 @@ Examples: `care_rules.sh`, `evo_rules.sh`, `evo_formula.sh`, `gym_session.sh`, `
 `world_rules.sh`, `new_game.sh`. `battle_host.c` and `train_mult_host.c` compile the original and the table-driven
 function on the host and compare them over every input.
 
-Helpers: `callfn.py` calls any game function at a frame boundary and prints its return value; `talk.py` walks into the
+Helpers: `call_function.py` calls any game function at a frame boundary and prints its return value; `talk.py` walks into the
 NPC in front and taps X until its script runs; `shopnav.py` drives a shop by the game's own RAM state;
 `raise.py` marks types as raised; `call_tournament.py` starts a tournament from the lobby; `technique_proof.py` and
 `species_proof.py` play every technique and species of a disc unattended (set `DW_SYMS` to the disc's executable and keep
 that build's objects under `build/`: the field names come from them; a species fails unless each check that applies to
 it passes, its finisher's hit included); `fonttour.py` screenshots every screen that draws text; `battle_stream.py` runs battles in a row on
 one screen (the background stream and the battle camera).
+
+`journey.py` plays one whole life on a disc: a new game with Jijimon's questions, food from the menu, a wild fight, the
+natural evolution, the save machine and a reload. Run it before a release. Its docstring lists the three things it writes
+to RAM instead of playing. `tools/species_status.py report` says how many species are only in the game, smoke-tested by
+`species_proof.py` (`record`) or reviewed by a person (`review`); `docs/data/species-proof.json` keeps that evidence.
 
 `python3 tools/dev/playtest/timed_battle_host.py build/decomp-int` runs the actual field battle loop with deterministic events: expiry during
 finishers, attacks, hit/block reactions and pending damage; victory or defeat at the deadline; and an unlimited fight.

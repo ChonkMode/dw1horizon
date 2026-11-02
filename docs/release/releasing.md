@@ -43,6 +43,11 @@ that publication boundary before uploading playable artifacts. Filename and
 checksum validation cannot establish copyright provenance. An authored-source
 page can be tested now; a copyright-free playable release is not proven here.
 
+## Before the cut
+
+Play the disc once: `tools/dev/playtest/journey.py DISC.cue OUTDIR` from a new game to a reload. The checks that need no
+emulator cannot see a story that is missing from a disc: a new game hung on main for a day with every gate green.
+
 ## Engine source
 
 After the tag is public, publish the engine as readers see it, with the tag's name:
