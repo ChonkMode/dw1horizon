@@ -38,4 +38,4 @@ def into_the_trail():
 @region.on_step(1, when=not post_guided)
 def thick_ferns():
     tamer.say("The ferns are really thick here... I can't get through.")
-    tamer.walk(650, 1250)
+    tamer.walk(650, 1250, camera=True)

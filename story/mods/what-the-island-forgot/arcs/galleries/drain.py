@@ -14,4 +14,4 @@ def into_the_sewer():
 @drain.on_step(0, when=not recruited(Species.Whamon) and not factorial_town_reopened)
 def sealed_drain():
     tamer.say("The drain's sealed. We'll have to reach the town another way first.")
-    tamer.walk(-467, 1274)
+    tamer.walk(-467, 1274, camera=True)
