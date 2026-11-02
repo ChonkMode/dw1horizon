@@ -135,7 +135,7 @@ row-sharing behavior. The tournament intro's name tables do not cover all added
 partner types. NPC twins contain their original scene animations, not partner
 combat animations.
 
-## Portraits (0066-0068, 0170, 0176, 0178-0180, 0213, 0219, 0317)
+## Portraits (0066-0068, 0170, 0176, 0178-0180, 0213, 0219, 0320)
 
 Where the game draws a Digimon icon:
 
@@ -173,7 +173,7 @@ one synchronous sector read), `getSpeciesPartnersByLevel`.
   boxes in the level's colour, scrolling. `tools/species.py` writes the list into DIGI.DAT's chart block
   (`SpeciesHeader.chartSector`: tab counts and ids, then both 16x16 idle frames and the CLUT per species, 7 to a sector); a
   page is read when shown (`chartLoadPage`) into battle-effect VRAM, each row of first frames with its second frames
-  below it in one texture page. Every box alternates its two frames (0317), the original sheet's pairs too. A
+  below it in one texture page. Every box alternates its two frames (0320), the original sheet's pairs too. A
   scroll or a return from the detail view reloads the shown rows. The tabs fit any font.
 - **City** (0277): the fifth Player tab shares the chart's 14 by 7 grid,
   cursor, scrolling, text rows and icon VRAM. Its separate one-tab block uses a
