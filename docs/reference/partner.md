@@ -287,7 +287,7 @@ stats -2 % every 300 frames** (minimum 1) until happiness is back to >= 0 or the
 
 The status screen shows it as a bar and a number when NEW STATUS BARS is on: green below 50, red from 50.
 
-+5 per battle (`handlePostBattleTiredness`; its factor for MP spent is always 0), +6..10 per training session, +5/h
++5 per battle (`handlePostBattleTiredness`; its factor for MP spent is always 0), +8 per training session, +5/h
 sick, +2/h on a hated map, +10 when sleeping sick; falls when sleeping, with items and -3/h on a favoured map.
 `subTiredness` never rises in US, so tiredness never grows by itself. The Health shoe (0x25) gives +5 HP and +5 MP every
 20 frames while the tamer walks. At >= 50 `tirednessHungerTimer++` per frame; at >= 80 TIRED and happiness -2 every 100
@@ -327,12 +327,12 @@ Base gain per session in the File City gym (TRN overlay) and in the Ice Sanctuar
 
 | Training | TRN base gain | TRN2 | tiredness / energy / happiness |
 |---|---|---|---|
-| HP | HP +100, Off +2 | HP +120, Ice Sanctuary +150 | +10 / -1 (-2) / -1 |
-| MP | MP +100, Def +2 | MP +150 | +7 / -1 / -1 (TRN2 -4) |
-| Offense | Off +10, Spd +2 (Leomon: Off +15) | Off +12 | +9 / -1 / -1 |
-| Defense | Def +10, Brn +2 | Def +12, Ice Sanctuary +15 | +9 / -1 / -1 |
+| HP | HP +100, Off +2 | HP +120, Ice Sanctuary +150 | +8 / -1 (-2) / -1 |
+| MP | MP +100, Def +2 | MP +150 | +8 / -1 / -1 (TRN2 -4) |
+| Offense | Off +10, Spd +2 (Leomon: Off +15) | Off +12 | +8 / -1 / -1 |
+| Defense | Def +10, Brn +2 | Def +12, Ice Sanctuary +15 | +8 / -1 / -1 |
 | Speed | HP +10, Spd +10 (Leomon: Spd +15) | Spd +12 | +8 / -1 / -1 |
-| Brains | MP +10, Brn +10 (Cherrymon: Brn +15) | | +6 / -1 / -1 |
+| Brains | MP +10, Brn +10 (Cherrymon: Brn +15) | | +8 / -1 / -1 |
 
 Each value is multiplied by `v/10` with `v = TRN_calculateTrainingMultiplier`: the `trainingType` affinity (10, 9, 12 or
 8 tenths by stat), x0.9 Fresh/In-Training, x1.0 Rookie, x1.1 Champion, x1.2 Ultimate, x1.2 with trigger 0xDB
