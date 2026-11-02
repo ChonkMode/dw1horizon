@@ -123,7 +123,7 @@ Patch 0272 puts the Select + L1/R1/L2/R2 shortcuts behind a row of the Cheats me
 | 0322 | A won battle gives at least a share of the strongest enemy's stat: 1 % against one enemy, its size in the fourth value of `statGainEnemyFactors` | see the build's heap report |
 | 0323 | Evolution items evolve like any other evolution: stat gains, lifetime and tamer level | no more code |
 | 0324 | Script routine 11 (`clear_poop`) empties every poop pile on the island | see the build's heap report |
-| 0325 | The merit shop asks how many cards to trade or items to buy in the amount box, and its list stays open between trades. Purchases stop at what the stack holds, trades at the merit cap | see the build's heap report |
+| 0325 | The merit shop asks how many cards to trade or items to buy in the amount box, and its list stays open between trades. Purchases stop at what the stack holds, trades at the merit cap | Eight-language build: heap 190,160 B |
 
 Patch 0304 lets scripts set, clear and test recruited bits for species 112..1023
 through reserved operands of the existing trigger instructions. Prosperity keeps
