@@ -6,7 +6,7 @@
       "slot": "any",
       "hp": 100,
       "off": 2,
-      "tired": 10,
+      "tired": 8,
       "energy": 1,
       "happy": 1
     },
@@ -15,7 +15,7 @@
       "slot": "any",
       "mp": 100,
       "def": 2,
-      "tired": 7,
+      "tired": 8,
       "energy": 1,
       "happy": 1
     },
@@ -24,7 +24,7 @@
       "slot": 0,
       "off": 10,
       "spd": 2,
-      "tired": 9,
+      "tired": 8,
       "energy": 1,
       "happy": 1
     },
@@ -32,7 +32,7 @@
       "gym": "off",
       "slot": 6,
       "off": 15,
-      "tired": 9,
+      "tired": 8,
       "energy": 1,
       "happy": 1
     },
@@ -41,7 +41,7 @@
       "slot": "any",
       "def": 10,
       "brain": 2,
-      "tired": 9,
+      "tired": 8,
       "energy": 1,
       "happy": 1
     },
@@ -67,7 +67,7 @@
       "slot": 0,
       "mp": 10,
       "brain": 10,
-      "tired": 6,
+      "tired": 8,
       "energy": 1,
       "happy": 1
     },
@@ -75,7 +75,7 @@
       "gym": "brain",
       "slot": 9,
       "brain": 15,
-      "tired": 6,
+      "tired": 8,
       "energy": 1,
       "happy": 1
     }
@@ -85,7 +85,7 @@
       "gym": "hp",
       "slot": 1,
       "hp": 120,
-      "tired": 10,
+      "tired": 8,
       "energy": 2,
       "happy": 1
     },
@@ -93,7 +93,7 @@
       "gym": "hp",
       "slot": 3,
       "hp": 150,
-      "tired": 10,
+      "tired": 8,
       "energy": 2,
       "happy": 2
     },
@@ -101,7 +101,7 @@
       "gym": "mp",
       "slot": 8,
       "mp": 150,
-      "tired": 7,
+      "tired": 8,
       "energy": 1,
       "happy": 4
     },
@@ -109,7 +109,7 @@
       "gym": "off",
       "slot": 1,
       "off": 12,
-      "tired": 9,
+      "tired": 8,
       "energy": 2,
       "happy": 1
     },
@@ -125,7 +125,7 @@
       "gym": "def",
       "slot": 1,
       "def": 12,
-      "tired": 9,
+      "tired": 8,
       "energy": 2,
       "happy": 1
     },
@@ -133,7 +133,7 @@
       "gym": "def",
       "slot": 3,
       "def": 15,
-      "tired": 9,
+      "tired": 8,
       "energy": 2,
       "happy": 2
     }

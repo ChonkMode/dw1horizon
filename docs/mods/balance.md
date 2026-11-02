@@ -291,7 +291,8 @@ Requirement tests: `tools/test_evo_tree.py --practical`, `tools/economy_audit.py
 |---|---|---|---|
 | Lifetime, Rookie wait, Champion wait, Numemon fallback | 360, 72, 144, 96 h | 408, 96, 168, 120 h | a day more in each form to reach a target; the time as an Ultimate does not change |
 | Digiseabass, Chain melon, DV chips (lifetime) | +3, +20, -24 h | +6, +24, -6 h | worth using to stay longer in a form |
-| File City gym base gain | 8 (HP, MP 80) | 10 (100) | less grind; the secondary gains and the tiredness stay |
+| File City gym base gain | 8 (HP, MP 80) | 10 (100) | less grind; the secondary gains stay |
+| Tiredness of a gym session | HP 10, Off and Def 9, Spd 8, MP 7, Brain 6 | 8 in every gym | no stat is harder to train for its tiredness: about 9 sessions before 70, the same average |
 | The training type's favoured stat | x1.1 | x1.2 | the type matters; x0.9 stays |
 | Leomon's and the Ice Sanctuary's gyms | 8 and 12, with a secondary stat | 15 (HP 150), no secondary stat | a reason to walk there; Beetle Land stays at 12, Trash Mountain and Cherrymon already gave this |
 | A won battle | the disc's formula | also at least 1 % of the strongest enemy's stat, 1.2 % and 1.6 % against two and three (patch 0322) | a stronger partner still gains; about one gym session of points a fight, so the gym stays the way to train |
