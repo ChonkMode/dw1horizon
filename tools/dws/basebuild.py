@@ -521,10 +521,10 @@ def compile_base_story(base, work, lang, text, exclude, mh_overrides, mh_gen, re
         mprog = B.compile_sources(mh_files + names, sexe, lang, list(text) + extra, text_source=text_source)
         minfo = {'events': getattr(mprog.b, 'mh_events', []), 'shared': getattr(mprog.b, 'mh_shared', [])}
         gen_event = mprog.b.gen_event
-        # The unmodified engine keeps its small MAPHEAD buffer and original quiz.
-        # The everything driver uses the mods opcode profile with the expanded
-        # engine's explicit 32 KB buffer; it needs the appended quiz table too.
-        if exe != 'original' and BE.MAPHEAD_LIMIT >= 0x8000 and any(e[0] == 1238 for e in minfo['events']):
+        # The unmodified engine keeps its original quiz. Every other engine asks
+        # the seven questions (patch 0273) and reads their text from this section,
+        # whatever the size of its MAPHEAD buffer: without it a new game hangs.
+        if exe != 'original' and any(e[0] == 1238 for e in minfo['events']):
             quiz = B.compile_sources([os.path.join(ROOT, 'story/new-game-quiz.dws')] + names,
                                      sexe, lang, list(text) + extra, text_source=text_source)
             event = quiz.b.mh_events[0]
