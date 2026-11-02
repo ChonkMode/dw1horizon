@@ -25,7 +25,7 @@
    "Bits {money}"
   ],
   [
-   "Méritos {merit}"
+   "Mérito {merit}"
   ],
   [
    "¿Ves algo que te guste?"
@@ -66,7 +66,7 @@
   "Bits {money}"
  ],
  "s000.sec1230.u8": [
-  "Méritos {merit}"
+  "Mérito {merit}"
  ],
  "s000.sec1230.u9": "Compra mucho, ¿vale?",
  "s000.sec1230.u10": "¿Tienes algo que no necesites?",
