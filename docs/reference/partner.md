@@ -14,7 +14,7 @@ given. `int16` values are little-endian. `[inferred]` marks deductions.
 The partner lives in two blocks: `PARTNER_ENTITY` (species, stats, learned techniques, name, lives) and `PARTNER_PARA`
 (raising values). Every frame `partnerTick` → `tickConditions` advances hunger, sleep, tiredness, sickness, unhappiness
 and death with counters on `CURRENT_FRAME` (20 frames = 1 game minute, 1200 = 1 hour) and then evaluates evolution
-(`evoTimer` >= 6/24/72/144 h by level, scored against `EVOLUTION_REQS`). The partner dies at lifetime 0 (360 h at birth,
+(`evoTimer` >= 6/24/96/168 h by level (72 and 144 on the disc), scored against `EVOLUTION_REQS`). The partner dies at lifetime 0 (408 h at birth,
 minus penalties for unhappiness), after 12 h of sickness or when it loses a battle with its last life; the egg inherits
 `tamerLevel` % of the stats only after a natural death.
 
@@ -146,7 +146,7 @@ There is no `PARTNER_STATS` symbol: the stats are inside `PARTNER_ENTITY` (+0x38
 | `weight` | 0x42 | | 1..99, initially `defaultWeight` |
 | `refusedFavFood` | 0x44 | 2 = just refused its favourite food | |
 | `emptyStomachTimer` | 0x46 | minutes with energy 0 (statistic) | |
-| `remainingLifetime` | 0x48 | hours left; 0 = death | 360 |
+| `remainingLifetime` | 0x48 | hours left; 0 = death | 408 (360 on the disc) |
 | `age` | 0x4A | days | 0 |
 | `trainBoostFlag` / `Value` / `Timer` | 0x4C / 0x4E / 0x50 | training boost from an item (stat mask / % / frames) | |
 | `careMistakes` | 0x52 | care mistakes in this form | 0 on evolving |
@@ -276,7 +276,7 @@ evolution (`req.weight ± 5`).
 | Each hour SLEEPY and awake (Rookie+) | -2 | -4 | |
 | Each hour sick | -10 | -5 | +5 tiredness |
 | Training session | -1 (-3 more if tiredness >= 70) | -3 if tiredness >= 70 | |
-| Each hour on a favoured / hated map | +1 / -1 | | tiredness -2 / +1 |
+| Each hour on a favoured / hated map | +3 / -3 | | tiredness -3 / +2 |
 | New year | | | happiness 100: 5 % chance of +1 tamer level; < 0: 10 % chance of -1 |
 
 **Unhappiness** (`tickUnhappinessMechanics`): with no other condition and happiness < 0, every 200 frames
@@ -288,7 +288,7 @@ stats -2 % every 300 frames** (minimum 1) until happiness is back to >= 0 or the
 The status screen shows it as a bar and a number when NEW STATUS BARS is on: green below 50, red from 50.
 
 +5 per battle (`handlePostBattleTiredness`; its factor for MP spent is always 0), +6..10 per training session, +5/h
-sick, +1/h on a hated map, +10 when sleeping sick; falls when sleeping, with items and -2/h on a favoured map.
+sick, +2/h on a hated map, +10 when sleeping sick; falls when sleeping, with items and -3/h on a favoured map.
 `subTiredness` never rises in US, so tiredness never grows by itself. The Health shoe (0x25) gives +5 HP and +5 MP every
 20 frames while the tamer walks. At >= 50 `tirednessHungerTimer++` per frame; at >= 80 TIRED and happiness -2 every 100
 frames. At 100 every training gain becomes 1.
@@ -309,10 +309,10 @@ frames. At 100 every training gain becomes 1.
 
 ## Lifetime, age and care mistakes
 
-- `remainingLifetime` starts at 360 h (15 days) and drops 1 per game hour, slept or skipped. Every 4 h
+- `remainingLifetime` starts at 408 h (17 days; 15 on the disc) and drops 1 per game hour, slept or skipped. Every 4 h
   (`CURRENT_FRAME % 4800`, also after training and in `skipHours`) with happiness < 80 it loses an extra
   `(happiness-80)/-50 + 1` (truncating): 1 h with 31..79, 2 with -19..30, 3 with -69..-20, 4 below. It rises +96 h on
-  reaching Ultimate naturally, +3 with Digiseabass, +20 with Chain melon, and by script.
+  reaching Ultimate, +6 with Digiseabass, +24 with Chain melon, and by script; each DV chip takes 6 h.
 - `tickDeathCondition`: lifetime 0, outside the immortal hour, no script running (`IS_SCRIPT_PAUSED == 1`), tamer free
   → `IS_NATURAL_DEATH = 1` and MAPHEAD section 0x4DE.
 - `remainingLifetime` is a signed `int16` with no upper clamp (only `< 0 → 0`): at 32 767 it wraps negative and the next
@@ -327,14 +327,14 @@ Base gain per session in the File City gym (TRN overlay) and in the Ice Sanctuar
 
 | Training | TRN base gain | TRN2 | tiredness / energy / happiness |
 |---|---|---|---|
-| HP | HP +80, Off +2 | HP +120 (+Off 2 on the second machine) | +10 / -1 (-2) / -1 |
-| MP | MP +80, Def +2 | MP +150 | +7 / -1 / -1 (TRN2 -4) |
-| Offense | Off +8, Spd +2 (machine 2: HP +10, Off +8) | Off +12 | +9 / -1 / -1 |
-| Defense | Def +8, Brn +2 | Def +12 (+2 on the second) | +9 / -1 / -1 |
-| Speed | HP +10, Spd +8 | Spd +12 | +8 / -1 / -1 |
-| Brains | MP +10, Brn +8 (machine 2: Brn +15) | | +6 / -1 / -1 |
+| HP | HP +100, Off +2 | HP +120, Ice Sanctuary +150 | +10 / -1 (-2) / -1 |
+| MP | MP +100, Def +2 | MP +150 | +7 / -1 / -1 (TRN2 -4) |
+| Offense | Off +10, Spd +2 (Leomon: Off +15) | Off +12 | +9 / -1 / -1 |
+| Defense | Def +10, Brn +2 | Def +12, Ice Sanctuary +15 | +9 / -1 / -1 |
+| Speed | HP +10, Spd +10 (Leomon: Spd +15) | Spd +12 | +8 / -1 / -1 |
+| Brains | MP +10, Brn +10 (Cherrymon: Brn +15) | | +6 / -1 / -1 |
 
-Each value is multiplied by `v/10` with `v = TRN_calculateTrainingMultiplier`: the `trainingType` affinity (10, 9, 11 or
+Each value is multiplied by `v/10` with `v = TRN_calculateTrainingMultiplier`: the `trainingType` affinity (10, 9, 12 or
 8 tenths by stat), x0.9 Fresh/In-Training, x1.0 Rookie, x1.1 Champion, x1.2 Ultimate, x1.2 with trigger 0xDB
 (HP/Def/Spd) or 0xFB (Off/MP/Brn) of the upgraded gym, x1.2 if that stat's `upgrade*` counter is >= 10. Brains calls the
 multiplier in MP mode: it uses the MP affinity, trigger and counter (ten MP sessions as a baby give x1.2 to MP and to
@@ -398,7 +398,7 @@ unverified in play). The mod's score sums the four bits of `evoRequirementsMet`,
 
 Items 0x47..0x72 → `EVOLUTION_ITEM_TARGET[item-0x47]` only if `level(target) - 1 == current level`; Giga Hand (0x7D) →
 Gigadramon (0x40), Noble Mane (0x7E, Rookie only) → Panjyamon (0x3F), Metalbanana (0x7F) → MetalEtemon (0x41); 0x7D and
-0x7F are only accepted by a Champion. `HAS_USED_EVOITEM = 1`: no stat gains, no +96 h and no tamer level.
+0x7F are only accepted by a Champion. Patch 0323: an item evolves like any other evolution, with the stat gains, the lifetime and the tamer level chance.
 
 ### Stats on evolving (`EVL_applyEvolution`, `evl.c:1282`)
 
@@ -435,9 +435,9 @@ The species added by the mod join the same pickers; the disc's own routes are un
 
 `tools/evo_tree.py --write` applies the committed topology, tier changes and frozen peer balance rows. Canon main lines come first, then family and shared specialty. Six carried children also replace a removed-parent bonus with their first surviving parent (ShellNumemon, BomberNanimon, Shadramon, Dragomon, Kurisarimon and Bastemon). Record children carry their parents; a disc child without its own paths is linked through the record parent's `evolution.to`. Devimon now also has ordinary Rookie parents: its previously disabled requirement row is replaced with a normal Champion row. Its original special transformation remains.
 
-A well-kept chain reaches Champion at age 102 h, Ultimate after 144 more hours (age 246 h), then Mega after another 120 h (age 366 h). Birth lifetime 360 plus the Ultimate bonus 96 leaves 90 h immediately before the Mega, which adds 120 h. Happiness must stay at least 80, without sickness or other extra lifetime loss. An Ultimate-to-Ultimate transition preserves the evolution timer and adds no lifetime; only reaching Ultimate from another level grants its 96 h. All 48 imported Megas use the real level-6 rule; Phoenixmon, HerculesKabuterimon, MetalEtemon, Machinedramon, Jijimon and Analogman retain level Ultimate.
+A well-kept chain reaches Champion at age 126 h, Ultimate after 168 more hours (age 294 h), then Mega after another 120 h (age 414 h). Birth lifetime 408 plus the Ultimate bonus 96 leaves 90 h immediately before the Mega, which adds 120 h. Happiness must stay at least 80, without sickness or other extra lifetime loss. An Ultimate-to-Ultimate transition preserves the evolution timer and adds no lifetime; only reaching Ultimate from another level grants its 96 h. All 48 imported Megas use the real level-6 rule; Phoenixmon, HerculesKabuterimon, MetalEtemon, Machinedramon, Jijimon and Analogman retain level Ultimate.
 
-The picker model uses attainable unupgraded File City training states: at most 72 sessions during the Champion's 144 h and 60 during the Ultimate's 120 h, reserving sleep, food and rest. Natural evolution gains feed the second stage. Every Ultimate parent is checked, including secondary parents without the `digimon` bonus. Added Ultimate siblings use distinct stat-average formulas so the first listed cannot win every overlap. Original disc ties remain; Mamemon can use happiness 90 rather than Piximon's 95, and some native routes need deliberate care mistakes or learned moves inherited through rebirth. Arrival witnesses prefer ordinary Champion routes and exclude Sukamon’s backup-stat restoration from the ordinary gains formula. The model follows the production picker’s retained accumulator: a qualifying loser leaves its divided stat total and count for the next qualifying candidate. These are conditional stat, picker and lifetime witnesses, not a complete care simulation.
+The picker model uses attainable unupgraded File City training states: at most 84 sessions during the Champion's 168 h and 60 during the Ultimate's 120 h, reserving sleep, food and rest. Natural evolution gains feed the second stage. Every Ultimate parent is checked, including secondary parents without the `digimon` bonus. Added Ultimate siblings use distinct stat-average formulas so the first listed cannot win every overlap. Original disc ties remain; Mamemon can use happiness 90 rather than Piximon's 95, and some native routes need deliberate care mistakes. No evolution asks for a number of learned techniques any more; Gigadramon's old 35 became 100 battles. Arrival witnesses prefer ordinary Champion routes and exclude Sukamon’s backup-stat restoration from the ordinary gains formula. The model follows the production picker’s retained accumulator: a qualifying loser leaves its divided stat total and count for the next qualifying candidate. These are conditional stat, picker and lifetime witnesses, not a complete care simulation.
 
 `tools/test_evo_tree.py` guards topology, specialties, special-only roots and wild-only recolours in the self-test. `tools/evo_check.py` checks the built graph and exits with failure for an unreachable picker route or a lost disc canonical state.
 
@@ -555,7 +555,7 @@ reachable if they are added to `EVOLUTION_PATHS`, and 63..65 only through items.
   tamer 17/19 (`tamerTickSicknessLostLife` / `tamerTickBattleLostLife`) → MURD overlay: iris over the partner, box with
   the remaining lives (`MURD_renderLivesBox`), death map (`setDeathMap`: screen 0xCD when trigger 0xDC or 0xD6 is set
   or prosperity >= 50, otherwise 0xDA; see [world.md](world.md)); with 0 lives it loads DOOA. Script routine 3 → state 8
-  (`partnerTickDying`): DOOA dissolve, then lifetime = 360, `sicknessTimer = injuryTimer = 0` (this is how losing a
+  (`partnerTickDying`): DOOA dissolve, then lifetime = 408, `sicknessTimer = injuryTimer = 0` (this is how losing a
   life cures).
 - **Rebirth**: routine 0x1D opens the egg box (`DOO2_openEggBox`) and 29 waits for the choice (left/right among 4);
   then routine 4 → state 14 (`partnerTickDying2`) → `DOOA_getSequenceState`: **if `lives == 0` the egg is replaced by
@@ -564,7 +564,7 @@ reachable if they are added to `EVOLUTION_PATHS`, and 63..65 only through items.
 - `reincarnatePartner`: `DEATH_STATS = stats`, equipped techniques cleared (`moves[0] = 0x2E`), new entity via
   `initializeReincarnatedPartner`: the baby's base stats (Botamon 90/110/10/11/9/10, Punimon 120/100/16/8/8/6, Poyomon
   100/140/12/6/6/8, Yuramon 100/120/8/8/8/8) **plus `tamerLevel` % of `DEATH_STATS` only if `IS_NATURAL_DEATH == 1`**
-  (`setReincarnateStats`); 3 lives, lifetime 360, age 0, happiness and discipline 50, `evoTimer = 0`, default weight,
+  (`setReincarnateStats`); 3 lives, lifetime 408, age 0, happiness and discipline 50, `evoTimer = 0`, default weight,
   `raisedCount++` (<= 99), the raised trigger. Kept: `learnedMoves`, `fishCaught`, the `upgrade*` counters, items, money,
   triggers and the name.
 - **Tamer level** (`addTamerLevel(chance %, ±1)`): +1 on reaching Champion (20 %) / Ultimate (100 %) without an item, +1

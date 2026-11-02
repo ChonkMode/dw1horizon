@@ -106,7 +106,7 @@ class GuardTests(unittest.TestCase):
         p = self.sp[c]['evolution']['from'][0]
         witness = T.chain_witness(p, c, self.kids, reqs, levels, self.sp)
         self.assertIsNotNone(witness)
-        self.assertEqual(witness['age_hours'], 366)
+        self.assertEqual(witness['age_hours'], 414)
         self.assertEqual(witness['life_before'], 90)
         self.assertEqual(witness['life_after'], 210)
 

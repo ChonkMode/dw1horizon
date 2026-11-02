@@ -1,0 +1,52 @@
+From be182a8e208c9f1cce4273732c13fec1d8e0c208 Mon Sep 17 00:00:00 2001
+From: Horizon authors <>
+Date: Mon, 2 Nov 2026 17:29:09 +0000
+Subject: [PATCH] Make a won battle worth a share of the strongest enemy's
+ stats
+
+STAT_GAIN_ENEMY_FACTORS keeps its three factors by enemy count; its fourth value,
+unused until now, sets the rule: gain at least E * factor / (fourth * 10), 1 %
+of the strongest enemy's stat against one enemy, 1.2 % and 1.6 % against two and
+three. The original's gain stays when it is larger, and fourth value 0 turns
+the rule off.
+---
+ src/main/battle_ui.c | 16 +++++++++++++++-
+ 1 file changed, 15 insertions(+), 1 deletion(-)
+
+diff --git a/src/main/battle_ui.c b/src/main/battle_ui.c
+index dd0955e..80c5c2e 100644
+--- a/src/main/battle_ui.c
++++ b/src/main/battle_ui.c
+@@ -74,7 +74,7 @@ extern char MAIN_D_80124C0C[];
+ extern char MAIN_D_80124C54[];
+ extern uint8_t GAME_STATE;
+ 
+-int8_t STAT_GAIN_ENEMY_FACTORS[4] = { 10, 12, 16, 0 };
++int8_t STAT_GAIN_ENEMY_FACTORS[4] = { 10, 12, 16, 100 };
+ 
+ BITS_LABELS_TEXT
+ 
+@@ -152,6 +152,20 @@ void battleStatsGainsAndDrops(uint8_t *droppedItems)
+ 				STATS_GAINS[stat] = 1;
+ 			}
+ 		}
++
++		/* MOD (battle gains): a win is worth at least this part of the
++		 * strongest enemy's stat, however strong the partner already is:
++		 * E * factor / (last factor * 10), so 1 % against one enemy; the
++		 * original's gain stays when it is larger. Last factor 0: rule off */
++		if (STAT_GAIN_ENEMY_FACTORS[3] > 0) {
++			chance = (enemyStat * STAT_GAIN_ENEMY_FACTORS[ENEMY_COUNT - 1]) / (STAT_GAIN_ENEMY_FACTORS[3] * 10);
++			if (chance > CAP_OF_STAT_INDEX(stat)) {
++				chance = CAP_OF_STAT_INDEX(stat);
++			}
++			if (chance > STATS_GAINS[stat]) {
++				STATS_GAINS[stat] = chance;
++			}
++		}
+ 	}
+ 
+ 	for (i = 0; i < 6; i++) {
+-- 
+2.55.0
+

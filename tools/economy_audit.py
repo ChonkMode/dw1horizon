@@ -20,6 +20,13 @@ T = ROOT / 'content' / 'tables'
 DEMIMERAMON = {30: 1500}                      # lava-cave/s121-125: card 30 -> 1500 bits, no flag
 CLEARAGUMON = ((19, 24, 57), 107)             # toy-town/s138-144: cards 19 + 24 + 57 -> X Bandage, no flag
 CARD_SWAPS = {21: 14}                         # trash-mountain/s159-165: card 21 -> card 14
+# treasure-hunt/s169-209, libraries/s205: Drimogemon's plans, [(percent, item)] without and with Gabumon; with Gabumon
+# 5 % of the hunts roll another item, over and over
+HUNT_REPEAT = 5
+HUNTS = {'Normal plan': (2000, [(20, 9), (20, 10), (10, 18), (10, 19), (10, 20), (10, 21), (5, 11), (5, 73), (5, 82), (5, 90)],
+                        [(15, 9), (15, 18), (15, 10), (10, 19), (10, 20), (10, 21), (10, 11), (5, 73), (5, 82), (5, 90)]),
+         'Special plan': (5000, [(10, 11), (20, 73), (20, 82), (20, 90), (5, 27), (5, 28), (5, 23), (5, 24), (5, 26), (5, 25)],
+                          [(10, 11), (10, 73), (10, 82), (10, 90), (10, 27), (10, 28), (10, 23), (10, 24), (10, 26), (10, 25)])}
 
 
 def main():
@@ -90,6 +97,12 @@ def main():
     print(f'card machine: {m_price} bits -> {m:.0f} (odds {m_odds})')
     if m >= m_price:
         fails.append(f'card machine {m_price} -> {m:.0f}')
+    for plan, (hunt_price, plain, gabumon) in HUNTS.items():
+        worth_of = lambda odds: sum(pc * sell(i) for pc, i in odds) / 100
+        hunt = max(worth_of(plain), worth_of(gabumon) * 100 / (100 - HUNT_REPEAT))
+        print(f'{plan}: {hunt_price} bits -> {hunt:.0f}')
+        if hunt >= hunt_price:
+            fails.append(f'{plan} {hunt_price} -> {hunt:.0f}')
     print('daily card shop (6 a day, one copy each: reported only):')
     for c in sorted(cworth):
         r = cards[c]['rarity']

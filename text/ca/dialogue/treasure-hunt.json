@@ -13,7 +13,7 @@
  "s169.sec81.m1.o0": "Buscar tresors",
  "s169.sec81.m1.o1": "Explica-m'ho de nou",
  "s169.sec81.m1.o2": "No, res més",
- "s169.sec81.m2.o0": "Pla normal: 1000 Bits",
+ "s169.sec81.m2.o0": "Pla normal: 2000 Bits",
  "s169.sec81.m2.o1": "Pla especial: 5000 Bits",
  "s169.sec81.m2.o2": "Cancel·lar",
  "s169.sec81.u0": [
@@ -36,24 +36,7 @@
    "Primer t'explico com funciona?"
   ]
  ],
- "s169.sec81.u2": [
-  [
-   "Tu pagues per endavant, i jo",
-   "et trobo un tresor. Hi ha dos",
-   "plans, amb terminis i preus",
-   "diferents. El normal són tres"
-  ],
-  [
-   "dies per 1000 Bits. L'especial",
-   "són deu dies per 5000 Bits.",
-   "Amb l'especial tens més",
-   "possibilitats de trobar un bon"
-  ],
-  [
-   "tresor! Això és tot. Què",
-   "tries?"
-  ]
- ],
+ "s169.sec81.u2": "Tu pagues per endavant, i jo et trobo un tresor. Hi ha dos plans, amb terminis i preus diferents. El normal és un dia per 2000 Bits. L'especial són tres dies per 5000 Bits. Amb l'especial tens més possibilitats de trobar un bon tresor! Això és tot. Què tries?",
  "s169.sec81.u3": [
   [
    "Vinga, tria un pla!"
@@ -64,18 +47,8 @@
    "Val. Fins ara!"
   ]
  ],
- "s169.sec81.u5": [
-  [
-   "D'acord, resultats en tres",
-   "dies. Faré tot el que pugui!"
-  ]
- ],
- "s169.sec81.u6": [
-  [
-   "D'acord, resultats en deu dies.",
-   "Faré tot el que pugui!"
-  ]
- ],
+ "s169.sec81.u5": "D'acord, resultats en un dia. Faré tot el que pugui!",
+ "s169.sec81.u6": "D'acord, resultats en tres dies. Faré tot el que pugui!",
  "s169.sec81.u7": [
   [
    "No et basten els Bits. Ni jo",

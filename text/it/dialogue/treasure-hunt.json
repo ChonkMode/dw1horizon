@@ -15,7 +15,7 @@
  "s169.sec81.m1.o0": "Trova il tesoro",
  "s169.sec81.m1.o1": "Spiega di nuovo",
  "s169.sec81.m1.o2": "No, è tutto",
- "s169.sec81.m2.o0": "Piano normale: 1000 Bits",
+ "s169.sec81.m2.o0": "Piano normale: 2000 Bits",
  "s169.sec81.m2.o1": "Piano speciale: 5000 Bits",
  "s169.sec81.m2.o2": "Annulla",
  "s169.sec81.u0": [
@@ -41,22 +41,7 @@
    "Ti spiego prima come funziona?"
   ]
  ],
- "s169.sec81.u2": [
-  [
-   "Paghi in anticipo e io ti trovo",
-   "un tesoro. Ci sono due piani.",
-   "Normale: tre giorni per 1000"
-  ],
-  [
-   "Bits. Speciale: dieci giorni",
-   "per 5000 Bits. Con lo speciale",
-   "hai più probabilità di trovare"
-  ],
-  [
-   "un bel tesoro! Tutto qui. Quale",
-   "scegli?"
-  ]
- ],
+ "s169.sec81.u2": "Paghi in anticipo e io ti trovo un tesoro. Ci sono due piani. Normale: un giorno per 2000 Bits. Speciale: tre giorni per 5000 Bits. Con lo speciale hai più probabilità di trovare un bel tesoro! Tutto qui. Quale scegli?",
  "s169.sec81.u3": [
   [
    "Bene, scegli un piano!"
@@ -67,18 +52,8 @@
    "Ok. Ci vediamo più tardi!"
   ]
  ],
- "s169.sec81.u5": [
-  [
-   "Bene, i risultati tra tre",
-   "giorni. Farò del mio meglio!"
-  ]
- ],
- "s169.sec81.u6": [
-  [
-   "Bene, i risultati tra dieci",
-   "giorni. Farò del mio meglio!"
-  ]
- ],
+ "s169.sec81.u5": "Bene, i risultati tra un giorno. Farò del mio meglio!",
+ "s169.sec81.u6": "Bene, i risultati tra tre giorni. Farò del mio meglio!",
  "s169.sec81.u7": [
   [
    "Non hai abbastanza Bit.",

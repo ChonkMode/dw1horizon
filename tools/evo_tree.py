@@ -68,9 +68,9 @@ def candidates(s, req, lv):
     sets += [(rs[0], k) for k in rest] + [(rs[1], k) for k in rest] + [(k,) for k in rest]
     if lv == 'champion': base = [100, 100, 100]
     else:
-        hi, lo = (500, 400) if req['techs'] == 40 else (400, 300)
+        hi, lo = (500, 400) if lv == 'mega' else (400, 300)
         base = [hi, hi, lo]
-    # digimon -1: no free bonus point from the parent (DW1's own pattern: the bonus then needs the techniques);
+    # digimon -1: no free bonus point from the parent;
     # +100: thresholds a notch above a disc sibling's own
     for up, digimon, flags, st in itertools.product((0, 100), (req['digimon'], -1), (req['flags'], req['flags'] ^ 16), sets):
         r = dict(req, flags=flags, digimon=digimon)
@@ -138,11 +138,11 @@ def _training_rates(training_type, level):
 _PRACTICAL = {}
 
 
-def practical(cur, child, kids, reqs, levels, sp, base=None, budget=72):
+def practical(cur, child, kids, reqs, levels, sp, base=None, budget=84):
     """A picker witness within a training budget; never assumes 999 stats or an imported target’s 40-move bonus.
 
-    A Champion starts from 1500 HP/MP and 150 other stats; 72 sessions leave
-    half its 144 hours for sleep, food, rest and 50 short battles. Chain callers supply
+    A Champion starts from 1500 HP/MP and 150 other stats; 84 sessions leave
+    half its 168 hours for sleep, food, rest and 50 short battles. Chain callers supply
     the actual stats after the Ultimate's gains and allow 60 more sessions.
     Secondary gym gains are omitted, making the session bound conservative.
     """
@@ -169,18 +169,15 @@ def practical(cur, child, kids, reqs, levels, sp, base=None, budget=72):
         mistakes_allowed = (0, 1, 3, 5, max(0, row['care'])) if child < S.NUM_ORIGINAL else (0, 1, 3, 5)
         for mistakes in dict.fromkeys(mistakes_allowed):
             for weight in (row['weight'], row['weight'] - 5, row['weight'] + 5):
-                # Disc routes retain their original late-raise requirements. Learned
-                # moves survive rebirth, so 35 techniques is possible for Gigadramon.
-                tech_counts = (20, 35) if child < S.NUM_ORIGINAL and not S.is_record_original(sp[child]) else (20,)
                 happiness_values = (100, max(80, row['happiness']))
-                for techs, battles, happiness in itertools.product(tech_counts, (0, 50, 100), dict.fromkeys(happiness_values)):
+                for battles, happiness in itertools.product((0, 50, 100), dict.fromkeys(happiness_values)):
                     # Reserve eight hours of sleep per day. A battle advances
                     # twenty game minutes; MetalEtemon's original 100-battle
                     # bonus fits its 96-hour wait without requiring huge stats.
-                    awake = 80 if levels[cur] == 5 else 96
+                    awake = 80 if levels[cur] == 5 else 112
                     if sessions + (battles + 2) // 3 > awake:
                         continue
-                    bonus = (battles, techs, 100, happiness)
+                    bonus = (battles, 0, 100, happiness)
                     if E.pick(cur, kids[cur], reqs, levels, st, mistakes, weight, 'stats', bonus) == child:
                         result = dict(stats=vals, care=mistakes, weight=weight, sessions=sessions, bonus=bonus)
                         _PRACTICAL[cache_key] = result
@@ -238,7 +235,7 @@ def chain_witness(parent, child, kids, reqs, levels, sp):
             path = previous['path'] + [child]
             rules = json.loads((ROOT / 'content/tables/evolution-rules.json').read_text())
             timing = rules['evolutionTiming']
-            age, life = 102, 258  # earliest Champion; birth lifetime 360, happiness >=80
+            age, life = 126, 282  # earliest Champion; birth lifetime 408, happiness >=80
             for p, c in zip(path, path[1:]):
                 wait = timing['hours']['champion'] if levels[p] == 4 else timing['megaHours'] if levels[c] == 6 else timing['ultimateAgainHours']
                 age += wait
@@ -316,7 +313,6 @@ def requirement(s, parents, rookie_slot=0):
     for i, stat in enumerate(role_stats(s)[:3]): req[stat] = hi if i < 2 else lo
     req['care'], req['flags'] = care(s, s['level'])
     req['weight'] = size_weight(s, 40 if s['level'] == 'champion' else 60)
-    req['techs'] = {'champion': 28, 'ultimate': 35, 'mega': 40}[s['level']]
     return req
 
 

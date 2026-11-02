@@ -67,7 +67,7 @@ those offsets).
 | Rival base stat per cup | `STD_OPPONENT_BASE_STATS` [24] (`std_setup.c`, STD overlay) | `0x800799B4` | `0x80073CF0` | `tournaments.opponentBaseStats` |
 | Simulated bracket win chances by level | `STD_WIN_CHANCES` [4][3] (`std_main.c`) | `0x8007A58C` | `0x80073EB4` | `tournaments.winChances` |
 | Cup eligibility, overlevel and rival lists, requirements | map script section 10 (`DG.SCN`, `getCupDataJumpTable`) | | | not covered: DWS (`docs/mods/dws.md`); the species ≥ 180 levels come from `DIGI.DAT` |
-| Evolution timers (24/72/144 h …), lifetime (360 h), care rules, training gains (`trn_reward.c`), battle stat-gain formula, special evolutions, rival stat spread | C code constants | | | not covered: C (the `caps` patch shows the way) |
+| Evolution timers (`evolution-rules.json`), lifetime (`new-game.json`), care rules, training gains (`trn_reward.c`), battle stat-gain formula, special evolutions, rival stat spread | C code constants | | | not covered: C (the `caps` patch shows the way) |
 
 ## 2. The three layers
 
@@ -280,10 +280,34 @@ than it costs; the daily card shop (6 cards, one copy each) is bounded by itself
 
 The money analysis behind it: upkeep is about 300-1500 bits a game day, nothing on the story path costs
 bits, and bits bought little power (DV chips about 40 stat points a 1000 bits, restaurants 1-4, the gym 80-100 a day for
-free). Drimogemon's 5000-bit dig gives one item, and no item sells for more than 4999, so it cannot pay without
-changing its price, which its text says.
+free). Drimogemon's plans are checked by the audit: their tables must sell for less than their price.
 
-## 6.2 Monochromon recruitment
+## 6.2 The care and reward pass
+
+Changes taken from a tester's balance document. They are the rules of the game for everybody: there are no modes.
+Requirement tests: `tools/test_evo_tree.py --practical`, `tools/economy_audit.py`.
+
+| What | Disc | Now | Why |
+|---|---|---|---|
+| Lifetime, Rookie wait, Champion wait, Numemon fallback | 360, 72, 144, 96 h | 408, 96, 168, 120 h | a day more in each form to reach a target; the time as an Ultimate does not change |
+| Digiseabass, Chain melon, DV chips (lifetime) | +3, +20, -24 h | +6, +24, -6 h | worth using to stay longer in a form |
+| File City gym base gain | 8 (HP, MP 80) | 10 (100) | less grind; the secondary gains and the tiredness stay |
+| The training type's favoured stat | x1.1 | x1.2 | the type matters; x0.9 stays |
+| Leomon's and the Ice Sanctuary's gyms | 8 and 12, with a secondary stat | 15 (HP 150), no secondary stat | a reason to walk there; Beetle Land stays at 12, Trash Mountain and Cherrymon already gave this |
+| A won battle | the disc's formula | also at least 1 % of the strongest enemy's stat, 1.2 % and 1.6 % against two and three (patch 0322) | a stronger partner still gains; about one gym session of points a fight, so the gym stays the way to train |
+| Favoured / hated map, an hour | happiness +1 / -1, tiredness -2 / +1 | +3 / -3, -3 / +2 | the favoured place matters, with no bar filled in a day |
+| Element chart (`type-factors.json`) | uneven, 2.0 to 0.2 | 2.0 strong, 1.0 neutral, 0.2 weak, in cycles; all hit Filth for 2.0, Filth hits Mech for 2.0 | a chart a player can learn |
+| Restaurants (`libraries/s217`, `s218`) | 300-9000 bits, 1-5 points | 400-1500 bits, 8-42 points, 35 energy | a meal was not worth buying. DV chips still give more points a bit, at a lifetime cost |
+| Digitamamon's roll | one in three each | 30 / 30 / 40 %, all stats | a late recruit's meal should please |
+| Drimogemon's plans | 3 days 1000 bits, 10 days 5000 bits | 1 day 2000 bits, 3 days 5000 bits, new tables; with Gabumon 5 % roll another item | the price is what stops a daily profit: the 1000 bits a day table would sell for 1545 |
+| Death evolutions (`libraries/s212`) | 10 % | 30 %; Devimon stays at 50 % | a player should see them without resetting |
+| Evolution items (patch 0323) | no gains, lifetime or tamer level | as any evolution | they are rare, they should not punish |
+| Evolution rows `techs` | a bonus for 21-49 techniques | gone; Gigadramon asks 100 battles instead | the bonus could stand in for the stats, so a raised partner took another route |
+| Grey Lord's Mansion, Ice Sanctuary | a Virus, a Vaccine partner | also any partner once Myotismon, Angemon joined | the partner does not lock a place already opened |
+| Monzaemon's costume | gone after the toy story | a Numemon can always wear it | a late route to Monzaemon |
+| Sukamon, Andromon in File City (`city/file-city-services.py`) | one line each | Sukamon clears the island's poop for 1000 bits (patch 0324); Andromon remodels a Mamemon as Guardromon does, who keeps doing it | Andromon stands there on about one daytime visit in four: the service cannot depend on him alone |
+
+## 6.3 Monochromon recruitment
 
 The shift recruit target falls from 3072 to 2560 bits of profit. Recruitment was
 an approximately 1 % outcome at list prices and 13 % at a steady +10 %; simulation

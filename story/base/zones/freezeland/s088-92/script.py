@@ -19,7 +19,7 @@ def step0():    # section 51
         warp(Screen.back_dimension_226, entry=0, then=60)
     raw.store_digimon_type(partner_type)
     raw.store_digimon_value(partner_type, partner_attribute)
-    if partner_attribute == 2:
+    if partner_attribute == 2 or recruited(Species.Angemon):
         return
     narrator.say(t51.u0)
     hide_hud()

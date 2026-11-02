@@ -15,7 +15,7 @@
  "s169.sec81.m1.o0": "Trouver un trésor",
  "s169.sec81.m1.o1": "Explique encore",
  "s169.sec81.m1.o2": "Non, c'est tout",
- "s169.sec81.m2.o0": "Plan normal: 1000 Bits",
+ "s169.sec81.m2.o0": "Plan normal: 2000 Bits",
  "s169.sec81.m2.o1": "Plan spécial: 5000 Bits",
  "s169.sec81.m2.o2": "Annuler",
  "s169.sec81.u0": [
@@ -41,23 +41,7 @@
    "comment ça marche ?"
   ]
  ],
- "s169.sec81.u2": [
-  [
-   "Tu paies d'avance et je te",
-   "trouve un trésor. Il y a deux",
-   "formules. La normale : trois"
-  ],
-  [
-   "jours pour 1000 Bits. La",
-   "spéciale : dix jours pour 5000",
-   "Bits. Avec la spéciale, tu as"
-  ],
-  [
-   "plus de chances de trouver un",
-   "beau trésor ! Voilà. Alors, que",
-   "choisis-tu ?"
-  ]
- ],
+ "s169.sec81.u2": "Tu paies d'avance et je te trouve un trésor. Il y a deux formules. La normale : un jour pour 2000 Bits. La spéciale : trois jours pour 5000 Bits. Avec la spéciale, tu as plus de chances de trouver un beau trésor ! Voilà. Alors, que choisis-tu ?",
  "s169.sec81.u3": [
   [
    "Allez, choisis une formule !"
@@ -68,18 +52,8 @@
    "Très bien. A tout à l'heure !"
   ]
  ],
- "s169.sec81.u5": [
-  [
-   "D'accord, résultats dans trois",
-   "jours. Je ferai de mon mieux !"
-  ]
- ],
- "s169.sec81.u6": [
-  [
-   "D'accord, résultats dans dix",
-   "jours. Je ferai de mon mieux !"
-  ]
- ],
+ "s169.sec81.u5": "D'accord, résultats dans un jour. Je ferai de mon mieux !",
+ "s169.sec81.u6": "D'accord, résultats dans trois jours. Je ferai de mon mieux !",
  "s169.sec81.u7": [
   [
    "Tu n'as pas assez de Bits.",

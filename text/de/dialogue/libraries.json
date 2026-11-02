@@ -2350,7 +2350,7 @@
  "s205.sec6.m6.o0": "Noch mal erklären",
  "s205.sec6.m6.o1": "Schatzsuche starten",
  "s205.sec6.m6.o2": "Nein, das ist alles",
- "s205.sec6.m7.o0": "Normalplan: 1000 Bits",
+ "s205.sec6.m7.o0": "Normalplan: 2000 Bits",
  "s205.sec6.m7.o1": "Sonderplan: 5000 Bits",
  "s205.sec6.m7.o2": "Abbrechen",
  "s205.sec6.u0": "Welcher Laden soll es sein?",
@@ -2541,22 +2541,7 @@
    "erklären, wie es geht?"
   ]
  ],
- "s205.sec6.u30": [
-  [
-   "Du zahlst im Voraus und ich",
-   "finde dir einen Schatz. Es gibt",
-   "zwei Angebote. Normal: drei"
-  ],
-  [
-   "Tage für 1000 Bits. Spezial:",
-   "zehn Tage für 5000 Bits. Mit",
-   "Spezial hast du bessere"
-  ],
-  [
-   "Chancen auf tolle Schätze! Das",
-   "war's. Was darf es sein?"
-  ]
- ],
+ "s205.sec6.u30": "Du zahlst im Voraus und ich finde dir einen Schatz. Es gibt zwei Angebote. Normal: ein Tag für 2000 Bits. Spezial: drei Tage für 5000 Bits. Mit Spezial hast du bessere Chancen auf tolle Schätze! Das war's. Was darf es sein?",
  "s205.sec6.u31": [
   [
    "Dann wähle ein Angebot!"
@@ -2567,20 +2552,8 @@
    "Okay. Wir sehen uns später!"
   ]
  ],
- "s205.sec6.u33": [
-  [
-   "Alles klar! In drei Tagen hast",
-   "du das Ergebnis. Ich gebe mein",
-   "Bestes!"
-  ]
- ],
- "s205.sec6.u34": [
-  [
-   "Alles klar! In zehn Tagen hast",
-   "du das Ergebnis. Ich gebe mein",
-   "Bestes!"
-  ]
- ],
+ "s205.sec6.u33": "Alles klar! In einem Tag hast du das Ergebnis. Ich gebe mein Bestes!",
+ "s205.sec6.u34": "Alles klar! In drei Tagen hast du das Ergebnis. Ich gebe mein Bestes!",
  "s205.sec6.u35": [
   [
    "Nicht genug Bits, Kumpel.",
@@ -5846,14 +5819,14 @@
   ]
  ],
  "s217.sec51.m0.o0": "Scharfe Ramen: 400 Bits",
- "s217.sec51.m0.o1": "Feuercurry: 1200 Bits",
- "s217.sec51.m0.o2": "Lavaeintopf: 3500 Bits",
+ "s217.sec51.m0.o1": "Feuercurry: 800 Bits",
+ "s217.sec51.m0.o2": "Lavaeintopf: 1200 Bits",
  "s217.sec51.m1.o0": "Drachennudeln: 400 Bits",
- "s217.sec51.m1.o1": "Zaurus-Pizza: 1000 Bits",
- "s217.sec51.m1.o2": "Juraburger: 2500 Bits",
- "s217.sec51.m2.o0": "T-Bone-Steak: 1000 Bits",
- "s217.sec51.m2.o1": "DX-Bone-Steak: 2500 Bits",
- "s217.sec51.m2.o2": "Phantomsteak: 5000 Bits",
+ "s217.sec51.m1.o1": "Zaurus-Pizza: 800 Bits",
+ "s217.sec51.m1.o2": "Juraburger: 1200 Bits",
+ "s217.sec51.m2.o0": "T-Bone-Steak: 400 Bits",
+ "s217.sec51.m2.o1": "DX-Bone-Steak: 800 Bits",
+ "s217.sec51.m2.o2": "Phantomsteak: 1200 Bits",
  "s217.sec51.u0": [
   [
    "He... Möchtest du bestellen?"
@@ -6090,15 +6063,15 @@
    "hörst du!"
   ]
  ],
- "s218.sec51.m0.o0": "Schneeshake: 300 Bits",
- "s218.sec51.m0.o1": "Eiscreme: 700 Bits",
- "s218.sec51.m0.o2": "Schabeeis: 1600 Bits",
- "s218.sec51.m1.o0": "Weltraumsalat: 1500 Bits",
- "s218.sec51.m1.o1": "UFO-Suppe: 4000 Bits",
- "s218.sec51.m1.o2": "Galaxie-Menü: 9000 Bits",
- "s218.sec51.m2.o0": "Wunder-Ei: 1000 Bits",
- "s218.sec51.m2.o1": "Wunderomelett: 2500 Bits",
- "s218.sec51.m2.o2": "Wunder-Ei-Bowl: 6000 Bits",
+ "s218.sec51.m0.o0": "Schneeshake: 400 Bits",
+ "s218.sec51.m0.o1": "Eiscreme: 800 Bits",
+ "s218.sec51.m0.o2": "Schabeeis: 1200 Bits",
+ "s218.sec51.m1.o0": "Weltraumsalat: 500 Bits",
+ "s218.sec51.m1.o1": "UFO-Suppe: 750 Bits",
+ "s218.sec51.m1.o2": "Galaxie-Menü: 1500 Bits",
+ "s218.sec51.m2.o0": "Wunder-Ei: 500 Bits",
+ "s218.sec51.m2.o1": "Wunderomelett: 750 Bits",
+ "s218.sec51.m2.o2": "Wunder-Ei-Bowl: 1500 Bits",
  "s218.sec51.u0": [
   [
    "Hm? Was nimmst du?"

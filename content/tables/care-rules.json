@@ -57,12 +57,12 @@
     "area": {
       "period": "1h",
       "good": {
-        "happinessGain": 1,
-        "tirednessLoss": 2
+        "happinessGain": 3,
+        "tirednessLoss": 3
       },
       "bad": {
-        "happinessLoss": 1,
-        "tirednessGain": 1
+        "happinessLoss": 3,
+        "tirednessGain": 2
       },
       "subTirednessAt": 60
     },

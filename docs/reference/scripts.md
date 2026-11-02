@@ -160,7 +160,7 @@ by value; `IF` compares with `== != >= <= > <`. **Only 0-34 are saved**; the res
 | 18, 19 | | counters for Underground Pond and Jijimon's house | |
 | 21 | | Dimensional Key Chains collected (0-5) | |
 | 24-27 | | shop states: 24 secret shop, 25/26 item shop, 27 restaurant (0-5) | |
-| 28-31 | | daily counters, +1 each day unless 0xFF: 28 days since the fainting event (162:254 needs >= 20); 30 compared with 3/5/10 (Drill Tunnel, Treasure Hunt); 31 farm meat taken today | `script_common.c:1381-1387` |
+| 28-31 | | daily counters, +1 each day unless 0xFF: 28 days since the fainting event (162:254 needs >= 20); 30 compared with 1/3/5 (Drill Tunnel, Treasure Hunt); 31 farm meat taken today | `script_common.c:1381-1387` |
 | 32-36 | | per-NPC dialogue counters used with `SWITCH` | |
 | 38, 39, 42-44 | | File City: 43 = layout variant (2-13, MH 180-203); 38/39/42 counters for MH 177-179/192; 44 secret shop. **Not saved** | MAPHEAD |
 | 100, 110 | | random: `RANDOM p110 99` decides the ground items in sections 254; p100 in MH 19 | |

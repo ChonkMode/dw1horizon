@@ -16,7 +16,7 @@ script 88 {
         }
         store_digimon_type(partner_type);
         store_digimon_value(partner_type, partner_attribute);
-        unless (partner_attribute != 2) return;
+        unless (partner_attribute != 2 && !is_recruited(species("Angemon"))) return;
         say(narrator, text("s088.sec51.u0"));
         fadeout_hud(0);
         run(tamer, 45, -850, camera: true);

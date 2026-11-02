@@ -35,7 +35,7 @@ def fresh(wiped):
     else:                                                          # values that are not the original's, to see they come from the table
         for i, v in enumerate((12345, 21, 30, 111, 7, 5, 222, 33, 44, 5, 6, 7, 78, 1234, 201, 202, 203, 204, 205, 206)): poke(NG + 4 * i, '<i', v)
 emu('load', 'build/savedrop/n.state')
-ok('the table as the build wrote it', struct.unpack('<20i', peek(NG, 80)), (50000, 8, 0, 288, 3, 3, 360, 50, 50, 3, 17, 204, 9, 114, 58, 59, 60, 61, 62, 63))
+ok('the table as the build wrote it', struct.unpack('<20i', peek(NG, 80)), (50000, 8, 0, 336, 3, 3, 408, 50, 50, 3, 17, 204, 9, 114, 58, 59, 60, 61, 62, 63))
 fresh(0); call('initializeDefaultSavegame()'); p = payload()
 ok('money', p['money'], 12345); ok('start hour / minute', (p['hour'], p['minute']), (21, 30))
 ok('clock frame = hour x 1200 + minute x 20', (p['frame'], p['handled']), (21 * 1200 + 30 * 20,) * 2)
@@ -43,7 +43,7 @@ ok('first partner: lifetime / age', (p['life'], p['age']), (111, 7)); ok('lives'
 # the exit, the partner type and the card shop's six values: the bytes that change when those slots change (everything else stays)
 def raw(): return peek(P0, 0xF00)
 emu('load', 'build/savedrop/n.state'); emu('lua', 'PCSX.pauseEmulator() return 1')
-for i, v in enumerate((50000, 8, 0, 288, 3, 3, 360, 50, 50, 3, 17, 204, 9, 114, 58, 59, 60, 61, 62, 63)): poke(NG + 4 * i, '<i', v)
+for i, v in enumerate((50000, 8, 0, 336, 3, 3, 408, 50, 50, 3, 17, 204, 9, 114, 58, 59, 60, 61, 62, 63)): poke(NG + 4 * i, '<i', v)
 call('initializeDefaultSavegame()'); base = raw()
 fresh(0); call('initializeDefaultSavegame()'); alt = raw()
 diff = [i for i in range(len(base)) if base[i] != alt[i]]

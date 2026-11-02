@@ -2232,7 +2232,7 @@
  "s205.sec6.m6.o0": "Explica-m'ho de nou",
  "s205.sec6.m6.o1": "Buscar tresors",
  "s205.sec6.m6.o2": "No, res més",
- "s205.sec6.m7.o0": "Pla normal: 1000 Bits",
+ "s205.sec6.m7.o0": "Pla normal: 2000 Bits",
  "s205.sec6.m7.o1": "Pla especial: 5000 Bits",
  "s205.sec6.m7.o2": "Cancel·lar",
  "s205.sec6.u0": "Quina botiga serà?",
@@ -2420,24 +2420,7 @@
    "Primer t'explico com funciona?"
   ]
  ],
- "s205.sec6.u30": [
-  [
-   "Tu pagues per endavant, i jo",
-   "et trobo un tresor. Hi ha dos",
-   "plans, amb terminis i preus",
-   "diferents. El normal són tres"
-  ],
-  [
-   "dies per 1000 Bits. L'especial",
-   "són deu dies per 5000 Bits.",
-   "Amb l'especial tens més",
-   "possibilitats de trobar un bon"
-  ],
-  [
-   "tresor! Això és tot. Què",
-   "tries?"
-  ]
- ],
+ "s205.sec6.u30": "Tu pagues per endavant, i jo et trobo un tresor. Hi ha dos plans, amb terminis i preus diferents. El normal és un dia per 2000 Bits. L'especial són tres dies per 5000 Bits. Amb l'especial tens més possibilitats de trobar un bon tresor! Això és tot. Què tries?",
  "s205.sec6.u31": [
   [
    "Doncs tria un pla!"
@@ -2448,18 +2431,8 @@
    "Val. Fins ara!"
   ]
  ],
- "s205.sec6.u33": [
-  [
-   "Fet! Tindràs resultats en tres",
-   "dies. M'esforçaré!"
-  ]
- ],
- "s205.sec6.u34": [
-  [
-   "Fet! Tindràs resultats en deu",
-   "dies. M'esforçaré!"
-  ]
- ],
+ "s205.sec6.u33": "Fet! Tindràs resultats en un dia. M'esforçaré!",
+ "s205.sec6.u34": "Fet! Tindràs resultats en tres dies. M'esforçaré!",
  "s205.sec6.u35": [
   [
    "No tens prou Bits, company. Ni",
@@ -5568,14 +5541,14 @@
   ]
  ],
  "s217.sec51.m0.o0": "Ramen picant: 400 Bits",
- "s217.sec51.m0.o1": "Curri ardent: 1200 Bits",
- "s217.sec51.m0.o2": "Olla de lava: 3500 Bits",
+ "s217.sec51.m0.o1": "Curri ardent: 800 Bits",
+ "s217.sec51.m0.o2": "Olla de lava: 1200 Bits",
  "s217.sec51.m1.o0": "Fideus del drac: 400 Bits",
- "s217.sec51.m1.o1": "Pizza Zaurus: 1000 Bits",
- "s217.sec51.m1.o2": "Hamburguesa dino: 2500 Bits",
- "s217.sec51.m2.o0": "Bistec T-bone: 1000 Bits",
- "s217.sec51.m2.o1": "Bistec DX-bone: 2500 Bits",
- "s217.sec51.m2.o2": "Bistec fantasma: 5000 Bits",
+ "s217.sec51.m1.o1": "Pizza Zaurus: 800 Bits",
+ "s217.sec51.m1.o2": "Hamburguesa dino: 1200 Bits",
+ "s217.sec51.m2.o0": "Bistec T-bone: 400 Bits",
+ "s217.sec51.m2.o1": "Bistec DX-bone: 800 Bits",
+ "s217.sec51.m2.o2": "Bistec fantasma: 1200 Bits",
  "s217.sec51.u0": [
   [
    "He... Ja saps què vols",
@@ -5836,15 +5809,15 @@
    "eh!"
   ]
  ],
- "s218.sec51.m0.o0": "Batut de neu: 300 Bits",
- "s218.sec51.m0.o1": "Gelat: 700 Bits",
- "s218.sec51.m0.o2": "Granissat: 1600 Bits",
- "s218.sec51.m1.o0": "Amanida espacial: 1500 Bits",
- "s218.sec51.m1.o1": "Sopa OVNI: 4000 Bits",
- "s218.sec51.m1.o2": "Menú galàctic: 9000 Bits",
- "s218.sec51.m2.o0": "Ou dur meravella: 1000 Bits",
- "s218.sec51.m2.o1": "Truita meravella: 2500 Bits",
- "s218.sec51.m2.o2": "Bol d'ou meravella: 6000 Bits",
+ "s218.sec51.m0.o0": "Batut de neu: 400 Bits",
+ "s218.sec51.m0.o1": "Gelat: 800 Bits",
+ "s218.sec51.m0.o2": "Granissat: 1200 Bits",
+ "s218.sec51.m1.o0": "Amanida espacial: 500 Bits",
+ "s218.sec51.m1.o1": "Sopa OVNI: 750 Bits",
+ "s218.sec51.m1.o2": "Menú galàctic: 1500 Bits",
+ "s218.sec51.m2.o0": "Ou dur meravella: 500 Bits",
+ "s218.sec51.m2.o1": "Truita meravella: 750 Bits",
+ "s218.sec51.m2.o2": "Bol d'ou meravella: 1500 Bits",
  "s218.sec51.u0": [
   [
    "Mm? Què prendràs?"

@@ -8,7 +8,7 @@ Prepare with game_state.py trigger 1 1, warp 0 0, approach 0. Wait for the
 dialogue text to finish revealing (one CROSS may only finish the text), then
 save before dismissing it. Each case reloads this snapshot and starts normally.
 The elemental fixture sets only the two native species' first specialties to
-Battle/Air (TYPE_FACTORS=2, inverse 20) or Battle/Battle (neutral 10), keeping
+Fire/Air (TYPE_FACTORS=2, inverse 20) or Fire/Fire (neutral 10), keeping
 models, species ids, moves and the remaining specialties intact. Other tested
 stats stay at 999; HP/MP at 30000, Offense at 100, condition/tiredness clear,
 discipline 100. Results include all sampled fighter states, not just attacks.
@@ -80,8 +80,8 @@ def main():
                 e.api('/api/v1/execution-flow?function=pause')
                 r=e.api('/api/v1/cpu/ram/raw');partner=get(r,prefix+'entity.type');enemy=get(r,'NPC_ENTITIES[0].digimonEntity.entity.type')
                 # Controlled elemental fixture, leaving models, species ids and moves intact.
-                put(f'DIGIMON_DATA[{partner}].special[0]',1)
-                put(f'DIGIMON_DATA[{enemy}].special[0]',2 if inv==20 else 1)
+                put(f'DIGIMON_DATA[{partner}].special[0]',0)
+                put(f'DIGIMON_DATA[{enemy}].special[0]',2 if inv==20 else 0)
                 for key in ('def','brain','speed'):put(prefix+'stats.base.'+key,value if stat in (key,'all') else 999)
                 put(prefix+'stats.base.hp',30000);put(prefix+'stats.current.currentHP',30000)
                 put(prefix+'stats.base.mp',30000);put(prefix+'stats.current.currentMP',30000)
@@ -93,7 +93,7 @@ def main():
                 put('NPC_ENTITIES[0].digimonEntity.stats.current.currentHP',30000)
                 r = e.api('/api/v1/cpu/ram/raw')
                 stats = {key: get(r, prefix+'stats.base.'+key) for key in ('def','brain','speed')}
-                factor = get(r, f'TYPE_FACTORS[1][{2 if inv == 20 else 1}]')
+                factor = get(r, f'TYPE_FACTORS[0][{2 if inv == 20 else 0}]')
                 assert factor == (2 if inv == 20 else 10), factor
                 e.api('/api/v1/execution-flow?function=start')
                 e.press('CROSS',20)

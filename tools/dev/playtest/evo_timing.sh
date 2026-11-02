@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # evo_timing.sh: patch 0117 in the emulator (disc build/full.cue: REUSE_MODELS=1 tools/build-full.sh int). The disc must carry
 # content/tables/evolution-rules.json. Prints MOD_EVO_TIMING, then Agumon (a Rookie, no candidate) at several evoTimers: the
-# game clock is set to minute 59, so one hour ticks in the 8 s waited, so 95 -> 96 evolves into the fallback (state 0d, target 0b = 11),
-# 71, 90, 94 do not. Then the rules wiped in RAM (what a file without the key builds): no fallback target, no Rookie hours -> it never evolves.
+# game clock is set to minute 59, so one hour ticks in the 8 s waited, so 119 -> 120 evolves into the fallback (state 0d, target 0b = 11),
+# 95, 114, 118 do not. Then the rules wiped in RAM (what a file without the key builds): no fallback target, no Rookie hours -> it never evolves.
 set -u
 cd "$(dirname "$0")/../../.."
 export EMU_PORT=38112 EMU_ARGS="-interpreter -debugger"
@@ -19,8 +19,8 @@ run() {   # evoTimer [poke-address]
   tools/dev/emulator.py wait 8 >/dev/null
   echo "evoTimer $1 ${3:-}-> partner state $(tools/dev/emulator.py peek PARTNER_STATE 1 | awk '{print $2}') (0d = evolving), target $(tools/dev/emulator.py peek EVOLUTION_TARGET 2 | awk '{print $2 $3}')"
 }
-for t in 71 90 94 95 200; do run $t; done
+for t in 95 114 118 119 224; do run $t; done
 A=$(python3 -c "import sys; sys.path.insert(0,'tools'); from tools.dev import symbols as dwsyms; print(hex(dwsyms.table(os.environ.get('DW_SYMS', 'disc-full'))['MOD_EVO_TIMING']))")
-run 200 $((A + 20)) "(no fallback target) "
-run 200 $((A + 6)) "(no Rookie hours) "
+run 224 $((A + 20)) "(no fallback target) "
+run 224 $((A + 6)) "(no Rookie hours) "
 tools/dev/emulator.py stop >/dev/null

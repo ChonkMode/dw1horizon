@@ -146,7 +146,7 @@ script 35 {
         }
         store_digimon_type(partner_type);
         store_digimon_value(partner_type, partner_attribute);
-        if (partner_attribute == 3) {
+        if (partner_attribute == 3 || is_recruited(species("Myotismon"))) {
             walk(tamer, 0, 5000);
             walk(partner, 0, 5000);
             sound(8, 1);

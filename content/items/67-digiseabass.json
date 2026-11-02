@@ -10,7 +10,7 @@
   "effect": {
     "energy": 35,
     "weight": 4,
-    "lifetime": 3,
+    "lifetime": 6,
     "healHP": 9999,
     "healMP": 9999,
     "sickChance": 20

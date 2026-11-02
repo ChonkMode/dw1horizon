@@ -24,6 +24,15 @@ def talk():    # section 5
 @house.on_use(1)
 def use1():    # section 81
     engine.cutscene.set()
+    raw.store_digimon_type(partner_type)
+    if partner_type == 11 and (toy_tale_heard or recruited(Species.WaruMonzaemon)):
+        tamer.say(t81.u1)
+        hide_hud()
+        engine.arg.set(14)
+        raw.call_digimon_routine(DigimonRoutine.forced_evolution)
+        wait(28500)
+        tamer.say(t81.u3)
+        return
     if recruited(Species.WaruMonzaemon) or partner.species == Species.Monzaemon:
         return
     tamer.play(16)

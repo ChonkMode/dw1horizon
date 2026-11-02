@@ -70,7 +70,7 @@
       "discipline": -1,
       "happiness": -1,
       "battles": -1,
-      "techs": 35,
+      "techs": -1,
       "flags": 16
     },
     "gains": {"hp": 4950, "mp": 5550, "offense": 605, "defense": 470, "speed": 505, "brains": 560}

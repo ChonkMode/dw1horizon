@@ -230,6 +230,86 @@
       "original_sha256": "1094c2e93875e1f6d490160c9743a718001824ac42d1f7a39e28977cf5c7033d",
       "authored_sha256": "f0de4e464bb9611ba4e516ea00ec5ca7334522af27a038968face53efe907221",
       "reason": "The newspaper no longer takes away a Myotismon who already joined: identical on the original story, needed after Let him rest"
+    },
+    "zones/overdell-cemetery/s035-35/script.py": {
+      "original_sha256": "9db3b59719b13de1886b016d4077435f38ff71fe543d7e91f9edb078f54ade76",
+      "authored_sha256": "8cc73a22a82b9fd88de60d82a5a209f3c62561e646c5a9dba2ca4696507e8f97",
+      "reason": "Any partner may enter the Grey Lord's Mansion once Myotismon has joined"
+    },
+    "zones/overdell-cemetery/s035-35/script.dws": {
+      "original_sha256": "72c71fb4b666f1615aab44bdb9b26fe2a96f6b709780e7fbadbbbefe5604d799",
+      "authored_sha256": "7de948358843a2d7099fae26ea64a2407e227d89b368a881a7a107faa30671cd",
+      "reason": "Any partner may enter the Grey Lord's Mansion once Myotismon has joined; DWS synchronized with the authored Python source"
+    },
+    "zones/freezeland/s088-92/script.py": {
+      "original_sha256": "189c4414dc0adc525d8f6b0cfab6d82013b70b21b07fec837322f0f5d56c5700",
+      "authored_sha256": "1fe0eac22d3d495b7fe60e6223fd18f578aa161d633c42a49711255c807e843a",
+      "reason": "Any partner may enter the Ice Sanctuary once Angemon has joined"
+    },
+    "zones/freezeland/s088-92/script.dws": {
+      "original_sha256": "8490550a650fe0cd23540df425ba9405dd494eaa97665860c3706bd170338209",
+      "authored_sha256": "3acfc642cc124573699d6d25aca1615cb979ebf734520a040227367aacc48a33",
+      "reason": "Any partner may enter the Ice Sanctuary once Angemon has joined; DWS synchronized with the authored Python source"
+    },
+    "zones/costume-house/s139-145/script.py": {
+      "original_sha256": "eeab332172cbafaa43c0d72b7751a82dc1f8bbad72eaeeb9b2cf38e74381d360",
+      "authored_sha256": "cb39776dfc465eb10ba4d9be339742a0f79f502a0072c87cd1e267a26e525d24",
+      "reason": "A Numemon can wear the costume at any time, after the toy story too"
+    },
+    "zones/costume-house/s139-145/script.dws": {
+      "original_sha256": "10824d0e3c7d565ba9bbcb36b4dfbf815a9a48306577d0f06d8bcf9b879e6fcf",
+      "authored_sha256": "08b544cf4f96bf2ff5ecd808187450fe37e9dea5990d98a508e2fae16b65144b",
+      "reason": "A Numemon can wear the costume at any time, after the toy story too; DWS synchronized with the authored Python source"
+    },
+    "zones/treasure-hunt/s169-209/script.py": {
+      "original_sha256": "b7f1ecd11e156115218a1021ba88bdf71997271d05d5407741bc2b09c903f700",
+      "authored_sha256": "78c4d5aedaa09feb472f31aee03135c0a9f1dfef2676abd154f98747e799ea0b",
+      "reason": "Treasure hunts of one and three days, with their own prize tables and Gabumon's extra item"
+    },
+    "zones/treasure-hunt/s169-209/script.dws": {
+      "original_sha256": "56401f4b6930375e7632ab91d8a122e5bd6f85bc7c8233c6f6f0feb0c7b78ad4",
+      "authored_sha256": "2df9e5934b58258d129bfad7e104fcb66d4397339505c921b59af862eb6edfb9",
+      "reason": "Treasure hunts of one and three days, with their own prize tables and Gabumon's extra item; DWS synchronized with the authored Python source"
+    },
+    "zones/libraries/s205/script.py": {
+      "original_sha256": "4209485f70974900f5d49863e4aed3085b768b50d4ac1979ac278afb8b5ce497",
+      "authored_sha256": "971f86c5770253921fcf684fab8f9b20fb0342f82ead596cb5d3c619639a4304",
+      "reason": "Treasure hunts of one and three days, with their own prize tables and Gabumon's extra item"
+    },
+    "zones/libraries/s205/script.dws": {
+      "original_sha256": "36962463a42e0f8104533a0acb174bf47550e0f20674abf7443844076125751d",
+      "authored_sha256": "b03d6cbf6fd22906bb2c8d829c4358721c56feebed6514ea2f78e33bdfece404",
+      "reason": "Treasure hunts of one and three days, with their own prize tables and Gabumon's extra item; DWS synchronized with the authored Python source"
+    },
+    "zones/libraries/s212/script.py": {
+      "original_sha256": "4f0f94827732b0baa8771f2f03b6a8973181be5ff80b0c4e366cb4250f4b5f67",
+      "authored_sha256": "b977abcab3b89e95dcd303b630709f98a2079148c7a10f55883bd6fbf58caf2e",
+      "reason": "Death evolutions at 30 percent; Devimon stays at 50"
+    },
+    "zones/libraries/s212/script.dws": {
+      "original_sha256": "b27061b40a24f6f8fc8b63cd805b57c19bb47b44549a1a71215da03b222c9ec8",
+      "authored_sha256": "1de14ee3c039464abbd7f44ddee5188f4797933e427137c8b6c4c9034c50fe40",
+      "reason": "Death evolutions at 30 percent; Devimon stays at 50; DWS synchronized with the authored Python source"
+    },
+    "zones/libraries/s217/script.py": {
+      "original_sha256": "b8be36bdb1e2ca54b4b6ecc079dcfd38e3698f03ded7a038a395fadc24ac1378",
+      "authored_sha256": "d088b232c523698dfc5ef06d96166d866d1a952b393d14b5bc6dc969cc0cfcd4",
+      "reason": "Restaurant meals worth their price"
+    },
+    "zones/libraries/s217/script.dws": {
+      "original_sha256": "04d27498ad511a7f33d7065683fbe8beb0b3038c1618a06ddfd9bd6d41a4c23d",
+      "authored_sha256": "994b9798b3159fbd860df28016356a4709a3fe30df0e7bbf223e96a877f94477",
+      "reason": "Restaurant meals worth their price; DWS synchronized with the authored Python source"
+    },
+    "zones/libraries/s218/script.py": {
+      "original_sha256": "08dd0c7d1d24f0c24cfa72d2b51001105aab0e632746e323009f210a30300ec0",
+      "authored_sha256": "62bfc0502d2ad53daa8544781ca54b05721c0d5279db07a25016c5acfc6cfcb8",
+      "reason": "Restaurant meals worth their price; Digitamamon's best roll at 40 percent"
+    },
+    "zones/libraries/s218/script.dws": {
+      "original_sha256": "0498dd17f4c08525eeb24e046e595a8fe873e26ea80f79a6dbcaec0b181c4baa",
+      "authored_sha256": "1a294f913373c77c953f6517c3d2b9fcc7d165f169d5d534450df814a9e87ade",
+      "reason": "Restaurant meals worth their price; Digitamamon's best roll at 40 percent; DWS synchronized with the authored Python source"
     }
   }
 }
