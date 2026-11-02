@@ -492,6 +492,46 @@ floor even when all original tick poses were supported, and re-encoding may
 exceed a model's storage budget. Source pins and speed thresholds alone do not
 prove a successful gait repair.
 
+### Chibi proportions
+
+`tools/models/field_animations/chibi.py`, with the manifest
+`content/models/imports/chibi.json`, reshapes a reviewed imported partner to the
+game's anatomy over whatever recipe it already has. A row holds the pins, the group of
+every bone (head, hand, foot, thigh, shin, arm, wing, ...), the factors and the height
+of the species. The pass bakes each bone's scale into its vertices and into its
+children's offsets in every animation, then rescales uniformly to that height.
+
+Every clip is then replayed through the interpreter and the carrier's height is
+rewritten tick by tick. On a tick where the source stands on its legs, the legs land:
+on the floor, or at the source's clearance if it really hovers or jumps. The lowest
+vertex of the mesh is not the measure there, because a grown sleeve, a gun or a crest
+would hold the body up with the feet in the air. On a tick where the source rests on
+something else, such as lying down, the lowest vertex lands instead, and the two blend
+over a few ticks. A row's `fit` shortens the limbs that would otherwise cross the floor
+with the feet down. Root travel shrinks with the legs on the walk, condition walk and
+run, down to the speed floors of the pace pass. The bone-tied fields of the species
+record (`effect_origins`, `effect_origin_fallback`, `condition_bubble`) go through the
+same bake and reach the record through the proof's `species_patch`.
+
+The proof's `floors` gives, per slot, the feet of the ticks on the feet (source and
+result) and the worst miss each way. The build refuses a row whose legs or resting
+clip stay more than 4 units off their floor, whose part goes 8 units further under the
+floor than the source's own clip, that leaves a loop open, changes anything but the
+carrier's height while grounding, falls under a speed floor, misses the height by 1 %
+or leaves the storage budget. To enable a species: add its row, bind an overlay to
+this module in `content/models/imports/species.py` and `models.json`, and repin it.
+
+Two optional row fields cover what the bake cannot know. `trim` corrects the uniform
+rescale for the lift grounding gives the idle, for a source whose idle stands under or
+over the floor (Creepymon's sinks 48 units): the height of the record stays. `rest_slots`
+names clips that land on the lowest vertex throughout, because the shorter legs bring a
+kneeling body, or a staff held to the ground, to the floor with the feet still on it.
+
+48 of the 175 imported partners carry a row. The rest stay as they were: quadrupeds, whose
+heads are already large and whose four legs the single rule does not cover; forms with no
+humanoid legs (fish, serpents, blobs, plants, machines, insects); and bipeds already at
+the game's proportions, or that would gain too little to be worth a resident byte.
+
 ### Field pace pass
 
 `tools/models/field_animations/pace.py`, with the manifest
