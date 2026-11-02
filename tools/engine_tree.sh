@@ -6,7 +6,8 @@
 #   tools/engine_tree.sh build [DIR]        creates DIR (default build/engine-tree), branch "horizon", and checks it
 #   tools/engine_tree.sh push TAG REMOTE    pushes that branch and the tag horizon-TAG to REMOTE (needs DW1H_PUBLISH=1)
 #
-# The same series gives the same commit hashes, so a later push only adds what changed.
+# Every commit carries the date of the build. A new build rewrites the branch, so a push
+# replaces the published one (--force-with-lease).
 set -euo pipefail
 cd "$(dirname "$0")/.."
 ROOT=$PWD
@@ -21,12 +22,14 @@ build() {
   git -C "$W" checkout -q -B horizon "$BASE"
   git -C "$W" config user.name "$NAME"
   git -C "$W" config user.email "$EMAIL"
-  git -C "$W" am -q --committer-date-is-author-date "$ROOT"/mods/patches/*.patch
+  git -C "$W" am -q "$ROOT"/mods/patches/*.patch
+  NOW=$(date -u +%Y-%m-%dT%H:%M:%SZ)
   FILTER_BRANCH_SQUELCH_WARNING=1 git -C "$W" filter-branch -f --env-filter "
     export GIT_AUTHOR_NAME='$NAME' GIT_AUTHOR_EMAIL='$EMAIL' GIT_COMMITTER_NAME='$NAME' GIT_COMMITTER_EMAIL='$EMAIL'
+    export GIT_AUTHOR_DATE='$NOW' GIT_COMMITTER_DATE='$NOW'
   " "$BASE"..horizon >/dev/null
   export GIT_AUTHOR_NAME="$NAME" GIT_AUTHOR_EMAIL="$EMAIL" GIT_COMMITTER_NAME="$NAME" GIT_COMMITTER_EMAIL="$EMAIL"
-  export GIT_AUTHOR_DATE="$(git -C "$W" log -1 --format=%aI)" GIT_COMMITTER_DATE="$(git -C "$W" log -1 --format=%aI)"
+  export GIT_AUTHOR_DATE="$NOW" GIT_COMMITTER_DATE="$NOW"
   cat > "$W/HORIZON.md" <<NOTE
 # Digimon World: Horizon, engine source
 
@@ -67,6 +70,6 @@ case "${1:-}" in
     [ "${DW1H_PUBLISH:-}" = 1 ] || { echo "publishing needs DW1H_PUBLISH=1" >&2; exit 1; }
     W=build/engine-tree
     git -C "$W" tag -f "horizon-$2" horizon >/dev/null
-    git -C "$W" push "$3" horizon "horizon-$2" ;;
+    git -C "$W" push --force-with-lease "$3" horizon "horizon-$2" ;;
   *) sed -n 2,9p "$0" >&2; exit 1 ;;
 esac

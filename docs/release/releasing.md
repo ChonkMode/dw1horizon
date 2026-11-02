@@ -52,7 +52,7 @@ tools/engine_tree.sh build
 DW1H_PUBLISH=1 tools/engine_tree.sh push vX.Y.Z FORK_URL
 ```
 
-The branch is generated and repeatable, so the push only adds the new patches. Add the release's row to
+The branch is generated: each build dates every commit now and replaces the published branch. Add the release's row to
 [compatibility.md](../mods/compatibility.md).
 
 ## Changelog
