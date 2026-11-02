@@ -376,8 +376,8 @@ consumed (`partner.c:497`). "Merit N" = bought in the merit shop for N points;
   `clock.c:135/186`; a new game starts with 58–63, `main_menu.c:3868`), at `CARD_PRICES[rarity]` =
   5000/1500/500/100/50, at most 9 copies; the one bought becomes `0xFF`. With `TRIGGER_3`,
   selling at half price (`:1971`).
-- Routine 1, `openMeritShop` (`script_menu.c:714`): exchanges cards for their merit
-  (`MERIT` cap 9999, `:770-779`) and sells the items with `meritValue ≠ 0` (`:1405`):
+- Routine 1, `openMeritShop` (`script_menu.c`): exchanges cards for their merit (`MERIT` cap 9999) and sells the items
+  with `meritValue ≠ 0`, both in any amount through the amount box, the list staying open between trades:
   sup.recovery 20, Sup.restore 100, the six chips 800, Rainbowhorn/Waterbottle/Red
   Shell/Hard Scale/Ice crystal 500, Amazing rod 300.
 
