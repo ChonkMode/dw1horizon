@@ -24,8 +24,6 @@ class EvolutionEvidenceGate(unittest.TestCase):
             '234', *extra]))
         stack.enter_context(patch.object(proof.species, 'read_archive', return_value=(
             b'', None, {234: {'para': {'name': 'Gatomon', 'moves': []}}})))
-        stack.enter_context(patch.object(proof.species, 'read_index',
-                                         return_value=([234], None, None)))
         calls = {}
         for name in ['boot', 'lab_evolve', 'battle', 'feed', 'status',
                      'save_game', 'run', 'seq']:
@@ -49,12 +47,24 @@ class EvolutionEvidenceGate(unittest.TestCase):
             self.assertFalse(result['ok'])
             self.assertEqual(result['type_after_evolution'], 3)
 
+    def test_a_boot_that_never_reached_the_world_fails_without_evolving(self):
+        with tempfile.TemporaryDirectory() as directory, contextlib.ExitStack() as stack:
+            calls = self.fixture(stack, directory, None)
+            calls['boot'].return_value = False
+            with self.assertRaises(SystemExit) as stopped:
+                proof.main()
+            self.assertEqual(stopped.exception.code, 1)
+            calls['lab_evolve'].assert_not_called()
+            result = json.loads((Path(directory) / 'result.json').read_text())['234']
+            self.assertEqual(result['error'], 'never reached the world')
+
     def test_confirmed_species_reaches_battle_checks(self):
         with tempfile.TemporaryDirectory() as directory, contextlib.ExitStack() as stack:
             calls = self.fixture(stack, directory, 234)
+            calls['status'].side_effect = lambda _t, _o, r: r.update(status_drawn=True)
             calls['battle'].side_effect = lambda _t, _m, _o, r: r.update(
                 in_battle=True, frames_advance=True,
-                techniques_played=['0x2e'], game_state_after=0)
+                techniques_played=['0x2e'], game_state_after=0, finisher_expected=False)
             with self.assertRaises(SystemExit) as stopped:
                 proof.main()
             self.assertEqual(stopped.exception.code, 0)
@@ -62,6 +72,37 @@ class EvolutionEvidenceGate(unittest.TestCase):
             calls['status'].assert_called_once()
             result = json.loads((Path(directory) / 'result.json').read_text())['234']
             self.assertTrue(result['ok'])
+
+
+class BattleEvidenceGate(unittest.TestCase):
+    PLAYED = dict(evolved=True, in_battle=True, frames_advance=True, techniques_played=['0x2e'],
+                  game_state_after=0, finisher_expected=True, finisher_played=True, finisher_damage=40)
+
+    def test_a_played_finisher_that_hit_passes(self):
+        self.assertEqual(proof.battle_failures(self.PLAYED), [])
+
+    def test_an_unplayed_finisher_fails(self):
+        self.assertIn('finisher_played', proof.battle_failures({**self.PLAYED, 'finisher_played': False}))
+
+    def test_a_finisher_without_damage_fails(self):
+        for damage in (0, None):
+            self.assertIn('finisher_damage', proof.battle_failures({**self.PLAYED, 'finisher_damage': damage}))
+
+    def test_a_species_with_no_finisher_is_not_asked_for_one(self):
+        result = {**self.PLAYED, 'finisher_expected': False, 'finisher_played': False, 'finisher_damage': None}
+        self.assertEqual(proof.battle_failures(result), [])
+
+    def test_a_fight_that_never_returned_fails(self):
+        self.assertIn('back_in_world', proof.battle_failures({**self.PLAYED, 'game_state_after': 1}))
+
+
+class LinkerMap(unittest.TestCase):
+    def test_static_symbols_keep_the_address_on_the_next_line(self):
+        with tempfile.TemporaryDirectory() as directory:
+            exe = Path(directory) / 'game'
+            Path(f'{exe}.elf.map').write_text(' .sbss.labCount\n   0x80134cb0  0x4 mod_lab.c.o\n')
+            with patch.object(proof, 'EMU', type('Emu', (), {'exe': str(exe)})):
+                self.assertEqual(proof.static_symbol('labCount'), 0x80134cb0)
 
 
 if __name__ == '__main__':
