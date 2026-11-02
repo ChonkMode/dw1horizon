@@ -136,6 +136,12 @@ def regencase():
         call('sleepRegen()')
         ok(f'sleeping through the night: weight -default/10{" (table wiped)" if wiped else ""}', get('partner.para.weight'), 60 if wiped else 60 - dw // 10)
 regencase()
+def longbarcase():
+    fresh(0, F, wakeupHour=6, sleepyHour=22, hoursAsleepDefault=8, tiredness=0); gs(hour=22, minute=0)
+    gs(**{'partner.stats.hp': 30000, 'partner.stats.mp': 30000, 'partner.stats.currentHP': 20000, 'partner.stats.currentMP': 20000})
+    call('sleepRegen()')
+    ok('a night on a 30000 bar stops at the maximum', (get('partner.stats.currentHP'), get('partner.stats.currentMP')), (30000, 30000))
+longbarcase()
 def refusecase(name, disc, want, wiped_want):
     for wiped, w in ((0, want), (1, wiped_want)):
         fresh(wiped, F, discipline=disc, condition=0); poke(T['TAMER_ITEM'] + 8, '<i', 0); poke(T['ITEM_SCOLD_FLAG'], 'b', 0); call('partnerWillRefuseItem()')
