@@ -84,6 +84,15 @@ def header_row(row):
     return re.match(r'^\{color [67]\}.*?\{color 1\}[.!?]*$', row.strip()) is not None
 
 
+def merged_name_rows(names, pages):
+    """The rows of `pages` (a value as it is shown) that hold one of `names` (a speaker's name rows, `header_row`, as the
+    value wrote them) anywhere but as the whole first row of a page: a name run into the dialogue text, or left as a
+    page's second row. -> [row...]"""
+    names = {n.strip() for n in names if n.strip()}
+    return [r for p in pages for i, r in enumerate(p)
+            if any(n in r for n in names) and (i or r.strip() not in names)]
+
+
 def maphead_page_too_tall(key, page):
     """A line of MAPHEAD's shared tables: the C code passes its owner, usually a shopkeeper's name, so only a page that
     writes its own name row may use the fourth row."""

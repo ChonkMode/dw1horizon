@@ -30,6 +30,14 @@ writing. The discs' text lives in the gitignored `text/<source>/` folders of you
    A page under a speaker's name has 3 rows and a narrator's has 4: the name takes the box's first row, and a fourth row
    would be lost or replace another page's name. The story build refuses such a page; `python3 tools/dws/text/repage.py
    LANGUAGE --named --write` breaks them into pages of 3 rows without changing a word.
+   A narrator's page that names its speaker in its own first row (`{color 7}Punimon {color 1}`) keeps that row when the
+   CLASSIC and ORIGINAL fonts (their own copy of the script, paged for the original letters' widths) wrap its rows
+   again: the rows under it are wrapped three to a page, each page under the name (`textbank.fit`); the text audit
+   reports a name row run into the text.
+   Japanese has no word spaces: a space between two kana or kanji shows as a gap in the middle of a word ("あ るよ").
+   The Japanese bank refuses one (and a space after a Latin word before kana or kanji, before 、。！？ or after 、);
+   `python3 tools/dws/text/jaspace.py --write` removes them. Sentence spacing after 。！？ and the fields of laid-out
+   boxes (cup notices, signs, Shell News) keep theirs (the rule is at the top of `jaspace.py`).
 5. **Build and read it in the game**: `TEXT=ours tools/build-full.sh ours`, play to the scene. A box that overflows or a name that is missing is a build error. To test only your zones,
    `TEXT=ours TEXT_ZONES=toy-town,toy-mansion tools/build-full.sh ours-toys`: the other zones stay US English.
 6. Have a second reader review the zone in the game.

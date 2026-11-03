@@ -14,6 +14,7 @@ page with exactly those rows) or a list of lists (several pages). Order of loadi
   --text FILE                 extra banks
 The ORIGINAL game text never goes into a committed file: the story source holds keys only."""
 import json, os, re
+from .text.profiles import header_row, named_keys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 ORIGINAL_KEY = re.compile(r'^[sm]\d+\.')          # s002.sec6.u0, s002.sec6.m1.o0, m117.u0: keys made by text-extract
@@ -28,6 +29,30 @@ CJK = re.compile('[\u3040-\u30ff\u3400-\u9fff]')      # kana, kanji: a line a tr
 FIT = {'…': '...', '‥': ('…', '..'), '♪': '', '〜': ('~', '-'), '～': ('~', '-'), '~': '-', '–': '-', '—': '-', '―': ('—', '-'),
        '“': '"', '”': '"', '‘': "'", '’': "'", '（': ('(', ''), '）': (')', ''), '％': ('%', ''), '／': ('/', '-'),
        '(': '', ')': '', '/': '-', '*': '', '&': 'y', '%': '', '#': '', '_': ' ', '<': '"', '>': '"', '[': '', ']': ''}
+
+
+WIDE = re.compile('[\u3000-\u30ff\u3400-\u9fff\uff00-\uffef]')   # Japanese letters and full-width punctuation
+
+
+def join_rows(rows):
+    """Rows of a page as one text to wrap again: a space between two rows, none where either side is Japanese (its words
+    are not spaced: a space there would show in the middle of a word, "あ るよ") or the next row starts with a comma
+    ("{player}" / ", my wounds...")."""
+    out = ''
+    for r in rows:
+        r = r.strip()
+        if not r: continue
+        if out and not (WIDE.match(out[-1]) or WIDE.match(r[0]) or r[0] == ','): out += ' '
+        out += r
+    return out
+
+
+_NAMED = []
+
+
+def _named():
+    if not _NAMED: _NAMED.append(frozenset(named_keys(ROOT)))
+    return _NAMED[0]
 
 
 _SINGLE = []
@@ -170,6 +195,11 @@ class TextBank:
                     if absent:
                         self.untranslated.add(k)
                         continue
+                    if src == 'ja':
+                        from .text.jaspace import problems
+                        bad = problems(k, v)
+                        if bad:
+                            raise ValueError(f'{p}: {k}: {bad[0]} (python3 tools/dws/text/jaspace.py --write removes them)')
                 self.data[k] = self.fit(k, v); self.origin[k] = p
                 if not fallback: self.from_source.add(k)
             self.files.append(p)
@@ -200,7 +230,8 @@ class TextBank:
 
     def fit(self, key, v):
         """A value of another source, for the game's font: characters it has no glyph for are replaced (FIT) or dropped (and
-        counted in self.unfit); a page whose rows are too wide becomes a string the compiler wraps."""
+        counted in self.unfit); a value with a row too wide becomes a string the compiler wraps, or, when a page names its
+        speaker in its first row, pages wrapped again under that row (below)."""
         from . import backend as BE
         from dws import bytecode
         ok = set(bytecode.CHAR2SJIS) | BE.FONT['chars'] | {' '}
@@ -225,10 +256,29 @@ class TextBank:
         if isinstance(v, str): return row(v)
         pages = [v] if all(isinstance(x, str) for x in v) else v
         pages = [[row(r) for r in p] for p in pages]
-        if any(not BE.fits(r, packed=BE.packed_key(key)) for p in pages for r in p):
-            self.rewrapped.add(key)        # e.g. text/ours paged for font b (62-byte rows) built for the original font
-            return ' '.join(r for p in pages for r in p if r)                 # wrapped by the compiler
-        return pages
+        packed = BE.packed_key(key)
+        if all(BE.fits(r, packed=packed) for p in pages for r in p):
+            return pages
+        self.rewrapped.add(key)            # e.g. text/ours paged for font b (62-byte rows) built for the original font
+        # A page that starts with a speaker's name row ({color 7}Punimon {color 1}: a nameless box that names its speaker
+        # itself) keeps that row as its own first row. A page whose rows all fit stays as written; the rows of one that
+        # does not are wrapped again under its name, three to a page (header + 3 = the box's 4), so the page breaks the
+        # text chose stay too. Rows are joined with a space, Japanese ones with none (join_rows).
+        # A box with a named speaker (say(jijimon, ...)) has its name row already: a coloured first row there is text
+        # ("{player}" / ", my wounds have healed...").
+        named = key in _named()
+        def head(p):
+            return p[0] if not named and p and header_row(p[0]) and BE.fits(p[0], packed=packed) else None
+        if all(head(p) is None for p in pages):
+            return join_rows(r for p in pages for r in p)                     # wrapped by the compiler
+        out = []
+        for p in pages:
+            if all(BE.fits(r, packed=packed) for r in p):
+                out.append(p); continue
+            h = head(p)
+            body = join_rows(p[1:] if h is not None else p)
+            out += [([h] if h is not None else []) + q for q in BE.wrap(body, 3, packed)] if body else [[h]]
+        return out
 
     def get(self, key):
         """Returns ('wrap', str) | ('pages', [[row...]...]) or None."""

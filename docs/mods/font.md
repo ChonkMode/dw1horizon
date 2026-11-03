@@ -204,7 +204,8 @@ the same bytes as before.
 
 **`FONT=original` with `TEXT=ours`**: `text/ours` is paged for font b (208 entries re-paged by `tools/dws/text/repage.py`
 with 62-byte rows). Built for the original font, a hand-paged entry with a row that does not fit it is wrapped again for
-that font (`textbank.fit`: its words, never cut), and the build says so: `story: note: text source ours: 208 hand-paged
+that font (`textbank.fit`: its words, never cut; a page's own speaker-name row stays its first row, and a page that
+fits stays as written), and the build says so: `story: note: text source ours: 208 hand-paged
 keys have rows too wide for font original and are wrapped again for it (...)`. None of them is a single-box MAPHEAD line
 that would need more pages than the game shows.
 

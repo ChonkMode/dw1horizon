@@ -298,6 +298,59 @@ class BackendUnits(unittest.TestCase):
         finally:
             BE.FONT.clear(); BE.FONT.update(old)
 
+    def test_fit_keeps_a_speakers_name_row(self):
+        """A page that names its speaker in its first row ({color 7}Punimon {color 1}) keeps that row as its own when its
+        rows are wrapped again for the original font (CLASSIC and ORIGINAL read DGORIG.SCN): only the rows under it are
+        wrapped, three to a page, each page under the name; a page that fits stays as written; Japanese rows are joined
+        with no space. s178.sec82.u1 in Spanish showed "{color 7}Punimon {color 1} ¡Soy Punimon! ¿Por" before."""
+        from dws.text import repage
+        from dws.text.profiles import merged_name_rows
+        from dws import backend as BE, textbank
+        old = dict(BE.FONT)
+        try:
+            repage.set_font('original')
+            tb = textbank.TextBank(source='us')
+            name = '{color 7}Punimon {color 1}'
+            value = [[name, '¡Soy Punimon! ¿Por qué no descansas', 'aquí un ratito?'],
+                     [name, 'Una hora de descanso recupera un', 'poco de HP y MP, y quita un poco', 'de Cansancio.'],
+                     [name, 'Corto.']]
+            got = tb.fit('s178.sec82.u1', value)
+            self.assertIn('s178.sec82.u1', tb.rewrapped)
+            self.assertEqual(merged_name_rows([name], got), [])
+            self.assertTrue(all(p[0] == name and 2 <= len(p) <= 4 for p in got))
+            self.assertTrue(all(BE.fits(r) for p in got for r in p))
+            self.assertEqual(got[-1], [name, 'Corto.'])                              # it fitted: as written
+            self.assertEqual(' '.join(r for p in got for r in p[1:]).split(),
+                             ' '.join(r for p in value for r in p[1:]).split())        # the same words, in order
+            self.assertEqual(merged_name_rows([name], [[name + ' ¡Soy Punimon!']]), [name + ' ¡Soy Punimon!'])
+            self.assertEqual(merged_name_rows([name], [['x', name]]), [name])          # a name as a second row
+            wide = '{color 7}Congratulations! For your splendid achievement, a medal!{color 1}'
+            self.assertIsInstance(tb.fit('k2', [[wide, '']]), str)                   # a wide coloured row is text
+            self.assertEqual(textbank.join_rows(['ここで少し休んでいかな', 'い？', 'Bits', 'and more']),
+                             'ここで少し休んでいかない？Bits and more')
+        finally:
+            BE.FONT.clear(); BE.FONT.update(old)
+
+    def test_japanese_stray_spaces(self):
+        """tools/dws/text/jaspace.py: a space inside a Japanese word is stray; sentence spacing, Latin words, signs'
+        directions and the laid-out boxes keep theirs; the committed Japanese dialogue has none left."""
+        from dws.text import jaspace
+        clean = jaspace.clean
+        self.assertEqual(clean('s1.sec1.u1', 'お金もあ るよ。'), 'お金もあるよ。')
+        self.assertEqual(clean('s1.sec1.u1', '{color 6}青リン ゴ{color 1}は、 おいしい 。'), '{color 6}青リンゴ{color 1}は、おいしい。')
+        self.assertEqual(clean('s1.sec1.u1', 'HPとMP が少し、ほぼ2 倍'), 'HPとMPが少し、ほぼ2倍')
+        for kept in ('ぼく、プニモン！ ここで', '5000 Bits！ {color 6}', 'グレード D', 'トレーニング x5', '{partner} は',
+                     '西:迷いの森 東:アイスベルグビーチ', '- かみなりと かぜカップ -', 'English words only'):
+            self.assertEqual(clean('s1.sec1.u1', kept), kept)
+        self.assertEqual(clean('m1240.u0', 'はい いいえ'), 'はい いいえ')                      # a MAPHEAD table's columns
+        self.assertEqual(clean('s000.sec1240.u0', 'はい いいえ'), 'はい いいえ')
+        self.assertEqual(clean('s168.sec10.u0', '8名 参加自由'), '8名 参加自由')                 # a cup notice's fields
+        self.assertEqual(clean('s208.sec82.u1', 'シェルニュース 第7号'), 'シェルニュース 第7号')    # a sized box (Shell News)
+        import json
+        left = [(f, k, why) for f in jaspace.banks() for k, v in json.load(open(f, encoding='utf-8')).items()
+                if not k.startswith('_') for why in jaspace.problems(k, v)]
+        self.assertEqual(left, [])
+
     def test_wide_opcode_only_above_255(self):
         from dws import backend as BE
         self.assertEqual(BE.op16('GIVE_ITEM', 255), 'GIVE_ITEM'); self.assertEqual(BE.op16('GIVE_ITEM', 256), 'GIVE_ITEM16')

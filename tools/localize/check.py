@@ -20,8 +20,9 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 sys.path[:0] = [str(ROOT), str(ROOT / 'tools')]
 from dws import backend as BE
-from dws.text.profiles import NAMED_PAGE_ROWS, maphead_page_too_tall, named_keys
+from dws.text.profiles import NAMED_PAGE_ROWS, header_row, maphead_page_too_tall, merged_name_rows, named_keys
 from dws.textbank import TextBank
+from dws.text.jaspace import problems as ja_space_problems
 from dws.py.lower import escape_problems, font_problems, literal_escapes, resolve_escapes
 from tools.localize.executable.bank import exe_bank, FORMAT, encoded_len, list_width, VERBATIM
 from tools.fontgen import text_width
@@ -203,6 +204,16 @@ def custom_boxes(root=ROOT):
     return result
 
 
+def name_rows(key, value, bank):
+    """The speaker's name rows a value of a nameless box writes as a page's first row (`header_row`), as its font shows
+    them; a coloured row too wide for a row is text, not a name. (In a named speaker's box such a row is text: the
+    caller leaves those keys out.)"""
+    if isinstance(value, str):
+        return []
+    fitted = (bank.fit(key, [[p[0]]]) for p in pages(value) if p and header_row(p[0]))
+    return [f[0][0] for f in fitted if not isinstance(f, str)]
+
+
 def rendered_pages(key, value, bank):
     # The base game's source loader reflows wide explicit rows. Mod banks are
     # loaded verbatim, so do not hide a mod's overflow by running the fitter.
@@ -295,6 +306,9 @@ def audit(languages=LANGUAGES, fonts=FONTS, root=ROOT):
                         if key in english:
                             for why in control_problems(english[key], value, executable):
                                 issue(language, font, path, key, why)
+                        if language == 'ja' and not executable:
+                            for why in ja_space_problems(key, value):
+                                issue(language, font, path, key, why)
                         for row in strings(value):
                             # C printf/control strings are checked by exe_bank.
                             if not executable:
@@ -348,6 +362,8 @@ def audit(languages=LANGUAGES, fonts=FONTS, root=ROOT):
                                 rendered = BE.wrap(value, line_count) if isinstance(value, str) else pages(value)
                         else:
                             rendered = rendered_pages(key, value, bank)
+                            for row in merged_name_rows([] if key in named else name_rows(key, value, bank), rendered):
+                                issue(language, font, path, key, f'a speaker\'s name row is not its own first row: {row}')
                         over = bank.single_page_overflow(key, len(rendered))
                         if over:
                             issue(language, font, path, key, over)
