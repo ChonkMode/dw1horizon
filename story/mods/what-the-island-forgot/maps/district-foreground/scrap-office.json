@@ -1,6 +1,6 @@
 {
   "screen": 361,
-  "review": "Chair, side worktable, stove, right armchair and scrap crates occlude rear approaches. Back counter is solid and blocks the store shelves; keep the customer area and exit open.",
+  "review": "Chair, side worktable, stove, right armchair and scrap crates occlude rear approaches. Back counter is solid and blocks the store shelves; keep the customer area and exit open. One-tile notches stay blocked (43,53 and 43,54 between the desk and the chair, 59,53 between the crates and the wall, the lone 60,60): a player was found standing in 43,53 and a tamer in one cannot step out in any direction.",
   "collision": [
     {
       "tile": [
@@ -211,15 +211,6 @@
     },
     {
       "tile": [
-        43,
-        53
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "floor freed behind foreground prop"
-    },
-    {
-      "tile": [
         56,
         53
       ],
@@ -231,24 +222,6 @@
       "tile": [
         57,
         53
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
-        59,
-        53
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
-        43,
-        54
       ],
       "before": 128,
       "after": 0,
@@ -491,15 +464,6 @@
     {
       "tile": [
         56,
-        60
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
-        60,
         60
       ],
       "before": 128,
