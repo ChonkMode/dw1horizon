@@ -38,24 +38,6 @@
   "collision": [
     {
       "tile": [
-        39,
-        54
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "Visible grass between the fallen tower struts; its foreground beams now cover actors here."
-    },
-    {
-      "tile": [
-        39,
-        55
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "Visible grass between the fallen tower struts; its foreground beams now cover actors here."
-    },
-    {
-      "tile": [
         40,
         55
       ],
@@ -102,15 +84,6 @@
     {
       "tile": [
         42,
-        56
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "Visible grass between the fallen tower struts; its foreground beams now cover actors here."
-    },
-    {
-      "tile": [
-        43,
         56
       ],
       "before": 128,
@@ -164,15 +137,6 @@
     },
     {
       "tile": [
-        40,
-        58
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "Visible grass between the fallen tower struts; its foreground beams now cover actors here."
-    },
-    {
-      "tile": [
         41,
         58
       ],
@@ -197,24 +161,6 @@
       "before": 128,
       "after": 128,
       "reason": "Polish: low tower braces obstruct the standing body; keep the surrounding grass open."
-    },
-    {
-      "tile": [
-        41,
-        59
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "Visible grass between the fallen tower struts; its foreground beams now cover actors here."
-    },
-    {
-      "tile": [
-        42,
-        59
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "Visible grass between the fallen tower struts; its foreground beams now cover actors here."
     },
     {
       "tile": [

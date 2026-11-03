@@ -66,24 +66,6 @@
       "before": 128,
       "after": 0,
       "reason": "Floor behind the memorial, visible at both sides; its upper body is now foreground."
-    },
-    {
-      "tile": [
-        49,
-        43
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "Floor behind the memorial, visible at both sides; its upper body is now foreground."
-    },
-    {
-      "tile": [
-        50,
-        43
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "Floor behind the memorial, visible at both sides; its upper body is now foreground."
     }
   ],
   "depth_planes": {

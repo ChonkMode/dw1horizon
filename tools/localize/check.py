@@ -20,8 +20,10 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 sys.path[:0] = [str(ROOT), str(ROOT / 'tools')]
 from dws import backend as BE
+from dws.text.profiles import NAMED_PAGE_ROWS, header_row, maphead_page_too_tall, merged_name_rows, named_keys
 from dws.textbank import TextBank
-from dws.py.lower import escape_problems, font_problems, resolve_escapes
+from dws.text.jaspace import kinsoku_problems, problems as ja_space_problems
+from dws.py.lower import escape_problems, font_problems, literal_escapes, resolve_escapes
 from tools.localize.executable.bank import exe_bank, FORMAT, encoded_len, list_width, VERBATIM
 from tools.fontgen import text_width
 
@@ -170,6 +172,9 @@ def control_problems(source, value, executable=False):
         return [] if FORMAT.findall(source) == FORMAT.findall(value) else ['executable format codes changed']
     expected, actual = runtime_tokens(source, source), runtime_tokens(value, source)
     problems = [] if expected == actual else [f'runtime references changed: {expected!r} -> {actual!r}']
+    flat = lambda v: v if isinstance(v, str) else ' '.join(flat(x) for x in v)
+    if literal_escapes(flat(source)) != literal_escapes(flat(value)):     # {item 254} hides which item: compare the names
+        problems.append(f'named item or move changed: {literal_escapes(flat(source))!r} -> {literal_escapes(flat(value))!r}')
     expected_colors = [t for t in runtime_tokens(source, source, True) if t.startswith('{color ')]
     actual_colors = [t for t in runtime_tokens(value, source, True) if t.startswith('{color ')]
     if expected_colors != actual_colors:
@@ -197,6 +202,16 @@ def custom_boxes(root=ROOT):
         for cols, rows, key in pattern.findall(path.read_text()):
             result[key] = (int(cols) * 12 + 8, int(rows))
     return result
+
+
+def name_rows(key, value, bank):
+    """The speaker's name rows a value of a nameless box writes as a page's first row (`header_row`), as its font shows
+    them; a coloured row too wide for a row is text, not a name. (In a named speaker's box such a row is text: the
+    caller leaves those keys out.)"""
+    if isinstance(value, str):
+        return []
+    fitted = (bank.fit(key, [[p[0]]]) for p in pages(value) if p and header_row(p[0]))
+    return [f[0][0] for f in fitted if not isinstance(f, str)]
 
 
 def rendered_pages(key, value, bank):
@@ -229,6 +244,9 @@ def expand_references(row, names, species, cards, cache=None):
             return longest(name for ident, name in species.items() if ident in allowed)
         if kind in ('item', 'move'):
             prefix = 'main.' + ('ITEM_NAMES.' if kind == 'item' else 'MOVE_NAMES.')
+            named = literal_escapes(body)           # {item Item.SweetNut}: that one item's name, not the longest
+            if named and prefix + str(named[0][1]) in names:
+                return names[prefix + str(named[0][1])]
             return longest(value for key, value in names.items() if key.startswith(prefix))
         digits = {'money': 6, 'merit': 4, 'pstat': 3, 'shopvar': 5,
                   'cupswon': 3, 'wins': 3, 'losses': 3}
@@ -244,6 +262,7 @@ def expand_references(row, names, species, cards, cache=None):
 def audit(languages=LANGUAGES, fonts=FONTS, root=ROOT):
     errors, notes, widest, counts = [], [], {}, collections.Counter()
     boxes = custom_boxes(root)
+    named = named_keys(root)
     species = {int(p.name.split('-')[0]): json.loads(p.read_text())['name']
                for p in (root / 'content/species').glob('*.json')}
     card_file = root / 'content/tables/cards.json'
@@ -286,6 +305,9 @@ def audit(languages=LANGUAGES, fonts=FONTS, root=ROOT):
                         counts[language + ':' + font] += 1
                         if key in english:
                             for why in control_problems(english[key], value, executable):
+                                issue(language, font, path, key, why)
+                        if language == 'ja' and not executable:
+                            for why in ja_space_problems(key, value):
                                 issue(language, font, path, key, why)
                         for row in strings(value):
                             # C printf/control strings are checked by exe_bank.
@@ -340,6 +362,11 @@ def audit(languages=LANGUAGES, fonts=FONTS, root=ROOT):
                                 rendered = BE.wrap(value, line_count) if isinstance(value, str) else pages(value)
                         else:
                             rendered = rendered_pages(key, value, bank)
+                            for row in merged_name_rows([] if key in named else name_rows(key, value, bank), rendered):
+                                issue(language, font, path, key, f'a speaker\'s name row is not its own first row: {row}')
+                            if language == 'ja':
+                                for why in kinsoku_problems(key, rendered):
+                                    issue(language, font, path, key, why)
                         over = bank.single_page_overflow(key, len(rendered))
                         if over:
                             issue(language, font, path, key, over)
@@ -347,6 +374,9 @@ def audit(languages=LANGUAGES, fonts=FONTS, root=ROOT):
                             max_rows = boxes.get(key, (240, 4))[1]
                             if len(page) > max_rows and not TABLE.match(key):
                                 issue(language, font, path, key, f'{len(page)} rows in a {max_rows}-row page')
+                            if key in named and key not in boxes and len(page) > NAMED_PAGE_ROWS or \
+                                    maphead_page_too_tall(key, page):
+                                issue(language, font, path, key, f'{len(page)} rows under a speaker\'s name, {NAMED_PAGE_ROWS} fit')
                             for i, row in enumerate(page):
                                 packed = BE.packed_key(key)
                                 pixels = BE.text_px(row)

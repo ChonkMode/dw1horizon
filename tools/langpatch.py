@@ -7,11 +7,15 @@ bytes of their strings and language tables. This tool checks that (the same symb
 difference in code) and writes what the game writes into RAM to change language:
 
   langpatch.py exe BASE.elf BASE.EXE OTHER.elf OTHER.EXE -o LANGxx.BIN    the runs of OTHER that differ from BASE
-  langpatch.py overlay BASE.BIN OTHER.BIN                                   checks an overlay pair (size; the bytes may differ)
+  langpatch.py overlay BASE.BIN OTHER.BIN [--elf BASE.elf]                  checks an overlay pair: the same size, and with the
+                                                                            ELF the same code (only its data may differ: the
+                                                                            game reads MENU_REL again over its running code
+                                                                            when the language changes, mod_options.c)
 
 LANGxx.BIN: "DWLP", u32 run count, then per run u32 address, u32 length, the bytes, padded to 4.
 """
 import argparse
+import os
 import struct
 import sys
 
@@ -38,6 +42,37 @@ def elf_symbols(path):
             kind = {2: 'func', 1: 'object'}.get(info & 0xF, 'other')
             syms[n] = (value, size, kind)
     return syms
+
+
+def section_functions(path, name):
+    """-> (the section's address, [(start, end, name)] of the functions an ELF32 little-endian file links into section
+    `name`) (an overlay's functions share their addresses with the other overlays' at the same base), or None without
+    that section"""
+    d = open(path, 'rb').read()
+    shoff, = struct.unpack_from('<I', d, 0x20)
+    shentsize, shnum, shstrndx = struct.unpack_from('<HHH', d, 0x2E)
+    secs = [struct.unpack_from('<IIIIIIIIII', d, shoff + i * shentsize) for i in range(shnum)]
+    names = secs[shstrndx][4]
+    index = next((i for i, s in enumerate(secs) if d[names + s[0]:d.index(b'\0', names + s[0])].decode() == name), None)
+    if index is None:
+        return None
+    out = []
+    for s in secs:
+        if s[1] != 2:                       # SHT_SYMTAB
+            continue
+        strtab = secs[s[6]]
+        for off in range(s[4], s[4] + s[5], 16):
+            n, value, size, info, _, shndx = struct.unpack_from('<IIIBBH', d, off)
+            if shndx == index and info & 0xF == 2:
+                end = d.index(b'\0', strtab[4] + n)
+                out.append((value, value + max(size, 1), d[strtab[4] + n:end].decode('latin-1')))
+    return secs[index][3], out
+
+
+def overlay_code_differs(base, other, functions, address):
+    """-> the functions (of section_functions) whose bytes differ between two images of an overlay at `address`"""
+    return sorted({f'{n} 0x{lo:08X}' for lo, hi, n in functions
+                   if base[lo - address:hi - address] != other[lo - address:hi - address]})
 
 
 def exe_image(path):
@@ -150,6 +185,7 @@ def main():
     e.add_argument('-o', required=True)
     o = sub.add_parser('overlay')
     o.add_argument('base'); o.add_argument('other')
+    o.add_argument('--elf', help="the base build's ELF: the pair's code must not differ")
     m = sub.add_parser('multi')
     m.add_argument('--out', required=True)
     m.add_argument('specs', nargs='+', metavar='LANG:ELF:EXE')
@@ -172,6 +208,12 @@ def main():
         x, y = open(a.base, 'rb').read(), open(a.other, 'rb').read()
         if len(x) != len(y):
             sys.exit(f'{a.other}: {len(y)} bytes, {a.base} {len(x)}: the overlay pair is laid out differently')
+        section = '.' + os.path.basename(a.base).split('_REL')[0]
+        found = section_functions(a.elf, section) if a.elf else None
+        if found:
+            bad = overlay_code_differs(x, y, found[1], found[0])
+            if bad:
+                sys.exit(f'{a.other}: the overlay pair differs in code: ' + ', '.join(bad[:8]))
         print(f'{a.other}: {sum(p != q for p, q in zip(x, y))} bytes differ')
 
 

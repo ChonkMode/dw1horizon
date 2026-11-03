@@ -806,19 +806,6 @@
     },
     {
       "tile": [
-        30,
-        62
-      ],
-      "was": 128,
-      "value": 0,
-      "reason": "floor behind the raised scrap pile and open crate lids; keep their ground footprints in the lower pile solid",
-      "pixel": [
-        69,
-        482
-      ]
-    },
-    {
-      "tile": [
         50,
         62
       ],

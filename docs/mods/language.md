@@ -24,6 +24,11 @@ Prepare the four player discs first; see
 language, with no duplicates. The builder uses a canonical order, independent of
 the order supplied. `LANG_BASE` must be among the selected languages.
 
+The overlays have a copy per language. A language chosen at the title (the first-boot
+picker, OPTIONS or a card's options) also reads the menu overlay again in that language,
+over its own running code (patch 0329), so `tools/langpatch.py overlay --elf` stops the
+build if two languages' copies of an overlay differ in code rather than only in strings.
+
 The builder compiles each language with a common address layout and makes
 `LANGEN.BIN`, `LANGES.BIN`, `LANGPT.BIN`, `LANGFR.BIN`, `LANGDE.BIN`, `LANGIT.BIN`,
 `LANGJA.BIN` and `LANGCA.BIN`. Only selected languages are included. The original

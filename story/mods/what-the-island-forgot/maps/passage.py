@@ -23,9 +23,9 @@ def main(out):
     d = json.load(open(DATA))
     m = base_map('KODA08', *d['camera']); m.projection = d['projection']; m.lights = d['lights']
     m.collision = list(d['collision']); m.warps = d['warps']
-    check_arrivals(m, 'PASS01')
     import_png('KODA08', ART, os.path.join(out, 'PASS01.TFS'))
     apply_foreground(m, 'PASS01', os.path.join(out, 'PASS01.TFS'))
+    check_arrivals(m, 'PASS01')
     open(os.path.join(out, 'PASS01.MAP'), 'wb').write(m.build())
     print(f'PASS01: free tiles {m.collision.count(0)}, exits {[(w["targetMap"], w["targetExit"]) for w in m.warps if w["targetMap"] != -1]}')
 

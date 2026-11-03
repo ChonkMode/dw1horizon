@@ -26,7 +26,9 @@ any two builds equivalent section by section (flowcmp over the whole script from
 import glob, hashlib, json, os, re, shutil, sys, tempfile
 from . import backend as BE, build as B, textx
 from .diag import DwsError
+from .text.profiles import NAMED_PAGE_ROWS, tall_pages
 from dws import bytecode
+from languages import CODES as LANGUAGES
 
 ROOT = B.ROOT
 BASE = os.path.join(ROOT, 'story', 'base')
@@ -689,6 +691,7 @@ def _build(sources, out, exe='original', lang='en', text=(), lock=None, update_l
         rep, run = B.assemble(prog, out, exe, compact=True)
     finally:
         BE.DIS_CACHE, BE.MAPHEAD_SCN = saved
+    check_named_pages(run, text_source)
     if comp.maphead is None:
         comp.maphead = os.path.join(run, 'MAPHEAD.SCN'); shutil.copyfile(mh, comp.maphead)
     if overrides:
@@ -697,6 +700,22 @@ def _build(sources, out, exe='original', lang='en', text=(), lock=None, update_l
     if overrides: report.append('story: overrides: ' + ', '.join(f'{o.mod}:{"maphead" if o.sid == "maphead" else o.sid}/{o.sec}'
                                                                f'{" (patch)" if o.kind == "patch" else ""}' for o in overrides))
     return prog, report + rep, run, comp.maphead
+
+
+def check_named_pages(run, text_source):
+    """Our own text may not have a page taller than a named speaker's box (profiles.NAMED_PAGE_ROWS). A disc's text is
+    what the disc shows: its only such page is a debug line nothing reaches."""
+    if text_source != 'ours' and text_source not in LANGUAGES:
+        return
+    tall = []
+    for path in sorted(glob.glob(os.path.join(run, 'scn', 'script_*.scn.txt'))):
+        sid = int(os.path.basename(path).split('_')[1].split('.')[0])
+        tall += [f'script {sid}: {len(rows)} rows under owner {owner}: "{rows[NAMED_PAGE_ROWS]}"'
+                 for owner, rows in tall_pages(open(path, encoding='utf-8').read())]
+    if tall:
+        raise DwsError(f'text/{text_source}: {len(tall)} pages taller than the box under a speaker\'s name, whose row they would '
+                       f'replace or lose a row to:\n  ' + '\n  '.join(tall[:20]) + (f'\n  ... and {len(tall) - 20} more' if len(tall) > 20 else '') +
+                       f'\nbreak them into pages of 3 rows: python3 tools/dws/text/repage.py {text_source} --named --write', None)
 
 
 # ------------------------------------------------------------------------------------------------ equivalence of two builds

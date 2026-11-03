@@ -298,6 +298,98 @@ class BackendUnits(unittest.TestCase):
         finally:
             BE.FONT.clear(); BE.FONT.update(old)
 
+    def test_fit_keeps_a_speakers_name_row(self):
+        """A page that names its speaker in its first row ({color 7}Punimon {color 1}) keeps that row as its own when its
+        rows are wrapped again for the original font (CLASSIC and ORIGINAL read DGORIG.SCN): only the rows under it are
+        wrapped, three to a page, each page under the name; a page that fits stays as written; Japanese rows are joined
+        with no space. s178.sec82.u1 in Spanish showed "{color 7}Punimon {color 1} ¡Soy Punimon! ¿Por" before."""
+        from dws.text import repage
+        from dws.text.profiles import merged_name_rows
+        from dws import backend as BE, textbank
+        old = dict(BE.FONT)
+        try:
+            repage.set_font('original')
+            tb = textbank.TextBank(source='us')
+            name = '{color 7}Punimon {color 1}'
+            value = [[name, '¡Soy Punimon! ¿Por qué no descansas', 'aquí un ratito?'],
+                     [name, 'Una hora de descanso recupera un', 'poco de HP y MP, y quita un poco', 'de Cansancio.'],
+                     [name, 'Corto.']]
+            got = tb.fit('s178.sec82.u1', value)
+            self.assertIn('s178.sec82.u1', tb.rewrapped)
+            self.assertEqual(merged_name_rows([name], got), [])
+            self.assertTrue(all(p[0] == name and 2 <= len(p) <= 4 for p in got))
+            self.assertTrue(all(BE.fits(r) for p in got for r in p))
+            self.assertEqual(got[-1], [name, 'Corto.'])                              # it fitted: as written
+            self.assertEqual(' '.join(r for p in got for r in p[1:]).split(),
+                             ' '.join(r for p in value for r in p[1:]).split())        # the same words, in order
+            self.assertEqual(merged_name_rows([name], [[name + ' ¡Soy Punimon!']]), [name + ' ¡Soy Punimon!'])
+            self.assertEqual(merged_name_rows([name], [['x', name]]), [name])          # a name as a second row
+            wide = '{color 7}Congratulations! For your splendid achievement, a medal!{color 1}'
+            self.assertIsInstance(tb.fit('k2', [[wide, '']]), str)                   # a wide coloured row is text
+            self.assertEqual(textbank.join_rows(['ここで少し休んでいかな', 'い？', '{color 6}', '×で引こう']),
+                             'ここで少し休んでいかない？{color 6}×で引こう')              # Japanese: never a space
+            self.assertEqual(textbank.join_rows(['{player}', ', my wounds', 'have healed.']), '{player}, my wounds have healed.')
+        finally:
+            BE.FONT.clear(); BE.FONT.update(old)
+
+    def test_japanese_kinsoku(self):
+        """No Japanese row starts with 、。，．！？」』）ー or a small kana: the compiler's wrap carries the last letter down
+        with the mark, the hand-paged rows are mended (jaspace.mend_rows: the mark back up when it fits, else a letter
+        down), and the committed Japanese dialogue has none left (the entry's first row may open with "！！")."""
+        from dws.text import repage, jaspace
+        from dws.text.layout import kinsoku, starts_badly
+        from dws import backend as BE
+        import json
+        old = dict(BE.FONT)
+        try:
+            narrow = lambda r, i: len(r) <= 4
+            self.assertEqual(kinsoku(['あいう', '。えお'], narrow), ['あいう。', 'えお'])          # the mark goes up
+            self.assertEqual(kinsoku(['あいうえ', '。えお'], narrow), ['あいう', 'え。えお'])      # a letter comes down
+            self.assertEqual(kinsoku(['あいうえ', 'っ？」お'], lambda r, i: len(r) <= 6), ['あいう', 'えっ？」お'])
+            self.assertFalse(starts_badly('{color 10}{partner}{color 1}、'))                    # a name starts the row
+            from dws.text.layout import break_rows
+            self.assertEqual(break_rows('あいきせつ...？それ', lambda r, i: len(r) <= 5), ['あいきせ', 'つ...？', 'それ'])  # "..." whole
+            self.assertTrue(starts_badly('{color 6}ー'))
+            for font in ('b', 'original'):
+                repage.set_font(font)
+                text = '1時間休むと、HPとMPが少し回復して、つかれも少し取れるよ。' * 4 + 'この世界の基本を教えるよ！' * 3
+                pages = BE.wrap(text, 3)
+                rows = [r for p in pages for r in p]
+                self.assertFalse(any(starts_badly(r) for r in rows[1:]), (font, rows))
+                self.assertEqual(''.join(rows), text)
+                self.assertTrue(all(BE.fits(r, i == 2) for p in pages for i, r in enumerate(p)))
+            repage.set_font('b')
+            v = [['この森を抜けるとは...見事だ。私はケンタルモン', '。これまでの無礼をおわびする。すまなかった',
+                  '。気まぐれで試したわけではない。これから'], ['は、きみの力になろう。']]
+            got = jaspace.mend_rows('s018.sec68.u1', v)
+            self.assertEqual(jaspace.kinsoku_problems('s018.sec68.u1', got), [])
+            self.assertEqual(''.join(r for p in got for r in p), ''.join(r for p in v for r in p))
+            left = [(f, k, why) for f in jaspace.banks() for k, v in json.load(open(f, encoding='utf-8')).items()
+                    if not k.startswith('_') for why in jaspace.kinsoku_problems(k, v)]
+            self.assertEqual(left, [])
+        finally:
+            BE.FONT.clear(); BE.FONT.update(old)
+
+    def test_japanese_stray_spaces(self):
+        """tools/dws/text/jaspace.py: a space inside a Japanese word is stray; sentence spacing, Latin words, signs'
+        directions and the laid-out boxes keep theirs; the committed Japanese dialogue has none left."""
+        from dws.text import jaspace
+        clean = jaspace.clean
+        self.assertEqual(clean('s1.sec1.u1', 'お金もあ るよ。'), 'お金もあるよ。')
+        self.assertEqual(clean('s1.sec1.u1', '{color 6}青リン ゴ{color 1}は、 おいしい 。'), '{color 6}青リンゴ{color 1}は、おいしい。')
+        self.assertEqual(clean('s1.sec1.u1', 'HPとMP が少し、ほぼ2 倍'), 'HPとMPが少し、ほぼ2倍')
+        for kept in ('ぼく、プニモン！ ここで', '5000 Bits！ {color 6}', 'グレード D', 'トレーニング x5', '{partner} は',
+                     '西:迷いの森 東:アイスベルグビーチ', '- かみなりと かぜカップ -', 'English words only'):
+            self.assertEqual(clean('s1.sec1.u1', kept), kept)
+        self.assertEqual(clean('m1240.u0', 'はい いいえ'), 'はい いいえ')                      # a MAPHEAD table's columns
+        self.assertEqual(clean('s000.sec1240.u0', 'はい いいえ'), 'はい いいえ')
+        self.assertEqual(clean('s168.sec10.u0', '8名 参加自由'), '8名 参加自由')                 # a cup notice's fields
+        self.assertEqual(clean('s208.sec82.u1', 'シェルニュース 第7号'), 'シェルニュース 第7号')    # a sized box (Shell News)
+        import json
+        left = [(f, k, why) for f in jaspace.banks() for k, v in json.load(open(f, encoding='utf-8')).items()
+                if not k.startswith('_') for why in jaspace.problems(k, v)]
+        self.assertEqual(left, [])
+
     def test_wide_opcode_only_above_255(self):
         from dws import backend as BE
         self.assertEqual(BE.op16('GIVE_ITEM', 255), 'GIVE_ITEM'); self.assertEqual(BE.op16('GIVE_ITEM', 256), 'GIVE_ITEM16')
@@ -2586,11 +2678,23 @@ class PythonMods(unittest.TestCase):
         head = self.HOUSE + '@jijimon.on_talk(when=trigger(760))\ndef t():\n'
         root, (p,) = self.mod({'a.py': head + '    narrator.say("Received a {item Item.Digimushrm}.")\n'})
         code = '\n'.join(l for info in B.compile_sources([p]).b.scripts.values() for e in info['events'] for l in e[2])
-        self.assertIn('"Received a {item 44}."', code)
+        self.assertIn('"Received a {item 254}."', code)       # {item N} names what pstat N holds: the statement fills engine.arg
+        self.assertIn('SET_PSTAT p254, 44', code)
         root, (p,) = self.mod({'a.py': head + '    narrator.say("A {itm 44} and a {item Item.Digimushroom}.")\n'})
         e = errors_of_py(p)
         self.assertIn('a.py:5:18: error: unknown escape {itm 44}: did you mean {item ...}?', e)
         self.assertIn('error: no Item.Digimushroom in {item Item.Digimushroom}: did you mean Item.Digimushrm?', e)
+        # a `match choose(...)` option and a module constant name an item too
+        root, (p,) = self.mod({'a.py': 'GIFT = "A {item Item.Meat}"\n' + head + '    match choose(meat="Give {item Item.Medicine}", no="No"):\n'
+                                       '        case "meat":\n            narrator.say(GIFT)\n        case _:\n            pass\n'})
+        code = '\n'.join(l for info in B.compile_sources([p]).b.scripts.values() for e in info['events'] for l in e[2])
+        self.assertIn('SET_PSTAT p254, 14', code); self.assertIn('SET_PSTAT p254, 38', code)
+        # the line reuses the pstat pick_item() fills: reading the pick after it is refused, before it is fine
+        pick = '    pick = pick_item()\n'
+        root, (p,) = self.mod({'a.py': head + pick + '    narrator.say("No {item Item.Meat}.")\n    if pick == Item.Meat:\n        say("m")\n'})
+        self.assertIn('names an item or move, and that overwrites what pick_item() chose', errors_of_py(p))
+        root, (p,) = self.mod({'a.py': head + pick + '    if pick == Item.Meat:\n        narrator.say("A {item Item.Meat}.")\n'})
+        self.assertEqual(errors_of_py(p), '')
 
     def test_sixth_review_named_lines(self):
         """A named line t("name") with its English in the mod's text/en.json, mixed with lines written in

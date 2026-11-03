@@ -1,50 +1,42 @@
 {
  "s174.sec81.u0": [
   [
-   "Bem-vindo. Veja só,",
-   "{color 6}{player}{color 1}. Tornei-me dono",
-   "e chef deste restaurante.",
-   "Vocês dois podem saborear com"
+   "Bem-vindo. Veja só, {color 6}{player}{color 1}.",
+   "Tornei-me dono e chef deste restaurante.",
+   "Vocês dois podem saborear com calma minha"
   ],
   [
-   "calma minha culinária",
-   "flamejante... He he he..."
+   "culinária flamejante... He he he..."
   ]
  ],
  "s174.sec81.u1": "Ha ha ha! {color 6}{player}{color 1}, {color 10}{partner}{color 1}, venham comer minha comida! Nunca pensei que meu talento escondido seria útil. Isso é comida de verdade, não itens! Aproveitem!",
  "s174.sec81.u2": [
   [
-   "Ei, {color 6}{player}{color 1}, {color 10}{partner}{color 1}!",
-   "Decidi ganhar a vida",
-   "cozinhando. Não se enganem com",
-   "minha aparência: sou um ótimo"
+   "Ei, {color 6}{player}{color 1}, {color 10}{partner}{color 1}! Decidi",
+   "ganhar a vida cozinhando. Não se enganem com",
+   "minha aparência: sou um ótimo cozinheiro."
   ],
   [
-   "cozinheiro. Comida de viagem",
-   "enjoa, né? É bom sentar num",
-   "restaurante de vez em quando!"
+   "Comida de viagem enjoa, né? É bom sentar",
+   "num restaurante de vez em quando!"
   ]
  ],
  "s174.sec81.u3": "Olá! {color 6}{player}{color 1}, {color 10}{partner}{color 1}. Meu restaurante está finalmente aberto! Minhas sobremesas congeladas especiais são deliciosas, então você tem que experimentar!",
  "s174.sec81.u4": [
   [
-   "He... {color 6}{player}{color 1}, vou",
-   "trabalhar como chef aqui. Vocês",
-   "dois podem saborear com calma",
+   "He... {color 6}{player}{color 1}, vou trabalhar como chef",
+   "aqui. Vocês dois podem saborear com calma",
    "minha culinária ardente."
   ]
  ],
  "s174.sec81.u5": [
   [
-   "Ha ha! {color 6}{player}{color 1},",
-   "{color 10}{partner}{color 1}. Agora sou",
-   "cozinheiro! Nunca imaginei que",
-   "meu talento escondido seria"
+   "Ha ha! {color 6}{player}{color 1}, {color 10}{partner}{color 1}. Agora",
+   "sou cozinheiro! Nunca imaginei que meu talento",
+   "escondido seria útil. Meus pratos especiais"
   ],
   [
-   "útil. Meus pratos especiais",
-   "estão acima dos outros, então",
-   "venham provar!"
+   "estão acima dos outros, então venham provar!"
   ]
  ],
  "s174.sec81.u6": "Ei, {color 6}{player}{color 1}, {color 10}{partner}{color 1}! Eu decidi viver para cozinhar! Meus pratos especiais estão cheios de nutrição! Veja quando estou trabalhando!",
@@ -65,28 +57,24 @@
  "s175.sec6.u0": "Bzzt-bzzt! Ei, {color 6}{player}{color 1}! Agora, o que é essa máquina? Bzzt! Não é perigoso! Este bebê é uma jukebox que põe meu coração em chamas! Heh-heh-hee! Você tem que se soltar de vez em quando também! Explodir, baby! Estou esperando por um pedido quente! Bzzt!",
  "s175.sec81.u0": [
   [
-   "Bem-vindo. Veja só,",
-   "{color 6}{player}{color 1}. Tornei-me dono",
-   "e chef deste restaurante.",
-   "Vocês dois podem saborear com"
+   "Bem-vindo. Veja só, {color 6}{player}{color 1}.",
+   "Tornei-me dono e chef deste restaurante.",
+   "Vocês dois podem saborear com calma minha"
   ],
   [
-   "calma minha culinária",
-   "flamejante... He he he..."
+   "culinária flamejante... He he he..."
   ]
  ],
  "s175.sec81.u1": "Ha ha ha! {color 6}{player}{color 1}, {color 10}{partner}{color 1}, venham comer minha comida! Nunca pensei que meu talento escondido seria útil. Isso é comida de verdade, não itens! Aproveitem!",
  "s175.sec81.u2": [
   [
-   "Ei, {color 6}{player}{color 1}, {color 10}{partner}{color 1}!",
-   "Decidi ganhar a vida",
-   "cozinhando. Não se enganem com",
-   "minha aparência: sou um ótimo"
+   "Ei, {color 6}{player}{color 1}, {color 10}{partner}{color 1}! Decidi",
+   "ganhar a vida cozinhando. Não se enganem com",
+   "minha aparência: sou um ótimo cozinheiro."
   ],
   [
-   "cozinheiro. Comida de viagem",
-   "enjoa, né? É bom sentar num",
-   "restaurante de vez em quando!"
+   "Comida de viagem enjoa, né? É bom sentar",
+   "num restaurante de vez em quando!"
   ]
  ],
  "s175.sec81.u3": "Olá! {color 6}{player}{color 1}, {color 10}{partner}{color 1}. Meu restaurante está finalmente aberto! Minhas sobremesas congeladas especiais são deliciosas, então você tem que experimentar!",
@@ -94,14 +82,12 @@
  "s175.sec81.u5": "Ha ha! {color 6}{player}{color 1}, {color 10}{partner}{color 1}. Eu sou um cozinheiro agora! Nunca imaginei que meu talento escondido seria útil. Se quiser meus pratos especiais, venha antes do meio-dia!",
  "s175.sec81.u6": [
   [
-   "Ei, {color 6}{player}{color 1} e",
-   "{color 10}{partner}{color 1}! Decidi viver para",
-   "cozinhar! Meus pratos especiais",
-   "só saem tarde da noite ou de"
+   "Ei, {color 6}{player}{color 1} e {color 10}{partner}{color 1}! Decidi",
+   "viver para cozinhar! Meus pratos especiais só",
+   "saem tarde da noite ou de manhã cedo, mas"
   ],
   [
-   "manhã cedo, mas são cheios de",
-   "nutrientes!"
+   "são cheios de nutrientes!"
   ]
  ],
  "s175.sec81.u7": [

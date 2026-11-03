@@ -4,7 +4,80 @@
   "replace_index": 153,
   "screen": 366,
   "review": "Cut only our RGBA retouch; preserve every original foreground instance outside the replaced art.",
-  "collision": [],
+  "collision": [
+    {
+      "tile": [
+        58,
+        30
+      ],
+      "before": 0,
+      "after": 128,
+      "reason": "trap: a tamer here cannot step in any direction, and no walk reaches it"
+    },
+    {
+      "tile": [
+        53,
+        46
+      ],
+      "before": 0,
+      "after": 128,
+      "reason": "trap: a tamer here cannot step in any direction, and no walk reaches it"
+    },
+    {
+      "tile": [
+        43,
+        54
+      ],
+      "before": 0,
+      "after": 128,
+      "reason": "trap: a tamer here cannot step in any direction, and no walk reaches it"
+    },
+    {
+      "tile": [
+        69,
+        54
+      ],
+      "before": 0,
+      "after": 128,
+      "reason": "trap: a tamer here cannot step in any direction, and no walk reaches it"
+    },
+    {
+      "tile": [
+        77,
+        54
+      ],
+      "before": 0,
+      "after": 128,
+      "reason": "trap: a tamer here cannot step in any direction, and no walk reaches it"
+    },
+    {
+      "tile": [
+        59,
+        57
+      ],
+      "before": 0,
+      "after": 128,
+      "reason": "trap: a tamer here cannot step in any direction, and no walk reaches it"
+    },
+    {
+      "tile": [
+        59,
+        58
+      ],
+      "before": 0,
+      "after": 128,
+      "reason": "trap: a tamer here cannot step in any direction, and no walk reaches it"
+    },
+    {
+      "tile": [
+        54,
+        45
+      ],
+      "before": 0,
+      "after": 128,
+      "reason": "trap: a tamer here cannot step in any direction, and no walk reaches it"
+    }
+  ],
   "new_pages": [],
   "pieces": [
     {

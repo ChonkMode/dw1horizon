@@ -31,38 +31,28 @@
  "s162.sec5.u10": "Você venceu o Machinedramon de novo? Incrííível.",
  "s162.sec5.u11": [
   [
-   "Ehehe, vou explicar o que há",
-   "fora da cidade. A Floresta",
-   "Nativa fica ao redor dela. Os",
-   "Digimon de lá não são muito"
+   "Ehehe, vou explicar o que há fora da cidade. A",
+   "Floresta Nativa fica ao redor dela. Os Digimon",
+   "de lá não são muito fortes. Logo a oeste"
   ],
   [
-   "fortes. Logo a oeste fica a",
-   "Ginásio Verde. Acho que você",
-   "vai passar bastante por lá.",
-   "Cruzando o rio a leste, fica a"
+   "fica a Ginásio Verde. Acho que você vai passar",
+   "bastante por lá. Cruzando o rio a leste, fica a",
+   "Selva Tropical. Não sei o que há depois. A"
   ],
   [
-   "Selva Tropical. Não sei o que",
-   "há depois. A oeste, uma",
-   "montanha e um lago bloqueiam o",
-   "caminho, mas pode haver mais"
+   "oeste, uma montanha e um lago bloqueiam o",
+   "caminho, mas pode haver mais terras além",
+   "deles. Bem ao sul fica o mar. Ao norte, uma"
   ],
   [
-   "terras além deles. Bem ao sul",
-   "fica o mar. Ao norte, uma",
-   "montanha bem alta. Não dá para",
-   "seguir por esses lados. É tudo"
+   "montanha bem alta. Não dá para seguir por",
+   "esses lados. É tudo que sei. Mas a cidade é o",
+   "centro da ilha, então acho que há mais"
   ],
   [
-   "que sei. Mas a cidade é o",
-   "centro da ilha, então acho que",
-   "há mais coisas ao norte. Vou",
-   "procurar notícias de fora,"
-  ],
-  [
-   "então venha ouvi-las de vez em",
-   "quando."
+   "coisas ao norte. Vou procurar notícias de fora,",
+   "então venha ouvi-las de vez em quando."
   ]
  ],
  "s162.sec6.u0": "Vim ver como estão as coisas por aqui, sim! Eu não gosto do banheiro, mas o resto é muito bom, sim!",
@@ -124,10 +114,9 @@
  "s162.sec57.u3": "O quê?!",
  "s162.sec57.u4": [
   [
-   "Os rumores sobre vocês me",
-   "trouxeram aqui. Você vai lutar",
-   "comigo! Se eu ganhar... ...a",
-   "placa desta cidade será minha!"
+   "Os rumores sobre vocês me trouxeram aqui.",
+   "Você vai lutar comigo! Se eu ganhar... ...a placa",
+   "desta cidade será minha!"
   ]
  ],
  "s162.sec57.u5": [
@@ -138,10 +127,9 @@
  "s162.sec57.u6": "Tanto faz! Lute comigo!",
  "s162.sec57.u7": [
   [
-   "Heh, vocês me deram trabalho...",
-   "Nada mal. Mas ainda são",
-   "inexperientes demais para",
-   "alcançar seu objetivo!"
+   "Heh, vocês me deram trabalho... Nada mal. Mas",
+   "ainda são inexperientes demais para alcançar",
+   "seu objetivo!"
   ]
  ],
  "s162.sec57.u8": "Hmph...",
@@ -157,14 +145,12 @@
  "s162.sec81.u1": "Ei, você soube? Há uma planta estranha crescendo na Selva Tropical.",
  "s162.sec81.u2": [
   [
-   "Ah, plantei uma {color 6}Planta da",
-   "chuva{color 1} aqui ao lado. Ela dá",
-   "frutos por volta do dia 15 de",
-   "cada ano. Pode pegar. Para"
+   "Ah, plantei uma {color 6}Planta da chuva{color 1} aqui ao lado.",
+   "Ela dá frutos por volta do dia 15 de cada ano.",
+   "Pode pegar. Para que serve? Para fazer"
   ],
   [
-   "que serve? Para fazer chover,",
-   "claro."
+   "chover, claro."
   ]
  ],
  "s162.sec81.u3": "Ahh, isso é ótimo! Fotossíntese, fotossíntese.",
@@ -223,13 +209,12 @@
  ],
  "s163.sec7.u1": [
   [
-   "Hehe, e aí? O que acha da",
-   "minha loja? Não sou bom em",
-   "vender, mas por enquanto não",
-   "há quem faça isso! Traga logo"
+   "Hehe, e aí? O que acha da minha loja? Não sou",
+   "bom em vender, mas por enquanto não há",
+   "quem faça isso! Traga logo muitos Digimon"
   ],
   [
-   "muitos Digimon para cá, tá?"
+   "para cá, tá?"
   ]
  ],
  "s163.sec7.u2": [
@@ -245,19 +230,16 @@
  ],
  "s163.sec8.u0": [
   [
-   "Mmm. Tinha uma grama deliciosa",
-   "crescendo aqui, então comi",
-   "tudo. Agora a cidade está até",
+   "Mmm. Tinha uma grama deliciosa crescendo",
+   "aqui, então comi tudo. Agora a cidade está até",
    "mais arejada."
   ]
  ],
  "s163.sec8.u1": "Agora que penso nisso, no outro dia eu peguei uma coisa chamada {color 6}Cogumelo feliz{color 1}. É raro, aparentemente.",
  "s163.sec8.u2": [
   [
-   "Dizem que também existe um",
-   "{color 6}Cogumelo nobre{color 1}. Quem",
-   "encontrar um desses pode se",
-   "gabar."
+   "Dizem que também existe um {color 6}Cogumelo nobre{color 1}.",
+   "Quem encontrar um desses pode se gabar."
   ]
  ],
  "s163.sec8.u3": [
@@ -341,16 +323,13 @@
  "s163.sec9.u1": "Você viu a ponte leste? Está consertado! Nós trabalhamos duro.",
  "s163.sec9.u2": [
   [
-   "Ainda estamos consertando a",
-   "Ponte Digimon. Espere mais um",
-   "pouco, tá? Ah, ouvi dizer que",
-   "há um Digimon raro ao sul, na"
+   "Ainda estamos consertando a Ponte Digimon.",
+   "Espere mais um pouco, tá? Ah, ouvi dizer que",
+   "há um Digimon raro ao sul, na Ponta Coela."
   ],
   [
-   "Ponta Coela. Dizem que ele põe",
-   "a cabeça para fora por um",
-   "instante todo dia, ao",
-   "entardecer."
+   "Dizem que ele põe a cabeça para fora por um",
+   "instante todo dia, ao entardecer."
   ]
  ],
  "s163.sec9.u3": [
@@ -405,13 +384,12 @@
  "s163.sec81.u0": "Bem, bem, bem, bem-vindos à minha loja! Para você, {color 6}{player}{color 1}, farei uma pechincha. A verdade é que eu não sou um bom vendedor. Mas ninguém mais parece ser bom nisso também... então foi assim que vim a vender itens por um tempo. Fico feliz em tê-lo. E você, {color 6}{player}{color 1}, continue e traga de volta muito Digimon!",
  "s163.sec81.u1": [
   [
-   "Hehe, e aí? O que acha da",
-   "minha loja? Não sou bom em",
-   "vender, mas por enquanto não",
-   "há quem faça isso! Traga logo"
+   "Hehe, e aí? O que acha da minha loja? Não sou",
+   "bom em vender, mas por enquanto não há",
+   "quem faça isso! Traga logo muitos Digimon"
   ],
   [
-   "muitos Digimon para cá, tá?"
+   "para cá, tá?"
   ]
  ],
  "s163.sec81.u2": [
@@ -473,38 +451,28 @@
  "s164.sec8.m1.o2": "Avançar 240 horas",
  "s164.sec9.u0": [
   [
-   "Ehehe, vou explicar o que há",
-   "fora da cidade. A Floresta",
-   "Nativa fica ao redor dela. Os",
-   "Digimon de lá não são muito"
+   "Ehehe, vou explicar o que há fora da cidade. A",
+   "Floresta Nativa fica ao redor dela. Os Digimon",
+   "de lá não são muito fortes. Logo a oeste"
   ],
   [
-   "fortes. Logo a oeste fica a",
-   "Ginásio Verde. Acho que você",
-   "vai passar bastante por lá.",
-   "Cruzando o rio a leste, fica a"
+   "fica a Ginásio Verde. Acho que você vai passar",
+   "bastante por lá. Cruzando o rio a leste, fica a",
+   "Selva Tropical. Não sei o que há depois. A"
   ],
   [
-   "Selva Tropical. Não sei o que",
-   "há depois. A oeste, uma",
-   "montanha e um lago bloqueiam o",
-   "caminho, mas pode haver mais"
+   "oeste, uma montanha e um lago bloqueiam o",
+   "caminho, mas pode haver mais terras além",
+   "deles. Bem ao sul fica o mar. Ao norte, uma"
   ],
   [
-   "terras além deles. Bem ao sul",
-   "fica o mar. Ao norte, uma",
-   "montanha bem alta. Não dá para",
-   "seguir por esses lados. É tudo"
+   "montanha bem alta. Não dá para seguir por",
+   "esses lados. É tudo que sei. Mas a cidade é o",
+   "centro da ilha, então acho que há mais"
   ],
   [
-   "que sei. Mas a cidade é o",
-   "centro da ilha, então acho que",
-   "há mais coisas ao norte. Vou",
-   "procurar notícias de fora,"
-  ],
-  [
-   "então venha ouvi-las de vez em",
-   "quando."
+   "coisas ao norte. Vou procurar notícias de fora,",
+   "então venha ouvi-las de vez em quando."
   ]
  ],
  "s164.sec11.u0": [
@@ -525,10 +493,9 @@
  "s164.sec11.u3": "Não... eh, deixa pra lá. E daí?",
  "s164.sec11.u4": [
   [
-   "Jiji e os outros decidiram,",
-   "{color 6}{player}{color 1}: você ganha três",
-   "pedaços de carne por dia. Aqui",
-   "está a carne de hoje!"
+   "Jiji e os outros decidiram, {color 6}{player}{color 1}:",
+   "você ganha três pedaços de carne por dia.",
+   "Aqui está a carne de hoje!"
   ]
  ],
  "s164.sec11.u5": "Hmm, você tem muita carne. Você pode pular a parte de hoje, certo?",

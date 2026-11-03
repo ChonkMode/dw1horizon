@@ -74,22 +74,80 @@ def row_size(s, font, packed=True):
     return (f'{text_bytes(s)} bytes' if (font['name'] in ('a', 'b')) and packed else f'{text_units(s)} units') + f', {text_px(s, font)} px'
 
 
+# Japanese line breaking (kinsoku): a row never starts with closing punctuation, the long-vowel mark or a small kana;
+# nor with a period (an ellipsis written "..." is never split: "きせつ." / "..？").
+NO_ROW_START = frozenset('、。，．！？」』）ーぁぃぅぇぉっゃゅょゎァィゥェォッャュョヮヵヶ.')
+TOKENS = re.compile(r'\{[^}]*\}|[A-Za-z0-9]+|.')
+
+
+def starts_badly(row):
+    """Whether a row's first letter (after its colour escapes: {color 6}; a name such as {partner} is a start) is one a
+    Japanese row may not start with."""
+    t = re.sub(r'^(\{color [^}]*\})+', '', row.lstrip())
+    return bool(t) and t[0] in NO_ROW_START
+
+
+def kinsoku(rows, fits):
+    """Rows of Japanese text with no row starting with a NO_ROW_START mark: the marks go back onto the row above when
+    it still fits (`fits(row, i)`), else the row above gives its last letter to the row below (when that one fits).
+    A row emptied by it is dropped. Rows that cannot be mended stay as they are (the audit reports them)."""
+    rows = list(rows)
+    i = 1
+    while i < len(rows):
+        if not starts_badly(rows[i]):
+            i += 1; continue
+        toks = TOKENS.findall(rows[i].lstrip())
+        n = 0
+        while n < len(toks) and (toks[n].startswith('{color') or toks[n] in NO_ROW_START):
+            n += 1                                          # the run of marks (and escapes among them): "？」"
+        while n and toks[n - 1].startswith('{color'):
+            n -= 1                                          # an escape after the run starts the row: it stays
+        run, rest = ''.join(toks[:n]), ''.join(toks[n:]).lstrip()
+        if fits(rows[i - 1] + run, i - 1):
+            rows[i - 1] += run; rows[i] = rest
+            if not rest: del rows[i]
+            continue
+        above = TOKENS.findall(rows[i - 1])
+        k = len(above) - 1
+        while k > 0 and (above[k] in NO_ROW_START or above[k].startswith('{color')):
+            k -= 1                                          # carry a letter that may start a row, with what follows it
+        carried = ''.join(above[k:])
+        if k > 0 and fits(carried + rows[i].lstrip(), i):
+            rows[i - 1] = ''.join(above[:k]); rows[i] = carried + rows[i].lstrip()
+        i += 1
+    return rows
+
+
+def break_rows(text, ok):
+    """Japanese text broken into rows letter by letter (escapes and Latin words whole) where they fit (`ok(row, i)`),
+    with kinsoku: a mark that would start a row takes the row's last letter down with it."""
+    toks = TOKENS.findall(text)
+    lines, cur = [], []
+    for t in toks:
+        if cur and not ok(''.join(cur + [t]).rstrip(), len(lines)):
+            take = 0
+            if t in NO_ROW_START:                   # carry letters (and the marks or colours stuck to them) down
+                take = 1
+                while take < len(cur) and (cur[-take] in NO_ROW_START or cur[-take].startswith('{color')):
+                    take += 1
+                if take >= len(cur) or not ok(''.join(cur[-take:] + [t]).strip(), len(lines) + 1):
+                    take = 0
+            if take:
+                lines.append(''.join(cur[:-take]).rstrip()); cur = cur[-take:] + [t]
+            else:
+                lines.append(''.join(cur).rstrip()); cur = [t] if t.strip() else []
+        else:
+            cur.append(t)
+    if cur: lines.append(''.join(cur).rstrip())
+    return [l.lstrip() for l in lines]
+
+
 def wrap(text, lines_per_page, font, packed=True):
     """Split a text into pages of lines that fit in the text box (`packed`: box 0; False for UNPACKED_KEYS)."""
     if re.search('[\u3040-\u30ff\u3400-\u9fff]', text):
         # Japanese has no word spaces. Keep references atomic and break between
         # glyphs; do not insert spaces into the translated prose.
-        tokens = re.findall(r'\{[^}]*\}|[A-Za-z0-9]+|.', text)
-        lines, cur = [], ''
-        for token in tokens:
-            candidate = cur + token
-            if cur and not fits(candidate, font, len(lines) % lines_per_page == lines_per_page - 1, packed):
-                lines.append(cur.rstrip())
-                cur = token.lstrip()
-            else:
-                cur = candidate
-        if cur:
-            lines.append(cur.rstrip())
+        lines = break_rows(text, lambda r, i: fits(r, font, i % lines_per_page == lines_per_page - 1, packed))
         return [lines[i:i + lines_per_page] for i in range(0, len(lines), lines_per_page)] or [['']]
     words = re.findall(r'(?:\{[^}]*\}|\S)+', text); lines = []; cur = ''      # an escape ({color 6}) is never split
     for w in words:

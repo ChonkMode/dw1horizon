@@ -246,7 +246,8 @@ an `IF`'s clauses left to right: `flowcmp` compares one node per clause.)
   **Escapes** put what the game knows into a line: `{player}` and `{partner}` (the names the player gave),
   `{item Item.Digimushrm}` (an item's name as the inventory shows it: `Digimushrm` on the US disc, `Digimushroom` with
   `TEXT=ours`, the translation's in another language: write it so, not by hand), `{move Tech.X}`, `{money}`, and
-  `{color N}`...`{color 1}` (a colour; it takes a unit of the row). An escape the game does not have, or an item that does
+  `{color N}`...`{color 1}` (a colour; it takes a unit of the row). `{item Item.X}` and `{move Tech.X}` are filled in by the
+  statement that shows the line (it stores the id in `engine.arg` first), so one statement names one item or move. An escape the game does not have, or an item that does
   not exist, is an error at the line. No tag comments. A line uses the game's font: letters, digits, spaces and
   `. , ? ! ' " : ; + - =` (the original's 79 glyphs); `--exe mods`, `species` or `story-state` add the accents, `ñ`, `¿` `¡`
   and `( ) & % / … [ ] # * ~ @ – — ♪` (`docs/mods/font.md`; an older executable lacks the

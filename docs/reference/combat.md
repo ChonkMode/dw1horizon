@@ -637,7 +637,9 @@ countdown stops (`battle_setup.c:366`). Details in [items-and-menus.md](items-an
 - `handleBattleEndBox` (`battle_ui.c:280`): `BITS_TO_GAIN` = Σ
   `NPC_ENTITIES[].bits`; `battleStatsGainsAndDrops`; injury; new
   commands/MP texts; `battleMoveLearning`; stats and bits boxes (Cross or
-  Triangle skips the count); `spawnDroppedItems`; `resetStatsAfterCombat`.
+  Triangle skips the count); the reward text, which the original typed only
+  after a press and patch 0327 types on its own; `spawnDroppedItems`;
+  `resetStatsAfterCombat`.
 
 **Stat gains** (`battleStatsGainsAndDrops`, `battle_ui.c:110`), per
 stat (hp, mp, off, def, speed, brains), with `E` = the highest value among the

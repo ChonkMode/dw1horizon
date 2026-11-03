@@ -11,10 +11,9 @@
  "s165.sec5.u1": "O que foi?",
  "s165.sec5.u2": [
   [
-   "Acabei de sentir de novo aquela",
-   "mesma presença maligna do",
-   "Analogman e do Machinedramon.",
-   "Mas ainda não sei de onde"
+   "Acabei de sentir de novo aquela mesma",
+   "presença maligna do Analogman e do",
+   "Machinedramon. Mas ainda não sei de onde"
   ],
   [
    "vem..."
@@ -74,14 +73,12 @@
  "s165.sec85.u0": "Oh? O que é essa máquina?",
  "s165.sec85.u1": [
   [
-   "Hmm, isso? É a {color 4}Máquina de",
-   "Registro de Batalha no Memory",
-   "Card{color 1}. Ela salva os dados do",
-   "seu parceiro atual para"
+   "Hmm, isso? É a {color 4}Máquina de Registro de",
+   "Batalha no Memory Card{color 1}. Ela salva os dados",
+   "do seu parceiro atual para batalhas. Aperte"
   ],
   [
-   "batalhas. Aperte {color 6}×{color 1} ali e a",
-   "máquina dirá o que fazer."
+   "{color 6}×{color 1} ali e a máquina dirá o que fazer."
   ]
  ],
  "s165.sec85.u2": [
@@ -115,10 +112,9 @@
  "s178.sec5.u1": "O que foi?",
  "s178.sec5.u2": [
   [
-   "Acabei de sentir de novo aquela",
-   "mesma presença maligna do",
-   "Analogman e do Machinedramon.",
-   "Mas ainda não sei de onde"
+   "Acabei de sentir de novo aquela mesma",
+   "presença maligna do Analogman e do",
+   "Machinedramon. Mas ainda não sei de onde"
   ],
   [
    "vem..."
@@ -189,44 +185,33 @@
  "s178.sec6.u5": "A cidade está ficando mais animada, e a conversa na cidade está mudando um pouco, também.",
  "s178.sec6.u6": [
   [
-   "Vou ensinar o básico do nosso",
-   "mundo! Um dia tem 24 horas:",
-   "manhã, dia e noite. Pode",
-   "parecer que passa rápido para"
+   "Vou ensinar o básico do nosso mundo! Um dia",
+   "tem 24 horas: manhã, dia e noite. Pode parecer",
+   "que passa rápido para você. Um ano tem 30"
   ],
   [
-   "você. Um ano tem 30 dias.",
-   "Meses? O que é isso?",
-   "Estações...? Isso é de comer?",
-   "Claro que temos dinheiro."
+   "dias. Meses? O que é isso? Estações...? Isso é",
+   "de comer? Claro que temos dinheiro."
   ],
   [
-   "Chama-se Bits. Quanto mais,",
-   "melhor! Nesta ilha, quando",
-   "falamos em cidade, é aqui,",
-   "embora existam alguns povoados"
+   "Chama-se Bits. Quanto mais, melhor! Nesta",
+   "ilha, quando falamos em cidade, é aqui, embora",
+   "existam alguns povoados e vilas. Ah, o"
   ],
   [
-   "e vilas. Ah, o relógio! O ponto",
-   "amarelo marca as horas e o",
-   "ponteiro, os minutos.",
-   "Meia-noite fica em cima e"
+   "relógio! O ponto amarelo marca as horas e o",
+   "ponteiro, os minutos. Meia-noite fica em cima e",
+   "meio-dia, embaixo. O vermelho, à esquerda,"
   ],
   [
-   "meio-dia, embaixo. O vermelho,",
-   "à esquerda, indica o fim da",
-   "tarde: das 16h às 20h. O roxo,",
-   "à direita, indica a manhã: das"
+   "indica o fim da tarde: das 16h às 20h. O roxo,",
+   "à direita, indica a manhã: das 4h às 8h. Os",
+   "Digimon têm seus horários. A maioria acorda"
   ],
   [
-   "4h às 8h. Os Digimon têm seus",
-   "horários. A maioria acorda de",
-   "manhã e dorme à noite, mas nem",
-   "todos. Se não encontrar um"
-  ],
-  [
-   "Digimon, tente voltar em outro",
-   "horário."
+   "de manhã e dorme à noite, mas nem todos. Se",
+   "não encontrar um Digimon, tente voltar em",
+   "outro horário."
   ]
  ],
  "s178.sec7.u0": [
@@ -237,24 +222,20 @@
  ],
  "s178.sec7.u1": [
   [
-   "Vou falar do Nível de",
-   "Treinador! Quanto maior ele",
-   "for, mais atributos um Digimon",
-   "passa adiante quando morre de"
+   "Vou falar do Nível de Treinador! Quanto maior",
+   "ele for, mais atributos um Digimon passa",
+   "adiante quando morre de velhice. No começo,"
   ],
   [
-   "velhice. No começo, sobe pouco,",
-   "mas continue criando Digimon e",
-   "ele vai aumentar aos poucos,",
-   "tá?"
+   "sobe pouco, mas continue criando Digimon e ele",
+   "vai aumentar aos poucos, tá?"
   ]
  ],
  "s178.sec7.u2": [
   [
-   "Quando usa um golpe final, você",
-   "aperta L1 e R1 repetidamente?",
-   "Com a barra cheia, ele causa o",
-   "dobro do dano de quando está"
+   "Quando usa um golpe final, você aperta L1 e",
+   "R1 repetidamente? Com a barra cheia, ele",
+   "causa o dobro do dano de quando está"
   ],
   [
    "vazia. O dobro!"
@@ -262,30 +243,23 @@
  ],
  "s178.sec7.u3": [
   [
-   "Vou explicar como vivem os",
-   "Digimon! Primeiro, claro, eles",
-   "comem. Quando têm fome, avisam.",
-   "Depois fazem cocô. O melhor é"
+   "Vou explicar como vivem os Digimon! Primeiro,",
+   "claro, eles comem. Quando têm fome, avisam.",
+   "Depois fazem cocô. O melhor é usar um"
   ],
   [
-   "usar um banheiro sempre que",
-   "possível. Quando têm sono,",
-   "dormem. Esperam a ordem de",
-   "{color 6}{player}{color 1}, mas é melhor não"
+   "banheiro sempre que possível. Quando têm",
+   "sono, dormem. Esperam a ordem de",
+   "{color 6}{player}{color 1}, mas é melhor não demorar."
   ],
   [
-   "demorar. Eles também se",
-   "cansam, ficam doentes e",
-   "mal-humorados. São bem",
-   "delicados, tá? Os Digimon têm"
+   "Eles também se cansam, ficam doentes e",
+   "mal-humorados. São bem delicados, tá? Os",
+   "Digimon têm um lado selvagem, então às"
   ],
   [
-   "um lado selvagem, então às",
-   "vezes é preciso elogiar, às",
-   "vezes repreender. Acima de",
-   "tudo, observe seu Digimon com"
-  ],
-  [
+   "vezes é preciso elogiar, às vezes repreender.",
+   "Acima de tudo, observe seu Digimon com",
    "atenção e cuide bem dele."
   ]
  ],
@@ -315,14 +289,12 @@
  "s178.sec85.u0": "O que é essa máquina?",
  "s178.sec85.u1": [
   [
-   "Hmm, isso? É a {color 4}Máquina de",
-   "Registro de Batalha no Memory",
-   "Card{color 1}. Ela salva os dados do",
-   "seu parceiro atual para"
+   "Hmm, isso? É a {color 4}Máquina de Registro de",
+   "Batalha no Memory Card{color 1}. Ela salva os dados",
+   "do seu parceiro atual para batalhas. Aperte"
   ],
   [
-   "batalhas. Aperte {color 6}×{color 1} ali e a",
-   "máquina dirá o que fazer."
+   "{color 6}×{color 1} ali e a máquina dirá o que fazer."
   ]
  ],
  "s178.sec85.u2": [

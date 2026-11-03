@@ -43,9 +43,8 @@
  ],
  "s194.sec53.u3": [
   [
-   "Uf... Pensar que vaig deixar",
-   "que aquell em manipulés com un",
-   "titella... Estic perdent",
+   "Uf... Pensar que vaig deixar que aquell em",
+   "manipulés com un titella... Estic perdent",
    "facultats!"
   ]
  ],
@@ -58,21 +57,15 @@
  ],
  "s194.sec53.u5": [
   [
-   "Per acabar amb això... Així",
-   "l'illa tornarà a estar bé. Per",
-   "tots els Digimon, per l'Illa",
-   "File, lluitaré."
+   "Per acabar amb això... Així l'illa tornarà a estar",
+   "bé. Per tots els Digimon, per l'Illa File, lluitaré."
   ]
  ],
  "s194.sec53.u6": [
   [
-   "Hmpf. La veritat, no",
-   "m'agradaria ser el titella de",
-   "ningú. Esperaré a veure què",
-   "passa... sense esperar gran"
-  ],
-  [
-   "cosa."
+   "Hmpf. La veritat, no m'agradaria ser el titella",
+   "de ningú. Esperaré a veure què passa... sense",
+   "esperar gran cosa."
   ],
   [
    "Je, je, je..."
@@ -2243,21 +2236,16 @@
  ],
  "s205.sec6.u2": [
   [
-   "Vaja, sembla que el teu company",
-   "no està bé. Has de cuidar la",
-   "seva salut, saps? El curaré de",
-   "seguida. Per a tu, només 300"
-  ],
-  [
-   "Bits."
+   "Vaja, sembla que el teu company no està bé.",
+   "Has de cuidar la seva salut, saps? El curaré",
+   "de seguida. Per a tu, només 300 Bits."
   ]
  ],
  "s205.sec6.u3": [
   [
-   "No tens prou Bits? Bé, paga",
-   "el que puguis de moment. I",
-   "estalvia per quan els",
-   "necessitis de debò!"
+   "No tens prou Bits? Bé, paga el que puguis de",
+   "moment. I estalvia per quan els necessitis de",
+   "debò!"
   ]
  ],
  "s205.sec6.u4": [
@@ -2281,17 +2269,15 @@
  ],
  "s205.sec6.u7": [
   [
-   "Ai, ai, això no pot ser.",
-   "{color 10}{partner}{color 1} està gairebé al",
-   "límit de l'esgotament. Si no",
-   "fas alguna cosa, corre perill!"
+   "Ai, ai, això no pot ser. {color 10}{partner}{color 1} està",
+   "gairebé al límit de l'esgotament. Si no fas",
+   "alguna cosa, corre perill!"
   ]
  ],
  "s205.sec6.u8": [
   [
-   "Vaja... {color 10}{partner}{color 1} ha",
-   "acumulat molt de cansament.",
-   "Que descansi abans que sigui",
+   "Vaja... {color 10}{partner}{color 1} ha acumulat molt de",
+   "cansament. Que descansi abans que sigui",
    "massa tard."
   ]
  ],
@@ -2494,9 +2480,8 @@
  ],
  "s206.sec6.u4": [
   [
-   "La primera vegada, res. Però",
-   "la pròxima vegada que em",
-   "reptis, em dónes un peix per",
+   "La primera vegada, res. Però la pròxima",
+   "vegada que em reptis, em dónes un peix per",
    "endavant."
   ]
  ],
@@ -2520,13 +2505,9 @@
  ],
  "s206.sec6.u8": [
   [
-   "Ei, company! Aquí també he",
-   "muntat una pista. Com abans,",
-   "un peix per partida. Si em",
-   "guanyes, et dono un premi"
-  ],
-  [
-   "fantàstic."
+   "Ei, company! Aquí també he muntat una pista.",
+   "Com abans, un peix per partida. Si em",
+   "guanyes, et dono un premi fantàstic."
   ]
  ],
  "s206.sec6.u9": [
@@ -2574,14 +2555,13 @@
  "s206.sec7.m0.o1": "No, gràcies",
  "s206.sec7.u0": [
   [
-   "Hola, {color 6}{player}{color 1}. Penguinmon",
-   "m'ha demanat que li cuidi la",
-   "pista. Sent, per què no em",
-   "reptes aquesta vegada? Si em"
+   "Hola, {color 6}{player}{color 1}. Penguinmon m'ha",
+   "demanat que li cuidi la pista. Sent, per què no",
+   "em reptes aquesta vegada? Si em guanyes,"
   ],
   [
-   "guanyes, t'emportes un premi",
-   "molt especial. Què em dius?"
+   "t'emportes un premi molt especial. Què em",
+   "dius?"
   ]
  ],
  "s206.sec7.u1": [
@@ -2766,10 +2746,9 @@
  ],
  "s207.sec11.u4": [
   [
-   "Jiji i els altres ho hem",
-   "decidit, {color 6}{player}{color 1}: tres",
-   "trossos de Carn al dia per a",
-   "tu. Té, la Carn d'avui!"
+   "Jiji i els altres ho hem decidit, {color 6}{player}{color 1}:",
+   "tres trossos de Carn al dia per a tu. Té, la",
+   "Carn d'avui!"
   ]
  ],
  "s207.sec11.u5": [
@@ -2895,16 +2874,13 @@
  ],
  "s207.sec11.u25": [
   [
-   "Ah, {color 6}{player}{color 1}! He doblat la",
-   "granja de Carn. Ara et puc",
-   "donar tres trossos de Carn",
-   "gegant al dia. Si en vols més,"
+   "Ah, {color 6}{player}{color 1}! He doblat la granja de",
+   "Carn. Ara et puc donar tres trossos de Carn",
+   "gegant al dia. Si en vols més, els venc a 500"
   ],
   [
-   "els venc a 500 Bits cadascun.",
-   "Ara cuido la granja en lloc de",
-   "Tanemon, que descansa per",
-   "aquí."
+   "Bits cadascun. Ara cuido la granja en lloc de",
+   "Tanemon, que descansa per aquí."
   ]
  ],
  "s207.sec11.u26": [
@@ -3021,15 +2997,12 @@
  ],
  "s207.sec11.u45": [
   [
-   "Ke, je, je! La carn de primera",
-   "creix a la babalà! {color 6}{player}{color 1}",
-   "s'emporta tres"
+   "Ke, je, je! La carn de primera creix a la babalà!",
+   "{color 6}{player}{color 1} s'emporta tres"
   ],
   [
-   "Relloms al dia, gratis. Ke, je,",
-   "i també conreo verdures",
-   "estranyes! Compra el que",
-   "vulguis!"
+   "Relloms al dia, gratis. Ke, je, i també conreo",
+   "verdures estranyes! Compra el que vulguis!"
   ]
  ],
  "s207.sec11.u46": [
@@ -3624,10 +3597,8 @@
  ],
  "s210.sec51.u8": [
   [
-   "Bé, compto amb tu! Però no et",
-   "precipitis. No facis cap",
-   "bogeria fins que estiguis",
-   "preparat."
+   "Bé, compto amb tu! Però no et precipitis. No",
+   "facis cap bogeria fins que estiguis preparat."
   ]
  ],
  "s210.sec51.u9": [
@@ -3715,10 +3686,9 @@
  ],
  "s211.sec8.u2": [
   [
-   "La meva tasca és anotar el que",
-   "Jijimon recorda dia a dia, els",
-   "rumors i el que jo mateix sé, i",
-   "explicar-t'ho tot a tu."
+   "La meva tasca és anotar el que Jijimon",
+   "recorda dia a dia, els rumors i el que jo mateix",
+   "sé, i explicar-t'ho tot a tu."
   ]
  ],
  "s211.sec8.u3": [
@@ -3756,10 +3726,9 @@
  ],
  "s211.sec8.u8": [
   [
-   "Els Digimon planta haurien",
-   "d'estar en el bosc. El que està",
-   "a prop és el més fàcil de",
-   "passar per alt."
+   "Els Digimon planta haurien d'estar en el bosc.",
+   "El que està a prop és el més fàcil de passar",
+   "per alt."
   ]
  ],
  "s211.sec8.u9": [
@@ -3771,13 +3740,12 @@
  ],
  "s211.sec8.u10": [
   [
-   "Diuen que en el més profund de",
-   "la Selva tropical hi ha un bosc",
-   "estrany, com un laberint. El",
-   "seu guardià és un Digimon de"
+   "Diuen que en el més profund de la Selva",
+   "tropical hi ha un bosc estrany, com un laberint.",
+   "El seu guardià és un Digimon de gran"
   ],
   [
-   "gran destresa."
+   "destresa."
   ]
  ],
  "s211.sec8.u11": [
@@ -3804,9 +3772,8 @@
  ],
  "s211.sec8.u14": [
   [
-   "Diuen que el parterre de la",
-   "ciutat amaga un secret. És",
-   "clar, sobre plantes, val més",
+   "Diuen que el parterre de la ciutat amaga un",
+   "secret. És clar, sobre plantes, val més",
    "preguntar a una planta."
   ]
  ],
@@ -3819,10 +3786,9 @@
  ],
  "s211.sec8.u16": [
   [
-   "Diuen que dins de la Muntanya",
-   "Panorama corre lava. Sembla",
-   "que a alguns Digimon els",
-   "agraden aquests llocs."
+   "Diuen que dins de la Muntanya Panorama corre",
+   "lava. Sembla que a alguns Digimon els agraden",
+   "aquests llocs."
   ]
  ],
  "s211.sec8.u17": [
@@ -3837,10 +3803,9 @@
  ],
  "s211.sec8.u18": [
   [
-   "En Terra gelada hi ha, encara",
-   "que no ho sembli, molts Digimon",
-   "disposats a venir a la ciutat.",
-   "Cerca sobretot en l'oest."
+   "En Terra gelada hi ha, encara que no ho",
+   "sembli, molts Digimon disposats a venir a la",
+   "ciutat. Cerca sobretot en l'oest."
   ]
  ],
  "s211.sec8.u19": [
@@ -3855,24 +3820,16 @@
  ],
  "s211.sec8.u20": [
   [
-   "El Gran Canyó és un embull de",
-   "camins. Els forasters que es",
-   "fiquen no troben la sortida...",
-   "Els Digimon no són una"
-  ],
-  [
-   "excepció."
+   "El Gran Canyó és un embull de camins. Els",
+   "forasters que es fiquen no troben la sortida...",
+   "Els Digimon no són una excepció."
   ]
  ],
  "s211.sec8.u21": [
   [
-   "En la Sabana dels engranatges",
-   "res frena l'electricitat, així",
-   "que sembla que allí viu un",
-   "Digimon que lluita amb"
-  ],
-  [
-   "electricitat."
+   "En la Sabana dels engranatges res frena",
+   "l'electricitat, així que sembla que allí viu un",
+   "Digimon que lluita amb electricitat."
   ]
  ],
  "s211.sec8.u22": [
@@ -3891,21 +3848,16 @@
  ],
  "s211.sec8.u24": [
   [
-   "Diuen que hi ha un Digimon amb",
-   "unes ales capaces de creuar la",
-   "Muntanya Panorama d'un salt.",
-   "Potser el trobes a la"
-  ],
-  [
-   "muntanya."
+   "Diuen que hi ha un Digimon amb unes ales",
+   "capaces de creuar la Muntanya Panorama d'un",
+   "salt. Potser el trobes a la muntanya."
   ]
  ],
  "s211.sec8.u25": [
   [
-   "La Sabana dels engranatges va",
-   "bé als Digimon que no volen",
-   "alt. És extensa, però per què",
-   "no la recorres?"
+   "La Sabana dels engranatges va bé als Digimon",
+   "que no volen alt. És extensa, però per què no",
+   "la recorres?"
   ]
  ],
  "s211.sec8.u26": [
@@ -3935,18 +3887,16 @@
  ],
  "s211.sec8.u29": [
   [
-   "L'Bosc boirós és un bon lloc",
-   "per amagar-se. Guiar els",
-   "Digimon que s'hi amaguen també",
-   "és tasca teva."
+   "L'Bosc boirós és un bon lloc per amagar-se.",
+   "Guiar els Digimon que s'hi amaguen també és",
+   "tasca teva."
   ]
  ],
  "s211.sec8.u30": [
   [
-   "A mesura que la ciutat creixi,",
-   "els rumors sobre tu",
-   "s'estendran. Quan passi,",
-   "recorre l'illa un altre cop."
+   "A mesura que la ciutat creixi, els rumors",
+   "sobre tu s'estendran. Quan passi, recorre l'illa",
+   "un altre cop."
   ]
  ],
  "s211.sec8.u31": [
@@ -3961,43 +3911,33 @@
  ],
  "s211.sec8.u32": [
   [
-   "Si trobes un Digimon que",
-   "col·lecciona coses, ajudeu-vos",
-   "mútuament. Prova d'anar a",
-   "Terra gelada."
+   "Si trobes un Digimon que col·lecciona coses,",
+   "ajudeu-vos mútuament. Prova d'anar a Terra",
+   "gelada."
   ]
  ],
  "s211.sec8.u33": [
   [
-   "Diuen que al cim de la Muntanya",
-   "Panorama apareix un Digimon",
-   "raríssim que et repta. Si hi",
-   "vas cent vegades, potser el"
-  ],
-  [
-   "veus tres cops."
+   "Diuen que al cim de la Muntanya Panorama",
+   "apareix un Digimon raríssim que et repta. Si hi",
+   "vas cent vegades, potser el veus tres cops."
   ]
  ],
  "s211.sec8.u34": [
   [
-   "Els Digimon també viuen en",
-   "llocs humits, com els",
-   "claveguerams. Si resols els",
-   "seus problemes, potser vindran"
-  ],
-  [
-   "a la ciutat..."
+   "Els Digimon també viuen en llocs humits, com",
+   "els claveguerams. Si resols els seus",
+   "problemes, potser vindran a la ciutat..."
   ]
  ],
  "s211.sec8.u35": [
   [
-   "Diuen que a l'altre costat del",
-   "Llac Dragon Eye hi ha una",
-   "terra de Digimon insecte. Com",
-   "travessar el llac... Per què no"
+   "Diuen que a l'altre costat del Llac Dragon Eye",
+   "hi ha una terra de Digimon insecte. Com",
+   "travessar el llac... Per què no ho penses"
   ],
   [
-   "ho penses mentre pesques?"
+   "mentre pesques?"
   ]
  ],
  "s211.sec8.u36": [
@@ -4009,14 +3949,12 @@
  ],
  "s211.sec8.u37": [
   [
-   "No temes tant al perill com per",
-   "a perdre de vista la teva meta.",
-   "Tingues el valor de trepitjar",
-   "encara que sigui una vegada un"
+   "No temes tant al perill com per a perdre de",
+   "vista la teva meta. Tingues el valor de",
+   "trepitjar encara que sigui una vegada un"
   ],
   [
-   "penya-segat perillós, només per",
-   "a veure."
+   "penya-segat perillós, només per a veure."
   ]
  ],
  "s211.sec8.u38": [
@@ -4031,10 +3969,9 @@
  ],
  "s211.sec8.u39": [
   [
-   "Un vilà s'ha instal·lat en un",
-   "lloc concorregut, per on va i",
-   "ve molta gent. Sembla que es",
-   "va mudar fa poc... Serà que...?"
+   "Un vilà s'ha instal·lat en un lloc concorregut,",
+   "per on va i ve molta gent. Sembla que es va",
+   "mudar fa poc... Serà que...?"
   ]
  ],
  "s211.sec8.u40": [
@@ -4046,47 +3983,36 @@
  ],
  "s211.sec8.u41": [
   [
-   "Diuen que a la jungla apareix",
-   "un Digimon raríssim que et",
-   "repta. Si hi vas cent vegades,",
+   "Diuen que a la jungla apareix un Digimon",
+   "raríssim que et repta. Si hi vas cent vegades,",
    "potser el veus tres cops."
   ]
  ],
  "s211.sec8.u42": [
   [
-   "Fins i tot els micos cauen dels",
-   "arbres... Hi ha Digimon que hi",
-   "viuen, però segur que no",
+   "Fins i tot els micos cauen dels arbres... Hi ha",
+   "Digimon que hi viuen, però segur que no",
    "rellisquen mai?"
   ]
  ],
  "s211.sec8.u43": [
   [
-   "Diuen que al poble de ferro de",
-   "l'oest apareix un Digimon",
-   "raríssim que et repta. Si hi",
-   "vas cent vegades, potser el"
-  ],
-  [
-   "veus tres cops."
+   "Diuen que al poble de ferro de l'oest apareix",
+   "un Digimon raríssim que et repta. Si hi vas",
+   "cent vegades, potser el veus tres cops."
   ]
  ],
  "s211.sec8.u44": [
   [
-   "Hi ha rumors d'un Digimon",
-   "alienígena. Sembla que apareix",
-   "de tant en tant, així que pot",
-   "ser que un dia el vegis de"
-  ],
-  [
-   "debò."
+   "Hi ha rumors d'un Digimon alienígena. Sembla",
+   "que apareix de tant en tant, així que pot ser",
+   "que un dia el vegis de debò."
   ]
  ],
  "s211.sec8.u45": [
   [
-   "Diuen que apareix un Digimon",
-   "estrany on no hi hauria d'haver",
-   "ningú... En una casa que ha",
+   "Diuen que apareix un Digimon estrany on no hi",
+   "hauria d'haver ningú... En una casa que ha",
    "perdut l'amo, potser..."
   ]
  ],
@@ -4109,10 +4035,8 @@
  ],
  "s211.sec8.u48": [
   [
-   "Encara hauria d'haver-hi",
-   "Digimon que ningú coneix...",
-   "però abans tens alguna cosa a",
-   "fer!"
+   "Encara hauria d'haver-hi Digimon que ningú",
+   "coneix... però abans tens alguna cosa a fer!"
   ]
  ],
  "s211.sec8.u49": [
@@ -4128,14 +4052,12 @@
  "s212.sec71.m1.o1": "D'acord",
  "s212.sec71.u0": [
   [
-   "Sembla que {color 10}{partner}{color 1} ha",
-   "arribat al final de la vida...",
-   "Però abans de morir ha deixat",
-   "el Digiou que volies. Així"
+   "Sembla que {color 10}{partner}{color 1} ha arribat al final",
+   "de la vida... Però abans de morir ha deixat el",
+   "Digiou que volies. Així reneix i transmet les"
   ],
   [
-   "reneix i transmet les seves",
-   "habilitats. Bé, quin ou volies?"
+   "seves habilitats. Bé, quin ou volies?"
   ]
  ],
  "s212.sec71.u1": [
@@ -4151,48 +4073,41 @@
  ],
  "s212.sec72.u0": [
   [
-   "Au, refés-te! Desmaiar-se per",
-   "una malaltia... Encara li",
-   "quedava vida, i {color 10}{partner}{color 1} se",
-   "n'ha sortit. A partir d'ara has"
+   "Au, refés-te! Desmaiar-se per una malaltia...",
+   "Encara li quedava vida, i {color 10}{partner}{color 1} se",
+   "n'ha sortit. A partir d'ara has de tenir més"
   ],
   [
-   "de tenir més cura."
+   "cura."
   ]
  ],
  "s212.sec72.u1": [
   [
-   "Vaja, què ha passat? Has",
-   "perdut un combat i has tornat",
-   "aquí? Encara li quedava vida, i",
-   "{color 10}{partner}{color 1} se n'ha sortit,"
+   "Vaja, què ha passat? Has perdut un combat i",
+   "has tornat aquí? Encara li quedava vida, i",
+   "{color 10}{partner}{color 1} se n'ha sortit, però... Potser"
   ],
   [
-   "però... Potser t'han pres els",
-   "objectes. És la llei d'aquest",
-   "món: qui perd un combat pot",
-   "perdre també les seves coses."
+   "t'han pres els objectes. És la llei d'aquest",
+   "món: qui perd un combat pot perdre també les",
+   "seves coses."
   ],
   [
-   "Diuen que els objectes robats",
-   "es venen en algun lloc. No els",
-   "donis per perduts."
+   "Diuen que els objectes robats es venen en",
+   "algun lloc. No els donis per perduts."
   ]
  ],
  "s212.sec73.m0.o0": "Canviar el nom",
  "s212.sec73.m0.o1": "Deixar-ho com està",
  "s212.sec73.u0": [
   [
-   "Ai, quina desgràcia...",
-   "{color 10}{partner}{color 1} ha perdut fins a",
-   "l'últim alè de vida? Ha fet",
-   "servir les últimes forces per"
+   "Ai, quina desgràcia... {color 10}{partner}{color 1} ha perdut",
+   "fins a l'últim alè de vida? Ha fet servir les",
+   "últimes forces per deixar un Digiou, però..."
   ],
   [
-   "deixar un Digiou, però...",
-   "Estava tan malament que no ha",
-   "pogut transmetre cap habilitat",
-   "a l'ou..."
+   "Estava tan malament que no ha pogut",
+   "transmetre cap habilitat a l'ou..."
   ]
  ],
  "s212.sec73.u1": [
@@ -4541,33 +4456,28 @@
  ],
  "s213.sec81.u8": [
   [
-   "Una vegada inscrit, baixa per",
-   "les escales de l'esquerra a",
-   "l'hora d'inici. Així s'entra en",
-   "un torneig. La inscripció és"
+   "Una vegada inscrit, baixa per les escales de",
+   "l'esquerra a l'hora d'inici. Així s'entra en un",
+   "torneig. La inscripció és gratis. Només pots"
   ],
   [
-   "gratis. Només pots inscriure't",
-   "en el torneig d'avui o en el de",
-   "demà. Però per al d'avui, has",
-   "d'inscriure't abans de les 10."
+   "inscriure't en el torneig d'avui o en el de demà.",
+   "Però per al d'avui, has d'inscriure't abans de",
+   "les 10."
   ],
   [
-   "Pots veure el calendari amb",
-   "cinc dies d'antelació, així que",
-   "planeja'l una mica abans. Els",
-   "tornejos en vermell són en els"
+   "Pots veure el calendari amb cinc dies",
+   "d'antelació, així que planeja'l una mica abans.",
+   "Els tornejos en vermell són en els quals no"
   ],
   [
-   "quals no pots participar, però",
-   "pots consultar-los amb el botó",
-   "START. I encara que posi",
-   "«Entrada: lliure», els Digimon"
+   "pots participar, però pots consultar-los amb el",
+   "botó START. I encara que posi «Entrada:",
+   "lliure», els Digimon Infantil no poden"
   ],
   [
-   "Infantil no poden participar.",
-   "Bueno, això és el que cal",
-   "saber. I bé? T'inscrius?"
+   "participar. Bueno, això és el que cal saber. I",
+   "bé? T'inscrius?"
   ]
  ],
  "s214.sec51.u0": [
@@ -5092,16 +5002,14 @@
  ],
  "s215.sec6.u0": [
   [
-   "{color 6}{player}{color 1}, les ferides ja",
-   "s'han curat, i jo també em",
-   "posaré a treballar. Gràcies a",
-   "tots dos per tot. Puc veure la"
+   "{color 6}{player}{color 1}, les ferides ja s'han curat, i jo",
+   "també em posaré a treballar. Gràcies a tots",
+   "dos per tot. Puc veure la força de la sort"
   ],
   [
-   "força de la sort de qualsevol,",
-   "i en vull fer un negoci. Si mai",
-   "tens curiositat, passa per la",
-   "botiga. No et cobraré res."
+   "de qualsevol, i en vull fer un negoci. Si mai",
+   "tens curiositat, passa per la botiga. No et",
+   "cobraré res."
   ]
  ],
  "s215.sec6.u1": [
@@ -5359,24 +5267,16 @@
  ],
  "s216.sec51.u1": [
   [
-   "Vaja, sembla que el teu company",
-   "no està bé. Has de cuidar la",
-   "seva salut, saps? El curaré de",
-   "seguida. Per a tu, només 300"
-  ],
-  [
-   "Bits."
+   "Vaja, sembla que el teu company no està bé.",
+   "Has de cuidar la seva salut, saps? El curaré",
+   "de seguida. Per a tu, només 300 Bits."
   ]
  ],
  "s216.sec51.u2": [
   [
-   "Com, et falten Bits? Bueno,",
-   "està bé, paga el que puguis ara",
-   "com ara. I deixa de malgastar",
-   "els diners, perquè tinguis quan"
-  ],
-  [
-   "faci falta."
+   "Com, et falten Bits? Bueno, està bé, paga el",
+   "que puguis ara com ara. I deixa de malgastar",
+   "els diners, perquè tinguis quan faci falta."
   ]
  ],
  "s216.sec51.u3": [
@@ -5404,10 +5304,9 @@
  ],
  "s216.sec51.u6": [
   [
-   "Mmm, a veure... {color 10}{partner}{color 1} ha",
-   "acumulat molt de cansament.",
-   "Que descansi abans que sigui",
-   "massa tard."
+   "Mmm, a veure... {color 10}{partner}{color 1} ha acumulat",
+   "molt de cansament. Que descansi abans que",
+   "sigui massa tard."
   ]
  ],
  "s216.sec51.u7": [
@@ -5459,40 +5358,32 @@
  ],
  "s216.sec52.u3": [
   [
-   "Per cert... si el cansament no",
-   "marxa, afluixa amb",
-   "l'entrenament. Deixa que mengi",
-   "i descansi."
+   "Per cert... si el cansament no marxa, afluixa",
+   "amb l'entrenament. Deixa que mengi i descansi."
   ]
  ],
  "s216.sec52.u4": [
   [
-   "Per cert... no et quedis molt",
-   "temps en llocs molt freds o",
-   "molt calorosos. Per a alguns",
-   "Digimon, així comencen les"
-  ],
-  [
-   "malalties."
+   "Per cert... no et quedis molt temps en llocs",
+   "molt freds o molt calorosos. Per a alguns",
+   "Digimon, així comencen les malalties."
   ]
  ],
  "s216.sec52.u5": [
   [
-   "Per cert... no et fiïs massa de",
-   "les Tiretes. Van bé per a les",
-   "ferides, però a penes serveixen",
+   "Per cert... no et fiïs massa de les Tiretes. Van",
+   "bé per a les ferides, però a penes serveixen",
    "contra les malalties."
   ]
  ],
  "s216.sec52.u6": [
   [
-   "Per cert... la Medicina cura",
-   "les malalties, però no fa res",
-   "contra el Cansament que les",
-   "provoca. Al cap i a la fi,"
+   "Per cert... la Medicina cura les malalties, però",
+   "no fa res contra el Cansament que les",
+   "provoca. Al cap i a la fi, només és una"
   ],
   [
-   "només és una medicina."
+   "medicina."
   ]
  ],
  "s216.sec52.u7": [
@@ -6752,10 +6643,8 @@
  ],
  "s221.sec5.u37": [
   [
-   "MetalMamemon ha vingut a",
-   "preguntar per una feina on",
-   "pugui lluitar contra",
-   "{color 6}{player}{color 1}."
+   "MetalMamemon ha vingut a preguntar per una",
+   "feina on pugui lluitar contra {color 6}{player}{color 1}."
   ],
   [
    "Bé, bé, aquest odia perdre."

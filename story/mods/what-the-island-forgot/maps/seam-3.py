@@ -22,9 +22,9 @@ def main(out):
     d = json.load(open(DATA))
     m = base_map('MAYO04B', *d['camera']); m.projection = d['projection']
     m.collision = list(d['collision']); m.warps = d['warps']
-    check_arrivals(m, 'SEAM04')
     import_png('MAYO04B', ART, os.path.join(out, 'SEAM04.TFS'))
     apply_foreground(m, 'seam-3', os.path.join(out, 'SEAM04.TFS'))
+    check_arrivals(m, 'SEAM04')
     open(os.path.join(out, 'SEAM04.MAP'), 'wb').write(m.build())
     print(f'SEAM04: free tiles {m.collision.count(0)}, exits {[(w["targetMap"], w["targetExit"]) for w in m.warps if w["targetMap"] != -1]}')
 

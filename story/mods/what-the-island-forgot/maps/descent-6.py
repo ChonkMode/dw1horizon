@@ -23,10 +23,10 @@ def main(out):
     d = json.load(open(DATA))
     m = base_map('DGHA01', *d['camera']); m.projection = d['projection']
     m.collision = list(d['collision']); m.warps = d['warps']
-    check_arrivals(m, 'OVPS06')
     tfs = os.path.join(out, 'OVPS06.TFS')
     import_png('DGHA01', ART, tfs)
     apply_foreground(m, 'descent-6', tfs)
+    check_arrivals(m, 'OVPS06')
     open(os.path.join(out, 'OVPS06.MAP'), 'wb').write(m.build())
     print(f'OVPS06: free tiles {m.collision.count(0)}, exits {[(w["targetMap"], w["targetExit"]) for w in m.warps if w["targetMap"] != -1]}')
 

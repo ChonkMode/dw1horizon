@@ -2,6 +2,7 @@
 """Re-page the hand-paged dialogue of a text source for a font placed to the pixel (docs/mods/font.md "Fonts").
 
   python3 tools/dws/text/repage.py [ours] [--font b] [--write] [--show N]
+  python3 tools/dws/text/repage.py LANGUAGE --named [--font b] [--write] [--show N]
 
 A value given as pages of rows (text/<source>/dialogue/*.json) keeps its rows as written; they were broken for the
 original font (31 units a row), so with font b (62 bytes and 240 px a row) most rows are short. An entry is re-paged
@@ -11,14 +12,18 @@ the original font) and no row is a list item, a speaker line, a heading or empty
     pause; a full page that stops mid-sentence is joined to the next (the break was forced);
   - each page's text is wrapped again with the font (the last row of a page 228 px, clear of the "next" button), as
     many rows a page as the entry had; a page that needs more becomes several.
+With --named only the entries a named speaker says with a page of more than 3 rows are re-paged, to 3 rows a page: the
+name takes the box's first row (profiles.NAMED_PAGE_ROWS), and the compiler refuses a taller page.
 Words and punctuation are never changed. Without --write it prints how many entries change and --show N examples.
 """
 import argparse, glob, json, os, re, sys
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 sys.path.insert(0, os.path.join(ROOT, 'tools'))
 from dws import backend as BE      # noqa: E402
+from dws.text.profiles import NAMED_PAGE_ROWS, named_keys      # noqa: E402
 
-END = re.compile(r'[.!?…~]["\'’”)]*$|[.!?…]+ *\)?$')
+END = re.compile(r'[.!?…~]["\'’”)]*$|[.!?…]+ *\)?$|[。！？]$')
+NO_SPACES = re.compile('[\u3040-\u30ff\u3400-\u9fff]')    # Japanese: rows are joined with no space (layout.wrap)
 
 
 def set_font(name):
@@ -48,18 +53,19 @@ def is_prose(pages):
     return True
 
 
-def repage(pages, font):
+def repage(pages, font, rows=None):
+    """`rows`: the rows of a new page, when they are fewer than the entry had."""
     per = max(len(p) for p in pages)
     groups, cur = [], []
     for i, p in enumerate(pages):
         cur += p
         last = i == len(pages) - 1
         if last or END.search(p[-1].rstrip()) or len(p) < per:
-            groups.append(' '.join(cur)); cur = []
+            groups.append(('' if NO_SPACES.search(' '.join(cur)) else ' ').join(cur)); cur = []
     set_font(font)
     out = []
     for text in groups:
-        for page in BE.wrap(text, per):
+        for page in BE.wrap(text, rows or per):
             out.append(page)
     return out
 
@@ -78,8 +84,10 @@ def main(argv):
     ap.add_argument('--font', default='b', choices=('a', 'b'))
     ap.add_argument('--write', action='store_true')
     ap.add_argument('--show', type=int, default=0)
+    ap.add_argument('--named', action='store_true', help='pages taller than a named speaker\'s box, to 3 rows')
     a = ap.parse_args(argv)
     changed = shown = total = 0
+    named = named_keys(ROOT) if a.named else ()
     for f in sorted(glob.glob(os.path.join(ROOT, 'text', a.source, 'dialogue', '*.json'))):
         raw = open(f, encoding='utf-8').read()
         d = json.loads(raw)
@@ -93,8 +101,11 @@ def main(argv):
             pages = [v] if all(isinstance(x, str) for x in v) else v
             if not all(isinstance(p, list) and p and all(isinstance(r, str) for r in p) for p in pages): continue
             total += 1
-            if not is_prose(pages) or not BE.packed_key(k): continue    # boxes 1-3 keep 31 units a row
-            new = repage(pages, a.font)
+            if a.named:
+                if k not in named or max(map(len, pages)) <= NAMED_PAGE_ROWS: continue
+                new = repage(pages, a.font, NAMED_PAGE_ROWS)
+            elif not is_prose(pages) or not BE.packed_key(k): continue    # boxes 1-3 keep 31 units a row
+            else: new = repage(pages, a.font)
             if new == pages: continue
             changed += 1
             if shown < a.show:

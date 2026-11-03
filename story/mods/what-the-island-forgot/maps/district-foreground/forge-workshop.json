@@ -49,15 +49,6 @@
     },
     {
       "tile": [
-        41,
-        45
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
         42,
         45
       ],
@@ -85,24 +76,6 @@
     },
     {
       "tile": [
-        40,
-        46
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
-        41,
-        46
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
         57,
         46
       ],
@@ -122,15 +95,6 @@
     {
       "tile": [
         39,
-        47
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
-        40,
         47
       ],
       "before": 128,
@@ -303,15 +267,6 @@
       "tile": [
         40,
         50
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
-        38,
-        51
       ],
       "before": 128,
       "after": 0,
@@ -334,33 +289,6 @@
       "before": 0,
       "after": 128,
       "reason": "anvil-stump ground footprint"
-    },
-    {
-      "tile": [
-        60,
-        51
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
-        61,
-        51
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
-        38,
-        52
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
     },
     {
       "tile": [
@@ -391,26 +319,8 @@
     },
     {
       "tile": [
-        38,
-        55
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
         58,
         55
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
-        38,
-        56
       ],
       "before": 128,
       "after": 0,
@@ -481,15 +391,6 @@
     },
     {
       "tile": [
-        62,
-        57
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
         38,
         58
       ],
@@ -518,15 +419,6 @@
     {
       "tile": [
         58,
-        58
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
-        62,
         58
       ],
       "before": 128,
@@ -572,33 +464,6 @@
     {
       "tile": [
         59,
-        59
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
-        60,
-        59
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
-        61,
-        59
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
-        62,
         59
       ],
       "before": 128,
@@ -725,15 +590,6 @@
     {
       "tile": [
         60,
-        62
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
-        61,
         62
       ],
       "before": 128,

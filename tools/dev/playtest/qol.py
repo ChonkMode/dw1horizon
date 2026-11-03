@@ -206,7 +206,7 @@ def navigation(e, out, step):
     return results
 
 
-LIFETIME = 'PARTNER_PARA+74'  # game_state.py PARTNER_PARA_FIELDS
+LIFETIME = 'PARTNER_PARA+72'  # game_state.py PARTNER_PARA_FIELDS
 
 
 def old_age(e, out):

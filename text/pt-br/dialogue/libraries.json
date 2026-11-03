@@ -17,10 +17,9 @@
  "s194.sec53.u4": "Mas... ele é forte. Acha que pode vencê-lo? Por que ir tão longe?",
  "s194.sec53.u5": [
   [
-   "Vou resolver isso... Assim, a",
-   "ilha deve voltar ao normal. Por",
-   "todos os Digimon, pela Ilha",
-   "File, vou lutar."
+   "Vou resolver isso... Assim, a ilha deve voltar",
+   "ao normal. Por todos os Digimon, pela Ilha File,",
+   "vou lutar."
   ]
  ],
  "s194.sec53.u6": [
@@ -1981,10 +1980,9 @@
  "s207.sec11.u3": "Não... eh, deixa pra lá. E daí?",
  "s207.sec11.u4": [
   [
-   "Jiji e os outros decidiram,",
-   "{color 6}{player}{color 1}: você ganha três",
-   "pedaços de carne por dia. Aqui",
-   "está a carne de hoje!"
+   "Jiji e os outros decidiram, {color 6}{player}{color 1}:",
+   "você ganha três pedaços de carne por dia.",
+   "Aqui está a carne de hoje!"
   ]
  ],
  "s207.sec11.u5": "Hmm, você tem muita carne. Você pode pular a parte de hoje, certo?",
@@ -2046,16 +2044,14 @@
  ],
  "s207.sec11.u25": [
   [
-   "{color 6}{player}{color 1}! Dobrei o tamanho",
-   "da Fazenda de Carne. Agora",
-   "posso dar três Carnes gigantes",
-   "por dia. Se quiser mais, vendo"
+   "{color 6}{player}{color 1}! Dobrei o tamanho da Fazenda",
+   "de Carne. Agora posso dar três Carnes",
+   "gigantes por dia. Se quiser mais, vendo por"
   ],
   [
-   "por 500 Bits cada. Estou",
-   "cuidando da fazenda no lugar de",
-   "Tanemon, que está descansando",
-   "por aí."
+   "500 Bits cada. Estou cuidando da fazenda no",
+   "lugar de Tanemon, que está descansando por",
+   "aí."
   ]
  ],
  "s207.sec11.u26": "Tivemos uma grande colheita hoje!",
@@ -2102,14 +2098,13 @@
  "s207.sec11.u44": "Keh heh heh! {color 6}{player}{color 1}, olha, olha!",
  "s207.sec11.u45": [
   [
-   "Keh heh heh! A carne de",
-   "primeira está crescendo sem",
-   "parar! {color 6}{player}{color 1} ganha três",
-   "Filés por dia, de graça. Também"
+   "Keh heh heh! A carne de primeira está",
+   "crescendo sem parar! {color 6}{player}{color 1} ganha",
+   "três Filés por dia, de graça. Também comecei"
   ],
   [
-   "comecei a plantar vegetais",
-   "raros! Compre o quanto quiser!"
+   "a plantar vegetais raros! Compre o quanto",
+   "quiser!"
   ]
  ],
  "s207.sec11.u46": [
@@ -2603,10 +2598,9 @@
  ],
  "s210.sec51.u10": [
   [
-   "Pelo que sei, o inimigo final",
-   "espera no Monte Infinito.",
-   "Prepare-se bem antes de ir!",
-   "Mudando de assunto..."
+   "Pelo que sei, o inimigo final espera no Monte",
+   "Infinito. Prepare-se bem antes de ir! Mudando",
+   "de assunto..."
   ]
  ],
  "s210.sec77.u0": "A Prosperidade da cidade é {pstat 1} agora.",
@@ -2678,9 +2672,8 @@
  "s211.sec8.u15": "As profundezas da antiga região de Dino são perigosas, mas vale a pena investigar.",
  "s211.sec8.u16": [
   [
-   "Dizem que há lava dentro do",
-   "Monte Panorama. Parece que",
-   "alguns Digimon gostam desses",
+   "Dizem que há lava dentro do Monte Panorama.",
+   "Parece que alguns Digimon gostam desses",
    "lugares."
   ]
  ],
@@ -2697,9 +2690,8 @@
  "s211.sec8.u19": "Alguns dizem que um pássaro Digimon vive no topo do Grande Cânion... e outros dizem que não...",
  "s211.sec8.u20": [
   [
-   "O Grande Cânion tem caminhos",
-   "emaranhados. Forasteiros se",
-   "perdem por lá... Digimon",
+   "O Grande Cânion tem caminhos emaranhados.",
+   "Forasteiros se perdem por lá... Digimon",
    "também."
   ]
  ],
@@ -2714,18 +2706,16 @@
  "s211.sec8.u23": "Dizem que uma loja fica em Grande Cânion, dirigida por um Digimon muito inesperado.",
  "s211.sec8.u24": [
   [
-   "Dizem que um Digimon tem asas",
-   "capazes de cruzar o Monte",
-   "Panorama de uma vez. Talvez",
+   "Dizem que um Digimon tem asas capazes de",
+   "cruzar o Monte Panorama de uma vez. Talvez",
    "você o encontre na montanha."
   ]
  ],
  "s211.sec8.u25": [
   [
-   "A Savana das Engrenagens é",
-   "boa para Digimon que não voam",
-   "alto. É bem grande, mas por",
-   "que não procurar lá?"
+   "A Savana das Engrenagens é boa para Digimon",
+   "que não voam alto. É bem grande, mas por que",
+   "não procurar lá?"
   ]
  ],
  "s211.sec8.u26": "Pode ser que algum Digimon ouça os rumores sobre você e venha te desafiar.",
@@ -2741,18 +2731,16 @@
  ],
  "s211.sec8.u29": [
   [
-   "Bosque Nebuloso é um bom lugar",
-   "para se esconder. Guiar o",
-   "Digimon escondido lá é o seu",
+   "Bosque Nebuloso é um bom lugar para se",
+   "esconder. Guiar o Digimon escondido lá é o seu",
    "trabalho também."
   ]
  ],
  "s211.sec8.u30": [
   [
-   "Conforme a cidade cresce, sua",
-   "fama se espalha. Quando isso",
-   "acontecer, percorra a ilha de",
-   "novo."
+   "Conforme a cidade cresce, sua fama se",
+   "espalha. Quando isso acontecer, percorra a",
+   "ilha de novo."
   ]
  ],
  "s211.sec8.u31": [
@@ -2767,38 +2755,30 @@
  ],
  "s211.sec8.u32": [
   [
-   "Se encontrar um Digimon que",
-   "coleciona coisas, ajudem um ao",
-   "outro. Tente ir à Terra do",
-   "Gelo."
+   "Se encontrar um Digimon que coleciona coisas,",
+   "ajudem um ao outro. Tente ir à Terra do Gelo."
   ]
  ],
  "s211.sec8.u33": [
   [
-   "Dizem que um Digimon raríssimo",
-   "aparece no alto do Monte",
-   "Panorama e desafia você. Em",
-   "cem visitas, talvez o encontre"
-  ],
-  [
-   "três vezes."
+   "Dizem que um Digimon raríssimo aparece no",
+   "alto do Monte Panorama e desafia você. Em",
+   "cem visitas, talvez o encontre três vezes."
   ]
  ],
  "s211.sec8.u34": [
   [
-   "Há Digimon em lugares úmidos,",
-   "como esgotos. Resolva seus",
-   "problemas e talvez venham para",
+   "Há Digimon em lugares úmidos, como esgotos.",
+   "Resolva seus problemas e talvez venham para",
    "a cidade..."
   ]
  ],
  "s211.sec8.u35": "Além do lago Dragon Eye, dizem, há uma terra de insetos Digimon. Como atravessar o lago... por que não pensar enquanto pesca?",
  "s211.sec8.u36": [
   [
-   "Dizem que Digimon máquinas se",
-   "consertam sozinhos. Quando",
-   "você percebe, já estão novos",
-   "em folha."
+   "Dizem que Digimon máquinas se consertam",
+   "sozinhos. Quando você percebe, já estão",
+   "novos em folha."
   ]
  ],
  "s211.sec8.u37": "Não tema tanto o perigo que perde de vista seu objetivo. Encontrar coragem para pisar até mesmo em um perigoso penhasco uma vez, só para ver.",
@@ -2807,9 +2787,8 @@
  "s211.sec8.u40": "Dizem que há um santuário enterrado em algum lugar... mas alguém teria que desenterrá-lo.",
  "s211.sec8.u41": [
   [
-   "Dizem que um Digimon raríssimo",
-   "aparece na selva e desafia",
-   "você. Em cem visitas, talvez o",
+   "Dizem que um Digimon raríssimo aparece na",
+   "selva e desafia você. Em cem visitas, talvez o",
    "encontre três vezes."
   ]
  ],
@@ -2824,13 +2803,9 @@
  ],
  "s211.sec8.u43": [
   [
-   "Dizem que um Digimon raríssimo",
-   "aparece na cidade de ferro a",
-   "oeste e desafia você. Em cem",
-   "visitas, talvez o encontre três"
-  ],
-  [
-   "vezes."
+   "Dizem que um Digimon raríssimo aparece na",
+   "cidade de ferro a oeste e desafia você. Em",
+   "cem visitas, talvez o encontre três vezes."
   ]
  ],
  "s211.sec8.u44": "Há rumores de um Digimon alienígena. Parece aparecer de vez em quando, então um dia você pode realmente conhecê-lo.",
@@ -2861,28 +2836,25 @@
  "s212.sec71.m1.o1": "OK",
  "s212.sec71.u0": [
   [
-   "Parece que {color 10}{partner}{color 1}",
-   "chegou ao fim da vida... Mas,",
-   "antes de partir, deixou o",
-   "Digiovo que você desejava."
+   "Parece que {color 10}{partner}{color 1} chegou ao fim da",
+   "vida... Mas, antes de partir, deixou o Digiovo",
+   "que você desejava."
   ],
   [
-   "Assim, renasce e transmite",
-   "suas habilidades. Qual ovo você",
-   "queria?"
+   "Assim, renasce e transmite suas habilidades.",
+   "Qual ovo você queria?"
   ]
  ],
  "s212.sec71.u1": "Pode dar um novo nome ao {color 10}{partner}{color 1}. O que vai ser?",
  "s212.sec71.u2": "Então, {color 10}{partner}{color 1} é?",
  "s212.sec72.u0": [
   [
-   "Vamos, se recomponha! Acabar",
-   "desmaiando por doença... Ainda",
-   "restava vida, então",
-   "{color 10}{partner}{color 1} sobreviveu. Cuide"
+   "Vamos, se recomponha! Acabar desmaiando por",
+   "doença... Ainda restava vida, então",
+   "{color 10}{partner}{color 1} sobreviveu. Cuide melhor"
   ],
   [
-   "melhor dele de agora em diante."
+   "dele de agora em diante."
   ]
  ],
  "s212.sec72.u1": [
@@ -2910,15 +2882,13 @@
  "s212.sec73.m0.o1": "Manter como está",
  "s212.sec73.u0": [
   [
-   "Que tristeza... {color 10}{partner}{color 1}",
-   "perdeu até o último restinho de",
-   "vida? Usou suas últimas forças",
-   "para deixar um Digiovo, mas..."
+   "Que tristeza... {color 10}{partner}{color 1} perdeu até o",
+   "último restinho de vida? Usou suas últimas",
+   "forças para deixar um Digiovo, mas..."
   ],
   [
-   "Estava tão mal que não",
-   "conseguiu transmitir nenhuma",
-   "habilidade ao ovo..."
+   "Estava tão mal que não conseguiu transmitir",
+   "nenhuma habilidade ao ovo..."
   ]
  ],
  "s212.sec73.u1": [
@@ -3210,48 +3180,38 @@
  ],
  "s213.sec81.u5": [
   [
-   "Você está inscrito no torneio",
-   "de hoje: \"- {cup 3} -\".",
-   "Pode entrar a partir das 10h.",
-   "Não vai cancelar, vai?"
+   "Você está inscrito no torneio de hoje: \"-",
+   "{cup 3} -\". Pode entrar a partir das",
+   "10h. Não vai cancelar, vai?"
   ]
  ],
  "s213.sec81.u6": [
   [
-   "Você está inscrito no torneio",
-   "de hoje: \"- {cup 3} -\".",
-   "Entre até as 23h. Não vai",
+   "Você está inscrito no torneio de hoje: \"-",
+   "{cup 3} -\". Entre até as 23h. Não vai",
    "cancelar, vai?"
   ]
  ],
  "s213.sec81.u7": "Tudo bem, vou cancelar.",
  "s213.sec81.u8": [
   [
-   "Após se inscrever, desça a",
-   "escada à esquerda na hora de",
-   "início para participar do",
-   "torneio. A inscrição é grátis."
+   "Após se inscrever, desça a escada à esquerda",
+   "na hora de início para participar do torneio. A",
+   "inscrição é grátis."
   ],
   [
-   "Só dá para se inscrever no",
-   "torneio de hoje ou no de",
-   "amanhã. Para o de hoje,",
-   "inscreva-se antes das 10h. A"
+   "Só dá para se inscrever no torneio de hoje ou",
+   "no de amanhã. Para o de hoje, inscreva-se",
+   "antes das 10h. A programação mostra os"
   ],
   [
-   "programação mostra os próximos",
-   "cinco dias. Planeje-se! Os",
-   "torneios em vermelho não",
-   "aceitam seu Digimon, mas você"
+   "próximos cinco dias. Planeje-se! Os torneios",
+   "em vermelho não aceitam seu Digimon, mas",
+   "você pode consultá-los com START. Mesmo"
   ],
   [
-   "pode consultá-los com START.",
-   "Mesmo com entrada livre,",
-   "Digimon Em Treinamento não",
-   "podem participar. É isso. Quer"
-  ],
-  [
-   "se inscrever?"
+   "com entrada livre, Digimon Em Treinamento não",
+   "podem participar. É isso. Quer se inscrever?"
   ]
  ],
  "s214.sec51.u0": "Que pena. Volte e tente novamente!",
@@ -3722,10 +3682,9 @@
  ],
  "s216.sec51.u6": [
   [
-   "Vamos ver... {color 10}{partner}{color 1}",
-   "acumulou muito cansaço. Precisa",
-   "descansar antes que seja tarde",
-   "demais."
+   "Vamos ver... {color 10}{partner}{color 1} acumulou muito",
+   "cansaço. Precisa descansar antes que seja",
+   "tarde demais."
   ]
  ],
  "s216.sec51.u7": "O {color 10}{partner}{color 1} parece um pouco cansado. Não exagere.",
@@ -3760,33 +3719,29 @@
  "s216.sec52.u3": "A propósito... Se Cansaço não vai embora, relaxe o treinamento. Deixe-o comer e descansar.",
  "s216.sec52.u4": [
   [
-   "A propósito... não fique muito",
-   "tempo em lugares frios ou",
-   "quentes demais. Alguns Digimon",
-   "ficam doentes assim."
+   "A propósito... não fique muito tempo em",
+   "lugares frios ou quentes demais. Alguns",
+   "Digimon ficam doentes assim."
   ]
  ],
  "s216.sec52.u5": [
   [
-   "A propósito... não dependa",
-   "tanto de Bandagens. Elas",
-   "tratam ferimentos, mas quase",
-   "não ajudam contra doenças."
+   "A propósito... não dependa tanto de",
+   "Bandagens. Elas tratam ferimentos, mas",
+   "quase não ajudam contra doenças."
   ]
  ],
  "s216.sec52.u6": [
   [
-   "A propósito... Remédio cura",
-   "doenças, mas não tira o",
-   "cansaço que as causa. Afinal, é",
-   "só um remédio."
+   "A propósito... Remédio cura doenças, mas não",
+   "tira o cansaço que as causa. Afinal, é só um",
+   "remédio."
   ]
  ],
  "s216.sec52.u7": [
   [
-   "A propósito... se terminar uma",
-   "batalha com pouco HP, seu",
-   "Digimon se machuca mais",
+   "A propósito... se terminar uma batalha com",
+   "pouco HP, seu Digimon se machuca mais",
    "facilmente. Tome cuidado."
   ]
  ],

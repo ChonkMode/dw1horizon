@@ -5,43 +5,31 @@
  "s108.sec5.u0": "Ei, ei, notícias! Então... Enquanto seu Digimon ainda é um bebê, tente fazer o mesmo treinamento várias vezes. Dizem que algo bom acontece!",
  "s108.sec5.u1": [
   [
-   "Ei, ei, novidades! Então... no",
-   "treino bônus, se você alinhar",
-   "figuras iguais à da placa, o",
-   "aumento dos atributos será"
-  ],
-  [
-   "ainda maior!"
+   "Ei, ei, novidades! Então... no treino bônus, se",
+   "você alinhar figuras iguais à da placa, o",
+   "aumento dos atributos será ainda maior!"
   ]
  ],
  "s108.sec5.u2": [
   [
-   "Ah, sim, prometi falar sobre",
-   "técnicas. Depois de uma",
-   "batalha, seu Digimon pode",
-   "aprender uma técnica que o"
+   "Ah, sim, prometi falar sobre técnicas. Depois",
+   "de uma batalha, seu Digimon pode aprender",
+   "uma técnica que o inimigo usou contra ele."
   ],
   [
-   "inimigo usou contra ele. Mas só",
-   "se puder equipá-la no momento.",
-   "Não acontece sempre, mas é o",
-   "jeito mais rápido de aprender"
+   "Mas só se puder equipá-la no momento. Não",
+   "acontece sempre, mas é o jeito mais rápido de",
+   "aprender técnicas. Também dá para"
   ],
   [
-   "técnicas. Também dá para",
-   "aprender treinando, embora a",
-   "chance seja bem pequena. Dizem",
-   "que, com Inteligência alta, o"
+   "aprender treinando, embora a chance seja bem",
+   "pequena. Dizem que, com Inteligência alta, o",
+   "treino na sala de {color 6}{player}{color 1} pode"
   ],
   [
-   "treino na sala de {color 6}{player}{color 1}",
-   "pode ensinar uma técnica. Já",
-   "falei, mas a chance é muito",
-   "baixa, então não conte muito"
-  ],
-  [
-   "com isso. O importante é o",
-   "equilíbrio!"
+   "ensinar uma técnica. Já falei, mas a chance é",
+   "muito baixa, então não conte muito com isso. O",
+   "importante é o equilíbrio!"
   ]
  ],
  "s108.sec5.u3": [
@@ -55,46 +43,38 @@
  ],
  "s108.sec5.u4": [
   [
-   "Treinar aqui aumenta os",
-   "atributos do seu Digimon. Mas",
-   "o treino cansa e leva um bom",
-   "tempo. Ainda assim, é um jeito"
+   "Treinar aqui aumenta os atributos do seu",
+   "Digimon. Mas o treino cansa e leva um bom",
+   "tempo. Ainda assim, é um jeito mais"
   ],
   [
-   "mais garantido de aumentar os",
-   "atributos do que lutar. E,",
-   "muito de vez em quando, seu",
-   "Digimon aprende uma técnica"
+   "garantido de aumentar os atributos do que",
+   "lutar. E, muito de vez em quando, seu Digimon",
+   "aprende uma técnica nova! Falo das técnicas"
   ],
   [
-   "nova! Falo das técnicas outra",
-   "hora."
+   "outra hora."
   ]
  ],
  "s108.sec5.u5": "Há seis equipamentos de treinamento aqui, e cada um tem uma placa ao lado.",
  "s108.sec5.u6": [
   [
-   "Primeiro, fique diante de uma",
-   "placa e aperte {color 6}×{color 1}. Leia para",
-   "ter uma ideia de qual atributo",
-   "aumenta. Alguns Digimon têm"
+   "Primeiro, fique diante de uma placa e aperte",
+   "{color 6}×{color 1}. Leia para ter uma ideia de qual atributo",
+   "aumenta. Alguns Digimon têm facilidade para"
   ],
   [
-   "facilidade para aumentar certos",
-   "atributos, outros nem tanto.",
-   "Só tentando para saber!",
-   "Escolha Começar o treino e"
+   "aumentar certos atributos, outros nem tanto.",
+   "Só tentando para saber! Escolha Começar o",
+   "treino e depois Treino normal. Seu Digimon"
   ],
   [
-   "depois Treino normal. Seu",
-   "Digimon vai treinar por uma",
-   "hora. Durante o treino, você",
-   "pode adiantar o tempo com {color 5}△{color 1}."
+   "vai treinar por uma hora. Durante o treino,",
+   "você pode adiantar o tempo com {color 5}△{color 1}."
   ],
   [
-   "Ah, preciso falar do treino",
-   "bônus! Se der certo, o",
-   "atributo aumenta muito. Mas, se",
+   "Ah, preciso falar do treino bônus! Se der",
+   "certo, o atributo aumenta muito. Mas, se",
    "falhar... quase não aumenta."
   ],
   [
@@ -104,26 +84,24 @@
  "s108.sec5.u7": "Certo, vou buscar novas informações para você.",
  "s108.sec6.u0": [
   [
-   "Eu ir para cidade. Cidade muito",
-   "cidade para mim. Eu não me",
-   "encaixar. Então vir aqui. Eu",
+   "Eu ir para cidade. Cidade muito cidade para",
+   "mim. Eu não me encaixar. Então vir aqui. Eu",
    "reformar máquinas daqui."
   ],
   [
-   "Funcionar melhor que antes.",
-   "Você treinar bastante."
+   "Funcionar melhor que antes. Você treinar",
+   "bastante."
   ]
  ],
  "s108.sec7.u0": [
   [
-   "Eu ir para cidade. Cidade muito",
-   "cidade para mim. Eu não me",
-   "encaixar. Então vir aqui. Eu",
+   "Eu ir para cidade. Cidade muito cidade para",
+   "mim. Eu não me encaixar. Então vir aqui. Eu",
    "reformar máquinas daqui."
   ],
   [
-   "Funcionar melhor que antes.",
-   "Você treinar bastante."
+   "Funcionar melhor que antes. Você treinar",
+   "bastante."
   ]
  ],
  "s108.sec81.m0.o0": "Começar o treino",
@@ -148,10 +126,9 @@
  ],
  "s108.sec81.u2": [
   [
-   "Empurrar uma pedra enorme",
-   "desenvolve a força. Aumenta",
-   "bastante o HP máximo e também",
-   "o Ataque."
+   "Empurrar uma pedra enorme desenvolve a",
+   "força. Aumenta bastante o HP máximo e",
+   "também o Ataque."
   ]
  ],
  "s108.sec81.u3": [
@@ -182,10 +159,9 @@
  ],
  "s108.sec82.u2": [
   [
-   "Ficar debaixo de uma cachoeira",
-   "fortalece o espírito. Aumenta",
-   "bastante o MP máximo e também",
-   "a Defesa."
+   "Ficar debaixo de uma cachoeira fortalece o",
+   "espírito. Aumenta bastante o MP máximo e",
+   "também a Defesa."
   ]
  ],
  "s108.sec82.u3": [
@@ -251,10 +227,9 @@
  ],
  "s108.sec84.u2": [
   [
-   "Aguente os golpes de uma",
-   "máquina de socos gigante.",
-   "Aumenta bastante a Defesa e",
-   "também a Inteligência."
+   "Aguente os golpes de uma máquina de socos",
+   "gigante. Aumenta bastante a Defesa e também",
+   "a Inteligência."
   ]
  ],
  "s108.sec84.u3": [
@@ -310,13 +285,9 @@
  "s108.sec86.u1": "{color 5}Treino: sala de {color 6}{player}{color 1}{color 5}{color 1}",
  "s108.sec86.u2": [
   [
-   "{color 6}{player}{color 1} vira professor e",
-   "ensina todo tipo de coisa.",
-   "Aumenta bastante a",
-   "Inteligência e também o MP"
-  ],
-  [
-   "máximo."
+   "{color 6}{player}{color 1} vira professor e ensina todo",
+   "tipo de coisa. Aumenta bastante a Inteligência",
+   "e também o MP máximo."
   ]
  ],
  "s108.sec86.u3": [
