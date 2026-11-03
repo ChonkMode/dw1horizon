@@ -389,7 +389,9 @@ if [ "$LANG_ON" = 1 ]; then
   done)
   for p in $LANG_OVL; do
     IFS=: read -r lang b c <<< "$p"
-    $PY tools/langpatch.py overlay "$O/exe-en/$b" "$O/exe-$lang/$b" | grep -v ' 0 bytes differ' || true
+    # the same code in every language: the game reads MENU_REL again over its running code (mod_options.c)
+    ovl=$($PY tools/langpatch.py overlay "$O/exe-en/$b" "$O/exe-$lang/$b" --elf "$O/exe-en/SLUS_010.32.elf")
+    grep -v ' 0 bytes differ' <<< "$ovl" || true
     cp "$O/exe-$lang/$b" "$O/lang/$c"
   done
   # The original filenames always contain English, regardless of boot language.
