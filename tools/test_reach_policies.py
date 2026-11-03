@@ -62,6 +62,30 @@ class ReachPolicies(unittest.TestCase):
         m.collision[49 * 100 + 50] = 110
         self.assertIn('arrival 0: stands on or beside its own exit', MAP.check_arrivals(m))
 
+    def test_one_tile_notch_is_a_trap(self):
+        # Screen 361's shape: a strip one tile wide between a desk (column 49) and a chair (51-52, rows 51-52). A
+        # tamer standing in it cannot step anywhere; no walk from the arrival reaches it, so blocking takes no floor.
+        m = scene()
+        for tx, tz in ((49, 52), (49, 53), (49, 54), (51, 51), (52, 51), (51, 52), (52, 52), (50, 54)):
+            m.collision[tz * 100 + tx] = 128
+        self.assertEqual(MAP.trap_tiles(m), [(50, 52), (50, 53)])
+        self.assertIn('trap tile 50,52: the tamer could never move again there', MAP.check_arrivals(m))
+        with self.assertRaises(SystemExit):
+            MAP.check_recipe_arrivals(m, 'recipe')
+        before = MAP.reach(m)
+        m.collision[52 * 100 + 50] = m.collision[53 * 100 + 50] = 128
+        self.assertEqual(MAP.trap_tiles(m), [])
+        self.assertEqual(MAP.check_arrivals(m), [])
+        self.assertEqual(MAP.reach(m), before)
+
+    def test_floor_with_dead_wall_corners_is_not_a_trap(self):
+        self.assertEqual(MAP.trap_tiles(scene()), [])
+        m = scene()
+        for tx, tz in ((49, 52), (49, 53), (49, 54), (51, 51), (52, 51), (51, 52), (52, 52), (50, 54)):
+            m.collision[tz * 100 + tx] = 128
+        m.collision[52 * 100 + 50] = m.collision[53 * 100 + 50] = 110   # an exit warps whoever stands on it
+        self.assertEqual(MAP.trap_tiles(m), [])
+
     def test_npc_collision_uses_inclusive_square_and_both_radii(self):
         m = scene()
         points = MAP.reach(m, footprints=[(200, 0, 50)])

@@ -23,9 +23,9 @@ def main(out):
     d = json.load(open(DATA))
     m = base_map('KODA04', *d['camera']); m.projection = d['projection']
     m.collision = list(d['collision']); m.warps = d['warps']
-    check_arrivals(m, 'BONE01')
     import_png('KODA04', ART, os.path.join(out, 'BONE01.TFS'))
     apply_foreground(m, 'BONE01', os.path.join(out, 'BONE01.TFS'))
+    check_arrivals(m, 'BONE01')
     from check_npc_routes import bone_field
     bone_field(m)
     open(os.path.join(out, 'BONE01.MAP'), 'wb').write(m.build())

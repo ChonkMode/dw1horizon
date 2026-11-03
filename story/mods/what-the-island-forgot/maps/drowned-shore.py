@@ -24,9 +24,9 @@ def main(out):
     d = json.load(open(DATA))
     m = base_map('FRZL03', *d['camera']); m.projection = d['projection']
     m.collision = list(d['collision']); m.warps = d['warps']
-    check_arrivals(m, 'SHOR01')
     import_png('FRZL03', ART, os.path.join(out, 'SHOR01.TFS'))
     apply_foreground(m, 'SHOR01', os.path.join(out, 'SHOR01.TFS'))
+    check_arrivals(m, 'SHOR01')
     open(os.path.join(out, 'SHOR01.MAP'), 'wb').write(m.build())
     print(f'SHOR01: free tiles {m.collision.count(0)}, arrival {(m.warps[0]["x"], m.warps[0]["z"])}')
 

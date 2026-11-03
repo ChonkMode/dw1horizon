@@ -102,8 +102,8 @@ def reachable(m):
     return reach.from_spawn_coordinates(m)
 
 
-def check_arrivals(m, name=''):
-    return reach.check_recipe_arrivals(m, name)
+def check_arrivals(m, name='', traps=True):
+    return reach.check_recipe_arrivals(m, name, traps)
 
 
 def inside(poly, u, v):

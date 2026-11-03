@@ -63,10 +63,69 @@ def from_spawn_coordinates(m, starts=None, r=100, step=10):
     return reach(m, starts, r, step, seed_policy="spawn_coordinates")
 
 
-def check_recipe_arrivals(m, name=''):
+STEP = 50                                              # the tamer's walk advances 50 units per logic tick
+_MOVES = None
+
+
+def _moves():
+    global _MOVES
+    if _MOVES is None:
+        import math
+        _MOVES = sorted({(round(STEP * math.cos(k * math.pi / 16)), round(STEP * math.sin(k * math.pi / 16)))
+                         for k in range(32)})
+    return _MOVES
+
+
+def _step_ok(m, x, z, dx, dz, r=100):
+    """map.c checkMapCollision for a step that ends at (x, z): only the destination's leading edges, by the step's signs."""
+    return (not dx or _edge_x(m, x, z, dx, r)) and (not dz or _edge_z(m, x, z, dz, r))
+
+
+def _edge_x(m, x, z, dx, r):
+    e = col(x + r if dx > 0 else x - r)
+    return not any(blocked(m, e, t) for t in range(row(z + r // 2), row(z - r // 2) + 1))
+
+
+def _edge_z(m, x, z, dz, r):
+    e = row(z + r if dz > 0 else z - r)
+    return not any(blocked(m, t, e) for t in range(col(x - r // 2), col(x + r // 2) + 1))
+
+
+def dead_points(m, tx, tz, r=100, lattice=5):
+    """Points of free tile (tx, tz) where no step in any of 32 directions is allowed: a tamer standing there can never
+    move again (walking a strip one tile wide between two props leaves him in one)."""
+    out = []
+    x0, z0 = (tx - 50) * 100, (49 - tz) * 100
+    for x in range(x0, x0 + 100, lattice):
+        for z in range(z0, z0 + 100, lattice):
+            if (col(x), row(z)) != (tx, tz): continue
+            if not any(_step_ok(m, x + mx, z + mz, mx, mz, r) for mx, mz in _moves()):
+                out.append((x, z))
+    return out
+
+
+def trap_tiles(m, reached=None):
+    """Free tiles holding a point where the tamer cannot move at all, and that no walk from the arrivals visits (so
+    blocking them takes no floor away). Every such tile is a trap if anything ever places the tamer there: one was
+    found in play (screen 361, between a desk and a chair). Tiles with walkable floor and only a dead wall corner are
+    not listed: the original screens have those too. Only plain floor (0) counts: an exit tile warps whoever stands on
+    it, and a script trigger is the script's business."""
+    if reached is None: reached = reach(m)
+    visited = {(col(x), row(z)) for x, z in reached}
+    out = []
+    for tz in range(100):
+        for tx in range(100):
+            if m.collision[tz * 100 + tx] != 0 or (tx, tz) in visited: continue
+            if all(not blocked(m, tx + a, tz + b) for a in range(-2, 3) for b in range(-2, 3)): continue
+            if dead_points(m, tx, tz): out.append((tx, tz))
+    return out
+
+
+def check_recipe_arrivals(m, name='', traps=True):
     """Every used warp's spawn stands on a free tile and no tile within one step of it carries that warp's own exit
     value: an arrival on (or beside) its own exit tiles bounces straight back, and `reachable` cannot see it (it seeds
-    from the spawns). Exits with no target are skipped."""
+    from the spawns). Exits with no target are skipped. With traps (new screens), no free tile may hold a point where
+    the tamer can never move again (trap_tiles); a retouch of an original screen keeps the original's own."""
     for k, w in enumerate(m.warps):
         if w['targetMap'] == -1: continue
         tx, tz = int(w['x'] / 100) + 50 - (1 if w['x'] < 0 else 0), 49 - int(w['z'] / 100) + (1 if w['z'] < 0 else 0)
@@ -74,6 +133,9 @@ def check_recipe_arrivals(m, name=''):
         near = [m.collision[(tz + dz) * 100 + tx + dx] for dx in (-1, 0, 1) for dz in (-1, 0, 1)
                 if 0 <= tx + dx < 100 and 0 <= tz + dz < 100]
         if 110 + k in near: sys.exit(f'{name}: the arrival of warp {k} at tile ({tx},{tz}) stands on or beside its own exit tiles')
+    if traps and any(w['targetMap'] != -1 for w in m.warps):
+        found = trap_tiles(m)
+        if found: sys.exit(f'{name}: tiles where the tamer could never move again (block them): {found}')
 
 
 
@@ -105,6 +167,8 @@ def check_arrivals(m):
                 errors.append(f'arrival {i}: unreachable from arrival {arrivals[0][0]}')
             if not any((p[0]+dx*10,p[1]+dz*10) in outward for dx,dz in ((1,0),(-1,0),(0,1),(0,-1))):
                 errors.append(f'arrival at {p[0]},{p[1]}: cannot move')
+    if arrivals and not errors:
+        errors.extend(f'trap tile {t[0]},{t[1]}: the tamer could never move again there' for t in trap_tiles(m))
     return errors
 
 

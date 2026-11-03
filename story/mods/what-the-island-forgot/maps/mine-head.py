@@ -23,10 +23,10 @@ def main(out):
     d = json.load(open(DATA))
     m = base_map('TUNN02', *d['camera']); m.projection = d['projection']
     m.collision = list(d['collision']); m.warps = d['warps']
-    check_arrivals(m, 'MINE01')
     tfs = os.path.join(out, 'MINE01.TFS')
     import_png('TUNN02', ART, tfs)
     apply_foreground(m, 'mine-head', tfs)
+    check_arrivals(m, 'MINE01')
     open(os.path.join(out, 'MINE01.MAP'), 'wb').write(m.build())
     print(f'MINE01: free tiles {m.collision.count(0)}, exits {[(w["targetMap"], w["targetExit"]) for w in m.warps if w["targetMap"] != -1]}')
 

@@ -22,9 +22,9 @@ def main(out):
     d = json.load(open(DATA))
     m = base_map('GIAS04', *d['camera']); m.projection = d['projection']
     m.collision = list(d['collision']); m.warps = d['warps']
-    check_arrivals(m, 'IRON04')
     import_png('GIAS04', ART, os.path.join(out, 'IRON04.TFS'))
     apply_foreground(m, 'IRON04', os.path.join(out, 'IRON04.TFS'))
+    check_arrivals(m, 'IRON04')
     open(os.path.join(out, 'IRON04.MAP'), 'wb').write(m.build())
     print(f'IRON04: free tiles {m.collision.count(0)}, exits {[(w["targetMap"], w["targetExit"]) for w in m.warps if w["targetMap"] != -1]}')
 

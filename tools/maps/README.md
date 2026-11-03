@@ -169,3 +169,10 @@ directional checks and C division at negative tile boundaries.
 connectivity. `check_recipe_arrivals(map, name)` preserves the map recipes'
 existing blocked/bouncing checks and command failure messages. Changing a
 recipe to the stronger check is a separate content-validation decision.
+
+`trap_tiles(map)` lists free floor tiles that no walk from the arrivals visits and that hold a point where the
+tamer can never move again: every 50-unit step in 32 directions is refused by the engine's leading-edge check
+(`map.c checkMapCollision`). A one-tile strip between two props makes one; a player was found stuck in such a
+strip on screen 361. Both checks reject them, so a new screen with a trap fails its recipe: block the tile in the
+screen's data or manifest. Recipes check after their foreground manifest is applied. Retouches of original screens
+pass `traps=False`; the original screens keep their own dead corners.

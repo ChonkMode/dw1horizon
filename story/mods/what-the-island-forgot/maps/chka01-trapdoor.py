@@ -31,7 +31,7 @@ def main(out):
     for tx, tz in TRAPDOOR_TILES: col[tz * 100 + tx] = 51 + STEP
     m.collision = col
     w = m.warps[1]                                                            # x, z, rotation: the game's own
-    check_arrivals(m, 'CHKA01')
+    check_arrivals(m, 'CHKA01', traps=False)        # the original screen's own dead corners stay as they are
     open(os.path.join(out, 'CHKA01.MAP'), 'wb').write(m.build())
     R = reach.from_spawn_coordinates(m, starts=[(m.warps[0]['x'], m.warps[0]['z'])])          # from the arrival from the mansion
     if (w['x'], w['z']) not in R and (round(w['x'] / 10) * 10, round(w['z'] / 10) * 10) not in R: sys.exit('the arrival from the crypt is not reachable')

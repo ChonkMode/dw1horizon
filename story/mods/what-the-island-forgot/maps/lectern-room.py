@@ -23,9 +23,9 @@ def main(out):
     d = json.load(open(DATA))
     m = base_map('LEOM01', *d['camera']); m.projection = d['projection']; m.lights = d['lights']
     m.collision = list(d['collision']); m.warps = d['warps']
-    check_arrivals(m, 'CRYP02')
     import_png('LEOM01', ART, os.path.join(out, 'CRYP02.TFS'))
     apply_foreground(m, 'CRYP02', os.path.join(out, 'CRYP02.TFS'))
+    check_arrivals(m, 'CRYP02')
     open(os.path.join(out, 'CRYP02.MAP'), 'wb').write(m.build())
     print(f'CRYP02: free tiles {m.collision.count(0)}, exits {[(w["targetMap"], w["targetExit"]) for w in m.warps if w["targetMap"] != -1]}')
 
