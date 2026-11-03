@@ -2592,6 +2592,17 @@ class PythonMods(unittest.TestCase):
         e = errors_of_py(p)
         self.assertIn('a.py:5:18: error: unknown escape {itm 44}: did you mean {item ...}?', e)
         self.assertIn('error: no Item.Digimushroom in {item Item.Digimushroom}: did you mean Item.Digimushrm?', e)
+        # a `match choose(...)` option and a module constant name an item too
+        root, (p,) = self.mod({'a.py': 'GIFT = "A {item Item.Meat}"\n' + head + '    match choose(meat="Give {item Item.Medicine}", no="No"):\n'
+                                       '        case "meat":\n            narrator.say(GIFT)\n        case _:\n            pass\n'})
+        code = '\n'.join(l for info in B.compile_sources([p]).b.scripts.values() for e in info['events'] for l in e[2])
+        self.assertIn('SET_PSTAT p254, 14', code); self.assertIn('SET_PSTAT p254, 38', code)
+        # the line reuses the pstat pick_item() fills: reading the pick after it is refused, before it is fine
+        pick = '    pick = pick_item()\n'
+        root, (p,) = self.mod({'a.py': head + pick + '    narrator.say("No {item Item.Meat}.")\n    if pick == Item.Meat:\n        say("m")\n'})
+        self.assertIn('names an item or move, and that overwrites what pick_item() chose', errors_of_py(p))
+        root, (p,) = self.mod({'a.py': head + pick + '    if pick == Item.Meat:\n        narrator.say("A {item Item.Meat}.")\n'})
+        self.assertEqual(errors_of_py(p), '')
 
     def test_sixth_review_named_lines(self):
         """A named line t("name") with its English in the mod's text/en.json, mixed with lines written in

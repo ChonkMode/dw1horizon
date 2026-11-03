@@ -22,7 +22,7 @@ sys.path[:0] = [str(ROOT), str(ROOT / 'tools')]
 from dws import backend as BE
 from dws.text.profiles import NAMED_PAGE_ROWS, maphead_page_too_tall, named_keys
 from dws.textbank import TextBank
-from dws.py.lower import escape_problems, font_problems, resolve_escapes
+from dws.py.lower import escape_problems, font_problems, literal_escapes, resolve_escapes
 from tools.localize.executable.bank import exe_bank, FORMAT, encoded_len, list_width, VERBATIM
 from tools.fontgen import text_width
 
@@ -171,6 +171,9 @@ def control_problems(source, value, executable=False):
         return [] if FORMAT.findall(source) == FORMAT.findall(value) else ['executable format codes changed']
     expected, actual = runtime_tokens(source, source), runtime_tokens(value, source)
     problems = [] if expected == actual else [f'runtime references changed: {expected!r} -> {actual!r}']
+    flat = lambda v: v if isinstance(v, str) else ' '.join(flat(x) for x in v)
+    if literal_escapes(flat(source)) != literal_escapes(flat(value)):     # {item 254} hides which item: compare the names
+        problems.append(f'named item or move changed: {literal_escapes(flat(source))!r} -> {literal_escapes(flat(value))!r}')
     expected_colors = [t for t in runtime_tokens(source, source, True) if t.startswith('{color ')]
     actual_colors = [t for t in runtime_tokens(value, source, True) if t.startswith('{color ')]
     if expected_colors != actual_colors:
@@ -230,6 +233,9 @@ def expand_references(row, names, species, cards, cache=None):
             return longest(name for ident, name in species.items() if ident in allowed)
         if kind in ('item', 'move'):
             prefix = 'main.' + ('ITEM_NAMES.' if kind == 'item' else 'MOVE_NAMES.')
+            named = literal_escapes(body)           # {item Item.SweetNut}: that one item's name, not the longest
+            if named and prefix + str(named[0][1]) in names:
+                return names[prefix + str(named[0][1])]
             return longest(value for key, value in names.items() if key.startswith(prefix))
         digits = {'money': 6, 'merit': 4, 'pstat': 3, 'shopvar': 5,
                   'cupswon': 3, 'wins': 3, 'losses': 3}
