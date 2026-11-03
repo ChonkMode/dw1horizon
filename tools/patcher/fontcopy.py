@@ -422,6 +422,11 @@ def semantic_table(kind, params, tool_root=None):
         return struct.pack('<18h', 14, 6, 48 if english else 52,
                            14, 34, 36, 14, 48, 36, 14, 62, 36 if english else 24,
                            14, 90, 48 if english else 52, 14, 118, 24)
+    if kind == 'type_factors':
+        if params:
+            raise ValueError('type factors take no supplied bytes')
+        rows = json.loads((root / 'content/tables/type-factors.json').read_text())['typeFactors']
+        return bytes(value for row in rows for value in row)
     if kind == 'banner':
         language, = params
         if language in ('es', 'pt-br'):
