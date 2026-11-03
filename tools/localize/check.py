@@ -22,7 +22,7 @@ sys.path[:0] = [str(ROOT), str(ROOT / 'tools')]
 from dws import backend as BE
 from dws.text.profiles import NAMED_PAGE_ROWS, header_row, maphead_page_too_tall, merged_name_rows, named_keys
 from dws.textbank import TextBank
-from dws.text.jaspace import problems as ja_space_problems
+from dws.text.jaspace import kinsoku_problems, problems as ja_space_problems
 from dws.py.lower import escape_problems, font_problems, literal_escapes, resolve_escapes
 from tools.localize.executable.bank import exe_bank, FORMAT, encoded_len, list_width, VERBATIM
 from tools.fontgen import text_width
@@ -364,6 +364,9 @@ def audit(languages=LANGUAGES, fonts=FONTS, root=ROOT):
                             rendered = rendered_pages(key, value, bank)
                             for row in merged_name_rows([] if key in named else name_rows(key, value, bank), rendered):
                                 issue(language, font, path, key, f'a speaker\'s name row is not its own first row: {row}')
+                            if language == 'ja':
+                                for why in kinsoku_problems(key, rendered):
+                                    issue(language, font, path, key, why)
                         over = bank.single_page_overflow(key, len(rendered))
                         if over:
                             issue(language, font, path, key, over)

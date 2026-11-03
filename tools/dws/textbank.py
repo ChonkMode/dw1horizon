@@ -35,13 +35,14 @@ WIDE = re.compile('[\u3000-\u30ff\u3400-\u9fff\uff00-\uffef]')   # Japanese lett
 
 
 def join_rows(rows):
-    """Rows of a page as one text to wrap again: a space between two rows, none where either side is Japanese (its words
-    are not spaced: a space there would show in the middle of a word, "あ るよ") or the next row starts with a comma
+    """Rows of a page as one text to wrap again: a space between two rows, none in Japanese text (its words are not
+    spaced: a space there would show in the middle of a word, "あ るよ") or where the next row starts with a comma
     ("{player}" / ", my wounds...")."""
+    rows = [r.strip() for r in rows if r.strip()]
+    if any(CJK.search(r) for r in rows):
+        return ''.join(rows)                    # Japanese: never a space at a row break ("{color 6}" / "×で引こう")
     out = ''
     for r in rows:
-        r = r.strip()
-        if not r: continue
         if out and not (WIDE.match(out[-1]) or WIDE.match(r[0]) or r[0] == ','): out += ' '
         out += r
     return out

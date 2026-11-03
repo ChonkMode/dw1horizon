@@ -326,8 +326,47 @@ class BackendUnits(unittest.TestCase):
             self.assertEqual(merged_name_rows([name], [['x', name]]), [name])          # a name as a second row
             wide = '{color 7}Congratulations! For your splendid achievement, a medal!{color 1}'
             self.assertIsInstance(tb.fit('k2', [[wide, '']]), str)                   # a wide coloured row is text
-            self.assertEqual(textbank.join_rows(['ここで少し休んでいかな', 'い？', 'Bits', 'and more']),
-                             'ここで少し休んでいかない？Bits and more')
+            self.assertEqual(textbank.join_rows(['ここで少し休んでいかな', 'い？', '{color 6}', '×で引こう']),
+                             'ここで少し休んでいかない？{color 6}×で引こう')              # Japanese: never a space
+            self.assertEqual(textbank.join_rows(['{player}', ', my wounds', 'have healed.']), '{player}, my wounds have healed.')
+        finally:
+            BE.FONT.clear(); BE.FONT.update(old)
+
+    def test_japanese_kinsoku(self):
+        """No Japanese row starts with 、。，．！？」』）ー or a small kana: the compiler's wrap carries the last letter down
+        with the mark, the hand-paged rows are mended (jaspace.mend_rows: the mark back up when it fits, else a letter
+        down), and the committed Japanese dialogue has none left (the entry's first row may open with "！！")."""
+        from dws.text import repage, jaspace
+        from dws.text.layout import kinsoku, starts_badly
+        from dws import backend as BE
+        import json
+        old = dict(BE.FONT)
+        try:
+            narrow = lambda r, i: len(r) <= 4
+            self.assertEqual(kinsoku(['あいう', '。えお'], narrow), ['あいう。', 'えお'])          # the mark goes up
+            self.assertEqual(kinsoku(['あいうえ', '。えお'], narrow), ['あいう', 'え。えお'])      # a letter comes down
+            self.assertEqual(kinsoku(['あいうえ', 'っ？」お'], lambda r, i: len(r) <= 6), ['あいう', 'えっ？」お'])
+            self.assertFalse(starts_badly('{color 10}{partner}{color 1}、'))                    # a name starts the row
+            from dws.text.layout import break_rows
+            self.assertEqual(break_rows('あいきせつ...？それ', lambda r, i: len(r) <= 5), ['あいきせ', 'つ...？', 'それ'])  # "..." whole
+            self.assertTrue(starts_badly('{color 6}ー'))
+            for font in ('b', 'original'):
+                repage.set_font(font)
+                text = '1時間休むと、HPとMPが少し回復して、つかれも少し取れるよ。' * 4 + 'この世界の基本を教えるよ！' * 3
+                pages = BE.wrap(text, 3)
+                rows = [r for p in pages for r in p]
+                self.assertFalse(any(starts_badly(r) for r in rows[1:]), (font, rows))
+                self.assertEqual(''.join(rows), text)
+                self.assertTrue(all(BE.fits(r, i == 2) for p in pages for i, r in enumerate(p)))
+            repage.set_font('b')
+            v = [['この森を抜けるとは...見事だ。私はケンタルモン', '。これまでの無礼をおわびする。すまなかった',
+                  '。気まぐれで試したわけではない。これから'], ['は、きみの力になろう。']]
+            got = jaspace.mend_rows('s018.sec68.u1', v)
+            self.assertEqual(jaspace.kinsoku_problems('s018.sec68.u1', got), [])
+            self.assertEqual(''.join(r for p in got for r in p), ''.join(r for p in v for r in p))
+            left = [(f, k, why) for f in jaspace.banks() for k, v in json.load(open(f, encoding='utf-8')).items()
+                    if not k.startswith('_') for why in jaspace.kinsoku_problems(k, v)]
+            self.assertEqual(left, [])
         finally:
             BE.FONT.clear(); BE.FONT.update(old)
 

@@ -37,7 +37,9 @@ writing. The discs' text lives in the gitignored `text/<source>/` folders of you
    Japanese has no word spaces: a space between two kana or kanji shows as a gap in the middle of a word ("あ るよ").
    The Japanese bank refuses one (and a space after a Latin word before kana or kanji, before 、。！？ or after 、);
    `python3 tools/dws/text/jaspace.py --write` removes them. Sentence spacing after 。！？ and the fields of laid-out
-   boxes (cup notices, signs, Shell News) keep theirs (the rule is at the top of `jaspace.py`).
+   boxes (cup notices, signs, Shell News) keep theirs (the rule is at the top of `jaspace.py`). No Japanese row starts
+   with 、。，．！？」』）ー or a small kana (kinsoku): the compiler's wrap and `repage.py` carry the last letter down
+   with the mark, `jaspace.py --write` mends hand-paged rows, and the text audit reports a row that still does.
 5. **Build and read it in the game**: `TEXT=ours tools/build-full.sh ours`, play to the scene. A box that overflows or a name that is missing is a build error. To test only your zones,
    `TEXT=ours TEXT_ZONES=toy-town,toy-mansion tools/build-full.sh ours-toys`: the other zones stay US English.
 6. Have a second reader review the zone in the game.
