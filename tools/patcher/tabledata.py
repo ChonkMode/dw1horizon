@@ -76,6 +76,8 @@ def authored_recipe(obj, data, tool_root=None, words=()):
             if data[140:154] == piece:
                 return dict(offset=obj['offset'], size=obj['length'], section=obj['section'],
                             kind='semantic', fields=[[140, 14]], generator='versus_mode', params=[english])
+    elif name == 'TYPE_FACTORS' and obj['source'] == 'src/main/item.c':
+        choices = [('type_factors', [])]
     elif name == 'NAMING_ROLLOVER_CHARS':
         choices = [('keyboard_rollover', [])]
     elif name == 'NAMING_CTRL_BOXES':

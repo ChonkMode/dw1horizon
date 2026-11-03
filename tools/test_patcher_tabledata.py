@@ -87,6 +87,17 @@ class TableDataTests(unittest.TestCase):
 
 
 class AuthoredPayloadTests(unittest.TestCase):
+    def test_type_factors_come_from_the_authored_table(self):
+        import json
+        import fontcopy
+        path = Path(__file__).resolve().parents[1] / 'content/tables/type-factors.json'
+        data = bytes(sum(json.loads(path.read_text())['typeFactors'], []))
+        obj = dict(offset=0, length=49, section='.data.TYPE_FACTORS', source='src/main/item.c')
+        self.assertEqual(fontcopy.semantic_table('type_factors', []), data)
+        self.assertEqual(tabledata.authored_recipe(obj, data)['generator'], 'type_factors')
+        self.assertIsNone(tabledata.authored_recipe(obj, bytes(49)))
+        self.assertIsNone(tabledata.authored_recipe(dict(obj, source='src/main/other.c'), data))
+
     def test_banner_and_standard_encoding_have_no_supplied_byte_payload(self):
         import fontcopy
         for language in ('es', 'pt-br', 'fr', 'de', 'it', 'ja', 'ca'):
