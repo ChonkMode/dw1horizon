@@ -2586,7 +2586,8 @@ class PythonMods(unittest.TestCase):
         head = self.HOUSE + '@jijimon.on_talk(when=trigger(760))\ndef t():\n'
         root, (p,) = self.mod({'a.py': head + '    narrator.say("Received a {item Item.Digimushrm}.")\n'})
         code = '\n'.join(l for info in B.compile_sources([p]).b.scripts.values() for e in info['events'] for l in e[2])
-        self.assertIn('"Received a {item 44}."', code)
+        self.assertIn('"Received a {item 254}."', code)       # {item N} names what pstat N holds: the statement fills engine.arg
+        self.assertIn('SET_PSTAT p254, 44', code)
         root, (p,) = self.mod({'a.py': head + '    narrator.say("A {itm 44} and a {item Item.Digimushroom}.")\n'})
         e = errors_of_py(p)
         self.assertIn('a.py:5:18: error: unknown escape {itm 44}: did you mean {item ...}?', e)

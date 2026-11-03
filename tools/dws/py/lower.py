@@ -1555,9 +1555,25 @@ class Body:
         return bool(re.search(r'\bjoined the city\b',
                               ' '.join(words(arg) for arg in call.args), re.I))
 
+    def named_escapes(self, s):
+        """The (escape, id) pairs of the lines this statement shows itself (an `if` shows what its test shows: ask(...))."""
+        node = s.test if isinstance(s, ast.If) else s if isinstance(s, ast.Expr) else None
+        found = []
+        for n in ast.walk(node) if node is not None else ():
+            text = n.value if isinstance(n, ast.Constant) and isinstance(n.value, str) else \
+                self.m.en_json().get(n.args[0].value, '') if self.is_named(n) and len(n.args) == 1 and \
+                isinstance(n.args[0], ast.Constant) and isinstance(n.args[0].value, str) else ''
+            for pair in literal_escapes(text):
+                if pair not in found: found.append(pair)
+        return found
+
     def stmt(self, s, ind):
         """One statement; its first line carries ` // @py N` (the source map points at the .py: `py_linemap`)."""
-        out = self.stmt_(s, ind)
+        names = self.named_escapes(s)
+        if len(names) > 1:
+            raise self.err(s, 'one {item Item.X} or {move Tech.X} per statement: the game names what one pstat holds',
+                           'show the second in the next say(...)')
+        out = ([f'{"    " * ind}engine.arg = {names[0][1]};'] if names else []) + self.stmt_(s, ind)
         for k, l in enumerate(out):
             if l.strip() and not l.lstrip().startswith('//'):
                 out[k] = l + f'    // @py {s.lineno}'; break
@@ -2284,13 +2300,29 @@ def escape_problems(text):
     return out
 
 
+# The game's {item N} and {move N} name what pstat N holds, never item or move N itself. A line that names a thing by its
+# enum ({item Item.Meat}) reads this pstat (engine.arg), and the statement that shows the line stores the id there first.
+NAME_PSTAT = 254
+
+
+def literal_escapes(text):
+    """The (escape, id) pairs of the enum names in a line: [('item', 52)] for "A {item Item.SweetNut}"."""
+    out = []
+    for m in ESCAPE.finditer(text):
+        name, _, arg = m.group(1).strip().partition(' '); arg = arg.strip()
+        if name in ESCAPE_ENUM and arg.startswith(ESCAPE_ENUM[name][0] + '.'):
+            i = enum_ids(ESCAPE_ENUM[name][1]).get(arg.split('.', 1)[1])
+            if i is not None and (name, i) not in out: out.append((name, i))
+    return out
+
+
 def resolve_escapes(text):
-    """{item Item.Digimushrm} -> {item 44} (and {move Tech.X}): what the game reads. Anything else is left as it is."""
+    """{item Item.Digimushrm} -> {item 254} (and {move Tech.X}): the pstat the statement showing the line fills with the id
+    (`literal_escapes`). Anything else is left as it is."""
     def one(m):
         body = m.group(1).strip(); name, _, arg = body.partition(' '); arg = arg.strip()
         if name in ESCAPE_ENUM and arg.startswith(ESCAPE_ENUM[name][0] + '.'):
-            i = enum_ids(ESCAPE_ENUM[name][1]).get(arg.split('.', 1)[1])
-            if i is not None: return f'{{{name} {i}}}'
+            if enum_ids(ESCAPE_ENUM[name][1]).get(arg.split('.', 1)[1]) is not None: return f'{{{name} {NAME_PSTAT}}}'
         return m.group(0)
     if isinstance(text, str): return ESCAPE.sub(one, text) if '{' in text else text
     return [resolve_escapes(x) for x in text]
