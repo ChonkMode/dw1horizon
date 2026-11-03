@@ -17,6 +17,15 @@ from tools.patcher import dwpatch as D
 
 
 class BundleStartup(unittest.TestCase):
+    def test_bundle_carries_what_the_web_builder_adds_for_other_releases(self):
+        sys.path.insert(0, str(ROOT / 'web/enginebuild'))
+        import build_engine
+        source = (ROOT / 'tools/patcher/dwpatch.py').read_text()
+        for tool, more in build_engine.OTHER_RELEASES.items():
+            for path in more:
+                if path.endswith('.py'):
+                    self.assertIn(repr(path), source, f'{tool} needs {path} in the release bundle')
+
     def test_player_replay_drops_inherited_developer_cache_flags(self):
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
