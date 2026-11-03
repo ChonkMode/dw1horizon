@@ -31,7 +31,7 @@
   "wild": {"hp": 4158, "mp": 4172, "off": 553, "def": 476, "speed": 413, "brain": 420, "bits": 2100},
   "partner": {
     "voice": 2,
-    "hunger_hours": [4, 12, 20],
+    "hunger_hours": [4, 9, 14, 18, 23],
     "energy_max": 80,
     "energy_fed": 40,
     "energy_per_hour": 8,

@@ -37,7 +37,7 @@
   },
   "partner": {
     "voice": 2,
-    "hunger_hours": [4, 12, 20],
+    "hunger_hours": [4, 9, 14, 18, 23],
     "energy_max": 80,
     "energy_fed": 35,
     "energy_per_hour": 8,
