@@ -1,0 +1,27 @@
+From b0927d115db486657b673521d832f44ec2df4c90 Mon Sep 17 00:00:00 2001
+From: Horizon authors <>
+Date: Tue, 3 Nov 2026 00:36:48 +0000
+Subject: [PATCH] Measure a partner drawn from one bone so a reborn baby is not
+ left at half size
+
+---
+ src/main/model.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/src/main/model.c b/src/main/model.c
+index 6befc65..bd98c94 100644
+--- a/src/main/model.c
++++ b/src/main/model.c
+@@ -2978,7 +2978,8 @@ void renderDigimon(instanceId)
+ 		}
+ 		GsSortObject4(&pos->obj, ACTIVE_ORDERING_TABLE, 2, getScratchAddr(0));
+ 	}
+-	if (instanceId == 1 && y1 > y0) {
++	/* >=: a body drawn from one bone spreads over 0 px and must still replace what the last partner measured */
++	if (instanceId == 1 && y1 >= y0) {
+ 		modPartnerFitMeasure(y1 - y0, fit);
+ 	}
+ 	if (fit != 0x1000) { /* MOD (camera): the tick's root matrix back */
+-- 
+2.55.0
+
