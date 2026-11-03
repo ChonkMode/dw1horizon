@@ -1292,9 +1292,10 @@ def make_bundle_derive(usa, work, out, recipe, facts, source_discs=None):
     if source_discs:
         bundle |= {r for r in files if r.startswith('content/imports/releases/')}
         bundle.add('tools/discs.py')
-        # A PAL recording never imports this verifier, but the supported Japanese
-        # source needs it to check its byte-identical models against the PAL pins.
-        bundle.add('tools/dw3release.py')
+        # A recording on the USA source discs never imports these verifiers, but the
+        # other supported releases need them to check their models against the pins
+        # (web/enginebuild/build_engine.py OTHER_RELEASES).
+        bundle |= {'tools/dcbrelease.py', 'tools/dw2release.py', 'tools/dw3release.py'}
     other = set()
     for p in sorted(opened):
         if os.path.isabs(p) or p.startswith('extracted/'):
