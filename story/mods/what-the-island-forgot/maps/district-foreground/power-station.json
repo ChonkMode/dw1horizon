@@ -247,15 +247,6 @@
     },
     {
       "tile": [
-        41,
-        55
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
         40,
         56
       ],

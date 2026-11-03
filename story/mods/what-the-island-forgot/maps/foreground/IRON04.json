@@ -39,15 +39,6 @@
     {
       "tile": [
         42,
-        53
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "Exposed grass below the tower lattice, to the right of the pipe mouths; beams are foreground."
-    },
-    {
-      "tile": [
-        42,
         54
       ],
       "before": 128,
@@ -130,15 +121,6 @@
       "tile": [
         42,
         57
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "Exposed grass below the tower lattice, to the right of the pipe mouths; beams are foreground."
-    },
-    {
-      "tile": [
-        42,
-        58
       ],
       "before": 128,
       "after": 0,

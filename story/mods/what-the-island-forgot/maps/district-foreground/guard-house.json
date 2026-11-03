@@ -148,33 +148,6 @@
     },
     {
       "tile": [
-        49,
-        50
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "floor freed behind foreground prop"
-    },
-    {
-      "tile": [
-        50,
-        50
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "floor freed behind foreground prop"
-    },
-    {
-      "tile": [
-        51,
-        50
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "floor freed behind foreground prop"
-    },
-    {
-      "tile": [
         58,
         52
       ],
@@ -427,35 +400,8 @@
     },
     {
       "tile": [
-        61,
-        60
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "floor freed behind foreground prop"
-    },
-    {
-      "tile": [
         41,
         61
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "floor freed behind foreground prop"
-    },
-    {
-      "tile": [
-        61,
-        61
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "floor freed behind foreground prop"
-    },
-    {
-      "tile": [
-        61,
-        62
       ],
       "before": 128,
       "after": 0,

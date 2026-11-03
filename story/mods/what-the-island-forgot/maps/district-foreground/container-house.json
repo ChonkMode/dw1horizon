@@ -4,15 +4,6 @@
   "collision": [
     {
       "tile": [
-        54,
-        43
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
         55,
         44
       ],
@@ -112,15 +103,6 @@
     },
     {
       "tile": [
-        60,
-        46
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
         57,
         47
       ],
@@ -283,15 +265,6 @@
     },
     {
       "tile": [
-        62,
-        50
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
         57,
         51
       ],
@@ -302,24 +275,6 @@
     {
       "tile": [
         58,
-        51
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
-        61,
-        51
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
-        62,
         51
       ],
       "before": 128,
@@ -337,15 +292,6 @@
     },
     {
       "tile": [
-        62,
-        52
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
         42,
         53
       ],
@@ -357,24 +303,6 @@
       "tile": [
         56,
         53
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
-        62,
-        53
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
-        41,
-        54
       ],
       "before": 128,
       "after": 0,
@@ -400,15 +328,6 @@
     },
     {
       "tile": [
-        62,
-        54
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
         56,
         55
       ],
@@ -418,53 +337,8 @@
     },
     {
       "tile": [
-        61,
-        55
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
-        62,
-        55
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
-        40,
-        56
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
         56,
         56
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
-        61,
-        56
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
-        40,
-        57
       ],
       "before": 128,
       "after": 0,
@@ -481,33 +355,6 @@
     },
     {
       "tile": [
-        61,
-        57
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
-        39,
-        58
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
-        40,
-        58
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
         59,
         58
       ],
@@ -526,25 +373,7 @@
     },
     {
       "tile": [
-        61,
-        58
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
         39,
-        59
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
-        40,
         59
       ],
       "before": 128,
@@ -697,25 +526,7 @@
     },
     {
       "tile": [
-        38,
-        63
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
         39,
-        63
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
-        40,
         63
       ],
       "before": 128,
@@ -752,24 +563,6 @@
     {
       "tile": [
         59,
-        66
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
-        60,
-        66
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
-        61,
         66
       ],
       "before": 128,

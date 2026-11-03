@@ -5800,15 +5800,6 @@
     },
     {
       "tile": [
-        92,
-        65
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "Replace the old silhouette rectangle with the console ground footprint; this is floor behind its upper body."
-    },
-    {
-      "tile": [
         8,
         66
       ],
@@ -8848,15 +8839,6 @@
       "before": 128,
       "after": 0,
       "reason": "Projected floor behind front-right-console; its foreground body hides the actor here."
-    },
-    {
-      "tile": [
-        11,
-        79
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "Replace the old silhouette rectangle with the console ground footprint; this is floor behind its upper body."
     },
     {
       "tile": [

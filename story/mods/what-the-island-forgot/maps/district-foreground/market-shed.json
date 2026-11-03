@@ -211,30 +211,12 @@
     },
     {
       "tile": [
-        39,
-        50
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
         41,
         50
       ],
       "before": 0,
       "after": 128,
       "reason": "barrels ground footprint"
-    },
-    {
-      "tile": [
-        61,
-        50
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
     },
     {
       "tile": [
@@ -249,42 +231,6 @@
       "tile": [
         58,
         51
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
-        59,
-        51
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
-        60,
-        51
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
-        61,
-        51
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
-        38,
-        52
       ],
       "before": 128,
       "after": 0,
@@ -310,15 +256,6 @@
     },
     {
       "tile": [
-        61,
-        52
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
         38,
         53
       ],
@@ -329,15 +266,6 @@
     {
       "tile": [
         39,
-        53
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
-        61,
         53
       ],
       "before": 128,
@@ -374,15 +302,6 @@
     {
       "tile": [
         40,
-        54
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
-    },
-    {
-      "tile": [
-        61,
         54
       ],
       "before": 128,
@@ -451,15 +370,6 @@
       "before": 0,
       "after": 128,
       "reason": "wheelbarrow ground footprint"
-    },
-    {
-      "tile": [
-        61,
-        55
-      ],
-      "before": 128,
-      "after": 0,
-      "reason": "visible floor traced on our art"
     },
     {
       "tile": [
