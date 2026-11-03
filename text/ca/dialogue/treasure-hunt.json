@@ -1,10 +1,8 @@
 {
  "s169.sec6.u0": [
   [
-   "Hola, {color 6}{player}{color 1}! He",
-   "començat a ajudar Drimogemon.",
-   "Se'm dóna força bé trobar",
-   "coses!"
+   "Hola, {color 6}{player}{color 1}! He començat a ajudar",
+   "Drimogemon. Se'm dóna força bé trobar coses!"
   ]
  ],
  "s169.sec81.m0.o0": "Explica-m'ho",
@@ -18,16 +16,14 @@
  "s169.sec81.m2.o2": "Cancel·lar",
  "s169.sec81.u0": [
   [
-   "Bones, benvingut, {color 6}{player}{color 1}!",
-   "Això és la botiga de Cerca del",
-   "tresor. Poso a treballar el meu",
-   "art de cavar i et porto"
+   "Bones, benvingut, {color 6}{player}{color 1}! Això és la",
+   "botiga de Cerca del tresor. Poso a treballar el",
+   "meu art de cavar i et porto tresors del"
   ],
   [
-   "tresors del subsòl. Aquest és",
-   "el negoci! L'illa té tresors de",
-   "tota mena enterrats pertot",
-   "arreu. Deixa-m'ho a mi!"
+   "subsòl. Aquest és el negoci! L'illa té tresors",
+   "de tota mena enterrats pertot arreu.",
+   "Deixa-m'ho a mi!"
   ]
  ],
  "s169.sec81.u1": [

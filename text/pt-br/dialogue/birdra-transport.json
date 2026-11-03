@@ -21,18 +21,16 @@
  "s167.sec81.u0": [
   [
    "Vocês vieram, {color 6}{player}{color 1},",
-   "{color 10}{partner}{color 1}. Sou",
-   "transportador. Levo qualquer",
-   "coisa. Vocês só carregam a si"
+   "{color 10}{partner}{color 1}. Sou transportador. Levo",
+   "qualquer coisa. Vocês só carregam a si"
   ],
   [
-   "mesmos... Então que tal eu",
-   "levar os dois? Nada mal, hein?",
-   "Levo vocês a qualquer lugar",
-   "que já conheçam, a qualquer"
+   "mesmos... Então que tal eu levar os dois? Nada",
+   "mal, hein? Levo vocês a qualquer lugar que já",
+   "conheçam, a qualquer hora. Por uma taxa, é"
   ],
   [
-   "hora. Por uma taxa, é claro."
+   "claro."
   ]
  ]
 }

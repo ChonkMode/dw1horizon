@@ -1,10 +1,9 @@
 {
  "s139.sec81.u0": [
   [
-   "Eh? Aquesta disfressa de",
-   "peluix és diferent de les",
-   "altres. Té una... presència que",
-   "imposa, o una cosa així."
+   "Eh? Aquesta disfressa de peluix és diferent",
+   "de les altres. Té una... presència que imposa, o",
+   "una cosa així."
   ]
  ],
  "s139.sec81.u1": [
@@ -33,13 +32,9 @@
  ],
  "s139.sec81.u5": [
   [
-   "Vagi... no hi ha manera. Ets",
-   "més rígid del que pensava,",
-   "{color 10}{partner}{color 1}. Encara que un",
-   "cos més tou i viscós potser sí"
-  ],
-  [
-   "que cap..."
+   "Vagi... no hi ha manera. Ets més rígid del que",
+   "pensava, {color 10}{partner}{color 1}. Encara que un cos",
+   "més tou i viscós potser sí que cap..."
   ]
  ]
 }

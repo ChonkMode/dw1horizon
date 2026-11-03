@@ -252,9 +252,8 @@
  "m1230.u39": [
   [
    "Hmpf, has vingut. No trobaràs",
-   "aquests productes enlloc més.",
-   "Compra tant com vulguis... He,",
-   "he..."
+   "això enlloc més. Compra tant",
+   "com vulguis... He, he..."
   ]
  ],
  "m1230.u40": [
@@ -694,10 +693,9 @@
  ],
  "m1237.u3": [
   [
-   "La creu de direcció mou el",
-   "cursor. {color 6}×{color 1} passa un objecte a",
-   "l'altre costat, {color 10}○{color 1} en passa",
-   "deu i {color 4}□{color 1} els passa tots."
+   "La creu mou el cursor,",
+   "{color 6}×{color 1} passa un objecte,",
+   "{color 10}○{color 1} en passa deu i {color 4}□{color 1} tots."
   ]
  ],
  "m1237.u4": [

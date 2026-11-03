@@ -258,14 +258,12 @@
  "s102.sec81.u4": "Você entra no torneio?",
  "s102.sec81.u5": [
   [
-   "Dia 22, torneio de luta só para",
-   "Digimon insetos. Já pode se",
-   "inscrever. Quem não é inseto,",
-   "não entra. Vencedor ganha"
+   "Dia 22, torneio de luta só para Digimon",
+   "insetos. Já pode se inscrever. Quem não é",
+   "inseto, não entra. Vencedor ganha prêmio"
   ],
   [
-   "prêmio muito bom. Não custa",
-   "tentar."
+   "muito bom. Não custa tentar."
   ]
  ],
  "s102.sec81.u6": [
@@ -333,40 +331,34 @@
  "s103.sec5.u7": "Kabuterimon veio para a cidade!",
  "s103.sec6.u0": [
   [
-   "Todo ano, no dia com dois 2,",
-   "tem torneio de luta de insetos",
-   "aqui. Vencedor ganha coisa",
-   "incrível. Mas só Digimon"
+   "Todo ano, no dia com dois 2, tem torneio de",
+   "luta de insetos aqui. Vencedor ganha coisa",
+   "incrível. Mas só Digimon insetos podem"
   ],
   [
-   "insetos podem entrar."
+   "entrar."
   ]
  ],
  "s103.sec6.u1": [
   [
-   "Kabuterimon, Kuwagamon,",
-   "Kunemon e mais um tipo de",
-   "inseto. Mas Numemon não. Todo",
-   "ano, no dia com dois 2, tem"
+   "Kabuterimon, Kuwagamon, Kunemon e mais um",
+   "tipo de inseto. Mas Numemon não. Todo ano,",
+   "no dia com dois 2, tem torneio de luta de"
   ],
   [
-   "torneio de luta de insetos",
-   "aqui... Hum? Você já ganhou o",
-   "torneio antes."
+   "insetos aqui... Hum? Você já ganhou o torneio",
+   "antes."
   ]
  ],
  "s103.sec6.u2": [
   [
-   "Kabuterimon, Kuwagamon,",
-   "Kunemon e mais um tipo de",
-   "inseto: HerculesKabuterimon.",
-   "Hércules muito forte. Vencedor"
+   "Kabuterimon, Kuwagamon, Kunemon e mais um",
+   "tipo de inseto: HerculesKabuterimon. Hércules",
+   "muito forte. Vencedor ganha item que faz"
   ],
   [
-   "ganha item que faz digievoluir",
-   "para Hércules. Pode entrar no",
-   "torneio de insetos muitas",
-   "vezes."
+   "digievoluir para Hércules. Pode entrar no",
+   "torneio de insetos muitas vezes."
   ]
  ],
  "s103.sec7.m0.o0": "Pode apostar!",
@@ -463,29 +455,25 @@
  ],
  "s104.sec6.u0": [
   [
-   "Você já entrou no torneio de",
-   "insetos. Então vou contar",
-   "coisa boa. Conhece a \"Ninho de",
-   "Kunemon\"? Fica na Floresta"
+   "Você já entrou no torneio de insetos. Então",
+   "vou contar coisa boa. Conhece a \"Ninho de",
+   "Kunemon\"? Fica na Floresta Nativa. Digimon"
   ],
   [
-   "Nativa. Digimon Novato dorme",
-   "lá, acorda como Kunemon. Às",
+   "Novato dorme lá, acorda como Kunemon. Às",
    "vezes não. Depende da sorte."
   ]
  ],
  "s104.sec6.u1": [
   [
-   "Você, torneio de insetos...",
-   "Hum? Agora não pode entrar.",
-   "Então vou contar coisa boa.",
+   "Você, torneio de insetos... Hum? Agora não",
+   "pode entrar. Então vou contar coisa boa.",
    "Conhece a \"Ninho de Kunemon\"?"
   ],
   [
-   "Fica na Floresta Nativa.",
-   "Digimon Novato dorme lá,",
-   "acorda como Kunemon. Às vezes",
-   "não. Depende da sorte."
+   "Fica na Floresta Nativa. Digimon Novato dorme",
+   "lá, acorda como Kunemon. Às vezes não.",
+   "Depende da sorte."
   ]
  ],
  "s104.sec6.u2": [

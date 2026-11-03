@@ -27,6 +27,9 @@ writing. The discs' text lives in the gitignored `text/<source>/` folders of you
 4. **Write** `text/ours/dialogue/<zone>.json` (`{"s018.sec68.u1": "..."}`) and `text/ours/names.json`. A value is a
    string: the compiler wraps it into rows and pages with the game font's real widths, so you never count characters. Use a
    list of pages (`[["row", "row"], ["row"]]`) only when the page breaks matter (a reveal on its own page).
+   A page under a speaker's name has 3 rows and a narrator's has 4: the name takes the box's first row, and a fourth row
+   would be lost or replace another page's name. The story build refuses such a page; `python3 tools/dws/text/repage.py
+   LANGUAGE --named --write` breaks them into pages of 3 rows without changing a word.
 5. **Build and read it in the game**: `TEXT=ours tools/build-full.sh ours`, play to the scene. A box that overflows or a name that is missing is a build error. To test only your zones,
    `TEXT=ours TEXT_ZONES=toy-town,toy-mansion tools/build-full.sh ours-toys`: the other zones stay US English.
 6. Have a second reader review the zone in the game.

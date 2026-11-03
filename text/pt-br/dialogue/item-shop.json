@@ -2,51 +2,43 @@
  "s176.sec7.u0": "Ah, sim! Sua bolsa está muito cheia? Boing! Dizem que em algum lugar do mundo há um chaveiro que liga sua bolsa a outra dimensão, para que você possa carregar mais itens! Talvez voltar para os lugares que você já esteve!",
  "s176.sec7.u1": [
   [
-   "Vou ensinar meus segredos para",
-   "comprar itens! Na lista, aperte",
-   "START para ver o efeito de",
-   "um item. Ao escolher a"
+   "Vou ensinar meus segredos para comprar",
+   "itens! Na lista, aperte START para ver o",
+   "efeito de um item. Ao escolher a quantidade,"
   ],
   [
-   "quantidade, {color 4}□{color 1} seleciona o",
-   "máximo que pode pagar. Segure",
-   "{color 10}○{color 1} e aperte para cima ou para",
-   "baixo para mudar de dez em"
+   "{color 4}□{color 1} seleciona o máximo que pode pagar. Segure",
+   "{color 10}○{color 1} e aperte para cima ou para baixo para",
+   "mudar de dez em dez! Segure R1 e aperte"
   ],
   [
-   "dez! Segure R1 e aperte para",
-   "cima ou para baixo para",
-   "percorrer listas longas. Mais",
-   "um segredo: compre algo logo"
+   "para cima ou para baixo para percorrer listas",
+   "longas. Mais um segredo: compre algo logo",
+   "após seu Digimon renascer! Algo bom vai"
   ],
   [
-   "após seu Digimon renascer!",
-   "Algo bom vai acontecer! Boing!"
+   "acontecer! Boing!"
   ]
  ],
  "s176.sec81.u0": [
   [
-   "Bem-vindo, {color 6}{player}{color 1}! Veja,",
-   "minha própria loja! Vou vender",
-   "itens sem parar! O estoque...",
-   "Ah, resolvo isso depois. Traga"
+   "Bem-vindo, {color 6}{player}{color 1}! Veja, minha",
+   "própria loja! Vou vender itens sem parar! O",
+   "estoque... Ah, resolvo isso depois. Traga"
   ],
   [
-   "alguns Digimon para ajudar,",
-   "seria ótimo!"
+   "alguns Digimon para ajudar, seria ótimo!"
   ]
  ],
  "s176.sec81.u1": "Bem-vindo, peep! Decidi comprar e vender itens, Peep. Prazer em conhecê-lo, Peep! Ainda não há muito estoque... mas se algum Digimon veio para ajudar, talvez eu possa fazer isso, Peep.",
  "s176.sec81.u2": [
   [
-   "Bem-vindo. Tomei a liberdade",
-   "de abrir uma loja de itens.",
-   "Espero poder servi-lo bem. A",
-   "variedade ainda é pequena, mas"
+   "Bem-vindo. Tomei a liberdade de abrir uma loja",
+   "de itens. Espero poder servi-lo bem. A",
+   "variedade ainda é pequena, mas pretendo"
   ],
   [
-   "pretendo ampliar a loja. Tenha",
-   "paciência por enquanto."
+   "ampliar a loja. Tenha paciência por enquanto."
   ]
  ],
  "s176.sec81.u3": [
@@ -75,21 +67,17 @@
  "s176.sec82.m0.o1": "Não comprar",
  "s176.sec82.u0": [
   [
-   "Oh, señor, como vai? Ando",
-   "muuuito ocupado vendendo itens",
-   "todo dia... Brincadeira! Sou",
-   "bem preguiçoso, então não devo"
+   "Oh, señor, como vai? Ando muuuito ocupado",
+   "vendendo itens todo dia... Brincadeira! Sou bem",
+   "preguiçoso, então não devo aparecer muito"
   ],
   [
-   "aparecer muito na loja. Mas",
-   "tenho algo incrível: o Manual",
-   "de treino! Só de carregá-lo,",
-   "seu treino rende muito mais! É"
+   "na loja. Mas tenho algo incrível: o Manual de",
+   "treino! Só de carregá-lo, seu treino rende",
+   "muito mais! É valioso, então vendo por"
   ],
   [
-   "valioso, então vendo por 50000",
-   "Bits. Se não comprar, vai se",
-   "arrepender!"
+   "50000 Bits. Se não comprar, vai se arrepender!"
   ]
  ],
  "s176.sec82.u1": [

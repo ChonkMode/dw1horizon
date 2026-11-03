@@ -20,6 +20,7 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 sys.path[:0] = [str(ROOT), str(ROOT / 'tools')]
 from dws import backend as BE
+from dws.text.profiles import NAMED_PAGE_ROWS, maphead_page_too_tall, named_keys
 from dws.textbank import TextBank
 from dws.py.lower import escape_problems, font_problems, resolve_escapes
 from tools.localize.executable.bank import exe_bank, FORMAT, encoded_len, list_width, VERBATIM
@@ -244,6 +245,7 @@ def expand_references(row, names, species, cards, cache=None):
 def audit(languages=LANGUAGES, fonts=FONTS, root=ROOT):
     errors, notes, widest, counts = [], [], {}, collections.Counter()
     boxes = custom_boxes(root)
+    named = named_keys(root)
     species = {int(p.name.split('-')[0]): json.loads(p.read_text())['name']
                for p in (root / 'content/species').glob('*.json')}
     card_file = root / 'content/tables/cards.json'
@@ -347,6 +349,9 @@ def audit(languages=LANGUAGES, fonts=FONTS, root=ROOT):
                             max_rows = boxes.get(key, (240, 4))[1]
                             if len(page) > max_rows and not TABLE.match(key):
                                 issue(language, font, path, key, f'{len(page)} rows in a {max_rows}-row page')
+                            if key in named and key not in boxes and len(page) > NAMED_PAGE_ROWS or \
+                                    maphead_page_too_tall(key, page):
+                                issue(language, font, path, key, f'{len(page)} rows under a speaker\'s name, {NAMED_PAGE_ROWS} fit')
                             for i, row in enumerate(page):
                                 packed = BE.packed_key(key)
                                 pixels = BE.text_px(row)

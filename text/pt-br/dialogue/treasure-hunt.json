@@ -20,16 +20,13 @@
  "s169.sec81.m2.o2": "Cancelar",
  "s169.sec81.u0": [
   [
-   "Ei, bem-vindo, {color 6}{player}{color 1}!",
-   "Aqui é a loja de Caça ao",
-   "Tesouro. Eu uso meu talento",
-   "de escavador para trazer"
+   "Ei, bem-vindo, {color 6}{player}{color 1}! Aqui é a loja de",
+   "Caça ao Tesouro. Eu uso meu talento de",
+   "escavador para trazer tesouros do subsolo."
   ],
   [
-   "tesouros do subsolo. Esse é o",
-   "negócio! A ilha tem todo tipo",
-   "de tesouro enterrado por aí. É",
-   "só deixar comigo!"
+   "Esse é o negócio! A ilha tem todo tipo de",
+   "tesouro enterrado por aí. É só deixar comigo!"
   ]
  ],
  "s169.sec81.u1": "Quer uma Caça ao Tesouro? Quer saber como funciona primeiro?",

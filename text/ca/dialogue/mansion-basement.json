@@ -101,9 +101,8 @@
  ],
  "s063.sec5.u18": [
   [
-   "Ahhh, torno a sentir-me viu!",
-   "Valgui'm, t'he causat moltes",
-   "molèsties. Et prego que em",
+   "Ahhh, torno a sentir-me viu! Valgui'm, t'he",
+   "causat moltes molèsties. Et prego que em",
    "disculpis."
   ]
  ],
@@ -114,28 +113,22 @@
  ],
  "s063.sec5.u20": [
   [
-   "Mmm... Abans, permet-me que em",
-   "presenti. Sóc Myotismon,",
-   "senyor d'aquesta mansió. I tu",
+   "Mmm... Abans, permet-me que em presenti. Sóc",
+   "Myotismon, senyor d'aquesta mansió. I tu",
    "ets...?"
   ]
  ],
  "s063.sec5.u21": [
   [
-   "Sóc {color 6}{player}{color 1}, un humà del",
-   "món exterior. Aquest és el meu",
-   "company, {color 10}{partner}{color 1}. Estem",
-   "de viatge per a salvar aquesta"
-  ],
-  [
-   "illa."
+   "Sóc {color 6}{player}{color 1}, un humà del món exterior.",
+   "Aquest és el meu company, {color 10}{partner}{color 1}.",
+   "Estem de viatge per a salvar aquesta illa."
   ]
  ],
  "s063.sec5.u22": [
   [
-   "Vaja, vaja! Sembla que tenim",
-   "molt de què parlar. Haig de",
-   "donar-te la benvinguda com cal,",
+   "Vaja, vaja! Sembla que tenim molt de què",
+   "parlar. Haig de donar-te la benvinguda com cal,",
    "amb un banquet. Segueix-me."
   ]
  ],

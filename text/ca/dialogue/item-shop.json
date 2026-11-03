@@ -1,92 +1,74 @@
 {
  "s176.sec7.u0": [
   [
-   "Ah, sí! Tens la bossa plena?",
-   "Boing! Diuen que hi ha un",
-   "clauer que la connecta amb una",
-   "altra dimensió per poder portar"
+   "Ah, sí! Tens la bossa plena? Boing! Diuen que",
+   "hi ha un clauer que la connecta amb una altra",
+   "dimensió per poder portar més objectes!"
   ],
   [
-   "més objectes! Potser cal",
-   "tornar als llocs on ja has",
-   "estat!"
+   "Potser cal tornar als llocs on ja has estat!"
   ]
  ],
  "s176.sec7.u1": [
   [
-   "T'explicaré els meus trucs",
-   "secrets per comprar objectes!",
-   "Prem START a la llista per",
-   "veure'n els efectes. En triar"
+   "T'explicaré els meus trucs secrets per",
+   "comprar objectes! Prem START a la llista per",
+   "veure'n els efectes. En triar la quantitat, {color 4}□{color 1}"
   ],
   [
-   "la quantitat, {color 4}□{color 1} selecciona",
-   "tot el que pots pagar. Mantén",
-   "{color 10}○{color 1} i prem amunt o avall per",
-   "canviar de deu en deu! Si la"
+   "selecciona tot el que pots pagar. Mantén {color 10}○{color 1} i",
+   "prem amunt o avall per canviar de deu en deu!",
+   "Si la llista és llarga, mantén R1 i prem"
   ],
   [
-   "llista és llarga, mantén R1 i",
-   "prem amunt o avall per moure't",
-   "de pressa! Un altre secret:",
-   "compra alguna cosa just"
+   "amunt o avall per moure't de pressa! Un altre",
+   "secret: compra alguna cosa just després que",
+   "el teu Digimon reneixi. Segur que passa una"
   ],
   [
-   "després que el teu Digimon",
-   "reneixi. Segur que passa una",
    "cosa bona! Boing!"
   ]
  ],
  "s176.sec81.u0": [
   [
-   "Benvingut, {color 6}{player}{color 1}! Mira,",
-   "la meva pròpia botiga! Vendré",
-   "objectes sense parar!",
-   "L'assortiment... Ja ho"
+   "Benvingut, {color 6}{player}{color 1}! Mira, la meva",
+   "pròpia botiga! Vendré objectes sense parar!",
+   "L'assortiment... Ja ho resoldré. M'agradaria"
   ],
   [
-   "resoldré. M'agradaria que",
-   "portessis Digimon per",
-   "ajudar-me."
+   "que portessis Digimon per ajudar-me."
   ]
  ],
  "s176.sec81.u1": [
   [
-   "Benvingut, piulo! He decidit",
-   "comprar i vendre objectes,",
-   "piulo. Encantat, piulo! Encara",
-   "no hi ha molt de gènere... però"
+   "Benvingut, piulo! He decidit comprar i vendre",
+   "objectes, piulo. Encantat, piulo! Encara no hi ha",
+   "molt de gènere... però si vingués algun"
   ],
   [
-   "si vingués algun Digimon a",
-   "ajudar, potser m'apanyaria,",
-   "piulo."
+   "Digimon a ajudar, potser m'apanyaria, piulo."
   ]
  ],
  "s176.sec81.u2": [
   [
-   "Benvingut. Si em permets",
-   "l'atreviment, he obert una",
-   "botiga d'objectes. Espero",
-   "comptar amb la teva visita."
+   "Benvingut. Si em permets l'atreviment, he",
+   "obert una botiga d'objectes. Espero comptar",
+   "amb la teva visita."
   ],
   [
-   "L'assortiment encara és",
-   "bastant pobre, però penso",
-   "engrandir la botiga. Tingues",
-   "paciència amb mi de moment."
+   "L'assortiment encara és bastant pobre, però",
+   "penso engrandir la botiga. Tingues paciència",
+   "amb mi de moment."
   ]
  ],
  "s176.sec81.u3": [
   [
-   "{color 6}{player}{color 1}, {color 10}{partner}{color 1},",
-   "per fi he obert la botiga",
-   "d'objectes. Pressento que el",
-   "negoci anirà molt bé! Amb més"
+   "{color 6}{player}{color 1}, {color 10}{partner}{color 1}, per fi he",
+   "obert la botiga d'objectes. Pressento que el",
+   "negoci anirà molt bé! Amb més Digimon a la"
   ],
   [
-   "Digimon a la ciutat, tindré més",
-   "bon assortiment. Tingueu",
+   "ciutat, tindré més bon assortiment. Tingueu",
    "paciència fins llavors."
   ]
  ],
@@ -106,20 +88,15 @@
  ],
  "s176.sec81.u6": [
   [
-   "Benvingut, {color 6}{player}{color 1}. Si em",
-   "permets l'atreviment, he",
-   "decidit ajudar en aquesta",
-   "botiga. Espero comptar amb la"
-  ],
-  [
-   "teva visita."
+   "Benvingut, {color 6}{player}{color 1}. Si em permets",
+   "l'atreviment, he decidit ajudar en aquesta",
+   "botiga. Espero comptar amb la teva visita."
   ]
  ],
  "s176.sec81.u7": [
   [
-   "Ah, {color 6}{player}{color 1}. Al cap i a la",
-   "fi, aquí és on millor llueix el",
-   "meu talent. A partir d'ara",
+   "Ah, {color 6}{player}{color 1}. Al cap i a la fi, aquí és on",
+   "millor llueix el meu talent. A partir d'ara",
    "donaré el millor de mi."
   ]
  ],
@@ -127,21 +104,17 @@
  "s176.sec82.m0.o1": "No comprar",
  "s176.sec82.u0": [
   [
-   "Oooh, senyor! Com et va? Jo",
-   "estic taaan ocupat venent",
-   "objectes... És broma! Sóc molt",
-   "gandul i no crec que pari gaire"
+   "Oooh, senyor! Com et va? Jo estic taaan",
+   "ocupat venent objectes... És broma! Sóc molt",
+   "gandul i no crec que pari gaire per la botiga."
   ],
   [
-   "per la botiga. Però tinc una",
-   "cosa increïble: el Manual",
-   "d'entrenar! Només de dur-lo,",
-   "l'entrenament fa meravelles! És"
+   "Però tinc una cosa increïble: el Manual",
+   "d'entrenar! Només de dur-lo, l'entrenament fa",
+   "meravelles! És molt valuós. Te'l venc per"
   ],
   [
-   "molt valuós. Te'l venc per",
-   "50000 Bits. Si no el compres,",
-   "te'n penediràs!"
+   "50000 Bits. Si no el compres, te'n penediràs!"
   ]
  ],
  "s176.sec82.u1": [

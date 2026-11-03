@@ -15,6 +15,7 @@ from dws import bytecode
 from .diag import DwsError, err
 from .parser import Node
 from . import registry as R
+from .text.profiles import NAMED_PAGE_ROWS, maphead_page_too_tall
 
 INT_RANGE = {'u8': (0, 255), 'u16': (0, 65535), 's16': (-32768, 32767), 's32': (-2 ** 31, 2 ** 31 - 1)}
 INT_FIELDS = {'m': 'u8', 'u8': 'u8', 'M': 'u16', 'm16': 'u16', 's': 'u16', 'S': 'u16', 'k16': 'u16', 'u16': 'u16',
@@ -239,6 +240,12 @@ class Ext:
         if f == 'show_textbox':
             if not args: raise err(c, 'show_textbox(text("a"), ...) needs at least one row')
             vals = [self.eval(a, env) for a in args]
+            if len(vals) == 1 and vals[0].type == 'text' and vals[0].key and vals[0].val[0] == 'pages':
+                for page in vals[0].val[1]:
+                    if maphead_page_too_tall(vals[0].key, page):
+                        self.errors.append(err(args[0], f'text key "{vals[0].key}": a page of {len(page)} rows in a box with a '
+                                                        f'name row: "{page[NAMED_PAGE_ROWS]}" would be lost or replace the name',
+                                               'shorten it to 3 rows'))
             if len(vals) == 1 and vals[0].type == 'text' and (vals[0].val[0] == 'wrap' or len(vals[0].val[1]) > 1):
                 # one utterance (text("s002.sec6.u0")): a SHOW_TEXTBOX per page, in a row (one chained box); a string is wrapped
                 k, val = vals[0].val

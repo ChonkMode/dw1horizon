@@ -18,14 +18,12 @@
  ],
  "s010.sec8.u1": [
   [
-   "Tsc... Soube que você está",
-   "cheio da grana, hein? Vou",
-   "vender algo bom, ook! A coisa",
-   "mais rara do mundo: a {color 6}Banana"
+   "Tsc... Soube que você está cheio da grana,",
+   "hein? Vou vender algo bom, ook! A coisa mais",
+   "rara do mundo: a {color 6}Banana dourada{color 1}. Só 50000"
   ],
   [
-   "dourada{color 1}. Só 50000 Bits! Não",
-   "vendo fiado, ook-ook."
+   "Bits! Não vendo fiado, ook-ook."
   ]
  ],
  "s010.sec8.u2": "Você está louco? Você está carregando muito!",
@@ -43,10 +41,9 @@
  "s010.sec51.u1": "Este humilde se chama Ninjamon!",
  "s010.sec51.u2": [
   [
-   "Você deve ser {color 6}{player}{color 1}...",
-   "e {color 10}{partner}{color 1}! Sua fama",
-   "chegou até a distante Vila",
-   "Ninja. Cruzariam lâminas com"
+   "Você deve ser {color 6}{player}{color 1}... e",
+   "{color 10}{partner}{color 1}! Sua fama chegou até a",
+   "distante Vila Ninja. Cruzariam lâminas com"
   ],
   [
    "este humilde servo?"
@@ -59,10 +56,8 @@
  ],
  "s010.sec51.u4": [
   [
-   "Sua habilidade é tudo o que",
-   "dizem! Por favor, aceite este",
-   "humilde servo como seu",
-   "discíplo!"
+   "Sua habilidade é tudo o que dizem! Por favor,",
+   "aceite este humilde servo como seu discíplo!"
   ]
  ],
  "s010.sec51.u5": [

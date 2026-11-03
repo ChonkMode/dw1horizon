@@ -43,6 +43,34 @@ class LocalizationAudit(unittest.TestCase):
             be.FONT.clear()
             be.FONT.update(previous)
 
+    def test_a_page_under_a_name_has_three_rows(self):
+        from tools.dws.text.profiles import maphead_page_too_tall, tall_pages
+        script = '\n'.join(['SET_DIALOG_OWNER 6', 'SHOW_TEXTBOX', ' "a"', ' "b"', ' "c"', ' "lost"', 'SET_DIALOG_OWNER 255',
+                             'SHOW_TEXTBOX', ' "a"', ' "b"', ' "c"', ' "fits"', 'SET_DIALOG_OWNER 6', 'SET_TEXTBOX_SIZE 0, 20, 7',
+                             'SHOW_TEXTBOX', ' "a"', ' "b"', ' "c"', ' "fits"', 'END_SECTION', 'SHOW_TEXTBOX', ' "a"', ' "b"', ' "c"', ' "?"'])
+        self.assertEqual(tall_pages(script), [('6', ['a', 'b', 'c', 'lost'])])
+        self.assertTrue(maphead_page_too_tall('m1230.u39', ['a', 'b', 'c', 'd']))
+        self.assertFalse(maphead_page_too_tall('m1238.u16', ['{color 7}Jijimon {color 1}', 'b', 'c', 'd']))
+
+    def test_named_keys_follow_the_owner_of_an_event(self):
+        import pathlib, tempfile
+        from tools.dws.text.profiles import named_keys
+        with tempfile.TemporaryDirectory() as root:
+            path = pathlib.Path(root, 'story/base/zones/z/s1/script.dws'); path.parent.mkdir(parents=True)
+            path.write_text("""on talk(a) replace {
+    say(narrator, text("n"));
+    show_textbox(text("n2"));
+    say(entity(204), text("a"), text("b"));
+    show_textbox(text("c"));
+}
+on talk(b) replace {
+    show_textbox(text("d"));
+    set_dialog_owner(6);
+    show_textbox(text("e"));
+}
+""")
+            self.assertEqual(named_keys(root), {'a', 'b', 'c', 'e'})
+
     def test_every_shipped_bank_fits_both_fonts_and_preserves_references(self):
         from tools.localize.check import audit, LANGUAGES
         result = audit()
