@@ -1295,7 +1295,7 @@ def make_bundle_derive(usa, work, out, recipe, facts, source_discs=None):
         # A recording on the USA source discs never imports these verifiers, but the
         # other supported releases need them to check their models against the pins
         # (web/enginebuild/build_engine.py OTHER_RELEASES).
-        bundle |= {'tools/dcbrelease.py', 'tools/dw2release.py', 'tools/dw3release.py'}
+        bundle |= {p for p in ('tools/dcbrelease.py', 'tools/dw2release.py', 'tools/dw3release.py') if p in files}
     other = set()
     for p in sorted(opened):
         if os.path.isabs(p) or p.startswith('extracted/'):
