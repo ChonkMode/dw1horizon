@@ -1,6 +1,6 @@
 # Digimon asset-library roadmap
 
-**V1.0 scope:** only **section 1 — Vanilla-like** and **section 2 — Vanilla-like Megas** are intended for V1.0. **Section 3 — Low priority vanilla-like**, **section 4 — Adventure 02** and **section 5 — Tamers / Digimon World 3** are post-V1.0 priorities, in that order.
+v1.0 scope includes only sections 1, 2 and 3, in order to flesh out the original game with a more complete cast of popular digimon from shows and games during the game's global release year. Sections 4 and 5 are less defined expansions intended for post-game content in later revisions of this project.
 
 ## Status key
 
@@ -13,54 +13,13 @@
 
 ## Purpose and release boundary
 
-This is a proposed order for building a reusable Digimon library: **Vanilla-like → Vanilla-like Megas → Low priority vanilla-like → Adventure 02 → Tamers / Digimon World 3**. It prioritizes complete, recognizable families and useful regional inhabitants over raw species count. The first two tiers define the intended V1.0 content scope; the remaining three organize optional vanilla additions and later regional expansions.
-
-For V1.0, finish and test the species in sections 1–2: models, care and battle animations, attacks, evolution routes, balance and bugs. Prioritize defects in already shipped content while completing those families. Work in sections 3–5 is post-V1.0 work; fixes to an already released species from those tiers do not bring the rest of its regional roster into V1.0 scope.
-
-The library should work without the beta demonstration story. A modder should be able to select a species, place an encounter or resident, and configure a raising route without inheriting that story's recruitment flags or map edits. Removing the demonstration must preserve existing save identities or have an explicit migration policy.
-
-Within each tier, the numbered rows are the recommended queue. Complete the core families first, then nursery gaps, then the selected supporting roster; optional bosses and film variants come last. Shared animation work can batch adjacent species, but donor convenience alone should not move a later tier ahead of an earlier one. Fixes to already released content take precedence across all tiers. Names use common English/localized names, with aliases where useful.
-
-### What the status snapshot establishes
-
-Inventory inspected at [`614aa016570494150fc86ddd33acc88e4d816be8`](https://github.com/felixcarmona/dw1horizon/tree/614aa016570494150fc86ddd33acc88e4d816be8), 2026-11-03. Existing rows link their species record. IDs are Horizon IDs, not proposed national catalogue numbers. Do not allocate new IDs from row order.
-
-Existing records start at **in-progress** because this is an inventory and prioritization review, not a per-species visual/gameplay sign-off. This does not revoke previous acceptance or claim every existing species is defective. The [species proof index](docs/data/species-proof.json) records a limited set of checks and is not by itself proof of all care animations, all attacks, balanced raising or every option combination. A maintainer can advance a row by linking the corresponding evidence; record an accepted native asset as reuse rather than importing it again.
-
-For entries without an asset, investigate the existing [import pipeline](docs/reference/imported-species.md) and supported source discs first. No suitable donor is assumed. If none exists, record an authored-asset plan or a justified new-source proposal before committing to a release. A source model that fights correctly still needs DW1's eating, sleeping, toilet, training and field interactions.
-
-### Evolution-stage notation
-
-The **Evolution stage** column uses English stage names: **Fresh (Baby I)**, **In-Training (Baby II)**, **Rookie**, **Champion**, **Ultimate** and **Mega**. It states the intended library stage, using the inspected species record where no change is proposed. **Ultimate → Mega (promotion)** identifies a planned change from the current DW1/Horizon level; it is not a second asset or a claim that the promotion is already implemented.
-
-**Armor** remains a distinct classification, with the current Horizon gameplay level shown in parentheses. DNA/fusion and mode changes are forms or acquisition methods, not extra numerical stages. Calumon's official level is [Unknown](https://digimon.net/reference_en/detail.php?directory_name=culumon); its NPC role does not require inventing an evolution stage.
-
-### Reference artwork
-
-Each thumbnail links to its entry in [Bandai's official Digimon Encyclopedia](https://digimon.net/reference_en/). The remotely hosted images show the reference designs; they are not the imported game models and do not indicate asset completion. Form-specific rows use the corresponding artwork. Chicomon is named **Chibomon** in the linked English profile; Justimon's reference shows **Accel Arm**.
-
-## Family coverage and scope
-
-The core vanilla-like target covers the eight original Adventure partners from Fresh through Ultimate, their familiar original-series variants, and the Mega candidates in tier 2. It is not every cross-evolution, recolor or form introduced by later reboots. These are library coverage goals, not mandatory linear evolution trees: preserve DW1's branching raising choices. The family associations follow the [1999 Adventure cast](https://wikimon.net/Digimon_Adventure); later game/card-era Mega alternatives are listed explicitly rather than claimed as appearances in the original TV series.
-
-| Family | Fresh → In-Training → Rookie → Champion → Ultimate | Coverage work |
-|---|---|---|
-| Tentomon | Pabumon → Motimon → Tentomon → Kabuterimon → MegaKabuterimon (red) | Reuse Kabuterimon; finish the promoted Tentomon and imported Ultimate; add both babies. |
-| Gomamon | Pichimon → Bukamon → Gomamon → Ikkakumon → Zudomon | Finish the existing Rookie/Champion/Ultimate records; add both babies. |
-| Gatomon | YukimiBotamon → Nyaromon → Salamon → Gatomon → Angewomon | Finish the three existing records; add both babies. Gatomon is a Champion. |
-| Palmon | Yuramon → Tanemon → Palmon → Togemon → Lillymon | Reuse the vanilla nursery and Rookie; finish Champion/Ultimate. |
-| Biyomon | Nyokimon → Yokomon → Biyomon → Birdramon → Garudamon | Reuse vanilla Rookie/Champion; finish Ultimate and add both babies. |
-| Patamon | Poyomon → Tokomon → Patamon → Angemon → MagnaAngemon | Reuse the vanilla early family; finish Ultimate. |
-| Agumon | Botamon → Koromon → Agumon → Greymon → MetalGreymon (Vaccine/orange) | Finish the existing orange variant. Retain native MetalGreymon (Virus) and SkullGreymon as separate branches. |
-| Gabumon | Punimon → Tsunomon → Gabumon → Garurumon → WereGarurumon | Reuse native assets; WereGarurumon already exists as an original item evolution. Validate Horizon's broader route. |
-
-MasterTyrannomon is included for its native DW1 role and the Tyrannomon family, rather than as an Adventure main-cast form. Other useful Adventure inhabitants already available in vanilla, such as Leomon, Ogremon, Devimon, Whamon, Piximon, Etemon, Andromon and the Seadramon family, are reuse candidates rather than missing imports. Include them in a region's integration tests without creating duplicate asset tasks.
+Prioritize complete, recognizable families, then supporting species and regional variety. Follow the numbered order within each section; fixes to released content take precedence.
 
 ## 1. Vanilla-like: complete the Adventure families
 
 The first fourteen rows close the principal Rookie/Champion/Ultimate gaps or finish their existing conversions. The next eight close the missing nursery forms. MasterTyrannomon then strengthens an existing DW1 family, followed by the selected supporting roster.
 
-The lower-priority species in section 3 still fit the vanilla aesthetic; they add regional variety rather than closing the core family gaps. If V1.0 needs another reduction, **Mammothmon** and **SkullMeramon** are the next candidates to defer: both are useful regional Ultimates, but neither completes a main-cast family. They remain in this section for now. Native NPC reuse keeps MasterTyrannomon, Myotismon and Cherrymon especially relevant.
+The lower-priority species in section 3 still fit the vanilla aesthetic; they add regional variety rather than closing the core family gaps. Mammothmon and SkullMeramon are included in the first section to flesh out the limited number of ultimates in the vanilla game, but can be deferred to section 3 if needed.
 
 | Priority | Digimon / form | Reference artwork | Evolution stage | Existing asset / record | Status | Next acceptance work / reason |
 |---|---|---|---|---|---|---|
@@ -125,7 +84,7 @@ Magnadramon and Ophanimon, and Vikemon and Plesiomon, are alternative coverage c
 
 ## 3. Low priority vanilla-like
 
-These Digimon remain suitable for the vanilla world and future regions, but are lower priority than the core Adventure families and vanilla-like Megas. They are outside the intended V1.0 scope. Preserve their existing assets and acceptance work; moving a row changes its priority, not its completion status.
+These additions flesh out V1.0 with more supporting species and regional variety, after the core Adventure families and vanilla-like Megas.
 
 | Priority | Digimon / form | Reference artwork | Evolution stage | Existing asset / record | Status | Next acceptance work / reason |
 |---|---|---|---|---|---|---|
@@ -202,14 +161,6 @@ The main and supporting cast follow the [Tamers roster](https://wikimon.net/Digi
 
 This section also covers the distinctive starter families from [Digimon World 3 / Digimon World 2003](https://wikimon.net/Digimon_World_3). They share this later library milestone without being labeled Tamers anime characters. Finish the three core Tamers families first, then the DW3 families below, then the supporting roster. Agumon and Patamon reuse the earlier vanilla families; Guilmon and Renamon are already in this section. Veemon, an unlockable DW3 partner rather than an initial starter-pack choice, remains in section 4.
 
-| DW3 starter family | Rookie → Champion → Ultimate → Mega | Naming / scope |
-|---|---|---|
-| Bearmon | Bearmon → Grizzlymon → GrapLeomon → Marsmon | Bearmon is called Kumamon in English DW3; this is not Frontier's Kumamon. Grizzlymon is named Grizzmon in that game. |
-| Kotemon | Kotemon → Dinohyumon → Kyukimon → SlashAngemon | DW3 names include Dinohumon and GuardiAngemon. |
-| Monmon | Monmon → Hookmon → Assaultmon → Cannondramon | Assaultmon is called Armormon in English DW3. |
-
-These are the recognizable DW3 family paths used to prioritize library coverage, not a requirement to reproduce DW3's leveling or temporary battle transformations. Keep DW1's raising loop and branching evolution choices. References: [Bearmon/Kotemon/Monmon blast forms](https://www.neoseeker.com/digimon3/faqs/91622-digimon-world-3-f.html), [Monmon's natural path](https://digimon.neoseeker.com/wiki/Monmon).
-
 | Priority | Digimon / form | Reference artwork | Evolution stage | Existing asset / record | Status | Next acceptance work / reason |
 |---|---|---|---|---|---|---|
 | 5.01 | Guilmon | <a href="https://digimon.net/reference_en/detail.php?directory_name=guilmon"><img src="https://digimon.net/cimages/digimon/guilmon.jpg" width="72" alt="Guilmon"></a> | Rookie | [433](content/species/433-guilmon.json) | in-progress | Finish the existing Rookie's full partner acceptance. |
@@ -274,7 +225,11 @@ Use the intended role to scope acceptance: partner, enemy, NPC or several. **Par
 
 ## Decisions to make before expanding the commitment
 
-- **V1.0 roster:** sections 1–2 are the intended release scope; assign their acceptance owners and resolve optional forms within those sections. Sections 3–5 remain post-V1.0 plans, with low-priority vanilla-like additions ahead of the later regions.
+- **V1.0 roster:** complete sections 1–3 in priority order and resolve optional forms. Sections 4–5 outline later post-game expansions.
 - **Profiles:** define the supported roster, balance and story combinations. NEW DIGIMON OFF currently limits species; it does not undo the unconditional care/economy rebalancing described in [balance.md](docs/mods/balance.md). EASY/NORMAL is a combat multiplier, not a complete classic/expanded ruleset switch.
 - **Save semantics:** keep species IDs and mod-owned flags stable. Document fallbacks, restored partners, retained recruitment and story-removal behavior using the existing [options](docs/mods/options.md) and [compatibility](docs/mods/compatibility.md) contracts. Test two saves with different options, not only one save round trips.
 - **Library boundary:** demonstrate one standalone mini-mod using a polished family, one encounter/resident and a save round trip with the beta story disabled. This is a practical acceptance test for the framework claim. A new story, a fusion system and every late boss can remain separate consumers of that library.
+
+## Reference artwork
+
+Each thumbnail links to its entry in [Bandai's official Digimon Encyclopedia](https://digimon.net/reference_en/). The remotely hosted images show the reference designs; they are not the imported game models and do not indicate asset completion. Form-specific rows use the corresponding artwork. Chicomon is named **Chibomon** in the linked English profile; Justimon's reference shows **Accel Arm**.
