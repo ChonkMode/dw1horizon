@@ -17,9 +17,11 @@ Track each area independently: **Art** covers models, textures and animations; *
 
 Statuses are a snapshot of `origin/main` (`60e7b22a`) on 2026-11-05; the [species JSON](../content/species/) is the source of truth. `configured` records source inspection, not a new playtest; existing `playable` reports are retained, and techniques remain in-progress pending separate validation.
 
-Current model work includes constant body scale for 67 imports and a victory/praise rework across 28 species. These repairs do not close each species' remaining art checks.
+The [decision log](decisions.md#species--levels) records current level and model changes. Current model work includes constant body scale for 67 imports and a victory/praise rework across 28 species. These repairs do not close each species' remaining art checks.
 
 ## Purpose and release boundary
+
+Use the [ideas backlog](ideas.md) for unselected suggestions and the [decision log](decisions.md) for established behavior and its reasons. This roadmap proposes roster priorities; it does not replace either document.
 
 Prioritize complete, recognizable families, then supporting species and regional variety. Follow the numbered order within each section; fixes to released content take precedence.
 
@@ -236,6 +238,8 @@ Scope acceptance to the intended role: partner by default, or explicitly enemy/N
 5. **Evidence.** Link the tested commit, build settings, commands, results and reviewed images/video. Check peers affected by shared changes and revisit acceptance when relevant assets, data or runtime code change.
 
 ## Decisions to make before expanding the commitment
+
+Discuss these proposals alongside the [ideas backlog](ideas.md); check the [decision log](decisions.md) before changing existing gameplay or option contracts.
 
 - **V1.0 roster:** complete sections 1–3 in priority order and resolve optional forms. Sections 4–5 outline later post-game expansions.
 - **Profiles:** define the supported roster, balance and story combinations. NEW DIGIMON OFF currently limits species; it does not undo the unconditional care/economy rebalancing described in [balance.md](mods/balance.md). EASY/NORMAL is a combat multiplier, not a complete classic/expanded ruleset switch.
