@@ -29,22 +29,22 @@ Use assets from **Digimon World 1, Digimon World 2, Digimon World 2003 and Digit
 
 Availability checks use the [import lists](../content/imports/lists/), [conversion specs](../content/imports/specs/) and [source-game inventory](reference/imported-species.md#the-source-games). A missing catalog entry is not a queued import: it needs a hand-authoring decision. Imperialdramon Fighter and Paladin modes have DW2003 source models but no species records; source availability alone does not establish partner fit.
 
-## 1. Vanilla-like: complete the Adventure families
+## 1. Original-style roster: complete the Adventure families
 
 All species in this section are already in the game and raisable. Polish the core families first, then the hand-authored nursery forms and supporting roster. The babies are playable and can be refined over time without adding donor discs.
 
-The lower-priority species in section 3 still fit the vanilla aesthetic; they add regional variety rather than closing the core family gaps. Mammothmon and SkullMeramon are included in the first section to flesh out the limited number of ultimates in the vanilla game, but can be deferred to section 3 if needed.
+The lower-priority species in section 3 still fit the original aesthetic; they add regional variety rather than closing the core family gaps. Mammothmon and SkullMeramon are included in the first section to flesh out the limited number of ultimates in the vanilla game, but can be deferred to section 3 if needed.
 
 | Priority | Digimon / form | Reference artwork | Evolution stage | Existing asset / record | Art | Techniques | Evo requirements | Next acceptance work / reason |
 |---|---|---|---|---|---|---|---|---|
 | 1.01 | Tentomon | [Tentomon](https://digimon.net/reference_en/detail.php?directory_name=tentomon) | Rookie | [111](../content/species/111-tentomon.json) | playable | in-progress | playable | Promoted vanilla NPC; finish the partner care, movement and attack audit. |
-| 1.02 | MegaKabuterimon (red) | [MegaKabuterimon (Red)](https://digimon.net/reference_en/detail.php?directory_name=atlurkabuterimon) | Ultimate | [205](../content/species/205-megakabuterimon.json) | playable | in-progress | playable | Complete Tentomon's familiar Ultimate; check horn and wing motion, hit timing and silhouette. |
+| 1.02 | MegaKabuterimon (red) | [MegaKabuterimon (Red)](https://digimon.net/reference_en/detail.php?directory_name=atlurkabuterimon) | Ultimate | [205](../content/species/205-megakabuterimon.json) | playable | in-progress | playable | Polish Tentomon's Ultimate; check horn and wing motion, hit timing and silhouette. |
 | 1.03 | Gomamon | [Gomamon](https://digimon.net/reference_en/detail.php?directory_name=gomamon) | Rookie | [217](../content/species/217-gomamon.json) | playable | in-progress | playable | Polish the aquatic Rookie's care and locomotion set. |
 | 1.04 | Ikkakumon | [Ikkakumon](https://digimon.net/reference_en/detail.php?directory_name=ikkakumon) | Champion | [218](../content/species/218-ikkakumon.json) | playable | in-progress | playable | Make the large quadruped work in narrow paths, care scenes and battle ranges. |
-| 1.05 | Zudomon | [Zudomon](https://digimon.net/reference_en/detail.php?directory_name=zudomon) | Ultimate | [219](../content/species/219-zudomon.json) | playable | in-progress | playable | Finish hammer contacts, effects and field scale; close the core Gomamon family. |
+| 1.05 | Zudomon | [Zudomon](https://digimon.net/reference_en/detail.php?directory_name=zudomon) | Ultimate | [219](../content/species/219-zudomon.json) | playable | in-progress | playable | Finish hammer contacts, effects and field scale; review the Gomamon family. |
 | 1.06 | Salamon | [Salamon](https://digimon.net/reference_en/detail.php?directory_name=plotmon) | Rookie | [221](../content/species/221-salamon.json) | playable | in-progress | playable | Polish the small quadruped's care and movement set. |
 | 1.07 | Gatomon (Tailmon) | [Gatomon](https://digimon.net/reference_en/detail.php?directory_name=tailmon) | Champion | [234](../content/species/234-gatomon.json) | playable | in-progress | playable | Champion partner despite small size; check claw contacts, tail/ring and care interactions. |
-| 1.08 | Angewomon | [Angewomon](https://digimon.net/reference_en/detail.php?directory_name=angewomon) | Ultimate | [190](../content/species/190-angewomon.json) | playable | in-progress | playable | Close the Gatomon family; audit wings, bow/arrow origin, recovery and care poses. |
+| 1.08 | Angewomon | [Angewomon](https://digimon.net/reference_en/detail.php?directory_name=angewomon) | Ultimate | [190](../content/species/190-angewomon.json) | playable | in-progress | playable | Review the Gatomon family; audit wings, bow/arrow origin, recovery and care poses. |
 | 1.09 | Togemon | [Togemon](https://digimon.net/reference_en/detail.php?directory_name=togemon) | Champion | [208](../content/species/208-togemon.json) | playable | in-progress | playable | Validate Palmon's Champion route, glove contacts and movement footprint. |
 | 1.10 | Lillymon | [Lillymon](https://digimon.net/reference_en/detail.php?directory_name=lilimon) | Ultimate | [209](../content/species/209-lillymon.json) | playable | in-progress | playable | Validate Palmon's Ultimate route, flight height and flower-cannon origin. |
 | 1.11 | Garudamon | [Garudamon](https://digimon.net/reference_en/detail.php?directory_name=garudamon) | Ultimate | [460](../content/species/460-garudamon.json) | playable | in-progress | playable | Validate Biyomon's Ultimate route, wing/body scale and aerial attack recovery. |
@@ -60,7 +60,7 @@ The lower-priority species in section 3 still fit the vanilla aesthetic; they ad
 | 1.21 | Nyokimon | [Nyokimon](https://digimon.net/reference_en/detail.php?directory_name=nyokimon) | Fresh | Hand-authored; [473](../content/species/473-nyokimon.json) | playable | in-progress | playable | Polish the hand-authored Fresh form and validate Biyomon's nursery route. |
 | 1.22 | Yokomon | [Yokomon](https://digimon.net/reference_en/detail.php?directory_name=pyocomon) | In-Training | Hand-authored; [477](../content/species/477-yokomon.json) | playable | in-progress | playable | Polish the hand-authored In-Training form and validate Biyomon's nursery route alongside existing DW1 routes. |
 | 1.23 | MasterTyrannomon | [MasterTyrannomon](https://digimon.net/reference_en/detail.php?directory_name=mastertyranomon) | Ultimate | [124](../content/species/124-mastertyrannomon.json) | playable | in-progress | playable | Polish the native DW1 partner's care animations and melee/fire attacks; validate the Tyrannomon-family Ultimate route. |
-| 1.24 | Wizardmon | [Wizardmon](https://digimon.net/reference_en/detail.php?directory_name=wizarmon) | Champion | [241](../content/species/241-wizardmon.json) | playable | in-progress | playable | High-value village/ruins ally and partner; finish staff, spell and care animations. |
+| 1.24 | Wizardmon | [Wizardmon](https://digimon.net/reference_en/detail.php?directory_name=wizarmon) | Champion | [241](../content/species/241-wizardmon.json) | playable | in-progress | playable | Village/ruins ally and partner; finish staff, spell and care animations. |
 | 1.25 | DemiDevimon | [DemiDevimon](https://digimon.net/reference_en/detail.php?directory_name=picodevimon) | Rookie | [236](../content/species/236-demidevimon.json) | playable | in-progress | playable | Recognizable early enemy/partner; validate airborne locomotion and small target contacts. |
 | 1.26 | Myotismon | [Myotismon](https://digimon.net/reference_en/detail.php?directory_name=vamdemon) | Ultimate | [66](../content/species/66-myotismon.json) | playable | in-progress | playable | Polish partner-specific coverage using the native DW1 asset. |
 | 1.27 | LadyDevimon | [LadyDevimon](https://digimon.net/reference_en/detail.php?directory_name=ladydevimon) | Ultimate | [223](../content/species/223-ladydevimon.json) | playable | in-progress | playable | Late regional adversary/partner; audit wings, limb deformation and attack recovery. |
@@ -68,16 +68,16 @@ The lower-priority species in section 3 still fit the vanilla aesthetic; they ad
 | 1.29 | Mammothmon | [Mammothmon](https://digimon.net/reference_en/detail.php?directory_name=mammon) | Ultimate | [267](../content/species/267-mammothmon.json) | playable | in-progress | playable | Snow-region landmark enemy/partner; large-model fit is the first acceptance check. |
 | 1.30 | SkullMeramon | [SkullMeramon](https://digimon.net/reference_en/detail.php?directory_name=deathmeramon) | Ultimate | [277](../content/species/277-skullmeramon.json) | playable | in-progress | playable | Late volcanic/industrial Ultimate; check flame effects and damage timing. |
 
-## 2. Vanilla-like Megas: Adventure endgame library
+## 2. Original-style Megas: Adventure endgame roster
 
-**HerculesKabuterimon, Phoenixmon, Machinedramon and MetalEtemon are already Megas.** Review their evolution requirements, balance and save/options behavior as part of polishing the existing promotions.
+HerculesKabuterimon, Phoenixmon, Machinedramon and MetalEtemon are already Megas. Review their evolution requirements, balance and save/options behavior as part of polishing the existing promotions.
 
 KingEtemon already has Etemon, Monzaemon and Digitamamon as parents, with at most 10 care mistakes. Vikemon and Plesiomon already have aquatic routes, including Whamon, now Ultimate with NEW DIGIMON on (Champion off); further route changes remain proposals.
 
 | Priority | Digimon / form | Reference artwork | Evolution stage | Existing asset / record | Art | Techniques | Evo requirements | Next acceptance work / reason |
 |---|---|---|---|---|---|---|---|---|
-| 2.01 | WarGreymon | [WarGreymon](https://digimon.net/reference_en/detail.php?directory_name=wargreymon) | Mega | [373](../content/species/373-wargreymon.json) | in-progress | in-progress | configured | First core Mega acceptance sample: claws, shield, finisher, care and comparable endgame balance. |
-| 2.02 | MetalGarurumon | [MetalGarurumon](https://digimon.net/reference_en/detail.php?directory_name=metalgarurumon) | Mega | [191](../content/species/191-metalgarurumon.json) | in-progress | in-progress | configured | Second core sample: quadruped motion, missile origins, care and ranged balance. |
+| 2.01 | WarGreymon | [WarGreymon](https://digimon.net/reference_en/detail.php?directory_name=wargreymon) | Mega | [373](../content/species/373-wargreymon.json) | in-progress | in-progress | configured | First Mega acceptance sample: claws, shield, finisher, care and comparable endgame balance. |
+| 2.02 | MetalGarurumon | [MetalGarurumon](https://digimon.net/reference_en/detail.php?directory_name=metalgarurumon) | Mega | [191](../content/species/191-metalgarurumon.json) | in-progress | in-progress | configured | Second Mega sample: quadruped motion, missile origins, care and ranged balance. |
 | 2.03 | HerculesKabuterimon | [HerculesKabuterimon](https://digimon.net/reference_en/detail.php?directory_name=heraklekabuterimon) | Mega (promoted from Ultimate) | [60](../content/species/60-herculeskabuterimon.json) | playable | in-progress | playable | Mega promotion is in game; validate the Tentomon-family route, balance and save/options behavior. |
 | 2.04 | Phoenixmon | [Phoenixmon](https://digimon.net/reference_en/detail.php?directory_name=hououmon) | Mega (promoted from Ultimate) | [59](../content/species/59-phoenixmon.json) | playable | in-progress | playable | Mega promotion is in game; validate the Biyomon-family route, balance and save/options behavior. |
 | 2.05 | Rosemon | [Rosemon](https://digimon.net/reference_en/detail.php?directory_name=rosemon) | Mega | [230](../content/species/230-rosemon.json) | in-progress | in-progress | configured | Plant-family capstone; complete whip, effects, care and late-game balance. |
@@ -96,7 +96,7 @@ KingEtemon already has Etemon, Monzaemon and Digitamamon as parents, with at mos
 | 2.18 | Apocalymon | [Apocalymon](https://digimon.net/reference_en/detail.php?directory_name=apoclymon) | Mega | [400](../content/species/400-apocalymon.json) | in-progress | in-progress | configured | Partner data and parents are configured; constant-scale size repair (about 600 units) is merged. Validate field/care fit and effects. |
 | 2.19 | Omnimon (Omegamon) | [Omnimon](https://digimon.net/reference_en/detail.php?directory_name=omegamon) | Mega | [461](../content/species/461-omnimon.json) | in-progress | in-progress | configured | Adventure-film bonus after core Megas; dual-weapon attacks and a documented unlock route. |
 
-## 3. Low priority vanilla-like
+## 3. Lower-priority original-style species
 
 These additions flesh out V1.0 with more supporting species and regional variety, after the core Adventure families and vanilla-like Megas.
 
@@ -117,9 +117,9 @@ These additions flesh out V1.0 with more supporting species and regional variety
 | 3.13 | Datamon | [Datamon](https://digimon.net/reference_en/detail.php?directory_name=nanomon) | Ultimate | [294](../content/species/294-datamon.json) | in-progress | in-progress | configured | Factory/ruins resident; check small-body attacks and partner interactions. |
 | 3.14 | Garbagemon | [Garbagemon](https://digimon.net/reference_en/detail.php?directory_name=gerbemon) | Ultimate | [269](../content/species/269-garbagemon.json) | in-progress | in-progress | configured | Industrial region variety; verify bin/bazooka movement and care poses. |
 
-## 4. Series 2: Adventure 02 regional library
+## 4. Adventure 02 roster
 
-The main cast and Armor/DNA forms follow the [Adventure 02 roster](https://wikimon.net/Digimon_Adventure_02). Patamon/Gatomon and their earlier forms reuse tiers 1–2. Armor and DNA are source-fiction categories: the library proposal does not require implementing armor-item mechanics or a two-partner fusion system. Specify a DW1-compatible acquisition route separately. Horizon currently represents most Armor forms as Champion and Magnamon as Ultimate; record those engine choices independently of lore labels.
+The main cast and Armor/DNA forms follow the [Adventure 02 roster](https://wikimon.net/Digimon_Adventure_02). Patamon/Gatomon and their earlier forms reuse tiers 1–2. Armor and DNA are source-fiction categories: the roster proposal does not require implementing armor-item mechanics or a two-partner fusion system. Specify a DW1-compatible acquisition route separately. Horizon currently represents most Armor forms as Champion and Magnamon as Ultimate; record those engine choices independently of lore labels.
 
 | Priority | Digimon / form | Reference artwork | Evolution stage | Existing asset / record | Art | Techniques | Evo requirements | Next acceptance work / reason |
 |---|---|---|---|---|---|---|---|---|
@@ -169,7 +169,7 @@ The main cast and Armor/DNA forms follow the [Adventure 02 roster](https://wikim
 | 4.44 | Armageddemon | [Armageddemon](https://digimon.net/reference_en/detail.php?directory_name=armagemon) | Mega | [407](../content/species/407-armageddemon.json) | in-progress | in-progress | configured | Optional film boss after the above family; size/effect budget first. |
 | 4.45 | Imperialdramon (Paladin Mode) | [Imperialdramon: Paladin Mode](https://digimon.net/reference_en/detail.php?directory_name=imperialdramonpaladinmode) | Mega | DW2003 M381IPDP; no species record | not started | not started | not started | Source model exists; assess conversion and partner fit before inclusion. Optional film capstone; separate mode asset, unlock and balance review. |
 
-## 5. Series 3 / DW3: Tamers and Digimon World 3 regional library
+## 5. Tamers and Digimon World 3 roster
 
 The main and supporting cast follow the [Tamers roster](https://wikimon.net/Digimon_Tamers). Reuse native Leomon, Guardromon and Andromon; Azulongmon is already tracked in section 4. Terriermon’s missing lower forms take priority over additional Mega-only imports. The selected Devas/guardians are a bounded regional shortlist, not a commitment to every Tamers enemy or a D-Reaper subsystem.
 
@@ -189,7 +189,7 @@ This section also covers the distinctive starter families from [Digimon World 3 
 | 5.10 | Kyubimon | [Kyubimon](https://digimon.net/reference_en/detail.php?directory_name=kyubimon) | Champion | [409](../content/species/409-kyubimon.json) | in-progress | in-progress | configured | Champion; multi-tail deformation, flames and quadruped care. |
 | 5.11 | Taomon | [Taomon](https://digimon.net/reference_en/detail.php?directory_name=taomon) | Ultimate | [315](../content/species/315-taomon.json) | in-progress | in-progress | configured | Ultimate; talisman/brush attacks, sleeves and care interactions. |
 | 5.12 | Sakuyamon | [Sakuyamon](https://digimon.net/reference_en/detail.php?directory_name=sakuyamon) | Mega | [316](../content/species/316-sakuyamon.json) | in-progress | in-progress | configured | Mega; staff/effects, recovery and complete care set. |
-| 5.13 | Bearmon (DW3 Kumamon) | [Bearmon](https://digimon.net/reference_en/detail.php?directory_name=bearmon) | Rookie | [353](../content/species/353-bearmon.json) | in-progress | in-progress | configured | First DW3 starter priority; finish boxing, field and care animations, then validate the full Grizzlymon → GrapLeomon → Marsmon route. |
+| 5.13 | Bearmon (DW3 Kumamon) | [Bearmon](https://digimon.net/reference_en/detail.php?directory_name=bearmon) | Rookie | [353](../content/species/353-bearmon.json) | in-progress | in-progress | configured | First DW3 starter family; finish boxing, field and care animations, then validate the full Grizzlymon → GrapLeomon → Marsmon route. |
 | 5.14 | Grizzlymon (Grizzmon) | [Grizzlymon](https://digimon.net/reference_en/detail.php?directory_name=gryzmon) | Champion | [296](../content/species/296-grizzlymon.json) | in-progress | in-progress | configured | Bearmon-family Champion from DW3; validate claw contacts, body scale and complete care coverage. |
 | 5.15 | GrapLeomon | [GrapLeomon](https://digimon.net/reference_en/detail.php?directory_name=grappuleomon) | Ultimate | [306](../content/species/306-grapleomon.json) | in-progress | in-progress | configured | Bearmon-family Ultimate from DW3; check turbine-limb motion and melee timing while retaining useful Leomon-family branches. |
 | 5.16 | Marsmon | [Marsmon](https://digimon.net/reference_en/detail.php?directory_name=marsmon) | Mega | [297](../content/species/297-marsmon.json) | in-progress | in-progress | configured | Bearmon-family Mega from DW3; complete martial-arts attacks, effects, care animations and late-game balance. |
@@ -219,15 +219,15 @@ This section also covers the distinctive starter families from [Digimon World 3 
 | 5.40 | Relemon | [Relemon](https://digimon.net/reference_en/detail.php?directory_name=relemon) | Fresh | No supported-disc model identified | Needs a hand-authoring decision | not started | not started | Renamon Fresh; optional nursery-completion pass. |
 | 5.41 | Viximon (Pokomon) | [Viximon](https://digimon.net/reference_en/detail.php?directory_name=pokomon) | In-Training | No supported-disc model identified | Needs a hand-authoring decision | not started | not started | Renamon In-Training; nursery and care acceptance. |
 | 5.42 | Megidramon | [Megidramon](https://digimon.net/reference_en/detail.php?directory_name=megidramon) | Mega | No supported-disc model identified | Needs a hand-authoring decision | not started | not started | Optional dark-evolution boss after the main cast; large-model/effect feasibility first. |
-| 5.43 | Gallantmon (Crimson Mode) | [Gallantmon: Crimson Mode](https://digimon.net/reference_en/detail.php?directory_name=dukemoncrimsonmode) | Mega | No supported-disc model identified | Needs a hand-authoring decision | not started | not started | Late capstone after base Gallantmon; separate wing/weapon/mode acceptance. |
-| 5.44 | Beelzemon (Blast Mode) | [Beelzemon: Blast Mode](https://digimon.net/reference_en/detail.php?directory_name=beelzebumonblastmode) | Mega | No supported-disc model identified | Needs a hand-authoring decision | not started | not started | Late capstone after base Beelzemon; separate wing/cannon/mode acceptance. |
+| 5.43 | Gallantmon (Crimson Mode) | [Gallantmon: Crimson Mode](https://digimon.net/reference_en/detail.php?directory_name=dukemoncrimsonmode) | Mega | No supported-disc model identified | Needs a hand-authoring decision | not started | not started | Late Mega after base Gallantmon; separate wing/weapon/mode acceptance. |
+| 5.44 | Beelzemon (Blast Mode) | [Beelzemon: Blast Mode](https://digimon.net/reference_en/detail.php?directory_name=beelzebumonblastmode) | Mega | No supported-disc model identified | Needs a hand-authoring decision | not started | not started | Late Mega after base Beelzemon; separate wing/cannon/mode acceptance. |
 | 5.45 | Makuramon | [Makuramon](https://digimon.net/reference_en/detail.php?directory_name=makuramon) | Ultimate | No supported-disc model identified | Needs a hand-authoring decision | not started | not started | Selected Deva for regional encounters; model and attack feasibility first. |
 | 5.46 | Indramon | [Indramon](https://digimon.net/reference_en/detail.php?directory_name=indaramon) | Ultimate | No supported-disc model identified | Needs a hand-authoring decision | not started | not started | Selected Deva; large-body and instrument/attack feasibility first. |
 | 5.47 | Zhuqiaomon | [Zhuqiaomon](https://digimon.net/reference_en/detail.php?directory_name=zhuqiaomon) | Mega | No supported-disc model identified | Needs a hand-authoring decision | not started | not started | Regional boss/guardian; budget a bounded encounter before a partner version. |
 | 5.48 | Baihumon | [Baihumon](https://digimon.net/reference_en/detail.php?directory_name=baihumon) | Mega | [276](../content/species/276-baihumon.json) | in-progress | in-progress | configured | Existing guardian asset; validate scale and encounter role, then optional partner coverage. |
 | 5.49 | Ebonwumon | [Ebonwumon](https://digimon.net/reference_en/detail.php?directory_name=xuanwumon) | Mega | No supported-disc model identified | Needs a hand-authoring decision | not started | not started | Complete the guardian set only after the core region works; large multi-head model feasibility. |
 
-## Acceptance: when a row advances
+## Acceptance criteria
 
 Scope acceptance to the intended role: partner by default, or explicitly enemy/NPC first. A finished NPC is not a finished raisable partner; track each area separately and record non-applicable checks.
 
@@ -241,7 +241,7 @@ Scope acceptance to the intended role: partner by default, or explicitly enemy/N
 
 Discuss these proposals alongside the [ideas backlog](ideas.md); check the [decision log](decisions.md) before changing existing gameplay or option contracts.
 
-- **V1.0 roster:** complete sections 1–3 in priority order and resolve optional forms. Sections 4–5 outline later post-game expansions.
+- **v1.0 roster:** complete sections 1–3 in priority order and resolve optional forms. Sections 4–5 outline later post-game expansions.
 - **Profiles:** define the supported roster, balance and story combinations. NEW DIGIMON OFF currently limits species; it does not undo the unconditional care/economy rebalancing described in [balance.md](mods/balance.md). EASY/NORMAL is a combat multiplier, not a complete classic/expanded ruleset switch.
 - **Save semantics:** keep species IDs and mod-owned flags stable. Document fallbacks, restored partners, retained recruitment and story-removal behavior using the existing [options](mods/options.md) and [compatibility](mods/compatibility.md) contracts. Test two saves with different options, not only one save round trips.
 - **Library boundary:** demonstrate one standalone mini-mod using a polished family, one encounter/resident and a save round trip with the beta story disabled. This is a practical acceptance test for the framework claim. A new story, a fusion system and every late boss can remain separate consumers of that library.
