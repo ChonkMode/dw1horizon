@@ -1,6 +1,6 @@
 # Digimon roster roadmap
 
-This proposal prioritizes which playable Digimon species to polish or add, and in what order. The proposed v1.0 scope covers sections 1–3, expanding the original roster with species from shows and games around its global release. Sections 4–5 outline possible later additions.
+This proposal prioritizes which playable Digimon species to polish or add, and in what order. As a proposal, sections 1–3 are suggested as the v1.0 focus (not a release commitment), expanding the original roster with species from shows and games around its global release. Sections 4–5 outline possible later additions.
 
 ## Status key
 
@@ -98,7 +98,7 @@ KingEtemon already has Etemon, Monzaemon and Digitamamon as parents, with at mos
 
 ## 3. Lower-priority original-style species
 
-These additions flesh out V1.0 with more supporting species and regional variety, after the core Adventure families and vanilla-like Megas.
+These suggested additions would flesh out v1.0 with more supporting species and regional variety, after the core Adventure families and vanilla-like Megas.
 
 | Priority | Digimon / form | Reference artwork | Evolution stage | Existing asset / record | Art | Techniques | Evo requirements | Next acceptance work / reason |
 |---|---|---|---|---|---|---|---|---|
@@ -241,10 +241,26 @@ Scope acceptance to the intended role: partner by default, or explicitly enemy/N
 
 Discuss these proposals alongside the [ideas backlog](ideas.md); check the [decision log](decisions.md) before changing existing gameplay or option contracts.
 
-- **v1.0 roster:** complete sections 1–3 in priority order and resolve optional forms. Sections 4–5 outline later post-game expansions.
+- **v1.0 roster (open):** whether sections 1–3, in this order, become the v1.0 goal is still to be agreed; listing a species does not promise it. Sections 4–5 outline later post-game expansions.
 - **Profiles:** define the supported roster, balance and story combinations. NEW DIGIMON OFF currently limits species; it does not undo the unconditional care/economy rebalancing described in [balance.md](mods/balance.md). EASY/NORMAL is a combat multiplier, not a complete classic/expanded ruleset switch.
 - **Save semantics:** keep species IDs and mod-owned flags stable. Document fallbacks, restored partners, retained recruitment and story-removal behavior using the existing [options](mods/options.md) and [compatibility](mods/compatibility.md) contracts. Test two saves with different options, not only one save round trips.
 - **Library boundary:** demonstrate one standalone mini-mod using a polished family, one encounter/resident and a save round trip with the beta story disabled. This is a practical acceptance test for the framework claim. A new story, a fusion system and every late boss can remain separate consumers of that library.
+
+## Open for discussion
+
+These points are left open on purpose; nothing here is decided by this roadmap.
+
+- **Kotemon → Dinohyumon → Kyukimon → SlashAngemon** is not the current evolution tree (the existing parents differ). Treat it as a proposed
+  tree change that needs its own review, not as validation of existing routes.
+- **Show families versus raising routes.** Some rows describe anime families (for example Pegasusmon from Patamon) that differ from the
+  game's actual parents. Changing parents needs a separate tree review under the existing tree rules (every raisable Rookie with enough
+  Champions, every Champion with Ultimates, every Ultimate with a Mega route).
+- **Armor and DNA forms** are listed as roster species with ordinary routes; they don't imply a fusion or armor-evolution system, which would
+  be a separate design proposal.
+- **Regional bosses, residents and the standalone mini-mod** are story work, separate from roster polish; the original story keeps every
+  recruit, service and route.
+- **Candidates without a model in the four supported discs** need an agreed hand-authoring plan and a 2 MB feasibility check before they are
+  scheduled; the hand-made babies don't prove that larger Digimon are feasible.
 
 ## Reference artwork
 
